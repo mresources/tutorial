@@ -1,0 +1,650 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     24188,        642]
+NotebookOptionsPosition[     20020,        567]
+NotebookOutlinePosition[     20446,        584]
+CellTagsIndexPosition[     20403,        581]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Nest / NestList\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Functional Programming\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.4.4\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 23:23:12\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "23", ",", "23", ",", 
+              "12"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<functional-programming\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<functional-programming\>\"", ",", "\"\<nest\>\"", ",", 
+      "\"\<nestlist\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234353177624493`*^9, 3.723435329685869*^9}, {3.740780281197221*^9, 
+   3.740780286547553*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Nest / NestList", "Subsection",
+ CellChangeTimes->{{3.6927457663068857`*^9, 3.692745768130061*^9}, {
+   3.692748075801159*^9, 3.692748076059989*^9}, {3.692748161035264*^9, 
+   3.692748162972712*^9}, {3.692749716789554*^9, 3.6927497202545424`*^9}, {
+   3.6927689186239653`*^9, 3.692768920884172*^9}, 3.6928145214654093`*^9, {
+   3.723574753317129*^9, 
+   3.7235747536733217`*^9}},ExpressionUUID->"4da8cbb9-e910-48f5-ad47-\
+785c6fab84e5"],
+
+Cell[CellGroupData[{
+
+Cell["Nest", "Subsubsection",ExpressionUUID->"b94cbad6-d173-4a30-bfbe-f0e76cd3f2bd"],
+
+Cell[TextData[{
+ "Often instead of mapping a function over a list we want to map a function \
+in a nested fashion, taking the previous result as the argument of our next \
+call. For this, there is ",
+ Cell[BoxData[
+  FormBox["Nest", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "74294305-e476-4d5d-9530-a864b3f00840"],
+ ". We could, for instance, implement a random-walk function using this."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6927480492131367`*^9, 3.692748227746605*^9}, {
+   3.692748332462914*^9, 3.692748335406238*^9}, {3.6927485750437193`*^9, 
+   3.692748575299958*^9}},ExpressionUUID->"12b5e4c0-0a5e-4774-9468-\
+e24c57663e85"],
+
+Cell["First the random vector:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692748576520913*^9, 
+   3.692748580453477*^9}},ExpressionUUID->"6a73f279-2c33-4a71-b61d-\
+3bcde5787e64"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"randomVector", "=", "\n", 
+   RowBox[{"Compile", "[", 
+    RowBox[{
+     RowBox[{"{", " ", 
+      RowBox[{"{", 
+       RowBox[{"mag", ",", "_Real"}], "}"}], " ", "}"}], ",", "\n", "\t", 
+     RowBox[{"mag", "*", 
+      RowBox[{"Normalize", "@", 
+       RowBox[{"RandomReal", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "1"}], ",", "1"}], "}"}], ",", "3"}], "]"}]}]}]}], 
+    "\n", "\t", "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927482328902617`*^9, 3.692748275017076*^9}, {
+   3.692748336734026*^9, 3.692748398892002*^9}, {3.692748439030714*^9, 
+   3.692748514740993*^9}, 3.6927485677923326`*^9, {3.692748683490456*^9, 
+   3.692748686018794*^9}, {3.692748842355546*^9, 3.692748890905286*^9}, 
+   3.723435336474146*^9, {3.723596576825449*^9, 
+   3.723596580181353*^9}},ExpressionUUID->"6c5a3adf-de3c-4a14-aee7-\
+c456a84d6381"],
+
+Cell["Then the random walk starting from a point:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69274858214254*^9, 
+   3.692748592044196*^9}},ExpressionUUID->"a02c29bc-4902-41ce-8601-\
+5adc5a4fef58"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalk", "[", 
+    RowBox[{"start_", ",", "n_", ",", "stepSize_"}], "]"}], ":=", 
+   RowBox[{"Nest", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"randomVector", "[", "stepSize", "]"}], "+", "#"}], "&"}], ",",
+      "start", ",", "n"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"randomWalk", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "100", ",", ".1"}], 
+  "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927482328902617`*^9, 3.692748275017076*^9}, {
+   3.692748336734026*^9, 3.692748398892002*^9}, {3.692748439030714*^9, 
+   3.692748514740993*^9}, 3.6927485677923326`*^9, 
+   3.723435336503036*^9},ExpressionUUID->"3500e987-3ae7-4a06-8f12-\
+34ba10e93b2b"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "0.6701260860918063`"}], ",", "0.14108631400644098`", ",", 
+   RowBox[{"-", "0.18613771198513052`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.692748892611677*^9, 
+  3.692749227462758*^9},ExpressionUUID->"d273dd52-5847-4fd2-b2b5-\
+753fb37a483d"]
+}, Open  ]],
+
+Cell["\<\
+Do to this procedurally we would have had to have scoped it then looped:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692748529759389*^9, 
+   3.692748553606393*^9}},ExpressionUUID->"ebb6561b-2b47-4609-bab3-\
+1d8eded4780a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalkP", "[", 
+    RowBox[{"start_", ",", "n_", ",", "stepSize_"}], "]"}], ":=", "\n", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"current", "=", "start"}], ",", "i"}], "}"}], ",", "\n", "\t", 
+     
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+        RowBox[{"i", "<=", " ", "n"}], " ", ",", " ", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{"current", "+=", " ", 
+         RowBox[{"randomVector", "[", "stepSize", "]"}]}]}], "]"}], ";", "\n",
+       "\t", "current"}]}], "\n", "\t", "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.692748560876957*^9, 3.692748565966416*^9}, {
+   3.692748601554228*^9, 3.692748673984838*^9}, 
+   3.72343533653097*^9},ExpressionUUID->"5817ba6d-77d4-43ba-b03e-\
+7d893548b9dd"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"randomWalkP", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "100", ",", ".1"}], 
+  "]"}]], "Code",
+ CellChangeTimes->{{3.692748667744899*^9, 3.6927486688220863`*^9}, 
+   3.723435336556198*^9},ExpressionUUID->"1a213986-5ee1-42d7-b7e2-\
+493957fd33a7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", "0.014976940150273566`"}], ",", "0.9945437636484472`", ",", 
+   RowBox[{"-", "0.08019586484541548`"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6927486754794693`*^9, 3.692748690692122*^9}, 
+   3.69274889746386*^9},ExpressionUUID->"fc3d7570-1f4e-4d77-bb62-\
+36ee476d171b"]
+}, Open  ]],
+
+Cell["And then we can see the efficiency gains of the former:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69274870399393*^9, 
+   3.692748712457148*^9}},ExpressionUUID->"779a4f09-67e1-4780-a692-\
+e01c7064be6c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalkP", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"10", "^", "6"}], ",", ".1"}], "]"}], "//", "\n", 
+   "AbsoluteTiming"}], "//", "First"}]], "Code",
+ CellChangeTimes->{{3.692748667744899*^9, 3.6927486688220863`*^9}, {
+   3.692748756747093*^9, 3.69274878185355*^9}, 3.692748904354123*^9, 
+   3.723435336600608*^9},ExpressionUUID->"80fe14c9-071e-41de-a91a-\
+859e7d476d5b"],
+
+Cell[BoxData["2.599178`"], "Output",
+ CellChangeTimes->{{3.692748758636189*^9, 3.692748768366984*^9}, 
+   3.692748836748096*^9, {3.692748902786508*^9, 
+   3.692748907213525*^9}},ExpressionUUID->"7ec59719-7d5e-423f-86e8-\
+b94114dfc623"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalk", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"10", "^", "6"}], ",", ".1"}], "]"}], "//", "\n", 
+   "AbsoluteTiming"}], "//", "First"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.692748720684853*^9, 3.692748728472987*^9}, {
+   3.692748761630515*^9, 3.692748784612567*^9}, {3.692748906736341*^9, 
+   3.692748907416932*^9}, 
+   3.72343533663374*^9},ExpressionUUID->"94f6653e-a439-4966-8efa-\
+c24ba3517ce3"],
+
+Cell[BoxData["1.824635`"], "Output",
+ CellChangeTimes->{3.6927487317260103`*^9, 
+  3.692748909477504*^9},ExpressionUUID->"ab48d06a-697c-43d3-ba8a-\
+81dea7c1a67f"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Small (most of the cost comes from the normalization in ",
+ Cell[BoxData[
+  FormBox["randomVector", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "3495fbbe-60db-490f-9cce-db82918e23c3"],
+ ", hence the ",
+ Cell[BoxData[
+  FormBox["Compile", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "b383fe38-0a0d-4e5d-a7b1-16b2a22dd0e1"],
+ " call) but non-negligible."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692748788370372*^9, 3.692748818946257*^9}, {
+   3.692748923816464*^9, 
+   3.692748936953739*^9}},ExpressionUUID->"7c4a5a7a-dae5-4d25-bd96-\
+653892e76a0e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["NestList", "Subsubsection",ExpressionUUID->"aea2cc93-779a-465f-ad03-6df537448816"],
+
+Cell[TextData[{
+ "The gains are drastic if we want all of our walk positions. For this we use \
+the corresponding ",
+ Cell[BoxData[
+  FormBox["NestList", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "cbed4e00-a34e-4a04-880c-fe864528a640"],
+ " function:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692748941802167*^9, 3.6927489537444973`*^9}, {
+   3.6927490052056837`*^9, 3.692749048300193*^9}, {3.692749106670371*^9, 
+   3.692749108079402*^9}},ExpressionUUID->"c2b25935-543e-4840-b81e-\
+75011ce5db0a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalk2", "[", 
+    RowBox[{"start_", ",", "n_", ",", "stepSize_"}], "]"}], ":=", "\n", 
+   RowBox[{"NestList", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"randomVector", "[", "stepSize", "]"}], "+", "#"}], "&"}], ",",
+      "start", ",", "n"}], "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927482328902617`*^9, 3.692748275017076*^9}, {
+   3.692748336734026*^9, 3.692748398892002*^9}, {3.692748439030714*^9, 
+   3.692748514740993*^9}, 3.6927485677923326`*^9, {3.6927490404472227`*^9, 
+   3.692749045084441*^9}, 3.692749243681864*^9, 
+   3.723435336666087*^9},ExpressionUUID->"20664040-f371-445a-a284-\
+192d8bce1bbb"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalk2", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"10", "^", "6"}], ",", ".1"}], "]"}], "//", "AbsoluteTiming"}], "//",
+   "First"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927482328902617`*^9, 3.692748275017076*^9}, {
+   3.692748336734026*^9, 3.692748398892002*^9}, {3.692748439030714*^9, 
+   3.692748514740993*^9}, 3.6927485677923326`*^9, {3.6927490404472227`*^9, 
+   3.69274904194188*^9}, {3.692749080065674*^9, 3.692749120727491*^9}, {
+   3.692749311243122*^9, 3.6927493129292097`*^9}, 
+   3.7234353367019*^9},ExpressionUUID->"ded66895-4774-45c0-ab44-e9fb94ba8c38"],
+
+Cell[BoxData["1.892415`"], "Output",
+ CellChangeTimes->{{3.692749093737664*^9, 
+  3.692749123000904*^9}},ExpressionUUID->"12999c44-3f01-40ab-bdc6-\
+1b1935f79356"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalkP2", "[", 
+    RowBox[{"start_", ",", "n_", ",", "stepSize_"}], "]"}], ":=", "\n", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"path", "=", 
+        RowBox[{"{", "start", "}"}]}], ",", "i"}], "}"}], ",", "\n", "\t", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", " ", "=", " ", "1"}], ",", " ", 
+        RowBox[{"i", "<=", " ", "n"}], " ", ",", " ", 
+        RowBox[{"i", "++"}], ",", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"path", ",", " ", 
+          RowBox[{
+           RowBox[{"randomVector", "[", "stepSize", "]"}], "+", 
+           RowBox[{"Last", "@", "path"}]}]}], "]"}]}], "]"}], ";", "\n", "\t",
+       "path"}]}], "\n", "\t", "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927489633164473`*^9, 3.692748993439402*^9}, 
+   3.723435336750211*^9},ExpressionUUID->"0cb4d3b9-418a-457c-bb2b-\
+355141263e1d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalkP2", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"10", "^", "5"}], ",", ".1"}], "]"}], "//", "\n", 
+   "AbsoluteTiming"}], "//", "First"}]], "Code",
+ CellChangeTimes->{{3.692748667744899*^9, 3.6927486688220863`*^9}, {
+   3.692748756747093*^9, 3.69274878185355*^9}, 3.692748904354123*^9, 
+   3.692748999895803*^9, {3.6927490560300694`*^9, 3.69274906085353*^9}, 
+   3.723435336784042*^9},ExpressionUUID->"09a9de3d-ff73-4444-8236-\
+2b38f17e064a"],
+
+Cell[BoxData["27.372997`"], "Output",
+ CellChangeTimes->{{3.6927490536066933`*^9, 
+  3.692749088439898*^9}},ExpressionUUID->"6cbd023e-e91d-43a1-9bd2-\
+a14bea86b8ab"]
+}, Open  ]],
+
+Cell["\<\
+Note that, not only does it take almost 15x as long, we accumulated an order \
+of magnitude fewer points.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692749125575585*^9, 
+   3.69274916437961*^9}},ExpressionUUID->"6f42cee8-2029-4982-9109-\
+72d3ab0f5588"],
+
+Cell["\<\
+Let\[CloseCurlyQuote]s put this to good use, now, seeing where our random \
+walks end up:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692749167587391*^9, 3.692749184506913*^9}, {
+   3.6927493735965557`*^9, 
+   3.692749388723454*^9}},ExpressionUUID->"fadf82af-c707-4793-a201-\
+27c973b10f5d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalkP2", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"2.5", "*", 
+      RowBox[{"10", "^", "4"}]}], ",", ".1"}], "]"}], "//", "Mean"}], "//", 
+  "AbsoluteTiming"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927491900868063`*^9, 3.692749196578457*^9}, {
+   3.692749253056506*^9, 3.692749254305043*^9}, 
+   3.723435336821171*^9},ExpressionUUID->"cc801612-7d78-421a-83e9-\
+9f246678b7f7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1.821336`", ",", 
+   RowBox[{"{", 
+    RowBox[{"7.575784741863281`", ",", 
+     RowBox[{"-", "5.394047567758916`"}], ",", "2.3229639385579515`"}], 
+    "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6927491971153584`*^9, 3.69274925672755*^9, 
+  3.692749382052011*^9, 
+  3.692749456785758*^9},ExpressionUUID->"200b987e-dd94-4423-b472-\
+f5a78b1cd784"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"randomWalk2", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+     RowBox[{"25", "*", 
+      RowBox[{"10", "^", "3"}]}], ",", ".1"}], "]"}], "//", "Mean"}], "//", 
+  "AbsoluteTiming"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927482328902617`*^9, 3.692748275017076*^9}, {
+   3.692748336734026*^9, 3.692748398892002*^9}, {3.692748439030714*^9, 
+   3.692748514740993*^9}, 3.6927485677923326`*^9, {3.6927490404472227`*^9, 
+   3.69274904194188*^9}, {3.692749080065674*^9, 3.692749120727491*^9}, {
+   3.692749208499721*^9, 3.692749212132221*^9}, {3.692749323010468*^9, 
+   3.692749325512808*^9}, {3.6927493569009867`*^9, 3.692749362583907*^9}, {
+   3.692749393030023*^9, 3.692749398190154*^9}, {3.692749437698812*^9, 
+   3.692749449758236*^9}, 
+   3.723435336873221*^9},ExpressionUUID->"eaae9364-7ea1-4d62-aef4-\
+94c8168a3b57"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.043608`", ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"-", "6.015475841270593`"}], ",", 
+     RowBox[{"-", "0.6336148160099607`"}], ",", 
+     RowBox[{"-", "3.303309091893062`"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.692749214488221*^9, 3.692749264922678*^9, {3.69274935204156*^9, 
+   3.6927493645984087`*^9}, {3.692749398605549*^9, 3.69274941314832*^9}, {
+   3.6927494502550087`*^9, 
+   3.692749463263102*^9}},ExpressionUUID->"eea007f1-81e5-4727-849e-\
+7904661f5289"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Both have traveled a considerable distance and using the vast efficiency \
+gains from the ",
+ Cell[BoxData[
+  FormBox["NestList", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "73dad19c-1852-497e-b850-998caa1769fc"],
+ " we can actually see if this holds in general or if it\[CloseCurlyQuote]s \
+just a spurious effect:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692749470876316*^9, 
+   3.69274951414221*^9}},ExpressionUUID->"f35f4c0f-f6c1-4eaa-bc79-\
+f6194868903a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"randomWalk2", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", 
+         RowBox[{"25", "*", 
+          RowBox[{"10", "^", "3"}]}], ",", ".1"}], "]"}], "//", "Mean"}], "//",
+       "Norm"}], ",", "100"}], "]"}], "//", "Mean"}], "//", 
+  "AbsoluteTiming"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{
+  3.69274952014293*^9, {3.692749558757916*^9, 3.692749612330749*^9}, {
+   3.692749670628949*^9, 3.692749670997538*^9}, 
+   3.7234353369152603`*^9},ExpressionUUID->"7bce5234-7391-434c-9252-\
+cdc396bba609"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"4.537624`", ",", "8.4477492155034`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.692749595538361*^9, 3.6927496149122066`*^9}, 
+   3.692749676145986*^9},ExpressionUUID->"77f123fe-6be0-4f85-a687-\
+758f8e175cd3"]
+}, Open  ]],
+
+Cell["\<\
+So it does in fact seem that, on average, a random walk will leave its \
+origin. Note that doing that checking the same thing procedurally would have \
+take a number of minutes. We can do it in under five seconds.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692749616887542*^9, 
+   3.692749706896525*^9}},ExpressionUUID->"fe83eb1f-5376-4f20-8517-\
+123345d05244"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{69, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2632, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3215, 79, 442, 7, 41, "Subsection",ExpressionUUID->"4da8cbb9-e910-48f5-ad47-785c6fab84e5"],
+Cell[CellGroupData[{
+Cell[3682, 90, 84, 0, 40, "Subsubsection",ExpressionUUID->"b94cbad6-d173-4a30-bfbe-f0e76cd3f2bd"],
+Cell[3769, 92, 662, 13, 81, "Text",ExpressionUUID->"12b5e4c0-0a5e-4774-9468-e24c57663e85"],
+Cell[4434, 107, 192, 4, 35, "Text",ExpressionUUID->"6a73f279-2c33-4a71-b61d-3bcde5787e64"],
+Cell[4629, 113, 935, 23, 110, "Code",ExpressionUUID->"6c5a3adf-de3c-4a14-aee7-c456a84d6381"],
+Cell[5567, 138, 210, 4, 35, "Text",ExpressionUUID->"a02c29bc-4902-41ce-8601-5adc5a4fef58"],
+Cell[CellGroupData[{
+Cell[5802, 146, 775, 21, 72, "Code",ExpressionUUID->"3500e987-3ae7-4a06-8f12-34ba10e93b2b"],
+Cell[6580, 169, 301, 7, 34, "Output",ExpressionUUID->"d273dd52-5847-4fd2-b2b5-753fb37a483d"]
+}, Open  ]],
+Cell[6896, 179, 248, 6, 35, "Text",ExpressionUUID->"ebb6561b-2b47-4609-bab3-1d8eded4780a"],
+Cell[7147, 187, 903, 24, 129, "Code",ExpressionUUID->"5817ba6d-77d4-43ba-b03e-7d893548b9dd"],
+Cell[CellGroupData[{
+Cell[8075, 215, 312, 8, 52, "Code",ExpressionUUID->"1a213986-5ee1-42d7-b7e2-493957fd33a7"],
+Cell[8390, 225, 328, 7, 34, "Output",ExpressionUUID->"fc3d7570-1f4e-4d77-bb62-36ee476d171b"]
+}, Open  ]],
+Cell[8733, 235, 222, 4, 35, "Text",ExpressionUUID->"779a4f09-67e1-4780-a692-e01c7064be6c"],
+Cell[CellGroupData[{
+Cell[8980, 243, 487, 12, 72, "Code",ExpressionUUID->"80fe14c9-071e-41de-a91a-859e7d476d5b"],
+Cell[9470, 257, 235, 4, 34, "Output",ExpressionUUID->"7ec59719-7d5e-423f-86e8-b94114dfc623"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9742, 266, 535, 14, 72, "Code",ExpressionUUID->"94f6653e-a439-4966-8efa-c24ba3517ce3"],
+Cell[10280, 282, 162, 3, 34, "Output",ExpressionUUID->"ab48d06a-697c-43d3-ba8a-81dea7c1a67f"]
+}, Open  ]],
+Cell[10457, 288, 598, 15, 58, "Text",ExpressionUUID->"7c4a5a7a-dae5-4d25-bd96-653892e76a0e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11092, 308, 88, 0, 51, "Subsubsection",ExpressionUUID->"aea2cc93-779a-465f-ad03-6df537448816"],
+Cell[11183, 310, 523, 12, 35, "Text",ExpressionUUID->"c2b25935-543e-4840-b81e-75011ce5db0a"],
+Cell[11709, 324, 713, 17, 72, "Code",ExpressionUUID->"20664040-f371-445a-a284-192d8bce1bbb"],
+Cell[CellGroupData[{
+Cell[12447, 345, 701, 15, 52, "Code",ExpressionUUID->"ded66895-4774-45c0-ab44-e9fb94ba8c38"],
+Cell[13151, 362, 162, 3, 34, "Output",ExpressionUUID->"12999c44-3f01-40ab-bdc6-1b1935f79356"]
+}, Open  ]],
+Cell[13328, 368, 983, 26, 129, "Code",ExpressionUUID->"0cb4d3b9-418a-457c-bb2b-355141263e1d"],
+Cell[CellGroupData[{
+Cell[14336, 398, 561, 13, 72, "Code",ExpressionUUID->"09a9de3d-ff73-4444-8236-2b38f17e064a"],
+Cell[14900, 413, 165, 3, 34, "Output",ExpressionUUID->"6cbd023e-e91d-43a1-9bd2-a14bea86b8ab"]
+}, Open  ]],
+Cell[15080, 419, 280, 7, 35, "Text",ExpressionUUID->"6f42cee8-2029-4982-9109-72d3ab0f5588"],
+Cell[15363, 428, 317, 8, 35, "Text",ExpressionUUID->"fadf82af-c707-4793-a201-27c973b10f5d"],
+Cell[CellGroupData[{
+Cell[15705, 440, 511, 14, 52, "Code",ExpressionUUID->"cc801612-7d78-421a-83e9-9f246678b7f7"],
+Cell[16219, 456, 390, 10, 34, "Output",ExpressionUUID->"200b987e-dd94-4423-b472-f5a78b1cd784"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16646, 471, 928, 20, 52, "Code",ExpressionUUID->"eaae9364-7ea1-4d62-aef4-94c8168a3b57"],
+Cell[17577, 493, 531, 13, 34, "Output",ExpressionUUID->"eea007f1-81e5-4727-849e-7904661f5289"]
+}, Open  ]],
+Cell[18123, 509, 505, 12, 58, "Text",ExpressionUUID->"f35f4c0f-f6c1-4eaa-bc79-f6194868903a"],
+Cell[CellGroupData[{
+Cell[18653, 525, 685, 20, 52, "Code",ExpressionUUID->"7bce5234-7391-434c-9252-cdc396bba609"],
+Cell[19341, 547, 247, 5, 34, "Output",ExpressionUUID->"77f123fe-6be0-4f85-a687-758f8e175cd3"]
+}, Open  ]],
+Cell[19603, 555, 389, 8, 58, "Text",ExpressionUUID->"fe83eb1f-5376-4f20-8517-123345d05244"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

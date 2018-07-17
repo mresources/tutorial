@@ -1,0 +1,126 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4580,        118]
+NotebookOptionsPosition[      3789,         97]
+NotebookOutlinePosition[      4220,        114]
+CellTagsIndexPosition[      4177,        111]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Intro\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Overview\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.1.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<overview\>\""}], "}"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 
+   3.723435549502858*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Intro", "Subsection",
+ CellChangeTimes->{{3.692769026875819*^9, 3.692769049134763*^9}, {
+  3.6927691558869867`*^9, 
+  3.69276915646764*^9}},ExpressionUUID->"f4dad6dd-2aed-40df-808e-\
+e2006fde8297"],
+
+Cell[TextData[{
+ "The following is a way to work atoms and molecules in Mathematica. We\
+\[CloseCurlyQuote]ll use a combination of all the methods described in the \
+section ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+   "Useful", " ", "Tricks", " ", "\[RightPointer]", " ", "Object", " ", 
+    "Oriented", " ", "Programming"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"bd32ed5b-7958-47df-be66-fdf62980de0e"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.684453103486537*^9, 3.68445314686789*^9}, {
+  3.6846062103613043`*^9, 3.684606212318467*^9}, {3.6906534700772943`*^9, 
+  3.690653533263657*^9}, {3.690653839519389*^9, 3.69065386971856*^9}, {
+  3.690653906284856*^9, 
+  3.690653924009184*^9}},ExpressionUUID->"8b40f20c-eaf8-47ea-bc9f-\
+1be8bb4ca81f"],
+
+Cell["This degree of complexity is unnecessary, but informative.", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690653947512269*^9, 
+   3.6906539597914658`*^9}},ExpressionUUID->"21798517-cc9f-4f50-9892-\
+1179ec93f8c2"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll use a symbol interface type for our systems, and a \
+mixture of managed types and association interfaces for the rest of our \
+objects.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906540546916647`*^9, 
+   3.690654104314062*^9}},ExpressionUUID->"b4769d2d-860c-4569-974d-\
+dd13bf73b5a1"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{69, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1659, 31, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2242, 55, 203, 4, 52, "Subsection",ExpressionUUID->"f4dad6dd-2aed-40df-808e-e2006fde8297"],
+Cell[2448, 61, 755, 17, 58, "Text",ExpressionUUID->"8b40f20c-eaf8-47ea-bc9f-1be8bb4ca81f"],
+Cell[3206, 80, 228, 4, 35, "Text",ExpressionUUID->"21798517-cc9f-4f50-9892-1179ec93f8c2"],
+Cell[3437, 86, 336, 8, 58, "Text",ExpressionUUID->"b4769d2d-860c-4569-974d-dd13bf73b5a1"]
+}, Open  ]]
+}
+]
+*)
+

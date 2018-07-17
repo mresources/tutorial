@@ -1,0 +1,133 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4960,        125]
+NotebookOptionsPosition[      4264,        105]
+NotebookOutlinePosition[      4691,        122]
+CellTagsIndexPosition[      4648,        119]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Styles\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Using Mathematica/Interface\>\""}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", "\"\<1.2.5\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Sat 30 Dec 2017 02:23:05\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "30", ",", "2", ",", "23", ",", 
+              "5"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<using-mathematica\>\"", ",", "\"\<interface\>\""}], "}"}]}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<styles\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723203862030583*^9, 3.723203882695241*^9}, {3.723204068783868*^9, 
+   3.72320408189968*^9}, {3.723251376316903*^9, 3.723251382266656*^9}, {
+   3.7233476763812838`*^9, 3.723347697986979*^9}, {3.7233478130425367`*^9, 
+   3.723347844219796*^9}, {3.7235189533224077`*^9, 3.723518954630921*^9}, {
+   3.740779820963749*^9, 
+   3.74077983550244*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Styles", "Subsection",
+ CellChangeTimes->{{3.684759089996269*^9, 
+  3.684759091148201*^9}},ExpressionUUID->"5cf05368-9009-4c6e-b2cf-\
+3378af252017"],
+
+Cell[TextData[{
+ "Different cells have different styles, which you can access via the style \
+menu (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Format", " ", "\[RightPointer]", " ", "Style"}], TextInlineCell]],
+   "TextInlineCell",ExpressionUUID->"084ae82d-450d-443e-8b5f-540bc91bdf31"],
+ ") or keyboard shortcuts. Here are a few of them:"
+}], "Text",
+ CellChangeTimes->{{3.6847949839736223`*^9, 3.68479503188978*^9}, {
+  3.6847950687882357`*^9, 3.6847950987821493`*^9}, {3.684795154708164*^9, 
+  3.6847951967914877`*^9}, {3.6847953574267178`*^9, 
+  3.684795380586396*^9}},ExpressionUUID->"00a19918-a0da-4a3c-bb65-\
+b7a88cf76e0c"],
+
+Cell["\<\
+There are many other styles of cells and there is even a way to change the \
+styling of cells (as I have done to make this document appear the way it \
+does), but for most projects and purposes, such as homework assignments, \
+these styles suffice.\
+\>", "Text",
+ CellChangeTimes->{{3.684798078791251*^9, 
+  3.68479817126972*^9}},ExpressionUUID->"2f3c146e-43a7-4018-a3a5-\
+cf9257084232"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{88, Automatic}, {Automatic, 10}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2481, 50, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3064, 74, 154, 3, 41, "Subsection",ExpressionUUID->"5cf05368-9009-4c6e-b2cf-3378af252017"],
+Cell[3221, 79, 627, 13, 58, "Text",ExpressionUUID->"00a19918-a0da-4a3c-bb65-b7a88cf76e0c"],
+Cell[3851, 94, 397, 8, 81, "Text",ExpressionUUID->"2f3c146e-43a7-4018-a3a5-cf9257084232"]
+}, Open  ]]
+}
+]
+*)
+

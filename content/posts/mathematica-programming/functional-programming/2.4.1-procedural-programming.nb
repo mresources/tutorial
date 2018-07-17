@@ -1,0 +1,266 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10055,        258]
+NotebookOptionsPosition[      8636,        227]
+NotebookOutlinePosition[      9062,        244]
+CellTagsIndexPosition[      9019,        241]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Procedural Programming\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Functional Programming\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.4.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 17:18:46\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "17", ",", "18", ",", 
+              "46"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<functional-programming\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<functional-programming\>\"", ",", 
+      "\"\<procedural-programming\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.740780239813044*^9, 
+   3.740780248657238*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Procedural Programming", "Subsection",
+ CellChangeTimes->{{3.6927459393200283`*^9, 
+  3.69274596642679*^9}},ExpressionUUID->"1021c9d0-0e28-482f-b14e-\
+8c6ae01f594f"],
+
+Cell[TextData[{
+ "In most programming languages (C++, Java, python) we generally use what is \
+called \[OpenCurlyDoubleQuote]procedural programming\[CloseCurlyDoubleQuote] \
+where we work in a very step-wise fashion. Perhaps the archetype of this is \
+the \[OpenCurlyDoubleQuote]for-loop\[CloseCurlyDoubleQuote], the work-horse \
+of standard programming. Mathematica, too, has a ",
+ Cell[BoxData[
+  FormBox["For", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "a87fb9c6-44df-49e5-8ba3-f25d897192d0"],
+ " loop. In fact we can use all the standard constructs of procedural \
+programming:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6927459460299473`*^9, 3.6927460080333*^9}, {
+   3.692746057975732*^9, 3.692746161113018*^9}, {3.692746244863379*^9, 
+   3.69274627155739*^9}},ExpressionUUID->"dc22c4bf-c302-42f6-a68d-\
+5458ca402922"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"radii", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"For", "[", " ", 
+   RowBox[{
+    RowBox[{"i", " ", "=", "1"}], ",", " ", 
+    RowBox[{"i", "<", "10"}], ",", "  ", 
+    RowBox[{"i", "++"}], ",", "\n", "\t", 
+    RowBox[{"radii", "=", 
+     RowBox[{"radii", "~", "Append", "~", 
+      RowBox[{"RandomReal", "[", "]"}]}]}]}], "\n", "\t", "]"}], 
+  ";"}], "\n", "radii"}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.692746162451682*^9, 3.692746282031418*^9}, {
+  3.69274639390222*^9, 3.6927464103924417`*^9}, {3.723435144778838*^9, 
+  3.723435153532786*^9}},ExpressionUUID->"1bdcff65-5033-44bb-a1a4-\
+68986d1002b9"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.914128302537593`", ",", "0.3769315906863173`", ",", 
+   "0.6234932943918361`", ",", "0.1322100006893343`", ",", 
+   "0.1577628966678457`", ",", "0.016730303000478397`", ",", 
+   "0.17548676789547235`", ",", "0.8109969085084299`", ",", 
+   "0.20378370831071368`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.692746282929109*^9, {3.692746398215294*^9, 
+   3.692746410795842*^9}},ExpressionUUID->"5a462493-d76a-483d-bac8-\
+56a9bf1dba2f"]
+}, Open  ]],
+
+Cell[TextData[{
+ "We have a very simple set of steps, here, make a list, ",
+ Cell[BoxData[
+  FormBox["radii", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "3a276a2e-805e-45cd-97f6-dded1bddc368"],
+ ", initialize a loop variable ",
+ Cell[BoxData[
+  FormBox["i", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "50025588-d831-433b-809a-a7bce12ab9bf"],
+ ", then perform a task (appending a ",
+ Cell[BoxData[
+  FormBox["Real", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "b9b0ea05-cdbd-4fe9-ad58-5fa91eb07a1a"],
+ " to ",
+ Cell[BoxData[
+  FormBox["radii", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "faefb058-25eb-4497-9f97-71221855e24f"],
+ ") and incrementing our loop variable ",
+ Cell[BoxData[
+  FormBox["i", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "ac69f004-6d3f-4d7e-823f-40a187c1a72a"],
+ " while some test holds (",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"i", " ", "<", " ", "10"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"630e5653-db96-41ed-a981-2a4cdc82ee91"],
+ "). Everything is laid out very explicitly and easily to understand. \
+Unfortunately, when writing a large program, having to go through so many \
+steps is a hassle and impedes the development process."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692746288839623*^9, 
+   3.692746526160877*^9}},ExpressionUUID->"0f567966-199c-4c4f-b743-\
+77d71909908e"],
+
+Cell["\<\
+Functional programming, which is almost always defined in contrast to \
+procedural programming, deals with using functions like our usual primitives \
+and passing them through other function accordingly. There are many facets to \
+functional programming, of course, but its most common use is the application \
+of functions to lists.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692746533735734*^9, 
+   3.692746696691491*^9}},ExpressionUUID->"457325e5-bc39-472f-8b98-\
+b09236e906a2"],
+
+Cell["\<\
+We can do the above process in a single line using a functional construct:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692746755658684*^9, 
+   3.692746808846427*^9}},ExpressionUUID->"d107ab10-8aad-4b81-94a5-\
+910c9f0f94ed"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Table", "[", 
+  RowBox[{
+   RowBox[{"RandomReal", "[", "]"}], ",", "10"}], "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6927467804166937`*^9, 3.6927467907834597`*^9}, 
+   3.723435153559699*^9},ExpressionUUID->"3e581f66-8a8e-47a8-b215-\
+00ff43b4289f"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+  "0.4137847297182886`", ",", "0.9732982192569992`", ",", 
+   "0.3548496693281973`", ",", "0.8582126960787808`", ",", 
+   "0.15420928011477764`", ",", "0.6816139288605962`", ",", 
+   "0.8404716895591711`", ",", "0.9679926345109562`", ",", 
+   "0.7314841013853948`", ",", "0.7997407311341189`"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6927467912109213`*^9},ExpressionUUID->"74ead9ae-8402-47b2-9915-\
+4dd4822b9787"]
+}, Open  ]],
+
+Cell["\<\
+There are many useful functional constructs we can use that will solve large \
+classes of programming issues for us.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6927468315795794`*^9, 
+   3.692746869993803*^9}},ExpressionUUID->"5c9faec0-be0a-4b7f-ac63-\
+d3a09b8e1865"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{69, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2584, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3167, 79, 171, 3, 41, "Subsection",ExpressionUUID->"1021c9d0-0e28-482f-b14e-8c6ae01f594f"],
+Cell[3341, 84, 850, 16, 104, "Text",ExpressionUUID->"dc22c4bf-c302-42f6-a68d-5458ca402922"],
+Cell[CellGroupData[{
+Cell[4216, 104, 683, 18, 129, "Code",ExpressionUUID->"1bdcff65-5033-44bb-a1a4-68986d1002b9"],
+Cell[4902, 124, 479, 11, 34, "Output",ExpressionUUID->"5a462493-d76a-483d-bac8-56a9bf1dba2f"]
+}, Open  ]],
+Cell[5396, 138, 1375, 33, 104, "Text",ExpressionUUID->"0f567966-199c-4c4f-b743-77d71909908e"],
+Cell[6774, 173, 509, 10, 81, "Text",ExpressionUUID->"457325e5-bc39-472f-8b98-b09236e906a2"],
+Cell[7286, 185, 250, 6, 35, "Text",ExpressionUUID->"d107ab10-8aad-4b81-94a5-910c9f0f94ed"],
+Cell[CellGroupData[{
+Cell[7561, 195, 290, 7, 52, "Code",ExpressionUUID->"3e581f66-8a8e-47a8-b215-00ff43b4289f"],
+Cell[7854, 204, 457, 10, 56, "Output",ExpressionUUID->"74ead9ae-8402-47b2-9915-4dd4822b9787"]
+}, Open  ]],
+Cell[8326, 217, 294, 7, 58, "Text",ExpressionUUID->"5c9faec0-be0a-4b7f-ac63-d3a09b8e1865"]
+}, Open  ]]
+}
+]
+*)
+

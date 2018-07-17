@@ -1,0 +1,142 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5538,        134]
+NotebookOptionsPosition[      4931,        115]
+NotebookOutlinePosition[      5358,        132]
+CellTagsIndexPosition[      5315,        129]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Tips and Tricks\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Package Usage and Development/Paclet Development/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.3.4\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Mon 16 Jul 2018 16:45:30\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "16", ",", "16", ",", "45", ",", 
+              "30.131451`8.231595026893007"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<package-usage-and-development\>\"", "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<packages\>\"", ",", " ", "\"\<paclets\>\"", ",", " ", 
+      "\"\<development\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.740255371551134*^9, 3.740255441548623*^9}, {3.740257785728876*^9, 
+   3.740257787359725*^9}, {3.740258871202475*^9, 3.740258879451874*^9}, {
+   3.740259049250639*^9, 3.7402590549178123`*^9}, {3.740499593308742*^9, 
+   3.74049959645723*^9}, {3.740499662784543*^9, 3.7404996642237453`*^9}, {
+   3.740499728069169*^9, 3.740499760532651*^9}, {3.740499835787034*^9, 
+   3.740499837765148*^9}, {3.740511787373929*^9, 3.740511787864347*^9}, {
+   3.740513133400173*^9, 3.7405131628282537`*^9}, {3.740515862908148*^9, 
+   3.740515863359661*^9}, {3.7405159144570227`*^9, 3.740515921268757*^9}, 
+   3.7407735339018908`*^9, {3.740777887931753*^9, 
+   3.7407778934483137`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Paclet Directories", "Subsection",
+ CellChangeTimes->{{3.7405159321861*^9, 
+  3.740515935124708*^9}},ExpressionUUID->"513101d9-cbff-475b-9044-\
+4cf4921616f4"],
+
+Cell[TextData[{
+ "When developing a paclet it can be useful to be able to test code without \
+having to uninstall and reinstall the paclet. That\[CloseCurlyQuote]s why \
+there\[CloseCurlyQuote]s a ",
+ Cell[BoxData[
+  RowBox[{"PacletDirectory", "*"}]], "InlineText", "InlineInput",
+  ExpressionUUID->"cde5f790-0361-400f-acca-cf6f0b34898d"],
+ "  mechanism that makes this easier. We can use the function ",
+ Cell[BoxData[
+ "PacletDirectoryAdd"], "InlineInput",ExpressionUUID->
+  "7b2640da-b664-45b0-940a-ee4302a1243a"],
+ " to add another directory in which paclets will be looked for. When we\
+\[CloseCurlyQuote]re done with this we can use ",
+ Cell[BoxData[
+ "PacletDirectoryRemove"], "InlineInput",ExpressionUUID->
+  "dd1fcb4f-81d3-4415-b5cb-484a8851b570"],
+ " to clear the directory and test what development looks like without the \
+code being directly accessible."
+}], "Text",
+ CellChangeTimes->{{3.740536346509137*^9, 3.740536405366365*^9}, {
+  3.7405364971528807`*^9, 
+  3.740536560622754*^9}},ExpressionUUID->"78b6aa09-9090-47ea-b360-\
+076e977963b4"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{65, Automatic}, {45, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3109, 61, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3692, 85, 164, 3, 41, "Subsection",ExpressionUUID->"513101d9-cbff-475b-9044-4cf4921616f4"],
+Cell[3859, 90, 1056, 22, 128, "Text",ExpressionUUID->"78b6aa09-9090-47ea-b360-076e977963b4"]
+}, Open  ]]
+}
+]
+*)
+

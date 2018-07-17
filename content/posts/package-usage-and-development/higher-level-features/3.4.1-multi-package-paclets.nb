@@ -1,0 +1,457 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17842,        449]
+NotebookOptionsPosition[     15611,        408]
+NotebookOutlinePosition[     16039,        425]
+CellTagsIndexPosition[     15996,        422]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Multipackage Paclets\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Package Usage and Development/Higher-Level Features/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.4.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Mon 16 Jul 2018 15:21:26\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "16", ",", "15", ",", "21", ",", 
+              "26.148133`8.170015667365591"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<package-usage-and-development\>\"", "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<packages\>\"", ",", " ", "\"\<paclets\>\"", ",", " ", 
+      "\"\<development\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.740255371551134*^9, 3.740255441548623*^9}, {3.740257785728876*^9, 
+   3.740257787359725*^9}, {3.740258871202475*^9, 3.740258879451874*^9}, {
+   3.740259049250639*^9, 3.7402590549178123`*^9}, {3.740499593308742*^9, 
+   3.74049959645723*^9}, {3.740499662784543*^9, 3.7404996642237453`*^9}, {
+   3.740499728069169*^9, 3.740499760532651*^9}, {3.740499835787034*^9, 
+   3.740499837765148*^9}, {3.740511787373929*^9, 3.740511787864347*^9}, {
+   3.740513133400173*^9, 3.7405131628282537`*^9}, {3.740515862908148*^9, 
+   3.740515863359661*^9}, {3.7405159144570227`*^9, 3.740515921268757*^9}, {
+   3.740536644604788*^9, 3.740536662659156*^9}, {3.740779280263788*^9, 
+   3.740779291191787*^9}, {3.740782689604382*^9, 
+   3.740782691912243*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell["\<\
+Paclets in the simplest case provide a single main package with the all of \
+the functions implemented by the paclet. On the other hand, for any \
+sufficiently complex package multiple packages will be needed. However, with \
+the context mechanism Mathematica supplies it is not always clear what the \
+best way to divide code over multiple packages is, so we\[CloseCurlyQuote]ll \
+provide a few different approaches\
+\>", "Text",
+ CellChangeTimes->{{3.740536672711071*^9, 
+  3.740536801729241*^9}},ExpressionUUID->"0341b34b-bdd0-499d-9887-\
+e6da2fc809c3"],
+
+Cell[CellGroupData[{
+
+Cell["Predeclared Symbols / Shared Context", "Subsection",
+ CellChangeTimes->{{3.740536813745184*^9, 3.740536815881297*^9}, {
+  3.740536856948752*^9, 3.740536858237014*^9}, {3.740536923971573*^9, 
+  3.740536932379718*^9}},ExpressionUUID->"0c08bd35-efec-4b1b-b4a6-\
+98f9e139da58"],
+
+Cell["\<\
+In the simplest case, every piece of the package will have the same context \
+and simply directly share symbols. To make this work right, all of the \
+package-level symbols need to be declared before any of the implementation \
+files are loaded. One way this could work is having a directory structure like\
+\>", "Text",
+ CellChangeTimes->{{3.740536832123802*^9, 3.74053690306813*^9}, {
+  3.740536939011072*^9, 
+  3.7405370010207376`*^9}},ExpressionUUID->"b62fa76e-912b-474b-8e17-\
+863a87b9c176"],
+
+Cell[BoxData[{"none", "\n", "MyPaclet", "\n", 
+ RowBox[{" ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Kernel"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"init", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Component1", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Component2", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"...", "\n", " ", "+", " ", 
+   RowBox[{"MyPaclet", ".", "m"}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.740537001902776*^9, 3.740537049422635*^9}, {
+  3.740537461385817*^9, 
+  3.740537461849698*^9}},ExpressionUUID->"a26377b6-8559-4a51-a30e-\
+cd9e73dc1f0f"],
+
+Cell[TextData[{
+ "And then have ",
+ Cell[BoxData[
+  RowBox[{"MyPaclet", ".", "m"}]], "InlineText", "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "e9c2982e-893e-453a-8277-ee5647b26d68"],
+ " look like:"
+}], "Text",
+ CellChangeTimes->{{3.740537050678032*^9, 
+  3.740537066621866*^9}},ExpressionUUID->"9153a9c0-c00c-4059-9dc8-\
+64069dfcaa1d"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<MyPaclet`\>\"", "]"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MyPacletSym1", "::", "usage"}], "=", "\"\<...\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MyPacletSym2", "::", "usage"}], "=", "\"\<...\>\""}], ";"}], "\n", 
+ RowBox[{"...", "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Get", "/@", "\n", "\t", 
+   RowBox[{"Select", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"FileNames", "[", 
+      RowBox[{"\"\<*.m\>\"", ",", " ", 
+       RowBox[{"FileNameJoin", "@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"DirectoryName", "[", "$InputFileName", "]"}], ",", " ", 
+          "\"\<Kernel\>\""}], "}"}]}]}], "]"}], ",", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"FileNameTake", "[", "#", "]"}], "!=", "\"\<init.m\>\""}], 
+      "&"}]}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"End", "[", "]"}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",
+ CellChangeTimes->{{3.740537068623618*^9, 3.740537127232523*^9}, {
+  3.74053760156423*^9, 
+  3.7405376167256193`*^9}},ExpressionUUID->"26ee20a4-3481-4de8-8d0f-\
+d6678b8ec042"],
+
+Cell[TextData[{
+ "And then each ",
+ Cell[BoxData[
+  RowBox[{"Component", "*", 
+   RowBox[{".", "m"}]}]], "InlineText",ExpressionUUID->
+  "4e958643-7c3d-4c53-ba7a-b333d81fd968"],
+ " file will simply provide definitions for the functions provided."
+}], "Text",
+ CellChangeTimes->{{3.7405371698383923`*^9, 
+  3.740537212265956*^9}},ExpressionUUID->"8da8aeab-2119-4022-92bf-\
+73b78cb6f35f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Folder-Based Contexts", "Subsection",
+ CellChangeTimes->{{3.740536819265139*^9, 
+  3.740536826977219*^9}},ExpressionUUID->"6e8dc5c7-7832-498e-b35c-\
+60c61f3159d5"],
+
+Cell["\<\
+A step up from this allows for different contexts to be supplied, taken from \
+the folder the file is found in. This adds a layer of complexity, as we\
+\[CloseCurlyQuote]ll need a more complicated structure when declaring our \
+symbols, but given the following directory layout:\
+\>", "Text",
+ CellChangeTimes->{{3.7405372170177803`*^9, 3.74053728308622*^9}, {
+  3.740537315188118*^9, 
+  3.740537385840835*^9}},ExpressionUUID->"3384ef4f-3954-4e23-b555-\
+b6093f3a0b7a"],
+
+Cell[BoxData[{"none", "\n", "MyPaclet", "\n", 
+ RowBox[{" ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Kernel"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"init", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Component1", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Component2", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", "Subcontext"}], "\n", 
+ RowBox[{"   ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Component1", ".", "m"}]}]}], "\n", 
+ RowBox[{"   ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Component2", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"...", "\n", " ", "+", " ", 
+   RowBox[{"MyPaclet", ".", "m"}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.740537001902776*^9, 3.740537049422635*^9}, {
+  3.740537390112409*^9, 
+  3.7405374576084948`*^9}},ExpressionUUID->"f075e9a5-da21-4c4a-aab6-\
+22f1b860c65f"],
+
+Cell["We could use the following loader:", "Text",
+ CellChangeTimes->{{3.740537466753522*^9, 
+  3.740537473360186*^9}},ExpressionUUID->"fd2cbf6c-be00-440b-8827-\
+ffda76ec00bc"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<MyPaclet`\>\"", "]"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MyPacletSym1", "::", "usage"}], "=", "\"\<...\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MyPacletSym2", "::", "usage"}], "=", "\"\<...\>\""}], ";"}], "\n", 
+ RowBox[{"...", "\n"}], "\n", 
+ RowBox[{"BeginPackage", "[", "\"\<`Subcontext`\>\"", "]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MySubcontextSym1", "::", "usage"}], "=", "\"\<...\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MySubcontextSym2", "::", "usage"}], "=", "\"\<...\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"EndPackage", "[", "]"}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"`Private`dirPath", "=", 
+       RowBox[{"FileNameJoin", "@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"DirectoryName", "[", "$InputFileName", "]"}], ",", " ", 
+          "\"\<Kernel\>\""}], "}"}]}]}], "}"}], ",", "\n", "\t", 
+     RowBox[{"Map", "[", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"Function", "[", "\n", "\t\t\t", 
+        RowBox[{
+         RowBox[{"Begin", "[", "\n", "\t", "\t\t\t", 
+          RowBox[{"StringRiffle", "[", "\n", "\t", "\t", "\t\t\t", 
+           RowBox[{
+            RowBox[{"Join", "[", "\n", "\t", "\t", "\t\t\t\t", 
+             RowBox[{
+              RowBox[{"Most", "@", "\n", "\t", "\t", "\t\t\t\t\t", 
+               RowBox[{"FileNameSplit", "[", "\n", "\t", "\t", "\t\t\t\t\t\t", 
+                RowBox[{
+                "FileNameDrop", "[", "\n", "\t", "\t", "\t", "\t\t\t\t\t\t", 
+                 RowBox[{
+                  RowBox[{"DirectoryName", "[", "#", "]"}], ",", " ", "\n", 
+                  "\t", "\t", "\t", "\t\t\t\t\t\t", 
+                  RowBox[{"FileNameDepth", "[", "`Private`dirPath", "]"}]}], 
+                 "]"}], "\n", "\t", "\t", "\t", "\t\t\t\t\t", "]"}]}], ",", 
+              "\n", "\t", "\t", "\t\t\t\t", 
+              RowBox[{"{", "\n", "\t", "\t", "\t\t\t\t\t", 
+               RowBox[{
+               "\"\<Private\>\"", ",", "\n", "\t", "\t", "\t\t\t\t\t", 
+                "\"\<\>\""}], "\n", "\t", "\t", "\t\t\t\t\t", "}"}]}], "\n", 
+             "\t", "\t", "\t\t\t\t", "]"}], ",", "\n", "\t", "\t", "\t\t\t", 
+            "\"\<`\>\""}], "\n", "\t", "\t", "\t\t\t", "]"}], "\n", "\t", 
+          "\t", "\t\t", "]"}], ";", "\n", "\t\t\t", 
+         RowBox[{"Get", "@", "#"}], ";", "\n", "\t\t\t", 
+         RowBox[{"End", "[", "]"}]}], "\n", "\t\t\t", "]"}], ",", "\n", 
+       "\t\t", 
+       RowBox[{"Select", "[", "\n", "\t\t\t", 
+        RowBox[{
+         RowBox[{"FileNames", "[", 
+          RowBox[{
+          "\"\<*.m\>\"", ",", " ", "`Private`dirPath", ",", " ", "Infinity"}],
+           "]"}], ",", "\n", "\t", "\t\t", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"FileNameTake", "[", "#", "]"}], "!=", "\"\<init.m\>\""}], 
+          "&"}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "]"}]}], "\n", "\t",
+     "]"}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{"EndPackage", "[", "]"}], ";"}]}], "Code",
+ CellChangeTimes->{{3.740537068623618*^9, 3.740537127232523*^9}, {
+  3.740537479184317*^9, 
+  3.7405379404132547`*^9}},ExpressionUUID->"34764308-584a-4feb-b70f-\
+cbf6ebc9f214"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Packages with Autoloading", "Subsection",
+ CellChangeTimes->{
+  3.7405372151219473`*^9, {3.740537965977878*^9, 3.7405379711999903`*^9}, {
+   3.740777977767996*^9, 
+   3.740777982565298*^9}},ExpressionUUID->"92a80032-4b3f-419f-be46-\
+a63fe1fc9063"],
+
+Cell[TextData[{
+ "Depending on the size of the code, rather than simply load the entire \
+package in when ",
+ ButtonBox["Get",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Get"],
+ " is called it can be efficient to introduce autoloading."
+}], "Text",
+ CellChangeTimes->{{3.740777983949223*^9, 3.740778052226115*^9}, {
+  3.740778603266811*^9, 
+  3.740778666004698*^9}},ExpressionUUID->"736d22de-4027-4526-ade9-\
+db12a26d6601"],
+
+Cell[TextData[{
+ "What this mean is that we determine which symbols are declared in which \
+packages by inspecting the package header, but instead of loading the package \
+we set the ",
+ ButtonBox["OwnValues",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/OwnValues"],
+ " to be a function that loads the package and then returns the symbol. By \
+doing things this way we drastically cut down the load time for each function \
+and keep parts of our package more appropriately contained."
+}], "Text",
+ CellChangeTimes->{{3.740777983949223*^9, 3.740778052226115*^9}, {
+  3.740778603266811*^9, 3.740778665658441*^9}, {3.740778707057562*^9, 
+  3.740778708449171*^9}},ExpressionUUID->"ed318afd-d2f9-4563-b7a7-\
+1ea987ce894a"],
+
+Cell[TextData[{
+ "The code for this can be a little bit long, so we won\[CloseCurlyQuote]t \
+get into it here, but more info on this can be found ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/a/176577/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/a/176577/38205"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7407786992488127`*^9, 3.740778726992634*^9}, {
+  3.740779180891684*^9, 
+  3.7407792057711887`*^9}},ExpressionUUID->"3c8443ee-cb06-4002-8d08-\
+386bc661fd3a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Other Approaches", "Subsection",
+ CellChangeTimes->{{3.74077920839322*^9, 
+  3.740779210961259*^9}},ExpressionUUID->"edab7a3a-83e6-48fd-bb01-\
+93103757a33b"],
+
+Cell[TextData[{
+ "A list of other approaches with detailed pros-and-cons may be found ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/a/176489/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/a/176489/38205"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.740779212209165*^9, 3.740779221577129*^9}, {
+  3.7407792536472797`*^9, 
+  3.740779272128582*^9}},ExpressionUUID->"8aef7394-09c1-467a-877a-\
+d6a836ad63bd"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{112, Automatic}, {21, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3186, 62, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[3747, 84, 566, 10, 104, "Text",ExpressionUUID->"0341b34b-bdd0-499d-9887-e6da2fc809c3"],
+Cell[CellGroupData[{
+Cell[4338, 98, 279, 4, 41, "Subsection",ExpressionUUID->"0c08bd35-efec-4b1b-b4a6-98f9e139da58"],
+Cell[4620, 104, 506, 9, 81, "Text",ExpressionUUID->"b62fa76e-912b-474b-8e17-863a87b9c176"],
+Cell[5129, 115, 697, 20, 189, "FencedCode",ExpressionUUID->"a26377b6-8559-4a51-a30e-cd9e73dc1f0f"],
+Cell[5829, 137, 355, 10, 36, "Text",ExpressionUUID->"9153a9c0-c00c-4059-9dc8-64069dfcaa1d"],
+Cell[6187, 149, 1268, 35, 319, "Code",ExpressionUUID->"26ee20a4-3481-4de8-8d0f-d6678b8ec042"],
+Cell[7458, 186, 386, 10, 36, "Text",ExpressionUUID->"8da8aeab-2119-4022-92bf-73b78cb6f35f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7881, 201, 169, 3, 41, "Subsection",ExpressionUUID->"6e8dc5c7-7832-498e-b35c-60c61f3159d5"],
+Cell[8053, 206, 478, 9, 81, "Text",ExpressionUUID->"3384ef4f-3954-4e23-b555-b6093f3a0b7a"],
+Cell[8534, 217, 909, 27, 246, "FencedCode",ExpressionUUID->"f075e9a5-da21-4c4a-aab6-22f1b860c65f"],
+Cell[9446, 246, 176, 3, 35, "Text",ExpressionUUID->"fd2cbf6c-be00-440b-8827-ffda76ec00bc"],
+Cell[9625, 251, 3286, 78, 832, "Code",ExpressionUUID->"34764308-584a-4feb-b70f-cbf6ebc9f214"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12948, 334, 253, 5, 41, "Subsection",ExpressionUUID->"92a80032-4b3f-419f-be46-a63fe1fc9063"],
+Cell[13204, 341, 427, 11, 58, "Text",ExpressionUUID->"736d22de-4027-4526-ade9-db12a26d6601"],
+Cell[13634, 354, 720, 14, 104, "Text",ExpressionUUID->"ed318afd-d2f9-4563-b7a7-1ea987ce894a"],
+Cell[14357, 370, 548, 13, 35, "Text",ExpressionUUID->"3c8443ee-cb06-4002-8d08-386bc661fd3a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14942, 388, 163, 3, 41, "Subsection",ExpressionUUID->"edab7a3a-83e6-48fd-bb01-93103757a33b"],
+Cell[15108, 393, 487, 12, 35, "Text",ExpressionUUID->"8aef7394-09c1-467a-877a-d6a836ad63bd"]
+}, Open  ]]
+}
+]
+*)
+

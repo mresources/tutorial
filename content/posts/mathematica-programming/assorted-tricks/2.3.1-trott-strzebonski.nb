@@ -1,0 +1,200 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7243,        192]
+NotebookOptionsPosition[      6141,        166]
+NotebookOutlinePosition[      6568,        183]
+CellTagsIndexPosition[      6525,        180]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Trott-Strzebonski\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Assorted Tricks\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.3.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 17:17:27\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "17", ",", "17", ",", 
+              "27"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<assorted-tricks\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<tricks\>\"", ",", "\"\<trott-strzebonski\>\""}], "}"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.740779856066307*^9, 
+   3.740779877258519*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Trott-Strzebonski (replace with evaluation)", "Subsection",ExpressionUUID->"77b565ee-2cf6-476d-97e9-4227aa11a6fc"],
+
+Cell["\<\
+This is the pattern we saw earlier for replacing a part of an expression with \
+an evaluated expression:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6853201104764338`*^9, 3.6853201603240757`*^9}, {
+   3.6853201931737947`*^9, 
+   3.685320222962284*^9}},ExpressionUUID->"dde54a7a-dd15-4450-9ea0-\
+fea12e4ad108"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Hold", "[", "holdReplace", "]"}], "/.", 
+  RowBox[{"{", 
+   RowBox[{"holdReplace", "\[RuleDelayed]", 
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"eval", "=", 
+        RowBox[{
+         SubsuperscriptBox["\[Integral]", "2", "\[Pi]"], 
+         RowBox[{
+          RowBox[{"Sin", "[", "\[Theta]", "]"}], 
+          RowBox[{"\[DifferentialD]", "\[Theta]"}]}]}]}], "}"}], ",", 
+      RowBox[{"eval", "/;", "True"}]}], "]"}]}], "}"}]}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6853202269320183`*^9, 3.6853202635778303`*^9}, {
+  3.685320456029839*^9, 
+  3.685320489471649*^9}},ExpressionUUID->"dbd3b0e7-897e-4855-bb76-\
+b816291117e5"],
+
+Cell[BoxData[
+ RowBox[{"Hold", "[", 
+  RowBox[{"1", "+", 
+   RowBox[{"Cos", "[", "2", "]"}]}], "]"}]], "Output",
+ CellChangeTimes->{
+  3.685320491560152*^9},ExpressionUUID->"9cd05c39-51e9-4047-8389-\
+b6276378d992"]
+}, Open  ]],
+
+Cell[TextData[{
+ "It is a nice trick to keep in mind for those cases when you need to insert \
+something into a held context and it would be too much of a pain to wrap \
+everything in a ",
+ Cell[BoxData[
+  FormBox["With", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "cf9746e2-362a-4ff6-88da-f0256d38c6e3"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686361503730609*^9, 
+   3.686361555122508*^9}},ExpressionUUID->"a2e6e5ba-a35b-4abb-8441-\
+fa7e74b83a32"],
+
+Cell[TextData[{
+ "This pattern is really a side-effect of the way scoping constructs work in \
+Mathematica. By placing a ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Condition", " ", 
+    RowBox[{"(", "/;", ")"}]}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"8f0acf41-7cc3-4871-a841-b96d6360be13"],
+ " at the end of a scoping construct the whole construct evaluates or not \
+depending on that condition."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690593945426506*^9, 
+   3.690594050374528*^9}},ExpressionUUID->"d7a5b9cb-5241-4d3e-8a23-\
+461fc36d7c1f"],
+
+Cell[TextData[{
+ "We take advantage of the fact that the scoping construct will always scan \
+to the end if there is a condition there, plus the fact that ",
+ Cell[BoxData[
+  FormBox["With", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "7eaecd81-c7bc-451d-b14f-60ed2b90aa40"],
+ " inserts values, not symbols, to force the evaluated chunk of code to be \
+inserted in our otherwise unevaluated structure."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690593945426506*^9, 
+   3.690594121786405*^9}},ExpressionUUID->"346b8170-36d1-49dc-8db4-\
+9c4d6f8cd0b1"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{19, Automatic}, {20, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2484, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3067, 77, 120, 0, 41, "Subsection",ExpressionUUID->"77b565ee-2cf6-476d-97e9-4227aa11a6fc"],
+Cell[3190, 79, 336, 8, 35, "Text",ExpressionUUID->"dde54a7a-dd15-4450-9ea0-fea12e4ad108"],
+Cell[CellGroupData[{
+Cell[3551, 91, 708, 19, 66, "Code",ExpressionUUID->"dbd3b0e7-897e-4855-bb76-b816291117e5"],
+Cell[4262, 112, 214, 6, 34, "Output",ExpressionUUID->"9cd05c39-51e9-4047-8389-b6276378d992"]
+}, Open  ]],
+Cell[4491, 121, 482, 12, 58, "Text",ExpressionUUID->"a2e6e5ba-a35b-4abb-8441-fa7e74b83a32"],
+Cell[4976, 135, 573, 14, 81, "Text",ExpressionUUID->"d7a5b9cb-5241-4d3e-8a23-461fc36d7c1f"],
+Cell[5552, 151, 573, 12, 81, "Text",ExpressionUUID->"346b8170-36d1-49dc-8db4-9c4d6f8cd0b1"]
+}, Open  ]]
+}
+]
+*)
+

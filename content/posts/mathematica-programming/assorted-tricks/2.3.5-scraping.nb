@@ -1,0 +1,393 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14343,        385]
+NotebookOptionsPosition[     12957,        356]
+NotebookOutlinePosition[     13384,        373]
+CellTagsIndexPosition[     13341,        370]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Info Scraping\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Assorted Tricks\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.3.5\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 17:18:09\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "17", ",", "18", ",", 
+              "9"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<assorted-tricks\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<tricks\>\"", ",", "\"\<scraping\>\""}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, {
+   3.7234349843801317`*^9, 3.7234349925701036`*^9}, {3.74077996116158*^9, 
+   3.740779975574914*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Info Scraping", "Subsection",
+ CellChangeTimes->{{3.6905943432036343`*^9, 3.6905943472025013`*^9}, 
+   3.690652663745716*^9, {3.690652710013423*^9, 
+   3.690652710909778*^9}},ExpressionUUID->"a53caf4d-e2ec-4210-9724-\
+a9678835a23e"],
+
+Cell["\<\
+Mathematica, being so symbolic, is a particularly easy language to scrape and \
+get information from, particularly given the rich pattern language it \
+supports.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690652676185123*^9, 
+   3.6906527263492327`*^9}},ExpressionUUID->"7b13012f-b866-4efc-a28f-\
+211d0e817d65"],
+
+Cell["\<\
+Because of this, we can learn a lot by simply pulling relevant info from the \
+source files of the program. First we need a way to get the source files:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906527943089933`*^9, 
+   3.690652853953528*^9}},ExpressionUUID->"ea7060b6-3f7b-4a2a-92d5-\
+2d1ba5b4a28d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"internalFiles", "[", 
+    RowBox[{"namePattern_", ",", "directoryExtensions___", ",", 
+     RowBox[{"depth", ":", 
+      RowBox[{"_Integer", "|", "\[Infinity]"}], ":", "\[Infinity]"}]}], "]"}],
+    ":=", "\n", "\t", 
+   RowBox[{"FileNames", "[", 
+    RowBox[{"namePattern", ",", "\n", "\t", "\t", 
+     RowBox[{"FileNameJoin", "@", 
+      RowBox[{"{", "\n", "\t", "\t\t", 
+       RowBox[{
+       "$InstallationDirectory", ",", "\n", "\t", "\t\t", 
+        "directoryExtensions"}], "\n", "\t", "\t\t", "}"}]}], ",", "\n", "\t",
+      "\t", "depth"}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.69065285868252*^9, 3.690652927310995*^9}, 
+   3.7234349747718697`*^9, 
+   3.740779969712819*^9},ExpressionUUID->"92e374eb-cadd-451f-8562-\
+8fa689e18fec"],
+
+Cell["Then we can pull things from these according to a pattern:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906529337522697`*^9, 
+   3.690652945089767*^9}},ExpressionUUID->"0b4b2b84-2800-4734-91f8-\
+a358104eec37"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"expressionsSearch", "[", 
+    RowBox[{"pat_", ",", "files__"}], "]"}], ":=", "\n", 
+   RowBox[{
+    RowBox[{"Table", "[", "\n", "\t", 
+     RowBox[{
+      RowBox[{"f", "->", 
+       RowBox[{"Quiet", "@", "\n", "\t", 
+        RowBox[{"Cases", "[", "\n", "\t\t", 
+         RowBox[{
+          RowBox[{"Switch", "[", 
+           RowBox[{
+            RowBox[{"FileExtension", "@", "f"}], ",", "\n", "\t\t\t", 
+            RowBox[{"\"\<m\>\"", "|", "\"\<wl\>\""}], ",", "\n", "\t\t\t", 
+            RowBox[{"Import", "[", 
+             RowBox[{"f", ",", "\"\<HeldExpressions\>\""}], "]"}], ",", "\n", 
+            "\t\t\t", "_", ",", "\n", "\t\t\t", 
+            RowBox[{"Import", "[", "f", "]"}]}], "\n", "\t\t\t", "]"}], ",", 
+          "\n", "\t\t", "pat", ",", "\n", "\t\t", "\[Infinity]"}], "\n", 
+         "\t\t", "]"}]}]}], ",", "\n", "\t", 
+      RowBox[{"{", 
+       RowBox[{"f", ",", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"Hold", "[", "files", "]"}], ",", "\n", "\t\t\t", 
+          RowBox[{
+           RowBox[{"Except", "@", 
+            RowBox[{"Hold", "[", "_List", "]"}]}], "\[RuleDelayed]", 
+           RowBox[{"internalFiles", "[", "files", "]"}]}]}], "\n", "\t\t\t", 
+         "]"}]}], "}"}]}], "\n", "\t", "]"}], "//", "DeleteDuplicates"}]}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.6902659829280043`*^9, 3.690266030910046*^9}, {
+   3.690266097571241*^9, 3.690266105898765*^9}, {3.690266137587193*^9, 
+   3.690266179280486*^9}, {3.690266285624652*^9, 3.6902663122956057`*^9}, {
+   3.690266399053239*^9, 3.690266401955661*^9}, {3.6902689666866207`*^9, 
+   3.690268967377555*^9}, {3.6902715227194223`*^9, 3.690271523245742*^9}, {
+   3.6902717497397127`*^9, 3.690271750138117*^9}, {3.690652956938121*^9, 
+   3.690652969163323*^9}, {3.6906531756348963`*^9, 3.690653182690467*^9}, {
+   3.6906532169450903`*^9, 3.6906532676285143`*^9}, 3.69065343538764*^9, 
+   3.723434974802547*^9},ExpressionUUID->"d7aea20b-9639-4720-bf80-\
+afa3cb82e646"],
+
+Cell[TextData[{
+ "We\[CloseCurlyQuote]ll use this to figure out how ",
+ Cell[BoxData[
+  FormBox["CurrentValue", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "cd795b09-b110-44b3-a0f6-15deae887ff3"],
+ " is used in Mathematica\[CloseCurlyQuote]s built-in stylesheets:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906532915492897`*^9, 
+   3.690653323290354*^9}},ExpressionUUID->"22f3b976-70e6-452d-b4bc-\
+97a5f9d63346"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Join", "@@", 
+    RowBox[{"Last", "/@", 
+     RowBox[{"expressionsSearch", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"c", ":", "_CurrentValue"}], "\[RuleDelayed]", 
+        RowBox[{"HoldForm", "[", "c", "]"}]}], ",", "\n", "\t", 
+       "\"\<*.nb\>\"", ",", "\"\<SystemFiles\>\"", ",", "\"\<FrontEnd\>\"", 
+       ",", "\"\<StyleSheets\>\""}], "]"}]}]}], "//", "DeleteDuplicates"}], "//",
+   "Sort"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69065297990273*^9, 3.690653033372294*^9}, {
+   3.690653158188541*^9, 3.690653158462411*^9}, {3.690653258278467*^9, 
+   3.6906532727640133`*^9}, {3.690653326675025*^9, 3.6906533447984133`*^9}, 
+   3.723434974839178*^9},ExpressionUUID->"0fc977c9-16b3-44e6-a98f-\
+54005bfdbde0"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"ControlsFontFamily\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"ControlsFontSize\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"HyperlinkModifierKey\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"MenuFontFamily\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"MenuFontSize\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"MouseOver\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"PanelBackground\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"PanelFontFamily\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"PanelFontSize\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"ShiftKey\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"ToolbarBackground\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"TooltipFontFamily\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"TooltipFontSize\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "\<\"TooltipFrameMargins\"\>", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "Enabled", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", "Evaluatable", "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"DialogText\"\>"}], "}"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"DialogTextDisabled\"\>"}], 
+      "}"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"Menu\"\>"}], "}"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"MenuText\"\>"}], "}"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"Tooltip\"\>"}], "}"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"TooltipFrame\"\>"}], "}"}], 
+     "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"\<\"SystemColor\"\>", ",", "\<\"TooltipText\"\>"}], "}"}], 
+     "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{"{", 
+      RowBox[{"StyleHints", ",", "\<\"CodeFont\"\>"}], "}"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", "WindowElements"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", "WindowMargins"}], "]"}],
+    
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", "WindowSize"}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"AutoStyleOptions", ",", "\<\"StringStyle\"\>"}], "}"}]}], 
+     "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"TaggingRules", ",", "\<\"ExampleCounter\"\>"}], "}"}]}], "]"}],
+    HoldForm], ",", 
+   TagBox[
+    RowBox[{"CurrentValue", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "TaggingRules", ",", "\<\"SlideShowSettings\"\>", 
+        ",", "\<\"WindowSize\"\>"}], "}"}]}], "]"}],
+    HoldForm]}], "}"}]], "Output",
+ CellChangeTimes->{{3.690653331881495*^9, 3.690653345943041*^9}, 
+   3.6906534388138733`*^9},ExpressionUUID->"5d05bd81-e571-4802-9461-\
+323fe26771fa"]
+}, Open  ]],
+
+Cell["\<\
+There\[CloseCurlyQuote]s a lot of info in the source files and by doing \
+things like this you can mine a lot of it.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690653394284301*^9, 
+   3.690653418403749*^9}},ExpressionUUID->"01a85fcd-3794-4a6f-bde6-\
+fa461b20c00d"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{108, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2497, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3080, 77, 238, 4, 41, "Subsection",ExpressionUUID->"a53caf4d-e2ec-4210-9724-a9678835a23e"],
+Cell[3321, 83, 339, 8, 58, "Text",ExpressionUUID->"7b13012f-b866-4efc-a28f-211d0e817d65"],
+Cell[3663, 93, 330, 7, 58, "Text",ExpressionUUID->"ea7060b6-3f7b-4a2a-92d5-2d1ba5b4a28d"],
+Cell[3996, 102, 797, 19, 168, "Code",ExpressionUUID->"92e374eb-cadd-451f-8562-8fa689e18fec"],
+Cell[4796, 123, 228, 4, 35, "Text",ExpressionUUID->"0b4b2b84-2800-4734-91f8-a358104eec37"],
+Cell[5027, 129, 2026, 42, 358, "Code",ExpressionUUID->"d7aea20b-9639-4720-bf80-afa3cb82e646"],
+Cell[7056, 173, 437, 10, 35, "Text",ExpressionUUID->"22f3b976-70e6-452d-b4bc-97a5f9d63346"],
+Cell[CellGroupData[{
+Cell[7518, 187, 791, 18, 72, "Code",ExpressionUUID->"0fc977c9-16b3-44e6-a98f-54005bfdbde0"],
+Cell[8312, 207, 4322, 136, 392, "Output",ExpressionUUID->"5d05bd81-e571-4802-9461-323fe26771fa"]
+}, Open  ]],
+Cell[12649, 346, 292, 7, 35, "Text",ExpressionUUID->"01a85fcd-3794-4a6f-bde6-fa461b20c00d"]
+}, Open  ]]
+}
+]
+*)
+

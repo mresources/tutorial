@@ -1,0 +1,187 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      7128,        179]
+NotebookOptionsPosition[      6241,        157]
+NotebookOutlinePosition[      6672,        174]
+CellTagsIndexPosition[      6629,        171]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Creating a System\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Systems\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.2.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<systems\>\""}], "}"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<systems\>\"", ",", "\"\<object-oriented-programming\>\"", ",", 
+      "\"\<chemical-system\>\""}], "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 3.723435549502858*^9}, {3.723435626994491*^9, 
+   3.723435705605221*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Creating a system", "Subsection",
+ CellChangeTimes->{{3.6906537516091022`*^9, 
+  3.6906537587773046`*^9}},ExpressionUUID->"e9f6ddb2-8a55-450c-8c03-\
+ee0c4ac2ea61"],
+
+Cell[TextData[{
+ "Our object manager will in turn be an object called ",
+ Cell[BoxData[
+  FormBox["ChemicalSystem", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "ba0a3b30-a433-498a-8761-0027b8e2cec0"],
+ ", this time built according to the symbol interface method"
+}], "Text",
+ CellChangeTimes->{{3.684453398715925*^9, 3.6844534360108767`*^9}, {
+  3.690653564392355*^9, 3.690653618835307*^9}, {3.6906537089691563`*^9, 
+  3.690653732986755*^9}},ExpressionUUID->"d872f501-a130-4e9e-98aa-\
+20bdc97e89d1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$ChemicalSystems", "=", "1"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"ChemicalSystem", "~", "SetAttributes", "~", "HoldFirst"}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$DefaultChemicalSystem", ":=", 
+   RowBox[{"ChemicalSystem", "[", "]"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.684453644113668*^9, 3.684453650624584*^9}, {
+   3.684453965157984*^9, 3.684453991985427*^9}, {3.684454092781775*^9, 
+   3.684454093516571*^9}, 3.6906536385291557`*^9, 
+   3.7234357134905443`*^9},ExpressionUUID->"6e348e48-d8b6-449d-94ad-\
+47ff6439952c"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystem", "[", "]"}], ":=", 
+   RowBox[{"(", "\n", "\t", 
+    RowBox[{"$DefaultChemicalSystem", "=", "\n", "\t", 
+     RowBox[{"With", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"ID", "=", 
+         RowBox[{"$ChemicalSystems", "++"}]}], "}"}], ",", "\n", "\t\t", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"system", "=", 
+           RowBox[{"Symbol", "[", 
+            RowBox[{"\"\<ChemicalSystem$\>\"", "<>", 
+             RowBox[{"ToString", "@", "ID"}]}], "]"}]}], "}"}], ",", "\n", 
+         "\t\t\t", 
+         RowBox[{
+          RowBox[{"system", "=", 
+           RowBox[{"<|", "\n", "\t\t\t\t", 
+            RowBox[{
+             RowBox[{"\"\<ID\>\"", "\[Rule]", "ID"}], ",", "\n", "\t\t\t\t", 
+             RowBox[{"\"\<Index\>\"", "\[Rule]", "1"}]}], "|>"}]}], ";", "\n",
+           "\t\t\t\t", 
+          RowBox[{"ChemicalSystem", "[", "system", "]"}]}]}], "\n", 
+        "\t\t\t\t", "]"}]}], "\n", "\t\t\t", "]"}]}], ")"}]}], ";"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"ChemicalSystem", "[", "ID_Integer", "]"}], ":=", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"c", "=", 
+       RowBox[{"Names", "@", 
+        RowBox[{"Evaluate", "[", 
+         RowBox[{"\"\<ChemicalSystem$\>\"", "<>", 
+          RowBox[{"ToString", "@", "ID"}]}], "]"}]}]}], "}"}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "@", "c"}], ">", "0"}], ",", "\n", "\t\t\t", 
+       RowBox[{"ToExpression", "[", 
+        RowBox[{
+         RowBox[{"First", "@", "c"}], ",", "StandardForm", ",", 
+         "ChemicalSystem"}], "]"}]}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", 
+    "]"}]}]}]}], "Code",
+ CellChangeTimes->{{3.684453590043777*^9, 3.6844537019344482`*^9}, {
+   3.684453755902464*^9, 3.6844537702681847`*^9}, 3.684453804133919*^9, {
+   3.684453956499724*^9, 3.684453994494388*^9}, {3.684454265333894*^9, 
+   3.684454405312139*^9}, {3.684454638582457*^9, 3.684454647853855*^9}, 
+   3.6845437531098146`*^9, {3.684546254020652*^9, 3.684546281646305*^9}, 
+   3.6906536782298307`*^9, 
+   3.7234357135380383`*^9},ExpressionUUID->"4f02e13f-e873-4121-8263-\
+212b0cc400a1"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll reset a default system every time a new system is made \
+so that this system can be used by functions by default.\
+\>", "Text",
+ CellChangeTimes->{{3.684453819460927*^9, 
+  3.684453848819006*^9}},ExpressionUUID->"f2d5849d-4946-4aa6-8ade-\
+bd68de198a9d"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{69, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1839, 34, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2422, 58, 169, 3, 52, "Subsection",ExpressionUUID->"e9f6ddb2-8a55-450c-8c03-ee0c4ac2ea61"],
+Cell[2594, 63, 506, 10, 58, "Text",ExpressionUUID->"d872f501-a130-4e9e-98aa-20bdc97e89d1"],
+Cell[3103, 75, 565, 13, 91, "Code",ExpressionUUID->"6e348e48-d8b6-449d-94ad-47ff6439952c"],
+Cell[3671, 90, 2265, 56, 319, "Code",ExpressionUUID->"4f02e13f-e873-4121-8263-212b0cc400a1"],
+Cell[5939, 148, 286, 6, 58, "Text",ExpressionUUID->"f2d5849d-4946-4aa6-8ade-bd68de198a9d"]
+}, Open  ]]
+}
+]
+*)
+

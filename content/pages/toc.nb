@@ -1,0 +1,788 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     31074,        780]
+NotebookOptionsPosition[     24557,        670]
+NotebookOutlinePosition[     24982,        687]
+CellTagsIndexPosition[     24939,        684]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Table Of Contents\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "\"\<toc\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 15:46:39\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           RowBox[{"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "15", ",", "46", ",", 
+              "39.159343`8.345410375293417"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "5.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.723569205439868*^9, 3.723569231392861*^9}, {
+  3.723571136483451*^9, 
+  3.723571148319786*^9}},ExpressionUUID->"9957cf1e-0b41-45cf-9432-\
+181ec4e96a06"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"outdir", "=", "\[IndentingNewLine]", 
+   RowBox[{"FileNameJoin", "@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ParentDirectory", "@", 
+       RowBox[{"NotebookDirectory", "[", "]"}]}], ",", " ", "\"\<posts\>\""}],
+      "}"}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.723571325698585*^9, 3.7235713269956903`*^9}, {
+  3.7235713596508923`*^9, 3.72357136032903*^9}},
+ CellLabel->
+  "In[291]:=",ExpressionUUID->"fc303cf5-18da-4a6b-91e6-df0b75666c54"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"metas", "=", "\[IndentingNewLine]", 
+   RowBox[{"SortBy", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"AssociationMap", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Association", "@", "\[IndentingNewLine]", 
+         RowBox[{"Map", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Rule", "@@", 
+             RowBox[{"StringTrim", "@", 
+              RowBox[{"StringSplit", "[", 
+               RowBox[{"#", ",", " ", "\"\<:\>\"", ",", "2"}], "]"}]}]}], 
+            "&"}], ",", "\[IndentingNewLine]", 
+           RowBox[{"StringSplit", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"StringSplit", "[", 
+               RowBox[{
+                RowBox[{"Import", "[", 
+                 RowBox[{"#", ",", "\"\<Text\>\""}], "]"}], ",", 
+                "\"\<\\n\\n\>\"", ",", "2"}], "]"}], "[", 
+              RowBox[{"[", "1", "]"}], "]"}], ",", "\[IndentingNewLine]", 
+             "\"\<\\n\>\""}], "\[IndentingNewLine]", "]"}]}], 
+          "\[IndentingNewLine]", "]"}]}], "&"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Select", "[", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"FileNames", "[", 
+          RowBox[{"\"\<*.md\>\"", ",", "outdir", ",", "\[Infinity]"}], "]"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"StringMatchQ", "[", 
+            RowBox[{
+             RowBox[{"FileBaseName", "[", "#", "]"}], ",", " ", 
+             "\"\<toc\>\""}], "]"}]}], "&"}]}], "\[IndentingNewLine]", 
+        "]"}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"KeyMemberQ", "[", 
+         RowBox[{"#", ",", " ", "\"\<ID\>\""}], "]"}], ",", 
+        "\[IndentingNewLine]", 
+        RowBox[{"ToExpression", "[", "\[IndentingNewLine]", 
+         RowBox[{"StringSplit", "[", 
+          RowBox[{"#ID", ",", "\"\<.\>\""}], "]"}], "\[IndentingNewLine]", 
+         "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"1000", ",", "1000", ",", "1000"}], "}"}]}], 
+       "\[IndentingNewLine]", "]"}], "&"}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.7235692576277237`*^9, 3.723569324673963*^9}, {
+  3.723569366363392*^9, 3.723569600595553*^9}, {3.723569749638389*^9, 
+  3.723569801625226*^9}, {3.7235712744523153`*^9, 3.723571278804838*^9}, {
+  3.723571312417865*^9, 3.723571334193562*^9}, {3.723573447980008*^9, 
+  3.723573476655841*^9}},
+ CellLabel->
+  "In[292]:=",ExpressionUUID->"04e5afd1-ab9d-44a4-9067-72efef56ad32"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"data", "=", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"GroupBy", "[", 
+     RowBox[{"First", "\[Rule]", "Last"}], "]"}], "/@", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"GroupBy", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "1"}], "]"}], "]"}], "&"}], "\[Rule]", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", "[", 
+           RowBox[{"[", 
+            RowBox[{"1", ",", "2"}], "]"}], "]"}], "\[Rule]", 
+          RowBox[{"#", "[", 
+           RowBox[{"[", "2", "]"}], "]"}]}], "&"}], ")"}]}], "]"}], "@", 
+     "\[IndentingNewLine]", 
+     RowBox[{"KeyValueMap", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"URLParse", "[", 
+           RowBox[{
+            RowBox[{"#2", "[", "\"\<Path\>\"", "]"}], ",", "\"\<Path\>\""}], 
+           "]"}], "[", 
+          RowBox[{"[", 
+           RowBox[{";;", "2"}], "]"}], "]"}], "->", "\[IndentingNewLine]", 
+         RowBox[{"<|", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"\"\<Path\>\"", "\[Rule]", "\[IndentingNewLine]", 
+            RowBox[{"URLBuild", "[", "\[IndentingNewLine]", 
+             RowBox[{"Flatten", "@", 
+              RowBox[{"{", "\[IndentingNewLine]", 
+               RowBox[{"\"\<..\>\"", ",", "\[IndentingNewLine]", 
+                RowBox[{"Most", "@", 
+                 RowBox[{"FileNameSplit", "@", 
+                  RowBox[{"StringTrim", "[", 
+                   RowBox[{"#", ",", "outdir"}], "]"}]}]}], ",", 
+                RowBox[{
+                 RowBox[{"#2", "[", "\"\<Slug\>\"", "]"}], "<>", 
+                 "\"\<.html\>\""}]}], "\[IndentingNewLine]", "}"}]}], 
+             "\[IndentingNewLine]", "]"}]}], ",", "\[IndentingNewLine]", 
+           RowBox[{"\"\<Title\>\"", "\[Rule]", 
+            RowBox[{"#2", "[", "\"\<Title\>\"", "]"}]}]}], 
+          "\[IndentingNewLine]", "|>"}]}], "&"}], ",", "metas"}], 
+      "\[IndentingNewLine]", "]"}]}]}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.7235692576277237`*^9, 3.723569324673963*^9}, {
+   3.723569366363392*^9, 3.723569600595553*^9}, {3.723569749638389*^9, 
+   3.7235699066195*^9}, {3.723570050004805*^9, 3.723570073466055*^9}, 
+   3.723571285093647*^9, 3.723571339634994*^9, {3.723571467349819*^9, 
+   3.723571468594153*^9}},
+ CellLabel->
+  "In[293]:=",ExpressionUUID->"3773dca8-cd52-4f9e-943f-fec443636f61"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"cells", "=", "\[IndentingNewLine]", 
+   RowBox[{"KeyValueMap", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cell", "[", "\[IndentingNewLine]", 
+       RowBox[{"CellGroupData", "[", 
+        RowBox[{"Flatten", "@", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"Cell", "[", 
+            RowBox[{"#", ",", " ", "\"\<Section\>\""}], "]"}], ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"KeyValueMap", "[", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"Cell", "[", "\[IndentingNewLine]", 
+               RowBox[{"CellGroupData", "[", "\[IndentingNewLine]", 
+                RowBox[{"Flatten", "@", 
+                 RowBox[{"{", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"Cell", "[", 
+                    RowBox[{"#", ",", "\"\<Subsection\>\""}], "]"}], ",", 
+                   "\[IndentingNewLine]", 
+                   RowBox[{"Map", "[", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"Cell", "[", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"TextData", "[", "\[IndentingNewLine]", 
+                    RowBox[{"ButtonBox", "[", 
+                    RowBox[{"#Title", ",", "\[IndentingNewLine]", " ", 
+                    RowBox[{"BaseStyle", "\[Rule]", "\"\<Hyperlink\>\""}], 
+                    ",", "\[IndentingNewLine]", 
+                    RowBox[{"ButtonData", "\[Rule]", "\[IndentingNewLine]", 
+                    RowBox[{"{", "\[IndentingNewLine]", 
+                    RowBox[{
+                    RowBox[{"FrontEnd`FileName", "[", 
+                    RowBox[{"Evaluate", "@", 
+                    RowBox[{"URLParse", "[", 
+                    RowBox[{"#Path", ",", " ", "\"\<Path\>\""}], "]"}]}], 
+                    "]"}], ",", " ", "\[IndentingNewLine]", "None"}], 
+                    "\[IndentingNewLine]", "}"}]}]}], "\[IndentingNewLine]", 
+                    "]"}], "\[IndentingNewLine]", "]"}], ",", 
+                    "\[IndentingNewLine]", "\"\<Item\>\""}], 
+                    "\[IndentingNewLine]", "]"}], "&"}], ",", 
+                    "\[IndentingNewLine]", "#2"}], "\[IndentingNewLine]", " ",
+                     "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+                "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}], 
+              "&"}], ",", "\[IndentingNewLine]", "#2"}], 
+            "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "}"}]}], 
+        "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}], "&"}], 
+     ",", "\[IndentingNewLine]", "data"}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.723569948764091*^9, 3.723570009682653*^9}, {
+   3.723570082858128*^9, 3.7235701144820642`*^9}, {3.7235701531695747`*^9, 
+   3.7235702057335787`*^9}, 3.72357088277174*^9, {3.723570931676897*^9, 
+   3.723571018706395*^9}, {3.723571202391151*^9, 3.7235712314158297`*^9}},
+ CellLabel->
+  "In[294]:=",ExpressionUUID->"5d99357e-f801-407a-8f05-3ea341d57705"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"NotebookDelete", "@", 
+   RowBox[{"Cells", "[", 
+    RowBox[{
+     RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+     RowBox[{"CellStyle", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Section\>\"", ",", "\"\<Subsection\>\"", ",", "\"\<Item\>\""}], 
+       "}"}]}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"NotebookWrite", "[", 
+  RowBox[{
+   RowBox[{"EvaluationNotebook", "[", "]"}], ",", "cells"}], "]"}]}], "Input",\
+
+ CellChangeTimes->{{3.7235699085722437`*^9, 3.72356994517089*^9}, {
+  3.723571002912973*^9, 3.72357100434381*^9}, {3.723571236226511*^9, 
+  3.7235712366590023`*^9}},
+ CellLabel->
+  "In[295]:=",ExpressionUUID->"81e34e78-a432-4882-8dd8-1631fadd5afa"],
+
+Cell[CellGroupData[{
+
+Cell["Using Mathematica", "Section",ExpressionUUID->"5841d7ed-fc91-46d3-a164-5b4b39a96566"],
+
+Cell[CellGroupData[{
+
+Cell["Basics", "Subsection",ExpressionUUID->"e33fedfc-58ad-49fe-b587-ccf54b12d9d2"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Types",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{"..", "using-mathematica", "basics", "types.html"}], 
+   None}]], "Item",ExpressionUUID->"cc28fc19-5373-4fe2-b231-98b792e91365"],
+
+Cell[TextData[ButtonBox["Variables",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{"..", "using-mathematica", "basics", "variables.html"}],
+    None}]], "Item",ExpressionUUID->"f2885d41-d1f1-4e0d-a7f6-966b76774994"],
+
+Cell[TextData[ButtonBox["Functions",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{"..", "using-mathematica", "basics", "functions.html"}],
+    None}]], "Item",ExpressionUUID->"eca609d2-77bd-465e-a5b3-fa06ea6fcecd"],
+
+Cell[TextData[ButtonBox["Loops and Scoping",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "basics", "loops-and-scoping.html"}], 
+   None}]], "Item",ExpressionUUID->"1873d335-3aa9-4ed6-9840-f85661812198"],
+
+Cell[TextData[ButtonBox["Errors",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{"..", "using-mathematica", "basics", "errors.html"}], 
+   None}]], "Item",ExpressionUUID->"141f022e-a8fe-452f-a02c-3a9ac80dc76a"],
+
+Cell[TextData[ButtonBox["Clear",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{"..", "using-mathematica", "basics", "clear.html"}], 
+   None}]], "Item",ExpressionUUID->"ab367b67-db39-4ca8-9c21-a0549aa5ed26"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Interface", "Subsection",ExpressionUUID->"0cec5b8d-dfed-472a-b298-251239cb0a3d"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Function Aliases",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "interface", "function-aliases.html"}], 
+   None}]], "Item",ExpressionUUID->"31d0c480-5f8e-45cc-8243-6ae58efab349"],
+
+Cell[TextData[ButtonBox["Documentation",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "interface", "documentation.html"}], 
+   None}]], "Item",ExpressionUUID->"2198eaa3-d27f-4012-a879-3b45fa1f0ea4"],
+
+Cell[TextData[ButtonBox["Keyboard Aliases and Special Characters",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "interface", 
+     "keyboard-aliases-and-special-characters.html"}], None}]], "Item",Express\
+ionUUID->"54eb5401-ebf3-4f8c-8785-3190efe574fa"],
+
+Cell[TextData[ButtonBox["Palettes and Toolbars",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "interface", "palettes-and-toolbars.html"}], 
+   None}]], "Item",ExpressionUUID->"f4a64bb6-9f9c-4c9b-8d42-0a16b8dbebdd"],
+
+Cell[TextData[ButtonBox["Styles",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{"..", "using-mathematica", "interface", "styles.html"}],
+    None}]], "Item",ExpressionUUID->"4c48cc4d-b562-41ad-afdd-264eed8bb4fa"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Useful Features", "Subsection",ExpressionUUID->"f22dee32-df2a-47f0-ada3-634cb2644261"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Plotting",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "useful-features", "plotting.html"}], 
+   None}]], "Item",ExpressionUUID->"56916a39-2b03-4ba5-9afd-6bd1feb137d6"],
+
+Cell[TextData[ButtonBox["Symbolic Algebra",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "useful-features", "symbolic-algebra.html"}], 
+   None}]], "Item",ExpressionUUID->"18272fd3-cd45-4204-8f50-011fecaa0ec9"],
+
+Cell[TextData[ButtonBox["Calculus",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "useful-features", "calculus.html"}], 
+   None}]], "Item",ExpressionUUID->"bb8d68bd-ab8c-4e46-ad44-93b547af2d5f"],
+
+Cell[TextData[ButtonBox["Built-in Data and Units",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "using-mathematica", "useful-features", 
+     "builtin-data-and-units.html"}], None}]], "Item",ExpressionUUID->\
+"8e28971e-6935-4c3b-97ad-3891a2801658"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Mathematica Programming", "Section",ExpressionUUID->"0bd020a2-9152-4ecf-b224-08c1464a0597"],
+
+Cell[CellGroupData[{
+
+Cell["Code Structure", "Subsection",ExpressionUUID->"58fb4346-9709-4de0-af80-f2fd1d4806ab"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Symbols and Expressions",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "symbols-and-expressions.html"}], None}]], "Item",ExpressionUUID->\
+"ade89a19-6b8d-497f-860b-048fe5ac856a"],
+
+Cell[TextData[ButtonBox["Expressions Structure",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "expressions-structure.html"}], None}]], "Item",ExpressionUUID->\
+"3b1f8765-1db5-444a-a495-753082120fab"],
+
+Cell[TextData[ButtonBox["Patterns",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", "patterns.html"}], 
+   None}]], "Item",ExpressionUUID->"e99a29d0-7acb-4e9f-869d-e5439b2346cd"],
+
+Cell[TextData[ButtonBox["Replacement Patterns",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "replacement-patterns.html"}], None}]], "Item",ExpressionUUID->"b742a44f-\
+479f-41cc-bdf4-2de80f26b38d"],
+
+Cell[TextData[ButtonBox["Functions",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", "functions.html"}], 
+   None}]], "Item",ExpressionUUID->"01515a63-069c-4b0b-a187-feaa0a184ba2"],
+
+Cell[TextData[ButtonBox["Contexts",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", "contexts.html"}], 
+   None}]], "Item",ExpressionUUID->"c94e3e44-f9eb-40b8-b459-fa10798a4b5e"],
+
+Cell[TextData[ButtonBox["OwnValues, Set, and SetDelayed",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "ownvalues-set-and-setdelayed.html"}], None}]], "Item",ExpressionUUID->\
+"3963dfc5-3dfe-47b9-8daa-2f4bede5fa3e"],
+
+Cell[TextData[ButtonBox["Function Values and Definition Clearing",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "function-values-and-definition-clearing-.html"}], None}]], "Item",Expres\
+sionUUID->"974cd813-f2a5-4b11-b6c6-e623c184d761"],
+
+Cell[TextData[ButtonBox["Hold and Evaluation Order",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "hold-and-evaluation-order.html"}], None}]], "Item",ExpressionUUID->\
+"d0d0a385-ca2c-46c0-a966-f8680d5ce6dc"],
+
+Cell[TextData[ButtonBox["Scoping Revisited",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "code-structure", 
+     "scoping-revisited.html"}], None}]], "Item",ExpressionUUID->"3710c122-\
+ca00-4d95-b63d-ab68d00034af"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Higher-Level Functionality", "Subsection",ExpressionUUID->"0a6dedfb-8bc7-4b1b-a3cc-53013b6bb4f7"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Packages",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "higher-level-functionality", 
+     "packages.html"}], None}]], "Item",ExpressionUUID->"62b3e5dd-f694-404d-\
+b4af-769c7616211a"],
+
+Cell[TextData[ButtonBox["Dynamic",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "higher-level-functionality", 
+     "dynamic.html"}], None}]], "Item",ExpressionUUID->"4f90fa0d-c60e-4ccf-\
+bb93-88ff7eb28695"],
+
+Cell[TextData[ButtonBox["Formatting",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "higher-level-functionality", 
+     "formatting.html"}], None}]], "Item",ExpressionUUID->"6921cd15-f3d9-480f-\
+9221-bc819f469d9e"],
+
+Cell[TextData[ButtonBox["Interfaces",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "higher-level-functionality", 
+     "interfaces.html"}], None}]], "Item",ExpressionUUID->"ef15ca56-4219-4ca4-\
+9b6c-3784540d418d"],
+
+Cell[TextData[ButtonBox["The Front End",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "higher-level-functionality", 
+     "the-front-end.html"}], None}]], "Item",ExpressionUUID->"6ba5a822-64e4-\
+4539-88f8-df980f3591db"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Assorted Tricks", "Subsection",ExpressionUUID->"54d2528d-d058-4304-90f8-b357bd32b9cc"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Trott-Strzebonski",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "assorted-tricks", 
+     "trottstrzebonski.html"}], None}]], "Item",ExpressionUUID->"635f2b28-\
+286c-4102-a440-7f3750c72a8a"],
+
+Cell[TextData[ButtonBox["Villegas-Gayley",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "assorted-tricks", 
+     "villegasgayley.html"}], None}]], "Item",ExpressionUUID->"367259b7-f385-\
+4041-a56c-c619aa16ab0e"],
+
+Cell[TextData[ButtonBox["Import and ReadList",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "assorted-tricks", 
+     "import-and-readlist.html"}], None}]], "Item",ExpressionUUID->"c81aa3a9-\
+a8f1-4d70-a1d2-7e3918339068"],
+
+Cell[TextData[ButtonBox["CurrentValue and FrontEndTokens",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "assorted-tricks", 
+     "currentvalue-and-frontendtokens.html"}], None}]], "Item",ExpressionUUID-\
+>"2708d3c7-414d-4abc-953f-f9e6f2ef16d1"],
+
+Cell[TextData[ButtonBox["Info Scraping",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "assorted-tricks", 
+     "info-scraping.html"}], None}]], "Item",ExpressionUUID->"1411c42b-1438-\
+450d-b283-b2a70e54b4ec"],
+
+Cell[TextData[ButtonBox["Object Oriented Programming",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "assorted-tricks", 
+     "object-oriented-programming.html"}], None}]], "Item",ExpressionUUID->\
+"ba652ff9-6105-40bd-9482-07abd261f0d4"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Functional Programming", "Subsection",ExpressionUUID->"0a094f61-600d-4120-94e7-ef2de04c5263"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Procedural Programming",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "functional-programming", 
+     "procedural-programming.html"}], None}]], "Item",ExpressionUUID->\
+"a4ff7de3-8a42-42c5-8b0c-4c5777ba298d"],
+
+Cell[TextData[ButtonBox["Table / Do",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "functional-programming", 
+     "table--do.html"}], None}]], "Item",ExpressionUUID->"6fcb7834-e9d6-4dd5-\
+9a60-0407807cc51d"],
+
+Cell[TextData[ButtonBox["Map / Scan",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "functional-programming", 
+     "map--scan.html"}], None}]], "Item",ExpressionUUID->"c50558ed-a3b1-45b0-\
+9b74-665ceea82e42"],
+
+Cell[TextData[ButtonBox["Nest / NestList",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "functional-programming", 
+     "nest--nestlist.html"}], None}]], "Item",ExpressionUUID->"874b7c36-1929-\
+4054-afcc-6d390710c695"],
+
+Cell[TextData[ButtonBox["Fold / FoldList",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "functional-programming", 
+     "fold--foldlist.html"}], None}]], "Item",ExpressionUUID->"5f2de8f5-3bf6-\
+4f2e-b054-74f2e2dc8eb0"],
+
+Cell[TextData[ButtonBox["FixedPoint and Gradients",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "functional-programming", 
+     "fixedpoint-and-gradients.html"}], None}]], "Item",ExpressionUUID->\
+"7c7e70e5-6d9e-4951-aee7-4dbddf0f5f1d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Performance Tuning", "Subsection",ExpressionUUID->"1c2b7a65-6c9d-4847-ab4c-086dd1d99c3a"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["Compile",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "performance-tuning", "compile.html"}], 
+   None}]], "Item",ExpressionUUID->"7f7bf7a0-0251-44e6-97f4-b2b47dac262a"],
+
+Cell[TextData[ButtonBox["Special Array Types",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   FrontEnd`FileName[{
+    "..", "mathematica-programming", "performance-tuning", 
+     "special-array-types.html"}], None}]], "Item",ExpressionUUID->"8f6c9167-\
+b9ca-4b28-b60e-84435346cdab"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{6, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1108, 26, 156, "Metadata",ExpressionUUID->"9957cf1e-0b41-45cf-9432-181ec4e96a06"],
+Cell[1669, 48, 490, 12, 52, "Input",ExpressionUUID->"fc303cf5-18da-4a6b-91e6-df0b75666c54"],
+Cell[2162, 62, 2697, 60, 493, "Input",ExpressionUUID->"04e5afd1-ab9d-44a4-9067-72efef56ad32"],
+Cell[4862, 124, 2482, 58, 346, "Input",ExpressionUUID->"3773dca8-cd52-4f9e-943f-fec443636f61"],
+Cell[7347, 184, 3141, 60, 766, "Input",ExpressionUUID->"5d99357e-f801-407a-8f05-3ea341d57705"],
+Cell[10491, 246, 732, 19, 52, "Input",ExpressionUUID->"81e34e78-a432-4882-8dd8-1631fadd5afa"],
+Cell[CellGroupData[{
+Cell[11248, 269, 91, 0, 51, "Section",ExpressionUUID->"5841d7ed-fc91-46d3-a164-5b4b39a96566"],
+Cell[CellGroupData[{
+Cell[11364, 273, 83, 0, 41, "Subsection",ExpressionUUID->"e33fedfc-58ad-49fe-b587-ccf54b12d9d2"],
+Cell[CellGroupData[{
+Cell[11472, 277, 223, 4, 32, "Item",ExpressionUUID->"cc28fc19-5373-4fe2-b231-98b792e91365"],
+Cell[11698, 283, 231, 4, 32, "Item",ExpressionUUID->"f2885d41-d1f1-4e0d-a7f6-966b76774994"],
+Cell[11932, 289, 231, 4, 32, "Item",ExpressionUUID->"eca609d2-77bd-465e-a5b3-fa06ea6fcecd"],
+Cell[12166, 295, 252, 5, 32, "Item",ExpressionUUID->"1873d335-3aa9-4ed6-9840-f85661812198"],
+Cell[12421, 302, 225, 4, 32, "Item",ExpressionUUID->"141f022e-a8fe-452f-a02c-3a9ac80dc76a"],
+Cell[12649, 308, 223, 4, 32, "Item",ExpressionUUID->"ab367b67-db39-4ca8-9c21-a0549aa5ed26"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12921, 318, 86, 0, 41, "Subsection",ExpressionUUID->"0cec5b8d-dfed-472a-b298-251239cb0a3d"],
+Cell[CellGroupData[{
+Cell[13032, 322, 253, 5, 32, "Item",ExpressionUUID->"31d0c480-5f8e-45cc-8243-6ae58efab349"],
+Cell[13288, 329, 247, 5, 32, "Item",ExpressionUUID->"2198eaa3-d27f-4012-a879-3b45fa1f0ea4"],
+Cell[13538, 336, 303, 6, 32, "Item",ExpressionUUID->"54eb5401-ebf3-4f8c-8785-3190efe574fa"],
+Cell[13844, 344, 263, 5, 32, "Item",ExpressionUUID->"f4a64bb6-9f9c-4c9b-8d42-0a16b8dbebdd"],
+Cell[14110, 351, 228, 4, 32, "Item",ExpressionUUID->"4c48cc4d-b562-41ad-afdd-264eed8bb4fa"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14387, 361, 92, 0, 41, "Subsection",ExpressionUUID->"f22dee32-df2a-47f0-ada3-634cb2644261"],
+Cell[CellGroupData[{
+Cell[14504, 365, 243, 5, 32, "Item",ExpressionUUID->"56916a39-2b03-4ba5-9afd-6bd1feb137d6"],
+Cell[14750, 372, 259, 5, 32, "Item",ExpressionUUID->"18272fd3-cd45-4204-8f50-011fecaa0ec9"],
+Cell[15012, 379, 243, 5, 32, "Item",ExpressionUUID->"bb8d68bd-ab8c-4e46-ad44-93b547af2d5f"],
+Cell[15258, 386, 276, 6, 32, "Item",ExpressionUUID->"8e28971e-6935-4c3b-97ad-3891a2801658"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15595, 399, 97, 0, 51, "Section",ExpressionUUID->"0bd020a2-9152-4ecf-b224-08c1464a0597"],
+Cell[CellGroupData[{
+Cell[15717, 403, 91, 0, 41, "Subsection",ExpressionUUID->"58fb4346-9709-4de0-af80-f2fd1d4806ab"],
+Cell[CellGroupData[{
+Cell[15833, 407, 282, 6, 32, "Item",ExpressionUUID->"ade89a19-6b8d-497f-860b-048fe5ac856a"],
+Cell[16118, 415, 278, 6, 32, "Item",ExpressionUUID->"3b1f8765-1db5-444a-a495-753082120fab"],
+Cell[16399, 423, 248, 5, 32, "Item",ExpressionUUID->"e99a29d0-7acb-4e9f-869d-e5439b2346cd"],
+Cell[16650, 430, 276, 6, 32, "Item",ExpressionUUID->"b742a44f-479f-41cc-bdf4-2de80f26b38d"],
+Cell[16929, 438, 250, 5, 32, "Item",ExpressionUUID->"01515a63-069c-4b0b-a187-feaa0a184ba2"],
+Cell[17182, 445, 248, 5, 32, "Item",ExpressionUUID->"c94e3e44-f9eb-40b8-b459-fa10798a4b5e"],
+Cell[17433, 452, 294, 6, 32, "Item",ExpressionUUID->"3963dfc5-3dfe-47b9-8daa-2f4bede5fa3e"],
+Cell[17730, 460, 315, 6, 32, "Item",ExpressionUUID->"974cd813-f2a5-4b11-b6c6-e623c184d761"],
+Cell[18048, 468, 286, 6, 32, "Item",ExpressionUUID->"d0d0a385-ca2c-46c0-a966-f8680d5ce6dc"],
+Cell[18337, 476, 270, 6, 32, "Item",ExpressionUUID->"3710c122-ca00-4d95-b63d-ab68d00034af"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18656, 488, 103, 0, 41, "Subsection",ExpressionUUID->"0a6dedfb-8bc7-4b1b-a3cc-53013b6bb4f7"],
+Cell[CellGroupData[{
+Cell[18784, 492, 264, 6, 32, "Item",ExpressionUUID->"62b3e5dd-f694-404d-b4af-769c7616211a"],
+Cell[19051, 500, 262, 6, 32, "Item",ExpressionUUID->"4f90fa0d-c60e-4ccf-bb93-88ff7eb28695"],
+Cell[19316, 508, 268, 6, 32, "Item",ExpressionUUID->"6921cd15-f3d9-480f-9221-bc819f469d9e"],
+Cell[19587, 516, 268, 6, 32, "Item",ExpressionUUID->"ef15ca56-4219-4ca4-9b6c-3784540d418d"],
+Cell[19858, 524, 274, 6, 32, "Item",ExpressionUUID->"6ba5a822-64e4-4539-88f8-df980f3591db"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20181, 536, 92, 0, 41, "Subsection",ExpressionUUID->"54d2528d-d058-4304-90f8-b357bd32b9cc"],
+Cell[CellGroupData[{
+Cell[20298, 540, 270, 6, 32, "Item",ExpressionUUID->"635f2b28-286c-4102-a440-7f3750c72a8a"],
+Cell[20571, 548, 266, 6, 32, "Item",ExpressionUUID->"367259b7-f385-4041-a56c-c619aa16ab0e"],
+Cell[20840, 556, 275, 6, 32, "Item",ExpressionUUID->"c81aa3a9-a8f1-4d70-a1d2-7e3918339068"],
+Cell[21118, 564, 299, 6, 32, "Item",ExpressionUUID->"2708d3c7-414d-4abc-953f-f9e6f2ef16d1"],
+Cell[21420, 572, 263, 6, 32, "Item",ExpressionUUID->"1411c42b-1438-450d-b283-b2a70e54b4ec"],
+Cell[21686, 580, 291, 6, 32, "Item",ExpressionUUID->"ba652ff9-6105-40bd-9482-07abd261f0d4"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22026, 592, 99, 0, 41, "Subsection",ExpressionUUID->"0a094f61-600d-4120-94e7-ef2de04c5263"],
+Cell[CellGroupData[{
+Cell[22150, 596, 288, 6, 32, "Item",ExpressionUUID->"a4ff7de3-8a42-42c5-8b0c-4c5777ba298d"],
+Cell[22441, 604, 263, 6, 32, "Item",ExpressionUUID->"6fcb7834-e9d6-4dd5-9a60-0407807cc51d"],
+Cell[22707, 612, 263, 6, 32, "Item",ExpressionUUID->"c50558ed-a3b1-45b0-9b74-665ceea82e42"],
+Cell[22973, 620, 273, 6, 32, "Item",ExpressionUUID->"874b7c36-1929-4054-afcc-6d390710c695"],
+Cell[23249, 628, 273, 6, 32, "Item",ExpressionUUID->"5f2de8f5-3bf6-4f2e-b054-74f2e2dc8eb0"],
+Cell[23525, 636, 292, 6, 32, "Item",ExpressionUUID->"7c7e70e5-6d9e-4951-aee7-4dbddf0f5f1d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23866, 648, 95, 0, 41, "Subsection",ExpressionUUID->"1c2b7a65-6c9d-4847-ab4c-086dd1d99c3a"],
+Cell[CellGroupData[{
+Cell[23986, 652, 250, 5, 32, "Item",ExpressionUUID->"7f7bf7a0-0251-44e6-97f4-b2b47dac262a"],
+Cell[24239, 659, 278, 6, 32, "Item",ExpressionUUID->"8f6c9167-b9ca-4b28-b60e-84435346cdab"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

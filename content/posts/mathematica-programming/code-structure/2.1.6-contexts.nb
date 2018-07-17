@@ -1,0 +1,680 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     27507,        672]
+NotebookOptionsPosition[     22772,        589]
+NotebookOutlinePosition[     23200,        606]
+CellTagsIndexPosition[     23157,        603]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Contexts\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Code Structure\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.1.6\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 02:55:31\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "2", ",", "55", ",", 
+              "31"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<code-structure\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<contexts\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723348665617456*^9, 3.723348677211186*^9}, {
+   3.723348793415567*^9, 3.7233488015589314`*^9}, {3.723348858273123*^9, 
+   3.723348869709263*^9}, {3.7233491878388033`*^9, 3.723349193403183*^9}, {
+   3.7407801663831*^9, 
+   3.740780172497368*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Contexts", "Subsection",
+ CellChangeTimes->{{3.685311025381157*^9, 3.68531102687719*^9}, {
+  3.723397233206596*^9, 
+  3.723397233610828*^9}},ExpressionUUID->"4fc0a76b-36e5-41bb-b977-\
+af05fc56a3c7"],
+
+Cell["\<\
+Contexts are a relatively simple concept but have major effects. Their basic \
+use is to tag symbols with extra information. Usually we are in the global \
+context:\
+\>", "Text",
+ CellChangeTimes->{{3.685311029697795*^9, 
+  3.685311090235567*^9}},ExpressionUUID->"5cea45fd-640b-45ff-9c4b-\
+d10592cfbbef"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$Context"], "Code",
+ CellChangeTimes->{{3.685311091447522*^9, 
+  3.685311095349594*^9}},ExpressionUUID->"b803db3a-b760-4056-885e-\
+032af08399bd"],
+
+Cell[BoxData["\<\"Global`\"\>"], "Output",
+ CellChangeTimes->{
+  3.685311095765414*^9},ExpressionUUID->"046f8c4d-81df-4494-9f30-\
+074e6deb8aae"]
+}, Open  ]],
+
+Cell["Although many of the functions we use are not:", "Text",
+ CellChangeTimes->{{3.685311099175981*^9, 
+  3.685311106251684*^9}},ExpressionUUID->"2f5a1434-d27f-49cb-8e05-\
+03b0ceafaf81"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Context", "@", "Plot"}]], "Code",
+ CellChangeTimes->{{3.6853111073434277`*^9, 
+  3.6853111121096354`*^9}},ExpressionUUID->"b37dc4f4-13a3-4e14-9423-\
+ee672c5da740"],
+
+Cell[BoxData["\<\"System`\"\>"], "Output",
+ CellChangeTimes->{
+  3.685311112399456*^9},ExpressionUUID->"f6915130-8d75-4794-842e-\
+c4c6c242e007"]
+}, Open  ]],
+
+Cell[TextData[{
+ "A context is a series of symbol names followed by ",
+ Cell[BoxData[
+  FormBox["\"\<`\>\"", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "38dbd1c4-9f0e-468a-9684-7ffbb1f62550"]
+}], "Text",
+ CellChangeTimes->{{3.6853113558574657`*^9, 3.685311386281169*^9}, {
+  3.7235229299656076`*^9, 
+  3.723522930689548*^9}},ExpressionUUID->"7be43a22-20f3-4435-8293-\
+421b2e0c6a90"],
+
+Cell[TextData[{
+ "Contexts we can use without fully qualifying the name are those on ",
+ Cell[BoxData[
+  FormBox["$ContextPath", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "6c50c961-7646-46f6-8233-78d4e362a6de"]
+}], "Text",
+ CellChangeTimes->{{3.68531112202494*^9, 
+  3.6853111473846197`*^9}},ExpressionUUID->"11e5af3c-bd3e-46c5-be4f-\
+ff4da089bc1e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$ContextPath"], "Code",
+ CellChangeTimes->{{3.685311150685225*^9, 
+  3.685311152815675*^9}},ExpressionUUID->"5b39e473-361c-47d0-95a9-\
+e50c70f4326d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"CloudObjectLoader`\"\>", ",", "\<\"StreamingLoader`\"\>", 
+   ",", "\<\"SymbolicMachineLearningLoader`\"\>", 
+   ",", "\<\"IconizeLoader`\"\>", ",", "\<\"HTTPHandlingLoader`\"\>", 
+   ",", "\<\"PacletManager`\"\>", ",", "\<\"System`\"\>", 
+   ",", "\<\"Global`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6853118619148083`*^9},ExpressionUUID->"99bb968c-f474-4b7a-8f0c-\
+dfada8f43d8c"]
+}, Open  ]],
+
+Cell[TextData[{
+ "We can define our own contexts via ",
+ Cell[BoxData[
+  FormBox["Begin", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "64195e13-701e-4c3a-aa88-6d79ba5ca3d6"],
+ " and ",
+ Cell[BoxData[
+  FormBox["BeginPackage", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "32abbb90-6c64-4983-954a-a15bc0d79053"],
+ " and the context is exited via ",
+ Cell[BoxData[
+  FormBox["End", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "e043f608-0af6-41cb-b3e2-5a204f80dd5f"],
+ " and ",
+ Cell[BoxData[
+  FormBox["EndPackage", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "23113036-21fb-4bc0-bd56-655080e59e9e"],
+ " respectively. The only difference between these is that ",
+ Cell[BoxData[
+  FormBox["BeginPackage", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "49635c48-142f-4d7f-ac6c-ed3616ff26ea"],
+ " restricts the value of ",
+ Cell[BoxData[
+  FormBox["$ContextPath", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "c6b20238-a5c7-47b1-8423-b40ae86346a9"],
+ " while ",
+ Cell[BoxData[
+  FormBox["Begin", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "769f68cf-4007-4bf4-acd6-0106f2934935"],
+ " does not:"
+}], "Text",
+ CellChangeTimes->{{3.68531125912353*^9, 
+  3.685311334627738*^9}},ExpressionUUID->"c924e7c4-31c4-4ba7-ba51-\
+11325d9389a6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<NameTools`\>\"", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.685311335897534*^9, 3.685311350067524*^9}, 
+   3.685311469817728*^9},ExpressionUUID->"65c433ea-83ad-4ccf-a4e8-\
+5fc9f224ecc4"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"thisIsTheLocalContextPath", "=", "$ContextPath"}], ";"}]], "Code",
+ CellChangeTimes->{{3.6853113995303297`*^9, 3.685311405937096*^9}, {
+  3.685311443650214*^9, 
+  3.685311456618176*^9}},ExpressionUUID->"c709b516-612e-4b8b-b99e-\
+60c551e31d7b"],
+
+Cell[BoxData[
+ RowBox[{"EndPackage", "[", "]"}]], "Code",
+ CellChangeTimes->{{3.685311408536718*^9, 3.685311410546256*^9}, {
+  3.685311763951009*^9, 
+  3.685311764300511*^9}},ExpressionUUID->"254d4199-ce8a-4a3e-80e9-\
+4094cec13e01"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"thisIsTheLocalContextPath", "//", "Context"}]], "Code",
+ CellChangeTimes->{{3.685311417442739*^9, 3.685311421691581*^9}, {
+  3.685311478075135*^9, 
+  3.685311483034081*^9}},ExpressionUUID->"0ebf80f7-b61a-43d7-a37b-\
+ec53692f53fa"],
+
+Cell[BoxData["\<\"NameTools`\"\>"], "Output",
+ CellChangeTimes->{
+  3.68531142199888*^9, {3.685311478539609*^9, 3.6853114833456*^9}, 
+   3.685311871216476*^9},ExpressionUUID->"2983d0c1-13df-475c-ad22-\
+5a9e5c96e9c1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["thisIsTheLocalContextPath"], "Code",
+ CellChangeTimes->{{3.6853114842650833`*^9, 
+  3.68531148632371*^9}},ExpressionUUID->"57db1957-6893-4b92-b2f3-\
+30e13e7c7061"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"NameTools`\"\>", ",", "\<\"System`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{3.6853114875961037`*^9, 
+  3.685311873383656*^9},ExpressionUUID->"1da68c79-d8e8-4436-b691-\
+dd6caecec7ae"]
+}, Open  ]],
+
+Cell[TextData[{
+ "This protects symbols from being affected by things in the ",
+ Cell[BoxData[
+  FormBox["Global`", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "a3532226-cf6c-4f53-9631-faeffe0265c6"],
+ " context or any other context. ",
+ Cell[BoxData[
+  FormBox["Begin", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "b16830c0-00b2-4326-a815-517f1bd59ad7"],
+ " does not do this:"
+}], "Text",
+ CellChangeTimes->{{3.685311492135708*^9, 3.685311541286821*^9}, {
+  3.6853117683966*^9, 
+  3.685311768635076*^9}},ExpressionUUID->"1e165ea6-be33-4400-a445-\
+69f7a111e4f2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<NameTools`\>\"", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.685311335897534*^9, 3.685311350067524*^9}, 
+   3.685311469817728*^9, 
+   3.6853117850442963`*^9},ExpressionUUID->"f0a9f6a6-22da-4345-a01b-\
+e90132a86e41"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"thisIsTheLocalContextPath", "=", "$ContextPath"}], ";"}]], "Code",
+ CellChangeTimes->{{3.6853113995303297`*^9, 3.685311405937096*^9}, {
+  3.685311443650214*^9, 
+  3.685311456618176*^9}},ExpressionUUID->"dc4c076f-310e-4950-882e-\
+62453bcde694"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.685311408536718*^9, 3.685311410546256*^9}, {
+  3.685311763951009*^9, 
+  3.685311795499344*^9}},ExpressionUUID->"d8d95d70-acb4-4a92-a6dd-\
+01889bf90e2d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["thisIsTheLocalContextPath"], "Code",
+ CellChangeTimes->{{3.685311417442739*^9, 3.685311421691581*^9}, {
+  3.685311478075135*^9, 3.685311483034081*^9}, {3.685311801891197*^9, 
+  3.685311802058874*^9}},ExpressionUUID->"33caea63-97b3-4171-a5ec-\
+cc32458357c8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"NameTools`\"\>", ",", "\<\"CloudObjectLoader`\"\>", 
+   ",", "\<\"StreamingLoader`\"\>", 
+   ",", "\<\"SymbolicMachineLearningLoader`\"\>", 
+   ",", "\<\"IconizeLoader`\"\>", ",", "\<\"HTTPHandlingLoader`\"\>", 
+   ",", "\<\"PacletManager`\"\>", ",", "\<\"System`\"\>", 
+   ",", "\<\"Global`\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.685311793259017*^9, 3.685311802347395*^9}, 
+   3.685311879765874*^9},ExpressionUUID->"d1617a48-6afc-4dc6-bb92-\
+4046859890d2"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Note that ",
+ Cell[BoxData[
+  FormBox["BeginPackage", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "1a4e2948-81c9-4dd9-bdb0-3d5b31e88537"],
+ " also prepended the context defined to the ",
+ Cell[BoxData[
+  FormBox["$ContextPath", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "bd7bb614-18c6-446d-8fc9-26495d97167c"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685311887724815*^9, 
+   3.6853119386332293`*^9}},ExpressionUUID->"25091b80-9f94-4769-8291-\
+63fb77947df8"],
+
+Cell[TextData[{
+ "Anything not in ",
+ Cell[BoxData[
+  FormBox["NameTools`", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "1e0f60f0-aa2c-4cc7-a6ff-4ee0128b6ca0"],
+ " exactly won\[CloseCurlyQuote]t be found, however:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685311997406069*^9, 
+   3.6853120162370768`*^9}},ExpressionUUID->"7b34ecfd-a064-480b-b61b-\
+fa9dfd5a0e3d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"NameTools`hidden`a", "=", "100"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.685312018278782*^9, 
+  3.685312025629195*^9}},ExpressionUUID->"8fe6ef89-13ef-4165-9eaf-\
+64191dbc18bb"],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{
+  3.68531202614972*^9},ExpressionUUID->"da48bd4a-ebb5-4e59-aa38-95b25556a59e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["a"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6853120272287188`*^9, 
+   3.6853120307966413`*^9}},ExpressionUUID->"9fdd464e-5e38-4872-b532-\
+8dbaf58ef547"],
+
+Cell[BoxData["a"], "Output",
+ CellChangeTimes->{
+  3.685312031159019*^9},ExpressionUUID->"7a2a6c24-7762-4f0d-a7ea-\
+fea313a29e6c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"a", "//", "Context"}]], "Code",
+ CellChangeTimes->{{3.6853120389897757`*^9, 
+  3.685312040461323*^9}},ExpressionUUID->"da1d4005-3d74-4349-a39d-\
+2661c9c0a5bb"],
+
+Cell[BoxData["\<\"Global`\"\>"], "Output",
+ CellChangeTimes->{
+  3.685312040748872*^9},ExpressionUUID->"6056a269-f125-46c3-9249-\
+46c1547e2fc7"]
+}, Open  ]],
+
+Cell[TextData[{
+ "This is how Mathematica defines so many functions without us having to \
+worry about using the wrong symbols. Just consider all of the symbols we can \
+find in ",
+ Cell[BoxData[
+  FormBox["System`Private`", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "9f0f1523-cd13-45da-9352-0ca26ae9bb75"],
+ ":"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68531204544317*^9, 
+   3.685312119490456*^9}},ExpressionUUID->"104ba6d1-a102-441b-b68f-\
+c678726bee23"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Pane", "[", 
+  RowBox[{
+   RowBox[{"Column", "@", 
+    RowBox[{"Names", "@", "\"\<System`Private`*\>\""}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{"Automatic", ",", "100"}], "}"}], ",", 
+   RowBox[{"Scrollbars", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"False", ",", "True"}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"AppearanceElements", "\[Rule]", "None"}]}], "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68531212079399*^9, 
+   3.685312160538144*^9}},ExpressionUUID->"8c885874-3b83-479a-b639-\
+61236818a13b"],
+
+Cell[BoxData[
+ GraphicsBox[
+  TagBox[RasterBox[CompressedData["
+1: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
+pZf7mngZ6C1xgiCexP8DKYbJFg==
+    "], {{0, 102}, {358, 0}}, {0, 255},
+    ColorFunction->RGBColor],
+   BoxForm`ImageTag["Byte", ColorSpace -> "RGB", Interleaving -> True],
+   Selectable->False],
+  DefaultBaseStyle->"ImageGraphics",
+  ImageSizeRaw->{358, 102},
+  PlotRange->{{0, 358}, {0, 102}}]], "Output",
+ CellChangeTimes->{
+  3.723349215658207*^9},ExpressionUUID->"f8435514-97f9-43db-b43a-\
+1dd72b975a70"]
+}, Open  ]],
+
+Cell["\<\
+One final useful thing to know is that the current context can be implied \
+when defining a symbol, such as done in the following example:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685312192015654*^9, 
+   3.685312236132469*^9}},ExpressionUUID->"181e68f4-5c16-4d8a-8426-\
+e63452a6203f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"`Private`b", "=", "100"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.685312242102354*^9, 
+  3.6853122455086823`*^9}},ExpressionUUID->"df1ac1e9-7a65-4397-b60c-\
+a6a0927d2271"],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{
+  3.6853122460739107`*^9},ExpressionUUID->"2ec31766-0bfd-4b10-acd2-\
+da5c9a44fb30"]
+}, Open  ]],
+
+Cell["\<\
+This just had the current context put in front of the first `\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685312266244831*^9, 
+   3.685312284163837*^9}},ExpressionUUID->"f9552049-526b-4298-a1e6-\
+5ce5e23103cc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["Global`Private`b"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685312255718356*^9, 
+   3.685312260756465*^9}},ExpressionUUID->"ec2ad8b8-1e69-4548-a43b-\
+8cd5bf3fe234"],
+
+Cell[BoxData["100"], "Output",
+ CellChangeTimes->{
+  3.685312261598735*^9},ExpressionUUID->"005cc856-ff11-4de2-8365-\
+82b21468cdda"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{163, Automatic}, {48, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2544, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3127, 77, 204, 4, 41, "Subsection",ExpressionUUID->"4fc0a76b-36e5-41bb-b977-af05fc56a3c7"],
+Cell[3334, 83, 314, 7, 58, "Text",ExpressionUUID->"5cea45fd-640b-45ff-9c4b-d10592cfbbef"],
+Cell[CellGroupData[{
+Cell[3673, 94, 159, 3, 52, "Code",ExpressionUUID->"b803db3a-b760-4056-885e-032af08399bd"],
+Cell[3835, 99, 144, 3, 34, "Output",ExpressionUUID->"046f8c4d-81df-4494-9f30-074e6deb8aae"]
+}, Open  ]],
+Cell[3994, 105, 188, 3, 35, "Text",ExpressionUUID->"2f5a1434-d27f-49cb-8e05-03b0ceafaf81"],
+Cell[CellGroupData[{
+Cell[4207, 112, 187, 4, 52, "Code",ExpressionUUID->"b37dc4f4-13a3-4e14-9423-ee672c5da740"],
+Cell[4397, 118, 144, 3, 34, "Output",ExpressionUUID->"f6915130-8d75-4794-842e-c4c6c242e007"]
+}, Open  ]],
+Cell[4556, 124, 390, 9, 35, "Text",ExpressionUUID->"7be43a22-20f3-4435-8293-421b2e0c6a90"],
+Cell[4949, 135, 358, 8, 35, "Text",ExpressionUUID->"11e5af3c-bd3e-46c5-be4f-ff4da089bc1e"],
+Cell[CellGroupData[{
+Cell[5332, 147, 163, 3, 52, "Code",ExpressionUUID->"5b39e473-361c-47d0-95a9-e50c70f4326d"],
+Cell[5498, 152, 434, 9, 56, "Output",ExpressionUUID->"99bb968c-f474-4b7a-8f0c-dfada8f43d8c"]
+}, Open  ]],
+Cell[5947, 164, 1271, 33, 81, "Text",ExpressionUUID->"c924e7c4-31c4-4ba7-ba51-11325d9389a6"],
+Cell[7221, 199, 248, 5, 52, "Code",ExpressionUUID->"65c433ea-83ad-4ccf-a4e8-5fc9f224ecc4"],
+Cell[7472, 206, 278, 6, 52, "Code",ExpressionUUID->"c709b516-612e-4b8b-b99e-60c551e31d7b"],
+Cell[7753, 214, 232, 5, 52, "Code",ExpressionUUID->"254d4199-ce8a-4a3e-80e9-4094cec13e01"],
+Cell[CellGroupData[{
+Cell[8010, 223, 254, 5, 52, "Code",ExpressionUUID->"0ebf80f7-b61a-43d7-a37b-ec53692f53fa"],
+Cell[8267, 230, 216, 4, 34, "Output",ExpressionUUID->"2983d0c1-13df-475c-ad22-5a9e5c96e9c1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8520, 239, 177, 3, 52, "Code",ExpressionUUID->"57db1957-6893-4b92-b2f3-30e13e7c7061"],
+Cell[8700, 244, 230, 5, 34, "Output",ExpressionUUID->"1da68c79-d8e8-4436-b691-dd6caecec7ae"]
+}, Open  ]],
+Cell[8945, 252, 576, 14, 58, "Text",ExpressionUUID->"1e165ea6-be33-4400-a445-69f7a111e4f2"],
+Cell[9524, 268, 269, 6, 52, "Code",ExpressionUUID->"f0a9f6a6-22da-4345-a01b-e90132a86e41"],
+Cell[9796, 276, 278, 6, 52, "Code",ExpressionUUID->"dc4c076f-310e-4950-882e-62453bcde694"],
+Cell[10077, 284, 243, 6, 52, "Code",ExpressionUUID->"d8d95d70-acb4-4a92-a6dd-01889bf90e2d"],
+Cell[CellGroupData[{
+Cell[10345, 294, 271, 4, 52, "Code",ExpressionUUID->"33caea63-97b3-4171-a5ec-cc32458357c8"],
+Cell[10619, 300, 510, 10, 56, "Output",ExpressionUUID->"d1617a48-6afc-4dc6-bb92-4046859890d2"]
+}, Open  ]],
+Cell[11144, 313, 515, 14, 35, "Text",ExpressionUUID->"25091b80-9f94-4769-8291-63fb77947df8"],
+Cell[11662, 329, 387, 10, 35, "Text",ExpressionUUID->"7b34ecfd-a064-480b-b61b-fa9dfd5a0e3d"],
+Cell[CellGroupData[{
+Cell[12074, 343, 216, 5, 52, "Code",ExpressionUUID->"8fe6ef89-13ef-4165-9eaf-64191dbc18bb"],
+Cell[12293, 350, 129, 2, 34, "Output",ExpressionUUID->"da48bd4a-ebb5-4e59-aa38-95b25556a59e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12459, 357, 182, 4, 52, "Code",ExpressionUUID->"9fdd464e-5e38-4872-b532-8dbaf58ef547"],
+Cell[12644, 363, 130, 3, 34, "Output",ExpressionUUID->"7a2a6c24-7762-4f0d-a7ea-fea313a29e6c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12811, 371, 183, 4, 52, "Code",ExpressionUUID->"da1d4005-3d74-4349-a39d-2661c9c0a5bb"],
+Cell[12997, 377, 144, 3, 34, "Output",ExpressionUUID->"6056a269-f125-46c3-9249-46c1547e2fc7"]
+}, Open  ]],
+Cell[13156, 383, 484, 12, 58, "Text",ExpressionUUID->"104ba6d1-a102-441b-b68f-c678726bee23"],
+Cell[CellGroupData[{
+Cell[13665, 399, 587, 15, 91, "Code",ExpressionUUID->"8c885874-3b83-479a-b639-61236818a13b"],
+Cell[14255, 416, 7183, 123, 119, "Output",ExpressionUUID->"f8435514-97f9-43db-b43a-1dd72b975a70"]
+}, Open  ]],
+Cell[21453, 542, 314, 7, 58, "Text",ExpressionUUID->"181e68f4-5c16-4d8a-8426-e63452a6203f"],
+Cell[CellGroupData[{
+Cell[21792, 553, 210, 5, 52, "Code",ExpressionUUID->"df1ac1e9-7a65-4397-b60c-a6a0927d2271"],
+Cell[22005, 560, 134, 3, 34, "Output",ExpressionUUID->"2ec31766-0bfd-4b10-acd2-da5c9a44fb30"]
+}, Open  ]],
+Cell[22154, 566, 237, 6, 35, "Text",ExpressionUUID->"f9552049-526b-4298-a1e6-5ce5e23103cc"],
+Cell[CellGroupData[{
+Cell[22416, 576, 193, 4, 52, "Code",ExpressionUUID->"ec2ad8b8-1e69-4548-a43b-8cd5bf3fe234"],
+Cell[22612, 582, 132, 3, 34, "Output",ExpressionUUID->"005cc856-ff11-4de2-8365-82b21468cdda"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

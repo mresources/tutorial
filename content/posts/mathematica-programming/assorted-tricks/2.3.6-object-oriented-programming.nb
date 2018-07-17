@@ -1,0 +1,2260 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     84963,       2252]
+NotebookOptionsPosition[     74793,       2093]
+NotebookOutlinePosition[     75220,       2110]
+CellTagsIndexPosition[     75177,       2107]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+   "\"\<Title\>\"", "\[Rule]", "\"\<Object Oriented Programming\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Assorted Tricks\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.3.6\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 17:18:15\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "17", ",", "18", ",", 
+              "15"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<assorted-tricks\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<tricks\>\"", ",", "\"\<object-oriented-programming\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.7234350067707148`*^9, {3.723435050738209*^9, 3.7234350579395533`*^9}, {
+   3.740779986025712*^9, 
+   3.740779998056654*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Object Oriented Programming", "Subsection",
+ CellChangeTimes->{{3.684606316683284*^9, 3.684606319731509*^9}, {
+  3.6906450952396793`*^9, 
+  3.690645101998204*^9}},ExpressionUUID->"cc496a1a-5af1-4227-bfb4-\
+4189e6b125ce"],
+
+Cell[TextData[{
+ "Mathematica is a functional programming language, which, for the purposes \
+of the current discussion, basically means that everything has a purely \
+symbolic representation. Often we talk about things not have ",
+ StyleBox["state",
+  FontSlant->"Italic"],
+ " which is to say, they don\[CloseCurlyQuote]t have attributes."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645104621811*^9, 3.690645189978798*^9}, {
+   3.6906453513620872`*^9, 
+   3.690645360873897*^9}},ExpressionUUID->"33128ff0-4524-4368-821d-\
+52e9d2df530c"],
+
+Cell[TextData[{
+ "This makes Mathematica code very deterministic and results easy to store, \
+but sometimes using something with ",
+ StyleBox["state",
+  FontSlant->"Italic"],
+ " can be useful. We call these things with state objects and so programming \
+with things with state is called object oriented programming (OOP)."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645197931939*^9, 
+   3.6906454051591673`*^9}},ExpressionUUID->"4954f22a-8313-4e55-832b-\
+5244547322cc"],
+
+Cell["\<\
+This is a very powerful programming paradigm and, in fact, the (probably) \
+most popular languages are all object-oriented. Java, Python, and C++ all \
+make extensive use of objects in the form of classes, instances, templates, \
+interfaces, etc.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69064540697571*^9, 
+   3.690645507907627*^9}},ExpressionUUID->"0d967804-2318-4872-a8f7-\
+1286e779dfe5"],
+
+Cell["\<\
+We can work OOP into our standard Mathematica programming, although it can be \
+a tough job to do.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645644235469*^9, 3.6906456642481747`*^9}, {
+   3.69064571145538*^9, 
+   3.690645723495061*^9}},ExpressionUUID->"b4bc4102-2205-4733-be57-\
+f183b2337326"],
+
+Cell[CellGroupData[{
+
+Cell["Association Interfaces", "Subsubsection",ExpressionUUID->"e39db9d0-6d66-46a6-8d49-38c5d504d915"],
+
+Cell["\<\
+The simplest and probably most widely used form of OOP in Mathematica isn\
+\[CloseCurlyQuote]t true OOP. We still have symbolic stateless objects, but, \
+critically, it looks like they have state.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645691864476*^9, 
+   3.6906457601145773`*^9}},ExpressionUUID->"4161f4be-8ffe-4f03-8cc8-\
+f02604ed9297"],
+
+Cell["\<\
+The basic idea is that our object will be defined by an association, then we\
+\[CloseCurlyQuote]ll give it a head so that it can be easily distinguished \
+for pattern matching and operator overloading.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645777403594*^9, 3.6906458328336*^9}, {
+   3.690645864866942*^9, 
+   3.690645865131542*^9}},ExpressionUUID->"32ec7f01-ea27-4aa3-a25c-\
+07deeee4b318"],
+
+Cell[TextData[{
+ "We\[CloseCurlyQuote]ll do this for an object called ",
+ Cell[BoxData[
+  FormBox["SphereObject", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "e2e3cf0f-55df-4d30-b0a2-d4c4bc780a8b"]
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645865876484*^9, 3.6906458864794703`*^9}, {
+   3.69064599540698*^9, 
+   3.690646003411751*^9}},ExpressionUUID->"5f701596-e473-4d1f-bc27-\
+8cb3fd4869de"],
+
+Cell[CellGroupData[{
+
+Cell["SphereObject", "Subsubsubsection",ExpressionUUID->"c6954dc6-cb18-40ac-b38f-64a55af3cde4"],
+
+Cell["First, we need a nice way to make a new one of these:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645955570444*^9, 
+   3.6906459675042467`*^9}},ExpressionUUID->"f08dad71-b573-486f-9331-\
+ea78c7737ef5"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"SphereObject", "[", 
+    RowBox[{"attrs", ":", 
+     RowBox[{"(", 
+      RowBox[{"_Rule", "|", 
+       RowBox[{"_RuleDelayed", "..."}]}], ")"}]}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"SphereObject", "[", "\n", "\t\t", 
+    RowBox[{"Merge", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"<|", 
+         RowBox[{
+          RowBox[{"\"\<Radius\>\"", "\[Rule]", "1"}], ",", 
+          RowBox[{"\"\<Color\>\"", "\[Rule]", "White"}], ",", 
+          RowBox[{"\"\<Position\>\"", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0", ",", "0"}], "}"}]}]}], "|>"}], ",", 
+        RowBox[{"<|", "attrs", "|>"}]}], "}"}], ",", "First"}], "]"}], "\n", 
+    "\t\t", "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690645892059249*^9, 3.690645936018895*^9}, {
+  3.6906460062985477`*^9, 3.690646010864558*^9}, {3.6906466154982767`*^9, 
+  3.690646670726974*^9}, {3.723435025588745*^9, 
+  3.72343503476901*^9}},ExpressionUUID->"551c5c73-3964-4e7c-9741-\
+0d1db6c7c433"],
+
+Cell[TextData[{
+ "Then we\[CloseCurlyQuote]ll need a way to set and get attributes. We\
+\[CloseCurlyQuote]ll do this via ",
+ Cell[BoxData[
+  FormBox["SubValues", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "1115bc6f-bd07-4069-b38e-07d8ad304416"],
+ ". To be extra fancy, we\[CloseCurlyQuote]ll also write it so that if our \
+returned argument is a ",
+ Cell[BoxData[
+  FormBox["Function", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "4c89a8be-7c12-4ba8-a9fc-c0a6ba0f9e57"],
+ ", that gets called with the object and passed arguments:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690645969950121*^9, 3.6906459716483707`*^9}, {
+   3.69064601349613*^9, 3.690646061757269*^9}, {3.6906460953738203`*^9, 
+   3.690646199770187*^9}},ExpressionUUID->"6f3ca9d8-e85b-40a1-a09f-\
+f11f993ef36b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"SphereObject", "[", "attrs_Association", "]"}], "[", 
+    RowBox[{"k_", ",", "args___"}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", "=", 
+       RowBox[{"attrs", "[", "k", "]"}]}], "}"}], ",", "\n", "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"MatchQ", "[", 
+        RowBox[{"r", ",", "_Function"}], "]"}], ",", "\n", "\t\t", 
+       RowBox[{"r", "[", 
+        RowBox[{
+         RowBox[{"SphereObject", "[", "attrs", "]"}], ",", "args"}], "]"}], 
+       ",", "\n", "\t\t", "r"}], "\n", "\t\t", "]"}]}], "\n", "\t", "]"}]}], 
+  ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690646111941574*^9, 3.69064613660367*^9}, {
+   3.69064620156217*^9, 3.690646243384818*^9}, 
+   3.723435025615407*^9},ExpressionUUID->"6b8a0229-e698-403d-a21d-\
+5943887b35d7"],
+
+Cell[TextData[{
+ "Then do something for setting / removing attributes with ",
+ Cell[BoxData[
+  FormBox["UpValues", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "20c43381-1d98-4c73-abe7-d1b4bce927da"],
+ ":"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646250520792*^9, 
+   3.690646285111019*^9}},ExpressionUUID->"6ead4c70-e99c-4d6a-bc16-\
+3aa3cc8c91dd"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"SphereObject", "/:", 
+   RowBox[{"HoldPattern", "[", "\n", "\t", 
+    RowBox[{"Set", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"SphereObject", "[", "attrs_Association", "]"}], "[", "k_", 
+       "]"}], ",", "v_"}], "]"}], "\n", "\t", "]"}], ":=", 
+   RowBox[{"SphereObject", "[", 
+    RowBox[{"Append", "[", 
+     RowBox[{"attrs", ",", 
+      RowBox[{"k", "\[Rule]", "v"}]}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"SphereObject", "/:", 
+   RowBox[{"HoldPattern", "[", "\n", "\t", 
+    RowBox[{"SetDelayed", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"SphereObject", "[", "attrs_Association", "]"}], "[", "k_", 
+       "]"}], ",", "v_"}], "]"}], "\n", "\t", "]"}], ":=", 
+   RowBox[{"SphereObject", "[", 
+    RowBox[{"Append", "[", 
+     RowBox[{"attrs", ",", 
+      RowBox[{"k", ":>", "v"}]}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"SphereObject", "/:", 
+   RowBox[{"HoldPattern", "[", "\n", "\t", 
+    RowBox[{"Unset", "[", 
+     RowBox[{
+      RowBox[{"SphereObject", "[", "attrs_Association", "]"}], "[", "k_", 
+      "]"}], "]"}], "\n", "\t", "]"}], ":=", 
+   RowBox[{"SphereObject", "[", 
+    RowBox[{"KeyDrop", "[", 
+     RowBox[{"attrs", ",", "k"}], "]"}], "]"}]}], ";"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690646272258803*^9, 3.690646347224695*^9}, 
+   3.72343502565553*^9},ExpressionUUID->"7c4ed0d7-5c0e-436a-9cea-\
+b617a11a2fc4"],
+
+Cell[TextData[{
+ "Last, assign some ",
+ Cell[BoxData[
+  FormBox["Format", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "ae4fdbbf-b914-4c17-b0b1-dc053ee6266d"],
+ " form to the object:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646361034692*^9, 
+   3.690646372458542*^9}},ExpressionUUID->"7c2ac212-7501-4b7e-8d08-\
+9ea17eee898f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Format", "[", 
+    RowBox[{"SphereObject", "[", "attrs_", "]"}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"r", "=", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"attrs", "[", "\"\<Radius\>\"", "]"}], ",", 
+          RowBox[{"_Missing", "\[Rule]", "1"}]}], "]"}]}], ",", "\n", "\t\t", 
+       
+       RowBox[{"c", "=", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"attrs", "[", "\"\<Color\>\"", "]"}], ",", 
+          RowBox[{"_Missing", "\[Rule]", "White"}]}], "]"}]}], ",", "\n", 
+       "\t\t", 
+       RowBox[{"p", "=", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"attrs", "[", "\"\<Position\>\"", "]"}], ",", 
+          RowBox[{"_Missing", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "0", ",", "0"}], "}"}]}]}], "]"}]}]}], "\n", 
+      "\t\t", "}"}], ",", "\n", "\t", 
+     RowBox[{"Interpretation", "[", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"Deploy", "@", "\n", "\t\t", 
+        RowBox[{"Style", "[", "\n", "\t\t\t", 
+         RowBox[{
+          RowBox[{"Row", "@", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<SphereObject\>\"", ",", "\"\<[\>\"", ",", "\n", "\t\t\t\t", 
+             RowBox[{"Graphics3D", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"c", ",", 
+                 RowBox[{"Sphere", "[", 
+                  RowBox[{"p", ",", "r"}], "]"}]}], "}"}], ",", "\n", 
+               "\t\t\t\t\t", 
+               RowBox[{"Lighting", "\[Rule]", "\"\<Neutral\>\""}], ",", "\n", 
+               "\t\t\t\t\t", 
+               RowBox[{"Boxed", "\[Rule]", "False"}], ",", "\n", "\t\t\t\t\t", 
+               RowBox[{"Method", "\[Rule]", 
+                RowBox[{"{", 
+                 RowBox[{"\"\<ShrinkWrap\>\"", " ", "->", " ", "True"}], 
+                 "}"}]}]}], "]"}], ",", "\n", "\t\t\t\t", "\"\<]\>\""}], 
+            "}"}]}], ",", 
+          RowBox[{"ShowStringCharacters", "\[Rule]", "False"}]}], "]"}]}], 
+       ",", "\n", "\t\t", 
+       RowBox[{"SphereObject", "[", "attrs", "]"}]}], "\n", "\t\t", "]"}]}], 
+    "\n", "\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646373488596*^9, 3.6906465987150173`*^9}, {
+   3.6906466598418694`*^9, 3.690646703531021*^9}, 
+   3.7234350256947412`*^9},ExpressionUUID->"a502a518-4c72-413c-a756-\
+ba39b707d370"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SphereObject", "[", "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646647652514*^9, 3.690646651504672*^9}, 
+   3.7234350257280893`*^9},ExpressionUUID->"f363890a-b7c0-47a2-9ac2-\
+eaa729fa0f61"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+        GrayLevel[1], 
+        SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+       Method -> {"ShrinkWrap" -> True}],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`SphereObject[
+   Association[
+   "Radius" -> 1, "Color" -> GrayLevel[1], 
+    "Position" -> {0, 0, 0}]]]], "Output",
+ CellChangeTimes->{
+  3.6906467206688433`*^9},ExpressionUUID->"0b764c1c-6647-4acc-ad45-\
+a2817e894a2e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"SphereObject", "[", 
+  RowBox[{"\"\<Color\>\"", "\[Rule]", "Red"}], "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906467295390863`*^9, 3.690646735592341*^9}, 
+   3.723435025806801*^9},ExpressionUUID->"f497ff9e-8f3e-42ff-a91d-\
+37676e0d1bb2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+        RGBColor[1, 0, 0], 
+        SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+       Method -> {"ShrinkWrap" -> True}],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`SphereObject[
+   Association["Color" -> RGBColor[1, 0, 0]]]]], "Output",
+ CellChangeTimes->{
+  3.6906467359392757`*^9},ExpressionUUID->"60efd427-20d3-437c-b3e1-\
+851ab605751a"]
+}, Open  ]],
+
+Cell["Note that we can pull values from these objects:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646741039328*^9, 
+   3.69064675986946*^9}},ExpressionUUID->"0109a5fd-7f89-446a-b2ae-\
+861071323a17"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  InterpretationBox[
+   TagBox[
+    StyleBox[
+     TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+         RGBColor[1, 0, 0], 
+         SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+        Method -> {"ShrinkWrap" -> True}],"\"]\""},
+      "RowDefault"],
+     StripOnInput->False,
+     ShowStringCharacters->False],
+    Deploy,
+    DefaultBaseStyle->"Deploy"],
+   $CellContext`SphereObject[
+    Association["Color" -> RGBColor[1, 0, 0]]]], "[", "\"\<Color\>\"", 
+  "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690646764975851*^9, 3.6906467682698803`*^9}, 
+   3.7234350258864193`*^9},ExpressionUUID->"16834a75-163f-4a6a-b910-\
+90c5209eaa24"],
+
+Cell[BoxData[
+ InterpretationBox[
+  ButtonBox[
+   TooltipBox[
+    GraphicsBox[{
+      {GrayLevel[0], RectangleBox[{0, 0}]}, 
+      {GrayLevel[0], RectangleBox[{1, -1}]}, 
+      {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+     AspectRatio->1,
+     Frame->True,
+     FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+     FrameTicks->None,
+     ImageSize->
+      Dynamic[{Automatic, 
+        1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+         Magnification])}],
+     PlotRangePadding->None],
+    "RGBColor[1, 0, 0]"],
+   Appearance->None,
+   BaseStyle->{},
+   BaselinePosition->Baseline,
+   ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+     If[
+      Not[
+       AbsoluteCurrentValue["Deployed"]], 
+      SelectionMove[Typeset`box$, All, Expression]; 
+      FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+      FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+      FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+      MathLink`CallFrontEnd[
+        FrontEnd`AttachCell[Typeset`box$, 
+         FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+         Left, Top}, 
+         "ClosingActions" -> {
+          "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+   DefaultBaseStyle->{},
+   Evaluator->Automatic,
+   Method->"Preemptive"],
+  RGBColor[1, 0, 0],
+  Editable->False,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.690646776105736*^9, 
+  3.6906467892236567`*^9}},ExpressionUUID->"b76ab3dd-1e42-4863-a135-\
+6be1768316fa"]
+}, Open  ]],
+
+Cell["And we can set them:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646792749695*^9, 
+   3.690646799788262*^9}},ExpressionUUID->"57b46eaa-f6d2-44ed-8d29-\
+12ed8ca60cff"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   InterpretationBox[
+    TagBox[
+     StyleBox[
+      TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+          RGBColor[1, 0, 0], 
+          SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+         Method -> {"ShrinkWrap" -> True}],"\"]\""},
+       "RowDefault"],
+      StripOnInput->False,
+      ShowStringCharacters->False],
+     Deploy,
+     DefaultBaseStyle->"Deploy"],
+    $CellContext`SphereObject[
+     Association["Color" -> RGBColor[1, 0, 0]]]], "[", "\"\<Color\>\"", "]"}],
+   "=", "Blue"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690646800425098*^9, 3.6906468029150457`*^9}, 
+   3.7234350259718733`*^9},ExpressionUUID->"5e78f6c6-b1b4-4a05-862d-\
+e2c26526b120"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+        RGBColor[0, 0, 1], 
+        SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+       Method -> {"ShrinkWrap" -> True}],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`SphereObject[
+   Association["Color" -> RGBColor[0, 0, 1]]]]], "Output",
+ CellChangeTimes->{
+  3.690646803586403*^9},ExpressionUUID->"fd273269-3863-4dea-89e5-\
+8d5306183b42"]
+}, Open  ]],
+
+Cell["And unset them", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646807516382*^9, 
+   3.690646809460064*^9}},ExpressionUUID->"6410f835-bdb8-4fec-8fcd-\
+5bf940842507"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   InterpretationBox[
+    TagBox[
+     StyleBox[
+      TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+          RGBColor[0, 0, 1], 
+          SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+         Method -> {"ShrinkWrap" -> True}],"\"]\""},
+       "RowDefault"],
+      StripOnInput->False,
+      ShowStringCharacters->False],
+     Deploy,
+     DefaultBaseStyle->"Deploy"],
+    $CellContext`SphereObject[
+     Association["Color" -> RGBColor[0, 0, 1]]]], "[", "\"\<Color\>\"", "]"}],
+   "=."}]], "Code",
+ CellChangeTimes->{{3.690646811515499*^9, 3.6906468191410503`*^9}, 
+   3.7234350260604343`*^9},ExpressionUUID->"3029ef52-1daa-4289-af92-\
+10815bef2db8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"SphereObject\"","\"[\"",Graphics3DBox[{
+        GrayLevel[1], 
+        SphereBox[{0, 0, 0}, 1]}, Lighting -> "Neutral", Boxed -> False, 
+       Method -> {"ShrinkWrap" -> True}],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`SphereObject[
+   Association[]]]], "Output",
+ CellChangeTimes->{
+  3.6906468198635674`*^9},ExpressionUUID->"cccf8e41-a6d2-4eda-b652-\
+37081372422d"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Each of these is really just an ",
+ Cell[BoxData[
+  FormBox["Association", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "44c45a5b-a478-41c8-a954-58daa1d24a57"],
+ " at heart, though. There is no state. These aren\[CloseCurlyQuote]t real \
+objects."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906468382349358`*^9, 
+   3.690646867714386*^9}},ExpressionUUID->"35ac8ada-98e3-4972-a137-\
+d6b059ece727"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Managed Types", "Subsubsection",ExpressionUUID->"ef2e6341-4cab-4cac-915b-bdf74603c402"],
+
+Cell["\<\
+To get state, we have to track state. And to track state, we need some form \
+of state manager. So we\[CloseCurlyQuote]ll take a hint from our front end \
+objects and write our own and then define objects relative to that.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906469246094303`*^9, 
+   3.690646985683083*^9}},ExpressionUUID->"a53ab2c1-4f31-47bb-a969-\
+61b4953e89e3"],
+
+Cell[TextData[{
+ "This time we\[CloseCurlyQuote]ll make a ",
+ Cell[BoxData[
+  FormBox["StringObject", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "ad1e8e49-f63f-4c93-a537-8864b33f3487"]
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646975834391*^9, 
+   3.6906470128734493`*^9}},ExpressionUUID->"696fb1e5-ebce-4d23-b823-\
+edc30b35919a"],
+
+Cell[CellGroupData[{
+
+Cell["StringObject", "Subsubsubsection",ExpressionUUID->"04f07be7-fd41-4b7d-804e-4554a8c11977"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll start with a manager. Just an association that will \
+track things by ever-increasing ID.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906470482980833`*^9, 
+   3.690647089647315*^9}},ExpressionUUID->"0227f9a0-9697-4ba8-8013-\
+1446d9ef17aa"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$StringObjectCounter", "=", "1"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"$StringObjectManager", "=", 
+   RowBox[{"<|", "|>"}]}], ";"}]}], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647031150881*^9, 3.690647037393218*^9}, {
+   3.690647070545349*^9, 3.690647078176051*^9}, 
+   3.723435026099094*^9},ExpressionUUID->"94426f06-6508-4206-aba6-\
+d61ee432b1ff"],
+
+Cell["\<\
+Then a constructor, once more, but this time the constructor adds an entry to \
+the manager table:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647133295364*^9, 
+   3.690647148520383*^9}},ExpressionUUID->"a0f10ec2-c178-4959-a224-\
+ed3270593eb9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"StringObject", "[", 
+    RowBox[{
+     RowBox[{"s", ":", "_String", ":", "\"\<\>\""}], ",", 
+     RowBox[{"styleSpecs", ":", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"_Rule", "|", "_RuleDelayed"}], ")"}], "..."}], ")"}]}]}], 
+    "]"}], ":=", 
+   RowBox[{"(", "\n", "\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"$StringObjectManager", "[", "$StringObjectCounter", "]"}], "=",
+       "\n", "\t", 
+      RowBox[{"<|", 
+       RowBox[{
+        RowBox[{"\"\<String\>\"", "\[Rule]", "s"}], ",", "styleSpecs"}], 
+       "|>"}]}], ";", "\n", "\t\t", 
+     RowBox[{"StringObject", "[", 
+      RowBox[{"$StringObjectCounter", "++"}], "]"}]}], "\n", "\t\t", ")"}]}], 
+  ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647149928925*^9, 3.690647215822688*^9}, {
+   3.690647252903232*^9, 3.69064727484239*^9}, 
+   3.7234350261399937`*^9},ExpressionUUID->"e03fd51d-e0f8-4b68-9283-\
+bdbf43e7d7ea"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll use the same attribute get / set structure as before, \
+except this time routed through an ID:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647295744438*^9, 
+   3.6906473184482393`*^9}},ExpressionUUID->"dc729ecf-5747-4c33-9176-\
+60793b0f5fc3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"StringObject", "[", "ID_", "]"}], "[", 
+    RowBox[{"k_", ",", "args___"}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"attrs", "=", 
+       RowBox[{"$StringObjectManager", "[", "ID", "]"}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"MatchQ", "[", 
+         RowBox[{"attrs", ",", "_Missing"}], "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"r", "=", 
+           RowBox[{"attrs", "[", "k", "]"}]}], "}"}], ",", "\n", "\t\t\t", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"MatchQ", "[", 
+            RowBox[{"r", ",", "_Function"}], "]"}], ",", "\n", "\t\t\t\t", 
+           RowBox[{"r", "[", 
+            RowBox[{
+             RowBox[{"StringObject", "[", "ID", "]"}], ",", "args"}], "]"}], 
+           ",", "\n", "\t\t\t\t", "r"}], "\n", "\t\t\t\t", "]"}]}], "\n", 
+        "\t\t\t", "]"}], ",", "\n", "\t\t", 
+       RowBox[{"Missing", "[", 
+        RowBox[{"\"\<NoObject\>\"", ",", 
+         RowBox[{"StringObject", "[", "ID", "]"}]}], "]"}]}], "\n", "\t\t", 
+      "]"}]}], "\n", "\t", "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690646111941574*^9, 3.69064613660367*^9}, {
+   3.69064620156217*^9, 3.690646243384818*^9}, {3.690647323434407*^9, 
+   3.690647386623559*^9}, {3.690647422167343*^9, 3.690647433477468*^9}, 
+   3.723435026178822*^9},ExpressionUUID->"15f3d7bb-e2b2-49a5-a043-\
+624227738b38"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"StringObject", "/:", 
+   RowBox[{"HoldPattern", "[", "\n", "\t", 
+    RowBox[{"Set", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringObject", "[", "ID_", "]"}], "[", "k_", "]"}], ",", 
+      "v_"}], "]"}], "\n", "\t", "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"attrs", "=", 
+       RowBox[{"$StringObjectManager", "[", "ID", "]"}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"MatchQ", "[", 
+         RowBox[{"attrs", ",", "_Missing"}], "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"$StringObjectManager", "[", "ID", "]"}], "[", "k", "]"}], 
+        "=", "v"}], ",", "\n", "\t\t", 
+       RowBox[{"Missing", "[", 
+        RowBox[{"\"\<NoObject\>\"", ",", 
+         RowBox[{"StringObject", "[", "ID", "]"}]}], "]"}]}], "\n", "\t\t", 
+      "]"}]}], "\n", "\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"StringObject", "/:", 
+   RowBox[{"HoldPattern", "[", "\n", "\t", 
+    RowBox[{"SetDelayed", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"StringObject", "[", "ID_", "]"}], "[", "k_", "]"}], ",", 
+      "v_"}], "]"}], "\n", "\t", "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"attrs", "=", 
+       RowBox[{"$StringObjectManager", "[", "ID", "]"}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"MatchQ", "[", 
+         RowBox[{"attrs", ",", "_Missing"}], "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"$StringObjectManager", "[", "ID", "]"}], "[", "k", "]"}], ":=",
+         "v"}], ",", "\n", "\t\t", 
+       RowBox[{"Missing", "[", 
+        RowBox[{"\"\<NoObject\>\"", ",", 
+         RowBox[{"StringObject", "[", "ID", "]"}]}], "]"}]}], "\n", "\t\t", 
+      "]"}]}], "\n", "\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"StringObject", "/:", 
+   RowBox[{"HoldPattern", "[", "\n", "\t", 
+    RowBox[{"Unset", "[", 
+     RowBox[{
+      RowBox[{"StringObject", "[", "ID_", "]"}], "[", "k_", "]"}], "]"}], 
+    "\n", "\t", "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"attrs", "=", 
+       RowBox[{"$StringObjectManager", "[", "ID", "]"}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"MatchQ", "[", 
+         RowBox[{"attrs", ",", "_Missing"}], "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{
+        RowBox[{"KeyDropFrom", "[", 
+         RowBox[{
+          RowBox[{"$StringObjectManager", "[", "ID", "]"}], ",", "k"}], "]"}],
+         ";"}], ",", "\n", "\t\t", 
+       RowBox[{"Missing", "[", 
+        RowBox[{"\"\<NoObject\>\"", ",", 
+         RowBox[{"StringObject", "[", "ID", "]"}]}], "]"}]}], "\n", "\t\t", 
+      "]"}]}], "\n", "\t", "]"}]}], ";"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690646272258803*^9, 3.690646347224695*^9}, {
+   3.690647439886932*^9, 3.690647601753474*^9}, 
+   3.723435026235207*^9},ExpressionUUID->"a02c4d3a-356e-4233-97aa-\
+9375a01f2f61"],
+
+Cell["\<\
+And build a similar format although this time we\[CloseCurlyQuote]ll want a \
+special format if the object doesn\[CloseCurlyQuote]t exist:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647613721571*^9, 
+   3.690647640799857*^9}},ExpressionUUID->"9a5b308b-2c58-4578-838e-\
+e202adec2e33"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Format", "[", 
+    RowBox[{"StringObject", "[", "ID_", "]"}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"attrs", "=", 
+       RowBox[{"$StringObjectManager", "[", "ID", "]"}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"!", 
+        RowBox[{"MatchQ", "[", 
+         RowBox[{"attrs", ",", "_Missing"}], "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", "\n", "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"s", "=", 
+            RowBox[{"Replace", "[", 
+             RowBox[{
+              RowBox[{"attrs", "[", "\"\<String\>\"", "]"}], ",", 
+              RowBox[{"_Missing", "\[Rule]", "\"\<\>\""}]}], "]"}]}], ",", 
+           "\n", "\t\t\t\t", 
+           RowBox[{"o", "=", 
+            RowBox[{"Sequence", "@@", 
+             RowBox[{"Normal", "@", 
+              RowBox[{"KeyDrop", "[", 
+               RowBox[{"attrs", ",", "\"\<String\>\""}], "]"}]}]}]}]}], "\n", 
+          "\t\t\t\t", "}"}], ",", "\n", "\t\t\t", 
+         RowBox[{"Interpretation", "[", "\n", "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"Deploy", "@", "\n", "\t\t\t\t", 
+            RowBox[{"Style", "[", "\n", "\t\t\t\t\t", 
+             RowBox[{
+              RowBox[{"Row", "@", 
+               RowBox[{"{", 
+                RowBox[{
+                "\"\<StringObject\>\"", ",", "\"\<[\>\"", ",", "\n", 
+                 "\t\t\t\t\t\t", 
+                 RowBox[{"Style", "[", 
+                  RowBox[{
+                  "s", ",", "\n", "\t\t\t\t\t\t\t", "\"\<Output\>\"", ",", 
+                   "\n", "\t\t\t\t\t\t\t", "o", ",", "\n", "\t\t\t\t\t\t\t", 
+                   RowBox[{"Background", "\[Rule]", "None"}], ",", "\n", 
+                   "\t\t\t\t\t\t\t", 
+                   RowBox[{"ShowStringCharacters", "\[Rule]", "False"}]}], 
+                  "\n", "\t\t\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t\t\t", 
+                 "\"\<]\>\""}], "}"}]}], ",", 
+              RowBox[{"ShowStringCharacters", "\[Rule]", "False"}]}], "]"}]}],
+            ",", "\n", "\t\t\t\t", 
+           RowBox[{"StringObject", "[", "ID", "]"}]}], "\n", "\t\t\t\t", 
+          "]"}]}], "\n", "\t\t\t", "]"}], ",", "\n", "\t\t", 
+       RowBox[{"Unevaluated", "[", 
+        RowBox[{"StringObject", "[", "ID", "]"}], "]"}]}], "\n", "\t\t", 
+      "]"}]}], "\n", "\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690646373488596*^9, 3.6906465987150173`*^9}, {
+   3.6906466598418694`*^9, 3.690646703531021*^9}, {3.690647651906588*^9, 
+   3.6906477818994102`*^9}, {3.690647922619129*^9, 3.690647934182188*^9}, {
+   3.690647977711965*^9, 3.6906480516917143`*^9}, {3.690648173159567*^9, 
+   3.690648193907732*^9}, {3.690648266668804*^9, 3.690648282502657*^9}, {
+   3.690648325604129*^9, 3.690648363867201*^9}, 
+   3.723435026278098*^9},ExpressionUUID->"9617c3c2-5eac-4e58-ad13-\
+801dbf809dd5"],
+
+Cell["Then test this:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906477947048683`*^9, 
+   3.690647800304721*^9}},ExpressionUUID->"d749d5c2-8268-4987-9377-\
+34a94bade83b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"S", "=", 
+  RowBox[{"StringObject", "[", "\"\<obj\>\"", "]"}]}]], "Code",
+ CellChangeTimes->{{3.690647803778194*^9, 3.690647810168871*^9}, 
+   3.723435026310355*^9},ExpressionUUID->"d2cd71b2-9acf-458d-a803-\
+dfb00b4c2ffb"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{
+     "\"StringObject\"","\"[\"",StyleBox[
+      "\"obj\"", "Output", Background -> None, ShowStringCharacters -> False, 
+       StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`StringObject[8]]], "Output",
+ CellChangeTimes->{
+  3.69064821976894*^9, {3.690648343322959*^9, 
+   3.690648369163054*^9}},ExpressionUUID->"38ba9d25-3b65-4f33-91f7-\
+1104744729c0"]
+}, Open  ]],
+
+Cell["But now it\[CloseCurlyQuote]s got state:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906478158676558`*^9, 
+   3.690647826359929*^9}},ExpressionUUID->"2aeddcd1-66e3-4d41-8bcb-\
+eeb6ce1686a8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"S", "=", "S"}], "}"}], ",", 
+   RowBox[{
+    RowBox[{"S", "[", "FontColor", "]"}], "=", "Red"}]}], "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647828854642*^9, 3.690647854970544*^9}, 
+   3.7234350263691797`*^9},ExpressionUUID->"8116c0ba-97ee-40eb-93c6-\
+54bbd176171a"],
+
+Cell[BoxData[
+ InterpretationBox[
+  ButtonBox[
+   TooltipBox[
+    GraphicsBox[{
+      {GrayLevel[0], RectangleBox[{0, 0}]}, 
+      {GrayLevel[0], RectangleBox[{1, -1}]}, 
+      {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+     AspectRatio->1,
+     Frame->True,
+     FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+     FrameTicks->None,
+     ImageSize->
+      Dynamic[{Automatic, 
+        1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+         Magnification])}],
+     PlotRangePadding->None],
+    "RGBColor[1, 0, 0]"],
+   Appearance->None,
+   BaseStyle->{},
+   BaselinePosition->Baseline,
+   ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+     If[
+      Not[
+       AbsoluteCurrentValue["Deployed"]], 
+      SelectionMove[Typeset`box$, All, Expression]; 
+      FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+      FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+      FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+      MathLink`CallFrontEnd[
+        FrontEnd`AttachCell[Typeset`box$, 
+         FrontEndResource["RGBColorValueSelector"], {0, {Left, Bottom}}, {
+         Left, Top}, 
+         "ClosingActions" -> {
+          "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+   DefaultBaseStyle->{},
+   Evaluator->Automatic,
+   Method->"Preemptive"],
+  RGBColor[1, 0, 0],
+  Editable->False,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.6906478560139523`*^9, 3.690647941194179*^9, 
+  3.690647986358306*^9, 3.6906482177221117`*^9, 
+  3.690648372696372*^9},ExpressionUUID->"404a4c3f-96e0-49a5-bfe5-\
+e39c1fa67cd5"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["S"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647856880746*^9, 
+   3.69064785967019*^9}},ExpressionUUID->"d89b3000-91ef-4650-95ba-\
+c2b694333bd2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{
+     "\"StringObject\"","\"[\"",StyleBox[
+      "\"obj\"", "Output", FontColor -> RGBColor[1, 0, 0], Background -> None,
+        ShowStringCharacters -> False, StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`StringObject[8]]], "Output",
+ CellChangeTimes->{
+  3.690648374651969*^9},ExpressionUUID->"5f4f9c17-f3bb-4ded-834c-\
+41bb54fe2044"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"S", "=", "S"}], "}"}], ",", 
+   RowBox[{
+    RowBox[{"S", "[", "\"\<String\>\"", "]"}], "=", "\"\<obj_changed\>\""}]}],
+   "]"}]], "Code",
+ CellChangeTimes->{{3.690647872420495*^9, 3.690647884657696*^9}, 
+   3.723435026459079*^9},ExpressionUUID->"a8d6a3e1-a826-4078-bbbe-\
+0c8d6cdba1cb"],
+
+Cell[BoxData["\<\"obj_changed\"\>"], "Output",
+ CellChangeTimes->{3.690647885135109*^9, 3.6906479445149517`*^9, 
+  3.69064798858069*^9, 
+  3.690648386280468*^9},ExpressionUUID->"3818d3c6-ec44-4019-83dd-\
+c8b50b9af844"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["S"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647886199751*^9, 
+   3.690647887709406*^9}},ExpressionUUID->"1297f18d-de17-4a68-b707-\
+b78363e7125f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{
+     "\"StringObject\"","\"[\"",StyleBox[
+      "\"obj_changed\"", "Output", FontColor -> RGBColor[1, 0, 0], Background -> 
+       None, ShowStringCharacters -> False, StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`StringObject[8]]], "Output",
+ CellChangeTimes->{3.69064788846806*^9, 3.690647945790236*^9, 
+  3.690647989594947*^9, 
+  3.690648388819606*^9},ExpressionUUID->"86a024a9-67dd-4106-ba8b-\
+5d71b3d9af30"]
+}, Open  ]],
+
+Cell["All of these are the same object, though:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906479000400257`*^9, 
+   3.690647905504575*^9}},ExpressionUUID->"89236fc8-0c48-42bb-9a13-\
+8f3eb8f3a095"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InputForm", "/@", 
+  RowBox[{"{", 
+   RowBox[{
+    InterpretationBox[
+     TagBox[
+      StyleBox[
+       TemplateBox[{
+        "\"StringObject\"","\"[\"",StyleBox[
+         "\"obj_changed\"", "Output", FontColor -> RGBColor[1, 0, 0], 
+          Background -> None, ShowStringCharacters -> False, StripOnInput -> 
+          False],"\"]\""},
+        "RowDefault"],
+       StripOnInput->False,
+       ShowStringCharacters->False],
+      Deploy,
+      DefaultBaseStyle->"Deploy"],
+     $CellContext`StringObject[8]], ",", 
+    InterpretationBox[
+     TagBox[
+      StyleBox[
+       TemplateBox[{
+        "\"StringObject\"","\"[\"",StyleBox[
+         "\"obj\"", "Output", FontColor -> RGBColor[1, 0, 0], Background -> 
+          None, ShowStringCharacters -> False, StripOnInput -> False],"\"]\""},
+        "RowDefault"],
+       StripOnInput->False,
+       ShowStringCharacters->False],
+      Deploy,
+      DefaultBaseStyle->"Deploy"],
+     $CellContext`StringObject[8]], ",", 
+    InterpretationBox[
+     TagBox[
+      StyleBox[
+       TemplateBox[{
+        "\"StringObject\"","\"[\"",StyleBox[
+         "\"obj\"", "Output", Background -> None, ShowStringCharacters -> 
+          False, StripOnInput -> False],"\"]\""},
+        "RowDefault"],
+       StripOnInput->False,
+       ShowStringCharacters->False],
+      Deploy,
+      DefaultBaseStyle->"Deploy"],
+     $CellContext`StringObject[8]]}], "}"}]}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690647908890978*^9, 3.690647919184884*^9}, {
+   3.690647950489538*^9, 3.690647995736679*^9}, {3.690648399871954*^9, 
+   3.690648414444298*^9}, 
+   3.723435026524315*^9},ExpressionUUID->"11d6d2e1-c202-47ca-86c7-\
+23962be6686d"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   InterpretationBox[
+    StyleBox[
+     RowBox[{"StringObject", "[", "8", "]"}],
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    InputForm[
+     $CellContext`StringObject[8]],
+    AutoDelete->True,
+    Editable->True], ",", 
+   InterpretationBox[
+    StyleBox[
+     RowBox[{"StringObject", "[", "8", "]"}],
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    InputForm[
+     $CellContext`StringObject[8]],
+    AutoDelete->True,
+    Editable->True], ",", 
+   InterpretationBox[
+    StyleBox[
+     RowBox[{"StringObject", "[", "8", "]"}],
+     ShowStringCharacters->True,
+     NumberMarks->True],
+    InputForm[
+     $CellContext`StringObject[8]],
+    AutoDelete->True,
+    Editable->True]}], "}"}]], "Output",
+ CellChangeTimes->{{3.690648408090056*^9, 
+  3.6906484151659327`*^9}},ExpressionUUID->"7aabd6ca-30b3-456a-b3a4-\
+2b45de719f6c"]
+}, Open  ]],
+
+Cell["\<\
+This is now an object with attributes and state, which means that within a \
+session it is more powerful, but we can\[CloseCurlyQuote]t figure out what it \
+looks like (attribute wise) from the symbolic form alone. Here is where our \
+manager comes into play:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690648447574811*^9, 3.690648513459523*^9}, {
+   3.690648558808818*^9, 
+   3.690648593406185*^9}},ExpressionUUID->"b93a408d-850b-4bac-80e6-\
+e2d4df9f4140"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["$StringObjectManager"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906486314669113`*^9, 
+   3.690648635690523*^9}},ExpressionUUID->"0dc4d6db-921d-4fb9-b164-\
+4c5fc55be31e"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{
+   RowBox[{"1", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj_changed\"\>"}], ",", 
+      RowBox[{"FontColor", "\[Rule]", 
+       InterpretationBox[
+        ButtonBox[
+         TooltipBox[
+          GraphicsBox[{
+            {GrayLevel[0], RectangleBox[{0, 0}]}, 
+            {GrayLevel[0], RectangleBox[{1, -1}]}, 
+            {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+           AspectRatio->1,
+           Frame->True,
+           FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+           FrameTicks->None,
+           
+           ImageSize->
+            Dynamic[{
+             Automatic, 
+              1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+               Magnification])}],
+           PlotRangePadding->None],
+          "RGBColor[1, 0, 0]"],
+         Appearance->None,
+         BaseStyle->{},
+         BaselinePosition->Baseline,
+         ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+           If[
+            Not[
+             AbsoluteCurrentValue["Deployed"]], 
+            SelectionMove[Typeset`box$, All, Expression]; 
+            FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+            FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+            FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+            MathLink`CallFrontEnd[
+              FrontEnd`AttachCell[Typeset`box$, 
+               FrontEndResource["RGBColorValueSelector"], {
+               0, {Left, Bottom}}, {Left, Top}, 
+               "ClosingActions" -> {
+                "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+         DefaultBaseStyle->{},
+         Evaluator->Automatic,
+         Method->"Preemptive"],
+        RGBColor[1, 0, 0],
+        Editable->False,
+        Selectable->False]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"2", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj_changed\"\>"}], ",", 
+      RowBox[{"FontColor", "\[Rule]", 
+       InterpretationBox[
+        ButtonBox[
+         TooltipBox[
+          GraphicsBox[{
+            {GrayLevel[0], RectangleBox[{0, 0}]}, 
+            {GrayLevel[0], RectangleBox[{1, -1}]}, 
+            {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+           AspectRatio->1,
+           Frame->True,
+           FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+           FrameTicks->None,
+           
+           ImageSize->
+            Dynamic[{
+             Automatic, 
+              1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+               Magnification])}],
+           PlotRangePadding->None],
+          "RGBColor[1, 0, 0]"],
+         Appearance->None,
+         BaseStyle->{},
+         BaselinePosition->Baseline,
+         ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+           If[
+            Not[
+             AbsoluteCurrentValue["Deployed"]], 
+            SelectionMove[Typeset`box$, All, Expression]; 
+            FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+            FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+            FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+            MathLink`CallFrontEnd[
+              FrontEnd`AttachCell[Typeset`box$, 
+               FrontEndResource["RGBColorValueSelector"], {
+               0, {Left, Bottom}}, {Left, Top}, 
+               "ClosingActions" -> {
+                "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+         DefaultBaseStyle->{},
+         Evaluator->Automatic,
+         Method->"Preemptive"],
+        RGBColor[1, 0, 0],
+        Editable->False,
+        Selectable->False]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"3", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj_changed\"\>"}], ",", 
+      RowBox[{"FontColor", "\[Rule]", 
+       InterpretationBox[
+        ButtonBox[
+         TooltipBox[
+          GraphicsBox[{
+            {GrayLevel[0], RectangleBox[{0, 0}]}, 
+            {GrayLevel[0], RectangleBox[{1, -1}]}, 
+            {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+           AspectRatio->1,
+           Frame->True,
+           FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+           FrameTicks->None,
+           
+           ImageSize->
+            Dynamic[{
+             Automatic, 
+              1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+               Magnification])}],
+           PlotRangePadding->None],
+          "RGBColor[1, 0, 0]"],
+         Appearance->None,
+         BaseStyle->{},
+         BaselinePosition->Baseline,
+         ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+           If[
+            Not[
+             AbsoluteCurrentValue["Deployed"]], 
+            SelectionMove[Typeset`box$, All, Expression]; 
+            FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+            FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+            FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+            MathLink`CallFrontEnd[
+              FrontEnd`AttachCell[Typeset`box$, 
+               FrontEndResource["RGBColorValueSelector"], {
+               0, {Left, Bottom}}, {Left, Top}, 
+               "ClosingActions" -> {
+                "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+         DefaultBaseStyle->{},
+         Evaluator->Automatic,
+         Method->"Preemptive"],
+        RGBColor[1, 0, 0],
+        Editable->False,
+        Selectable->False]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"4", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj\"\>"}], 
+     "\[RightAssociation]"}]}], ",", 
+   RowBox[{"5", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj\"\>"}], ",", 
+      RowBox[{"FontColor", "\[Rule]", 
+       InterpretationBox[
+        ButtonBox[
+         TooltipBox[
+          GraphicsBox[{
+            {GrayLevel[0], RectangleBox[{0, 0}]}, 
+            {GrayLevel[0], RectangleBox[{1, -1}]}, 
+            {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+           AspectRatio->1,
+           Frame->True,
+           FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+           FrameTicks->None,
+           
+           ImageSize->
+            Dynamic[{
+             Automatic, 
+              1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+               Magnification])}],
+           PlotRangePadding->None],
+          "RGBColor[1, 0, 0]"],
+         Appearance->None,
+         BaseStyle->{},
+         BaselinePosition->Baseline,
+         ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+           If[
+            Not[
+             AbsoluteCurrentValue["Deployed"]], 
+            SelectionMove[Typeset`box$, All, Expression]; 
+            FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+            FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+            FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+            MathLink`CallFrontEnd[
+              FrontEnd`AttachCell[Typeset`box$, 
+               FrontEndResource["RGBColorValueSelector"], {
+               0, {Left, Bottom}}, {Left, Top}, 
+               "ClosingActions" -> {
+                "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+         DefaultBaseStyle->{},
+         Evaluator->Automatic,
+         Method->"Preemptive"],
+        RGBColor[1, 0, 0],
+        Editable->False,
+        Selectable->False]}]}], "\[RightAssociation]"}]}], ",", 
+   RowBox[{"6", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj\"\>"}], 
+     "\[RightAssociation]"}]}], ",", 
+   RowBox[{"7", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj\"\>"}], 
+     "\[RightAssociation]"}]}], ",", 
+   RowBox[{"8", "\[Rule]", 
+    RowBox[{"\[LeftAssociation]", 
+     RowBox[{
+      RowBox[{"\<\"String\"\>", "\[Rule]", "\<\"obj_changed\"\>"}], ",", 
+      RowBox[{"FontColor", "\[Rule]", 
+       InterpretationBox[
+        ButtonBox[
+         TooltipBox[
+          GraphicsBox[{
+            {GrayLevel[0], RectangleBox[{0, 0}]}, 
+            {GrayLevel[0], RectangleBox[{1, -1}]}, 
+            {RGBColor[1, 0, 0], RectangleBox[{0, -1}, {2, 1}]}},
+           AspectRatio->1,
+           Frame->True,
+           FrameStyle->RGBColor[0.6666666666666666, 0., 0.],
+           FrameTicks->None,
+           
+           ImageSize->
+            Dynamic[{
+             Automatic, 
+              1.35 (CurrentValue["FontCapHeight"]/AbsoluteCurrentValue[
+               Magnification])}],
+           PlotRangePadding->None],
+          "RGBColor[1, 0, 0]"],
+         Appearance->None,
+         BaseStyle->{},
+         BaselinePosition->Baseline,
+         ButtonFunction:>With[{Typeset`box$ = EvaluationBox[]}, 
+           If[
+            Not[
+             AbsoluteCurrentValue["Deployed"]], 
+            SelectionMove[Typeset`box$, All, Expression]; 
+            FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+            FrontEnd`Private`$ColorSelectorInitialColor = RGBColor[1, 0, 0]; 
+            FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+            MathLink`CallFrontEnd[
+              FrontEnd`AttachCell[Typeset`box$, 
+               FrontEndResource["RGBColorValueSelector"], {
+               0, {Left, Bottom}}, {Left, Top}, 
+               "ClosingActions" -> {
+                "SelectionDeparture", "ParentChanged", "EvaluatorQuit"}]]]],
+         DefaultBaseStyle->{},
+         Evaluator->Automatic,
+         Method->"Preemptive"],
+        RGBColor[1, 0, 0],
+        Editable->False,
+        Selectable->False]}]}], "\[RightAssociation]"}]}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{
+  3.690648635987164*^9},ExpressionUUID->"c5cc769a-1a39-421a-9661-\
+b6c4d96701c3"]
+}, Open  ]],
+
+Cell["\<\
+This is all the string data for all of the objects we made this session. By \
+caching this, we can retrieve the state of our system trivially. \
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690648640104115*^9, 
+   3.6906486686170464`*^9}},ExpressionUUID->"a0566f51-7774-45ee-8385-\
+c702341f3d67"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Types as Symbol Interfaces", "Subsubsection",ExpressionUUID->"c7b6d965-076c-4647-8a18-0541e5c9c423"],
+
+Cell["\<\
+There is one last (common) way to do object orientation. Rather than using a \
+centralized manager, which if it gets corrupted or deleted can destroy the \
+state of our system, we can use a symbol interface.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690648688095574*^9, 
+   3.6906487977874928`*^9}},ExpressionUUID->"88642486-1639-4898-9fe2-\
+6fdd6b9707f2"],
+
+Cell["\<\
+We do this by creating a symbol where before we created an ID. In fact, this \
+really blurs the line between a managed type and an association interface.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690648809985984*^9, 3.6906488182669992`*^9}, {
+   3.690649020748335*^9, 
+   3.690649055937728*^9}},ExpressionUUID->"336ff4c4-c144-4f91-a2ed-\
+10527f424a41"],
+
+Cell["This time we\[CloseCurlyQuote]ll outline a timer object.", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690649079825382*^9, 
+   3.690649161003106*^9}},ExpressionUUID->"76cf7e9b-9ec6-4b2f-9d1f-\
+c80166932f0e"],
+
+Cell[CellGroupData[{
+
+Cell["TimerObject", "Subsubsubsection",ExpressionUUID->"4dfef3d8-3fcc-4055-9515-af9890b5d67c"],
+
+Cell["\<\
+Instead of using ID, we\[CloseCurlyQuote]ll assign an association to a \
+symbol. This means we need to hold our symbol, though, to prevent it from \
+evaluating. We will also want to keep track of which symbols we have used. We\
+\[CloseCurlyQuote]ll do this via an association because lookup in \
+associations is much faster than in lists:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690649173469665*^9, 3.690649210345854*^9}, {
+   3.690649578243479*^9, 3.690649593919435*^9}, {3.690649707016829*^9, 
+   3.690649709448563*^9}, {3.6906497486296577`*^9, 3.6906497516185417`*^9}, {
+   3.690651626071764*^9, 3.69065163903794*^9}, {3.690651676357293*^9, 
+   3.690651701131831*^9}},ExpressionUUID->"e17b2275-790c-4c13-a268-\
+ddb6a229fe29"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$TimerObjectCache", "=", 
+   RowBox[{"<|", "|>"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"TimerObject", "[", "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"obj", "=", 
+       RowBox[{"Unique", "@", "\"\<timer\>\""}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"$TimerObjectCache", "[", 
+        RowBox[{"TimerObject", "[", "obj", "]"}], "]"}], "=", "None"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"obj", "=", 
+       RowBox[{"<|", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"\"\<CheckPoint\>\"", "\[Rule]", "Now"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"\"\<EndPoint\>\"", "\[Rule]", "None"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"\"\<Toggle\>\"", "\[RuleDelayed]", 
+          RowBox[{"(", "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"With", "[", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{"o", "=", "#"}], "}"}], ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"o", "[", "\"\<EndPoint\>\"", "]"}], "=", 
+               "\[IndentingNewLine]", 
+               RowBox[{"Replace", "[", 
+                RowBox[{
+                 RowBox[{"o", "[", "\"\<EndPoint\>\"", "]"}], ",", 
+                 RowBox[{"{", "\[IndentingNewLine]", 
+                  RowBox[{
+                   RowBox[{"None", "->", "Now"}], ",", "\[IndentingNewLine]", 
+                   
+                   RowBox[{"_", "\[Rule]", "None"}]}], "\[IndentingNewLine]", 
+                  "}"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}], "&"}], 
+           ")"}]}]}], "\[IndentingNewLine]", "|>"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"TimerObject", "[", "obj", "]"}]}]}], "\[IndentingNewLine]", 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"TimerObject", "~", "SetAttributes", "~", "HoldFirst"}], 
+  ";"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690649390734283*^9, 3.690649502960884*^9}, {
+   3.690650588781966*^9, 3.6906506108356524`*^9}, {3.690650773045299*^9, 
+   3.69065080961644*^9}, {3.69065084131177*^9, 3.690650864959244*^9}, {
+   3.6906509136805143`*^9, 3.6906509347528257`*^9}, {3.690651643568795*^9, 
+   3.690651674478005*^9}, 3.690651705270556*^9, {3.6906518934302483`*^9, 
+   3.690651898821063*^9}, {3.690652056262558*^9, 3.69065205950245*^9}, {
+   3.690652130290565*^9, 
+   3.6906521305528193`*^9}},ExpressionUUID->"9c79199e-e072-4f83-8612-\
+4900d48fb793"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"TimerObject", "[", "sym_", "]"}], "[", 
+    RowBox[{"attr_", ",", "args___"}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"r", "=", 
+       RowBox[{"sym", "[", "attr", "]"}]}], "}"}], ",", "\n", "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"MatchQ", "[", 
+        RowBox[{"r", ",", "_Function"}], "]"}], ",", "\n", "\t\t", 
+       RowBox[{"r", "[", 
+        RowBox[{
+         RowBox[{"TimerObject", "[", "sym", "]"}], ",", "args"}], "]"}], ",", 
+       "\n", "\t\t", "r"}], "\n", "\t\t", "]"}]}], "\n", "\t", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"TimerObject", "/:", "\n", 
+   RowBox[{"HoldPattern", "[", 
+    RowBox[{"HoldPattern", "[", 
+     RowBox[{"Set", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"TimerObject", "[", "sym_", "]"}], "[", "attr_", "]"}], ",", 
+       "v_"}], "]"}], "]"}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"sym", "[", "attr", "]"}], "=", "v"}], ")"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"TimerObject", "/:", "\n", 
+   RowBox[{"HoldPattern", "[", 
+    RowBox[{"SetDelayed", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"TimerObject", "[", "sym_", "]"}], "[", "attr_", "]"}], ",", 
+      "v_"}], "]"}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"sym", "[", "attr", "]"}], ":=", "v"}], ")"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"TimerObject", "/:", "\n", 
+   RowBox[{"HoldPattern", "[", 
+    RowBox[{"Unset", "[", 
+     RowBox[{
+      RowBox[{"TimerObject", "[", "sym_", "]"}], ",", "attr_"}], "]"}], "]"}],
+    ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"sym", "[", "attr", "]"}], "=."}], ")"}]}], ";"}]}], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690649938360358*^9, 3.69064994519703*^9}, {
+   3.690650302912425*^9, 3.690650429268412*^9}, {3.690651171038849*^9, 
+   3.690651183605831*^9}, {3.6906515122782583`*^9, 3.6906515570744753`*^9}, 
+   3.723435026632143*^9},ExpressionUUID->"37791d0a-ea77-47a7-93e3-\
+18bc4c406cf9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Format", "[", 
+    RowBox[{"TimerObject", "[", "sym_", "]"}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"start", "=", 
+        RowBox[{"sym", "[", "\"\<CheckPoint\>\"", "]"}]}], ",", "\n", "\t\t", 
+       
+       RowBox[{"end", "=", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"sym", "[", "\"\<EndPoint\>\"", "]"}], ",", 
+          RowBox[{"None", "\[Rule]", "Now"}]}], "]"}]}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"Interpretation", "[", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"Deploy", "@", 
+        RowBox[{"Style", "[", "\n", "\t\t\t", 
+         RowBox[{
+          RowBox[{"Row", "@", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<TimerObject\>\"", ",", "\"\<[\>\"", ",", "\n", "\t\t\t\t", 
+             RowBox[{"Framed", "[", "\n", "\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"NumberForm", "[", 
+                RowBox[{
+                 RowBox[{"end", "-", "start"}], ",", "3"}], "]"}], ",", "\n", 
+               "\t\t\t\t\t", 
+               RowBox[{"RoundingRadius", "\[Rule]", "5"}], ",", "\n", 
+               "\t\t\t\t\t", 
+               RowBox[{"Background", "\[Rule]", 
+                RowBox[{"Lighter", "[", 
+                 RowBox[{
+                  RowBox[{"Blend", "@", 
+                   RowBox[{"{", 
+                    RowBox[{"LightBlue", ",", "Gray"}], "}"}]}], ",", ".8"}], 
+                 "]"}]}], ",", "\n", "\t\t\t\t\t", 
+               RowBox[{"FrameStyle", "\[Rule]", 
+                RowBox[{"GrayLevel", "[", ".6", "]"}]}]}], "\n", "\t\t\t\t\t",
+               "]"}], ",", "\"\<]\>\""}], "}"}]}], ",", "\n", "\t\t\t", 
+          RowBox[{"ShowStringCharacters", "\[Rule]", "False"}]}], "\n", 
+         "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+       RowBox[{"TimerObject", "[", "sym", "]"}]}], "\n", "\t\t", "]"}]}], 
+    "\n", "\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690650554327777*^9, 3.690650556773409*^9}, {
+   3.690650621548291*^9, 3.690650654683556*^9}, {3.69065074155891*^9, 
+   3.6906507669422483`*^9}, {3.690650984573043*^9, 3.690651158223379*^9}, {
+   3.690651296281424*^9, 3.690651410306191*^9}, {3.690651442408346*^9, 
+   3.690651445551325*^9}, 
+   3.723435026680171*^9},ExpressionUUID->"1496408c-194e-4493-894b-\
+fd31b99a7a7a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"t", "=", 
+  RowBox[{"TimerObject", "[", "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Pause", "[", "1", "]"}], ";"}], "\n", "t"}], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69065171009225*^9, 3.690651724092237*^9}, 
+   3.723435026709546*^9},ExpressionUUID->"440964c9-0321-4cac-80a3-\
+49cc76836ef8"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"TimerObject\"","\"[\"",FrameBox[
+       TagBox[
+        TemplateBox[{
+          InterpretationBox[
+          "\"0.000188\"", 0.00018787384033203125`, AutoDelete -> True], 
+          "\"s\"", "seconds", "\"Seconds\""}, "Quantity", SyntaxForm -> Mod], 
+        NumberForm[#, 3]& ], RoundingRadius -> 5, Background -> 
+       RGBColor[0.937, 0.944, 0.95], FrameStyle -> GrayLevel[0.6], 
+       StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`TimerObject[$CellContext`timer17]]], "Output",
+ CellChangeTimes->{3.690651724562652*^9, 3.6906519106246853`*^9, 
+  3.690652068850568*^9, 
+  3.690652149043309*^9},ExpressionUUID->"a1a82065-c23e-4b12-9318-\
+604651428a75"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"TimerObject\"","\"[\"",FrameBox[
+       TagBox[
+        TemplateBox[{
+          InterpretationBox[
+          "\"1.01\"", 1.0056428909301758`, AutoDelete -> True], "\"s\"", 
+          "seconds", "\"Seconds\""}, "Quantity", SyntaxForm -> Mod], 
+        NumberForm[#, 3]& ], RoundingRadius -> 5, Background -> 
+       RGBColor[0.937, 0.944, 0.95], FrameStyle -> GrayLevel[0.6], 
+       StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`TimerObject[$CellContext`timer17]]], "Output",
+ CellChangeTimes->{3.690651724562652*^9, 3.6906519106246853`*^9, 
+  3.690652068850568*^9, 
+  3.6906521500147333`*^9},ExpressionUUID->"0fefdc7d-2ed2-44b3-a634-\
+f093dd6b3624"]
+}, Open  ]],
+
+Cell["Note that these are obviously the same object", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690651729986999*^9, 3.690651750206998*^9}, {
+   3.69065192467575*^9, 3.690651927226685*^9}, {3.690652139975268*^9, 
+   3.690652143759596*^9}},ExpressionUUID->"55c3778a-0c96-4f3c-8076-\
+60c69dfe2b82"],
+
+Cell["And we can access state:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690651751581738*^9, 
+   3.69065176461378*^9}},ExpressionUUID->"881b5eb5-ee16-48a3-a91c-\
+2f4b6fddb4fe"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"t", "=", "t"}], "}"}], ",", 
+   RowBox[{"t", "[", "\"\<Toggle\>\"", "]"}]}], "]"}]], "Code",
+ CellChangeTimes->{{3.690651771655559*^9, 3.690651777318612*^9}, 
+   3.723435026756192*^9},ExpressionUUID->"9fc1e73f-7924-46d3-a540-\
+0a35c99a216a"],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"\"Tue 13 Dec 2016 16:09:18\"", 
+     StyleBox[
+      RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+        RowBox[{"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}],
+   RowBox[{"DateObject", "[", 
+     RowBox[{
+       RowBox[{"{", 
+         RowBox[{"2016", ",", "12", ",", "13"}], "}"}], ",", 
+       RowBox[{"TimeObject", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{"16", ",", "9", ",", "18.650716`"}], "}"}], ",", 
+           RowBox[{"TimeZone", "\[Rule]", 
+             RowBox[{"-", "5.`"}]}]}], "]"}], ",", 
+       RowBox[{"TimeZone", "\[Rule]", 
+         RowBox[{"-", "5.`"}]}]}], "]"}]},
+  "DateObject",
+  Editable->False]], "Output",
+ CellChangeTimes->{3.690651777765415*^9, 3.6906519316257687`*^9, 
+  3.690652078114015*^9, 
+  3.6906521586883183`*^9},ExpressionUUID->"62d69f5d-e69e-4c46-ac81-\
+c01dd7c07bb4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{"t", "\n", 
+ RowBox[{
+  RowBox[{"Pause", "[", "1", "]"}], ";"}], "\n", "t"}], "Code",
+ CellChangeTimes->{
+  3.690651780286786*^9, {3.690651939700242*^9, 3.690651947130512*^9}, 
+   3.723435026789349*^9},ExpressionUUID->"8abf5c37-e3a5-4cd8-9077-\
+ef3157ceaff2"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"TimerObject\"","\"[\"",FrameBox[
+       TagBox[
+        TemplateBox[{
+          InterpretationBox["\"9.66\"", 9.66370677947998, AutoDelete -> True],
+           "\"s\"", "seconds", "\"Seconds\""}, "Quantity", SyntaxForm -> Mod],
+         NumberForm[#, 3]& ], RoundingRadius -> 5, Background -> 
+       RGBColor[0.937, 0.944, 0.95], FrameStyle -> GrayLevel[0.6], 
+       StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`TimerObject[$CellContext`timer17]]], "Output",
+ CellChangeTimes->{
+  3.690651781226014*^9, {3.690651934270945*^9, 3.690651947386981*^9}, 
+   3.6906520822169228`*^9, 
+   3.690652159807664*^9},ExpressionUUID->"881152a3-4e05-414b-a490-\
+1260b9ae1168"],
+
+Cell[BoxData[
+ InterpretationBox[
+  TagBox[
+   StyleBox[
+    TemplateBox[{"\"TimerObject\"","\"[\"",FrameBox[
+       TagBox[
+        TemplateBox[{
+          InterpretationBox["\"9.66\"", 9.66370677947998, AutoDelete -> True],
+           "\"s\"", "seconds", "\"Seconds\""}, "Quantity", SyntaxForm -> Mod],
+         NumberForm[#, 3]& ], RoundingRadius -> 5, Background -> 
+       RGBColor[0.937, 0.944, 0.95], FrameStyle -> GrayLevel[0.6], 
+       StripOnInput -> False],"\"]\""},
+     "RowDefault"],
+    StripOnInput->False,
+    ShowStringCharacters->False],
+   Deploy,
+   DefaultBaseStyle->"Deploy"],
+  $CellContext`TimerObject[$CellContext`timer17]]], "Output",
+ CellChangeTimes->{
+  3.690651781226014*^9, {3.690651934270945*^9, 3.690651947386981*^9}, 
+   3.6906520822169228`*^9, 
+   3.690652160797883*^9},ExpressionUUID->"c3337efe-8ef8-45c9-b82a-\
+7a7089549391"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"t", "[", "\"\<EndPoint\>\"", "]"}]], "Code",
+ CellChangeTimes->{{3.6906517902546787`*^9, 3.690651796189917*^9}, 
+   3.723435026818427*^9},ExpressionUUID->"4c2e6d19-99f8-4c93-99c1-\
+4a49b186d65f"],
+
+Cell[BoxData[
+ TemplateBox[{RowBox[{"\"Tue 13 Dec 2016 16:09:18\"", 
+     StyleBox[
+      RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+        RowBox[{"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}],
+   RowBox[{"DateObject", "[", 
+     RowBox[{
+       RowBox[{"{", 
+         RowBox[{"2016", ",", "12", ",", "13"}], "}"}], ",", 
+       RowBox[{"TimeObject", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{"16", ",", "9", ",", "18.650716`"}], "}"}], ",", 
+           RowBox[{"TimeZone", "\[Rule]", 
+             RowBox[{"-", "5.`"}]}]}], "]"}], ",", 
+       RowBox[{"TimeZone", "\[Rule]", 
+         RowBox[{"-", "5.`"}]}]}], "]"}]},
+  "DateObject",
+  Editable->False]], "Output",
+ CellChangeTimes->{
+  3.6906517965936747`*^9, 3.690651951608605*^9, {3.690652085631647*^9, 
+   3.6906520870973883`*^9}, 
+   3.690652162270611*^9},ExpressionUUID->"7e748984-5555-4a35-955e-\
+618fd46391f9"]
+}, Open  ]],
+
+Cell["\<\
+This is a more powerful method that using a manager and it\[CloseCurlyQuote]s \
+harder to accidentally delete one\[CloseCurlyQuote]s data. Unfortunately, \
+saving state is somewhat harder, though. This is why we tracked our objects \
+built.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690651955218525*^9, 3.690652048930751*^9}, {
+   3.690652094857131*^9, 
+   3.690652105904896*^9}},ExpressionUUID->"ca4cd777-c9cc-44bc-969d-\
+aa638db6668a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"With", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"objs", "=", 
+     RowBox[{"$TimerObjectCache", "//", "Keys"}]}], "}"}], ",", "\n", "\t", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"#", "\[Rule]", 
+      RowBox[{"ReleaseHold", "@", "#"}]}], "&"}], "/@", 
+    RowBox[{"(", 
+     RowBox[{"HoldForm", "@@@", "objs"}], ")"}]}]}], "\n", "\t", 
+  "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690652110439293*^9, 3.690652120969015*^9}, {
+   3.690652170086849*^9, 3.690652244060438*^9}, 
+   3.7234350268547173`*^9},ExpressionUUID->"ab60b46e-2ce7-42b1-9e7f-\
+2186bedd7437"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   TagBox["timer17",
+    HoldForm], "\[Rule]", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{
+     RowBox[{"\<\"CheckPoint\"\>", "\[Rule]", 
+      TemplateBox[{RowBox[{"\"Tue 13 Dec 2016 16:09:08\"", 
+          StyleBox[
+           RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+             RowBox[{"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}],
+        RowBox[{"DateObject", "[", 
+          RowBox[{
+            RowBox[{"{", 
+              RowBox[{"2016", ",", "12", ",", "13"}], "}"}], ",", 
+            RowBox[{"TimeObject", "[", 
+              RowBox[{
+                RowBox[{"{", 
+                  RowBox[{"16", ",", "9", ",", "8.987009`"}], "}"}], ",", 
+                RowBox[{"TimeZone", "\[Rule]", 
+                  RowBox[{"-", "5.`"}]}]}], "]"}], ",", 
+            RowBox[{"TimeZone", "\[Rule]", 
+              RowBox[{"-", "5.`"}]}]}], "]"}]},
+       "DateObject",
+       Editable->False]}], ",", 
+     RowBox[{"\<\"EndPoint\"\>", "\[Rule]", 
+      TemplateBox[{RowBox[{"\"Tue 13 Dec 2016 16:09:18\"", 
+          StyleBox[
+           RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+             RowBox[{"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}],
+        RowBox[{"DateObject", "[", 
+          RowBox[{
+            RowBox[{"{", 
+              RowBox[{"2016", ",", "12", ",", "13"}], "}"}], ",", 
+            RowBox[{"TimeObject", "[", 
+              RowBox[{
+                RowBox[{"{", 
+                  RowBox[{"16", ",", "9", ",", "18.650716`"}], "}"}], ",", 
+                RowBox[{"TimeZone", "\[Rule]", 
+                  RowBox[{"-", "5.`"}]}]}], "]"}], ",", 
+            RowBox[{"TimeZone", "\[Rule]", 
+              RowBox[{"-", "5.`"}]}]}], "]"}]},
+       "DateObject",
+       Editable->False]}], ",", 
+     RowBox[{"\<\"Toggle\"\>", "\[RuleDelayed]", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"o", "=", "#1"}], "}"}], ",", 
+          RowBox[{
+           RowBox[{"o", "[", "\<\"EndPoint\"\>", "]"}], "=", 
+           RowBox[{"Replace", "[", 
+            RowBox[{
+             RowBox[{"o", "[", "\<\"EndPoint\"\>", "]"}], ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"None", "\[Rule]", "Now"}], ",", 
+               RowBox[{"_", "\[Rule]", "None"}]}], "}"}]}], "]"}]}]}], "]"}], 
+        "&"}], ")"}]}]}], "\[RightAssociation]"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.690652204249422*^9, 
+  3.6906522443448067`*^9}},ExpressionUUID->"7689dc6b-3765-46b2-a723-\
+fc8607d83f5d"]
+}, Open  ]],
+
+Cell["\<\
+We now have to save all of these definitions but it is doable.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69065222500389*^9, 3.69065226544694*^9}, {
+   3.6906523113245068`*^9, 
+   3.690652315260756*^9}},ExpressionUUID->"203a09dd-9973-4b5d-94fb-\
+ac5d37d92ada"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Summary", "Subsubsection",ExpressionUUID->"87d1c5ad-70af-4b05-b4bc-cd8b06601cba"],
+
+Cell["\<\
+The order in which we\[CloseCurlyQuote]ve seen these object management \
+structures more or less corresponds to their order of flexibility and also \
+complexity.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690652331091835*^9, 
+   3.69065237072154*^9}},ExpressionUUID->"9d9e74a9-d2bb-4f66-9ae8-\
+267a06802ccb"],
+
+Cell["\<\
+Using a state-less object-like wrapper (an interface to an association, \
+basically) is easier but less flexible than using objects that reference an \
+object manager, which are in turn harder to use and less powerful than \
+objects that track their own state.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906523756641073`*^9, 
+   3.690652461634224*^9}},ExpressionUUID->"48713811-5056-4367-80ae-\
+6c334c809053"],
+
+Cell["\<\
+Moreover, this is just a primer on making objects. Languages such as Java, \
+Python, and C++ have a much richer object interface, including classes, \
+instances, interfaces, templates, etc. To implement all of that is beyond the \
+scope of this tutorial, but the tools we have here are actually sufficient to \
+do so (at least for classes and instances).\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906488325878887`*^9, 3.690648915728058*^9}, {
+   3.690652485577273*^9, 
+   3.690652487801523*^9}},ExpressionUUID->"97c97e82-a98a-4c22-816f-\
+1c88bfb7666f"],
+
+Cell["\<\
+In general, though, it is best to use the object you need for the project you \
+need, until you\[CloseCurlyQuote]re comfortable enough to build a more \
+general architecture.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690648928988742*^9, 3.690648945770438*^9}, {
+   3.690648980675791*^9, 
+   3.690649017818969*^9}},ExpressionUUID->"57661896-c470-409b-8642-\
+8ff2b5e7dc13"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{99, Automatic}, {Automatic, 13}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2564, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3147, 79, 226, 4, 41, "Subsection",ExpressionUUID->"cc496a1a-5af1-4227-bfb4-4189e6b125ce"],
+Cell[3376, 85, 556, 12, 81, "Text",ExpressionUUID->"33128ff0-4524-4368-821d-52e9d2df530c"],
+Cell[3935, 99, 488, 11, 81, "Text",ExpressionUUID->"4954f22a-8313-4e55-832b-5244547322cc"],
+Cell[4426, 112, 421, 9, 81, "Text",ExpressionUUID->"0d967804-2318-4872-a8f7-1286e779dfe5"],
+Cell[4850, 123, 325, 8, 35, "Text",ExpressionUUID->"b4bc4102-2205-4733-be57-f183b2337326"],
+Cell[CellGroupData[{
+Cell[5200, 135, 102, 0, 40, "Subsubsection",ExpressionUUID->"e39db9d0-6d66-46a6-8d49-38c5d504d915"],
+Cell[5305, 137, 374, 8, 58, "Text",ExpressionUUID->"4161f4be-8ffe-4f03-8cc8-f02604ed9297"],
+Cell[5682, 147, 425, 9, 58, "Text",ExpressionUUID->"32ec7f01-ea27-4aa3-a25c-07deeee4b318"],
+Cell[6110, 158, 419, 10, 35, "Text",ExpressionUUID->"5f701596-e473-4d1f-bc27-8cb3fd4869de"],
+Cell[CellGroupData[{
+Cell[6554, 172, 95, 0, 35, "Subsubsubsection",ExpressionUUID->"c6954dc6-cb18-40ac-b38f-64a55af3cde4"],
+Cell[6652, 174, 223, 4, 35, "Text",ExpressionUUID->"f08dad71-b573-486f-9331-ea78c7737ef5"],
+Cell[6878, 180, 1065, 27, 111, "Code",ExpressionUUID->"551c5c73-3964-4e7c-9741-0d1db6c7c433"],
+Cell[7946, 209, 808, 17, 58, "Text",ExpressionUUID->"6f3ca9d8-e85b-40a1-a09f-f11f993ef36b"],
+Cell[8757, 228, 894, 24, 167, "Code",ExpressionUUID->"6b8a0229-e698-403d-a21d-5943887b35d7"],
+Cell[9654, 254, 375, 10, 35, "Text",ExpressionUUID->"6ead4c70-e99c-4d6a-bc16-3aa3cc8c91dd"],
+Cell[10032, 266, 1435, 38, 205, "Code",ExpressionUUID->"7c4ed0d7-5c0e-436a-9cea-b617a11a2fc4"],
+Cell[11470, 306, 353, 10, 35, "Text",ExpressionUUID->"7c2ac212-7501-4b7e-8d08-9ea17eee898f"],
+Cell[11826, 318, 2490, 61, 376, "Code",ExpressionUUID->"a502a518-4c72-413c-a756-ba39b707d370"],
+Cell[CellGroupData[{
+Cell[14341, 383, 235, 5, 52, "Code",ExpressionUUID->"f363890a-b7c0-47a2-9ac2-eaa729fa0f61"],
+Cell[14579, 390, 622, 19, 109, "Output",ExpressionUUID->"0b764c1c-6647-4acc-ad45-a2817e894a2e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15238, 414, 283, 6, 52, "Code",ExpressionUUID->"f497ff9e-8f3e-42ff-a91d-37676e0d1bb2"],
+Cell[15524, 422, 583, 17, 109, "Output",ExpressionUUID->"60efd427-20d3-437c-b3e1-851ab605751a"]
+}, Open  ]],
+Cell[16122, 442, 215, 4, 35, "Text",ExpressionUUID->"0109a5fd-7f89-446a-b2ae-861071323a17"],
+Cell[CellGroupData[{
+Cell[16362, 450, 709, 20, 136, "Code",ExpressionUUID->"16834a75-163f-4a6a-b910-90c5209eaa24"],
+Cell[17074, 472, 1520, 43, 34, "Output",ExpressionUUID->"b76ab3dd-1e42-4863-a135-6be1768316fa"]
+}, Open  ]],
+Cell[18609, 518, 188, 4, 35, "Text",ExpressionUUID->"57b46eaa-f6d2-44ed-8d29-12ed8ca60cff"],
+Cell[CellGroupData[{
+Cell[18822, 526, 749, 21, 136, "Code",ExpressionUUID->"5e78f6c6-b1b4-4a05-862d-e2c26526b120"],
+Cell[19574, 549, 581, 17, 109, "Output",ExpressionUUID->"fd273269-3863-4dea-89e5-8d5306183b42"]
+}, Open  ]],
+Cell[20170, 569, 182, 4, 35, "Text",ExpressionUUID->"6410f835-bdb8-4fec-8fcd-5bf940842507"],
+Cell[CellGroupData[{
+Cell[20377, 577, 719, 20, 136, "Code",ExpressionUUID->"3029ef52-1daa-4289-af92-10815bef2db8"],
+Cell[21099, 599, 550, 17, 109, "Output",ExpressionUUID->"cccf8e41-a6d2-4eda-b652-37081372422d"]
+}, Open  ]],
+Cell[21664, 619, 437, 11, 35, "Text",ExpressionUUID->"35ac8ada-98e3-4972-a137-d6b059ece727"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22150, 636, 93, 0, 51, "Subsubsection",ExpressionUUID->"ef2e6341-4cab-4cac-915b-bdf74603c402"],
+Cell[22246, 638, 400, 8, 58, "Text",ExpressionUUID->"a53ab2c1-4f31-47bb-a969-61b4953e89e3"],
+Cell[22649, 648, 358, 9, 35, "Text",ExpressionUUID->"696fb1e5-ebce-4d23-b823-edc30b35919a"],
+Cell[CellGroupData[{
+Cell[23032, 661, 95, 0, 46, "Subsubsubsection",ExpressionUUID->"04f07be7-fd41-4b7d-804e-4554a8c11977"],
+Cell[23130, 663, 290, 7, 35, "Text",ExpressionUUID->"0227f9a0-9697-4ba8-8013-1446d9ef17aa"],
+Cell[23423, 672, 402, 10, 72, "Code",ExpressionUUID->"94426f06-6508-4206-aba6-d61ee432b1ff"],
+Cell[23828, 684, 274, 7, 35, "Text",ExpressionUUID->"a0f10ec2-c178-4959-a224-ed3270593eb9"],
+Cell[24105, 693, 985, 28, 130, "Code",ExpressionUUID->"e03fd51d-e0f8-4b68-9283-bdbf43e7d7ea"],
+Cell[25093, 723, 295, 7, 35, "Text",ExpressionUUID->"dc729ecf-5747-4c33-9176-60793b0f5fc3"],
+Cell[25391, 732, 1599, 40, 262, "Code",ExpressionUUID->"15f3d7bb-e2b2-49a5-a043-624227738b38"],
+Cell[26993, 774, 3140, 86, 547, "Code",ExpressionUUID->"a02c4d3a-356e-4233-97aa-9375a01f2f61"],
+Cell[30136, 862, 314, 7, 35, "Text",ExpressionUUID->"9a5b308b-2c58-4578-838e-e202adec2e33"],
+Cell[30453, 871, 2985, 66, 490, "Code",ExpressionUUID->"9617c3c2-5eac-4e58-ad13-801dbf809dd5"],
+Cell[33441, 939, 185, 4, 35, "Text",ExpressionUUID->"d749d5c2-8268-4987-9377-34a94bade83b"],
+Cell[CellGroupData[{
+Cell[33651, 947, 246, 5, 52, "Code",ExpressionUUID->"d2cd71b2-9acf-458d-a803-dfb00b4c2ffb"],
+Cell[33900, 954, 552, 17, 34, "Output",ExpressionUUID->"38ba9d25-3b65-4f33-91f7-1104744729c0"]
+}, Open  ]],
+Cell[34467, 974, 210, 4, 35, "Text",ExpressionUUID->"2aeddcd1-66e3-4d41-8bcb-eeb6ce1686a8"],
+Cell[CellGroupData[{
+Cell[34702, 982, 368, 10, 52, "Code",ExpressionUUID->"8116c0ba-97ee-40eb-93c6-54bbd176171a"],
+Cell[35073, 994, 1589, 44, 34, "Output",ExpressionUUID->"404a4c3f-96e0-49a5-bfe5-e39c1fa67cd5"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[36699, 1043, 177, 4, 52, "Code",ExpressionUUID->"d89b3000-91ef-4650-95ba-c2b694333bd2"],
+Cell[36879, 1049, 535, 16, 34, "Output",ExpressionUUID->"5f4f9c17-f3bb-4ded-834c-41bb54fe2044"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[37451, 1070, 365, 10, 52, "Code",ExpressionUUID->"a8d6a3e1-a826-4078-bbbe-0c8d6cdba1cb"],
+Cell[37819, 1082, 218, 4, 34, "Output",ExpressionUUID->"3818d3c6-ec44-4019-83dd-c8b50b9af844"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[38074, 1091, 178, 4, 52, "Code",ExpressionUUID->"1297f18d-de17-4a68-b707-b78363e7125f"],
+Cell[38255, 1097, 611, 17, 34, "Output",ExpressionUUID->"86a024a9-67dd-4106-ba8b-5d71b3d9af30"]
+}, Open  ]],
+Cell[38881, 1117, 211, 4, 35, "Text",ExpressionUUID->"89236fc8-0c48-42bb-9a13-8f3eb8f3a095"],
+Cell[CellGroupData[{
+Cell[39117, 1125, 1707, 49, 55, "Code",ExpressionUUID->"11d6d2e1-c202-47ca-86c7-23962be6686d"],
+Cell[40827, 1176, 901, 32, 34, "Output",ExpressionUUID->"7aabd6ca-30b3-456a-b3a4-2b45de719f6c"]
+}, Open  ]],
+Cell[41743, 1211, 485, 10, 81, "Text",ExpressionUUID->"b93a408d-850b-4bac-80e6-e2d4df9f4140"],
+Cell[CellGroupData[{
+Cell[42253, 1225, 199, 4, 52, "Code",ExpressionUUID->"0dc4d6db-921d-4fb9-b164-4c5fc55be31e"],
+Cell[42455, 1231, 9973, 253, 106, "Output",ExpressionUUID->"c5cc769a-1a39-421a-9661-b6c4d96701c3"]
+}, Open  ]],
+Cell[52443, 1487, 321, 7, 58, "Text",ExpressionUUID->"a0566f51-7774-45ee-8385-c702341f3d67"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[52813, 1500, 106, 0, 51, "Subsubsection",ExpressionUUID->"c7b6d965-076c-4647-8a18-0541e5c9c423"],
+Cell[52922, 1502, 385, 8, 58, "Text",ExpressionUUID->"88642486-1639-4898-9fe2-6fdd6b9707f2"],
+Cell[53310, 1512, 381, 8, 58, "Text",ExpressionUUID->"336ff4c4-c144-4f91-a2ed-10527f424a41"],
+Cell[53694, 1522, 224, 4, 35, "Text",ExpressionUUID->"76cf7e9b-9ec6-4b2f-9d1f-c80166932f0e"],
+Cell[CellGroupData[{
+Cell[53943, 1530, 94, 0, 46, "Subsubsubsection",ExpressionUUID->"4dfef3d8-3fcc-4055-9515-af9890b5d67c"],
+Cell[54040, 1532, 759, 13, 81, "Text",ExpressionUUID->"e17b2275-790c-4c13-a268-ddb6a229fe29"],
+Cell[54802, 1547, 2604, 60, 395, "Code",ExpressionUUID->"9c79199e-e072-4f83-8612-4900d48fb793"],
+Cell[57409, 1609, 2053, 58, 281, "Code",ExpressionUUID->"37791d0a-ea77-47a7-93e3-18bc4c406cf9"],
+Cell[59465, 1669, 2417, 56, 376, "Code",ExpressionUUID->"1496408c-194e-4493-894b-fd31b99a7a7a"],
+Cell[CellGroupData[{
+Cell[61907, 1729, 327, 8, 91, "Code",ExpressionUUID->"440964c9-0321-4cac-80a3-49cc76836ef8"],
+Cell[62237, 1739, 857, 22, 46, "Output",ExpressionUUID->"a1a82065-c23e-4b12-9318-604651428a75"],
+Cell[63097, 1763, 851, 22, 46, "Output",ExpressionUUID->"0fefdc7d-2ed2-44b3-a634-f093dd6b3624"]
+}, Open  ]],
+Cell[63963, 1788, 308, 5, 35, "Text",ExpressionUUID->"55c3778a-0c96-4f3c-8076-60c69dfe2b82"],
+Cell[64274, 1795, 191, 4, 35, "Text",ExpressionUUID->"881b5eb5-ee16-48a3-a91c-2f4b6fddb4fe"],
+Cell[CellGroupData[{
+Cell[64490, 1803, 319, 8, 52, "Code",ExpressionUUID->"9fc1e73f-7924-46d3-a540-0a35c99a216a"],
+Cell[64812, 1813, 870, 22, 43, "Output",ExpressionUUID->"62d69f5d-e69e-4c46-ac81-c01dd7c07bb4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[65719, 1840, 273, 6, 91, "Code",ExpressionUUID->"8abf5c37-e3a5-4cd8-9077-ef3157ceaff2"],
+Cell[65995, 1848, 864, 22, 46, "Output",ExpressionUUID->"881152a3-4e05-414b-a490-1260b9ae1168"],
+Cell[66862, 1872, 864, 22, 46, "Output",ExpressionUUID->"c3337efe-8ef8-45c9-b82a-7a7089549391"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67763, 1899, 219, 4, 52, "Code",ExpressionUUID->"4c2e6d19-99f8-4c93-99c1-4a49b186d65f"],
+Cell[67985, 1905, 899, 23, 43, "Output",ExpressionUUID->"7e748984-5555-4a35-955e-618fd46391f9"]
+}, Open  ]],
+Cell[68899, 1931, 466, 10, 58, "Text",ExpressionUUID->"ca4cd777-c9cc-44bc-969d-aa638db6668a"],
+Cell[CellGroupData[{
+Cell[69390, 1945, 607, 17, 91, "Code",ExpressionUUID->"ab60b46e-2ce7-42b1-9e7f-2186bedd7437"],
+Cell[70000, 1964, 2558, 64, 107, "Output",ExpressionUUID->"7689dc6b-3765-46b2-a723-fc8607d83f5d"]
+}, Open  ]],
+Cell[72573, 2031, 288, 7, 35, "Text",ExpressionUUID->"203a09dd-9973-4b5d-94fb-ac5d37d92ada"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[72910, 2044, 87, 0, 51, "Subsubsection",ExpressionUUID->"87d1c5ad-70af-4b05-b4bc-cd8b06601cba"],
+Cell[73000, 2046, 336, 8, 58, "Text",ExpressionUUID->"9d9e74a9-d2bb-4f66-9ae8-267a06802ccb"],
+Cell[73339, 2056, 438, 9, 81, "Text",ExpressionUUID->"48713811-5056-4367-80ae-6c334c809053"],
+Cell[73780, 2067, 582, 11, 104, "Text",ExpressionUUID->"97c97e82-a98a-4c22-816f-1c88bfb7666f"],
+Cell[74365, 2080, 400, 9, 58, "Text",ExpressionUUID->"57661896-c470-409b-8642-8ff2b5e7dc13"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

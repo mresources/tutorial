@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<title>
+  Table Of Contents | Mathematica Tutorial
+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+      rel='apple-touch-icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/apple-touch-icon.png'
+      sizes='180x180'
+  >
+<link
+      rel='icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/favicon-32x32.png'
+      sizes='32x32'
+  >
+<link
+      rel='icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/favicon-16x16.png'
+      sizes='16x16'
+  >
+<link
+      rel='manifest'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/manifest.json'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/pygments/default.min.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/bootstrap.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/font-awesome.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.w3schools.com/w3css/4/w3.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Robot'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Montserrat'
+  >
+<link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Source+Code+Pro'
+  >
+<link
+      rel='stylesheet'
+      href='https://reference.wolfram.com/language-assets/css/special-styles.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/common.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/style.css'
+  >
+  <!-- No header passed -->
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<body
+  class="w3-content"
+  onload=""
+  >
+<!-- Sidebar/menu -->
+<nav
+  class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top sidebar"
+  style="z-index:3;width:250px"
+  id="mySidebar"
+  >
+  <div class="w3-container w3-display-container w3-padding-16">
+    <div
+      onclick="w3_close()"
+      class="fa fa-remove w3-hide-large w3-button w3-display-topright"
+      id="menu-thumb"
+      >
+    </div>
+  </div>
+  <h3 class="w3-wide w3-bar-item">
+<a
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/'
+  >
+      Home</a>
+<div class="search-box">
+  <script>
+    var search_SiteURL = "https://www.wolframcloud.com/objects/b3m2a1/tutorial"
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/tipuesearch/tipuesearch.css">
+  <form action="https://www.wolframcloud.com/objects/b3m2a1/tutorial/search.html">
+    <div class="tipue_search_group">
+      <input
+        type="text"
+        name="q"
+        id="tipue_search_input"
+        pattern=".{3,}"
+        title="At least 3 characters" required>
+      <button type="submit" class="tipue_search_button">
+        <div class="tipue_search_icon">&#9906;</div>
+      </button>
+    </div>
+  </form>
+</div>
+  </h3>
+  <div class="w3-large w3-text-grey">
+    <div class="w3-bar-block">
+      <ul class="list-inline row">
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/about.html'
+  >
+      About</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/toc.html'
+  >
+      Table Of Contents</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/categories.html'
+  >
+      Categories</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/tags.html'
+  >
+      Tags</a>
+</li>
+</ul>
+    </div>
+  </div>
+  <hr>
+</nav>
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">
+<a
+      class='w3-text-white'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/main.html'
+  >
+      Home</a>
+  </div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+    <div class="main" id="main-content">
+    <div class="main-content">
+      <div class="centered">
+        <!-- Page Header -->
+        <div class="w3-display-container w3-content w3-wide" id="header">
+        </div>
+        <!-- Main Body -->
+  <article class="article">
+    <div class="content">
+      <a shape='rect' id='using-mathematica' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h1> Using Mathematica</h1>
+<a shape='rect' id='basics' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Basics</h2>
+<ul>
+ <li>
+  <a href='../using-mathematica/basics/types.html'>Types</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/basics/variables.html'>Variables</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/basics/functions.html'>Functions</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/basics/loops-and-scoping.html'>Loops and Scoping</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/basics/errors.html'>Errors</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/basics/clear.html'>Clear</a>
+ </li>
+</ul>
+<a shape='rect' id='interface' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Interface</h2>
+<ul>
+ <li>
+  <a href='../using-mathematica/interface/function-aliases.html'>Function Aliases</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/interface/documentation.html'>Documentation</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/interface/keyboard-aliases-and-special-characters.html'>Keyboard Aliases and Special Characters</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/interface/palettes-and-toolbars.html'>Palettes and Toolbars</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/interface/styles.html'>Styles</a>
+ </li>
+</ul>
+<a shape='rect' id='useful-features' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Useful Features</h2>
+<ul>
+ <li>
+  <a href='../using-mathematica/useful-features/plotting.html'>Plotting</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/useful-features/symbolic-algebra.html'>Symbolic Algebra</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/useful-features/calculus.html'>Calculus</a>
+ </li>
+ <li>
+  <a href='../using-mathematica/useful-features/builtin-data-and-units.html'>Built-in Data and Units</a>
+ </li>
+</ul>
+<a shape='rect' id='mathematica-programming' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h1> Mathematica Programming</h1>
+<a shape='rect' id='code-structure' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Code Structure</h2>
+<ul>
+ <li>
+  <a href='../mathematica-programming/code-structure/symbols-and-expressions.html'>Symbols and Expressions</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/expressions-structure.html'>Expressions Structure</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/patterns.html'>Patterns</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/replacement-patterns.html'>Replacement Patterns</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/functions.html'>Functions</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/contexts.html'>Contexts</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/ownvalues-set-and-setdelayed.html'>OwnValues, Set, and SetDelayed</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/function-values-and-definition-clearing-.html'>Function Values and Definition Clearing</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/hold-and-evaluation-order.html'>Hold and Evaluation Order</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/code-structure/scoping-revisited.html'>Scoping Revisited</a>
+ </li>
+</ul>
+<a shape='rect' id='higherlevel-functionality' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Higher-Level Functionality</h2>
+<ul>
+ <li>
+  <a href='../mathematica-programming/higher-level-functionality/packages.html'>Packages</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/higher-level-functionality/dynamic.html'>Dynamic</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/higher-level-functionality/formatting.html'>Formatting</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/higher-level-functionality/interfaces.html'>Interfaces</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/higher-level-functionality/the-front-end.html'>The Front End</a>
+ </li>
+</ul>
+<a shape='rect' id='assorted-tricks' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Assorted Tricks</h2>
+<ul>
+ <li>
+  <a href='../mathematica-programming/assorted-tricks/trottstrzebonski.html'>Trott-Strzebonski</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/assorted-tricks/villegasgayley.html'>Villegas-Gayley</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/assorted-tricks/import-and-readlist.html'>Import and ReadList</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/assorted-tricks/currentvalue-and-frontendtokens.html'>CurrentValue and FrontEndTokens</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/assorted-tricks/info-scraping.html'>Info Scraping</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/assorted-tricks/object-oriented-programming.html'>Object Oriented Programming</a>
+ </li>
+</ul>
+<a shape='rect' id='functional-programming' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Functional Programming</h2>
+<ul>
+ <li>
+  <a href='../mathematica-programming/functional-programming/procedural-programming.html'>Procedural Programming</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/functional-programming/table--do.html'>Table / Do</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/functional-programming/map--scan.html'>Map / Scan</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/functional-programming/nest--nestlist.html'>Nest / NestList</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/functional-programming/fold--foldlist.html'>Fold / FoldList</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/functional-programming/fixedpoint-and-gradients.html'>FixedPoint and Gradients</a>
+ </li>
+</ul>
+<a shape='rect' id='performance-tuning' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Performance Tuning</h2>
+<ul>
+ <li>
+  <a href='../mathematica-programming/performance-tuning/compile.html'>Compile</a>
+ </li>
+ <li>
+  <a href='../mathematica-programming/performance-tuning/special-array-types.html'>Special Array Types</a>
+ </li>
+</ul>
+    </div>
+  </article>
+      </div>
+      </div>
+    </div>
+  <!-- Footer -->
+  <div class="w3-center w3-black w3-padding-16">
+        <div class="w3-black w3-center w3-padding-24">
+            Powered by
+            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">
+              w3.css
+            </a>
+        </div>
+  </div>
+  <!-- End page content -->
+</div>
+<script>
+// Accordion
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+</body>
+</html>

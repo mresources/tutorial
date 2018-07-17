@@ -1,0 +1,503 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17732,        495]
+NotebookOptionsPosition[     13889,        424]
+NotebookOutlinePosition[     14316,        441]
+CellTagsIndexPosition[     14273,        438]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Internal\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Reference Guides/Undocumented Contexts/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<4.1.2\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Tue 17 Jul 2018 01:16:59\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "17", ",", "1", ",", "16", ",", 
+              "59.037302`8.523701475112768"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<reference-guides\>\"", ",", "\"\<undocumented-contexts\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<undocumented\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.74077953306179*^9, 
+   3.7407795404796257`*^9}, {3.740804293761916*^9, 3.740804334443972*^9}, {
+   3.740804627733314*^9, 3.740804630034439*^9}, {3.7408056677566643`*^9, 
+   3.7408056681510773`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Internal", "Subsection",
+ CellChangeTimes->{{3.74080434357171*^9, 3.74080434755488*^9}, {
+  3.740804649658062*^9, 
+  3.740804650456716*^9}},ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-\
+adb5ce7e4ec7"],
+
+Cell[TextData[{
+ "The ",
+ Cell[BoxData["\"\<Internal`\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "66125312-8df0-4a44-80e1-291affc8564e"],
+ " context is one of the core contexts that Mathematica uses. It\
+\[CloseCurlyQuote]s got no targeted focus, but rather appears to be a place \
+where developers dump the cruft they don\[CloseCurlyQuote]t know what to do \
+with."
+}], "Text",
+ CellChangeTimes->{{3.740804653209898*^9, 3.7408046776003847`*^9}, {
+  3.740804735467436*^9, 
+  3.74080475755357*^9}},ExpressionUUID->"4e13a6f7-8b6c-4468-bb16-\
+90fbde9b9323"],
+
+Cell[CellGroupData[{
+
+Cell["Bag", "Subsubsection",
+ CellChangeTimes->{{3.740804790416518*^9, 
+  3.740804790729007*^9}},ExpressionUUID->"60120f1d-6c79-4b41-a80b-\
+a48139ceb066"],
+
+Cell[TextData[{
+ "Provides a general purpose container that has efficient push and pop \
+behavior. Especially useful in ",
+ Cell[BoxData["Compile"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "8e689f12-763f-4755-9c00-132c000e5d47"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740804900999379*^9, 
+  3.740804930069438*^9}},ExpressionUUID->"8eefbd66-cc1d-4e55-8e9c-\
+77cc712eca30"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/q/845/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/q/845/38205"]
+}], "Text",
+ CellChangeTimes->{{3.740804845298149*^9, 3.740804847729362*^9}, {
+  3.7408048818521557`*^9, 
+  3.740804881858347*^9}},ExpressionUUID->"dd6370f8-8e9e-48f8-8a79-\
+547861082dc2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["StuffBag", "Subsubsection",
+ CellChangeTimes->{
+  3.740804815879751*^9},ExpressionUUID->"b9805ea6-6780-4546-a792-\
+a1ed7b700224"],
+
+Cell[TextData[{
+ "Used with ",
+ Cell[BoxData["Internal`Bag"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "9d06045b-458e-4ba1-bb7c-bf1dc834c884"]
+}], "Text",
+ CellChangeTimes->{{3.740804931813439*^9, 
+  3.740804939587564*^9}},ExpressionUUID->"bef09f03-4d69-45d5-a94f-\
+e7cd3d1cfc30"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/q/845/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/q/845/38205"]
+}], "Text",
+ CellChangeTimes->{{3.740804845298149*^9, 3.740804847729362*^9}, {
+  3.7408048818521557`*^9, 
+  3.740804881858347*^9}},ExpressionUUID->"db96a52a-0341-49a9-aca0-\
+63a5ec9fbea3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["BagPart", "Subsubsection",
+ CellChangeTimes->{{3.740804792096525*^9, 
+  3.740804793840954*^9}},ExpressionUUID->"b860945a-1a20-4280-9ebe-\
+e7635fcbc342"],
+
+Cell[TextData[{
+ "Used with ",
+ Cell[BoxData["Internal`Bag"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "f6af2eb6-a465-449e-bbfd-a62bf4a1ca8d"]
+}], "Text",
+ CellChangeTimes->{{3.740804931813439*^9, 
+  3.740804939587564*^9}},ExpressionUUID->"18314603-c485-46c6-916f-\
+0ca10b4dfa3a"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/q/845/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/q/845/38205"]
+}], "Text",
+ CellChangeTimes->{{3.740804845298149*^9, 3.740804847729362*^9}, {
+  3.7408048818521557`*^9, 
+  3.740804881858347*^9}},ExpressionUUID->"17a83c64-39cc-4703-b4d1-\
+9fc1150cd878"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WithLocalSettings", "Subsubsection",
+ CellChangeTimes->{{3.7408048213971033`*^9, 
+  3.7408048247958307`*^9}},ExpressionUUID->"24d09f29-f488-4793-8a2a-\
+6c3e076de347"],
+
+Cell[TextData[{
+ "Allows for a setup block that will be evaluated before a code block and a \
+tear-down block that will evaluate ",
+ StyleBox["no matter what errors are raised in the code block",
+  FontSlant->"Italic"],
+ ". This is highly-useful for error handling."
+}], "Text",
+ CellChangeTimes->{{3.740804946031163*^9, 3.740804953869693*^9}, {
+  3.740804986261454*^9, 
+  3.740805025898388*^9}},ExpressionUUID->"f8c79f9e-e5fa-4129-b752-\
+06fa005ece98"],
+
+Cell[TextData[{
+ "The function ",
+ Cell[BoxData["GeneralUtilities`SetupTeardown"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a93d120b-f962-4a72-8eb0-afc7d5f41a3b"],
+ " provides a mild generalization on this."
+}], "Text",
+ CellChangeTimes->{{3.740805029970293*^9, 
+  3.740805048906302*^9}},ExpressionUUID->"ce81d1cf-1b61-4d1c-9ed2-\
+45589d9090fa"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://stackoverflow.com/a/7586910/5720002"], None},
+  ButtonNote->"https://stackoverflow.com/a/7586910/5720002"],
+ " or ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/a/1603/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/a/1603/38205"]
+}], "Text",
+ CellChangeTimes->{{3.7408050506094837`*^9, 3.740805053225975*^9}, {
+  3.740805167551008*^9, 
+  3.7408051831000843`*^9}},ExpressionUUID->"50e798af-5377-416e-830a-\
+9ff8c8c7f956"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["InheritedBlock", "Subsubsection",
+ CellChangeTimes->{{3.740805345255485*^9, 3.740805347134561*^9}, {
+  3.740805395197341*^9, 
+  3.7408053975718*^9}},ExpressionUUID->"07ebc84f-af73-4ed2-adfd-3ac83cf1f5ed"],
+
+Cell[TextData[{
+ "Allows for definitions to be preserved, but otherwise uses ",
+ Cell[BoxData["Block"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "40437715-3f85-4c93-af11-cd9e9345f36d"],
+ " semantics. Very useful for metaprogramming and overloading."
+}], "Text",
+ CellChangeTimes->{{3.740805399196814*^9, 
+  3.740805429106654*^9}},ExpressionUUID->"a6dd8910-0893-4b0e-b103-\
+b59287aa3a15"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/a/25771/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/a/25771/38205"]
+}], "Text",
+ CellChangeTimes->{{3.7408054302422647`*^9, 
+  3.740805449612322*^9}},ExpressionUUID->"62817c94-5005-4fbc-bc3d-\
+c7db81ee890c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["WithTimestampsPreserved", "Subsubsection",
+ CellChangeTimes->{
+  3.740804834367626*^9},ExpressionUUID->"d85a352b-c7ca-48cd-8c27-\
+25f7ede210d1"],
+
+Cell["\<\
+This is a tricky function that tells the kernel to preserve some amount of \
+old-state for efficiency/control reasons.\
+\>", "Text",
+ CellChangeTimes->{{3.7408051865458403`*^9, 
+  3.740805226344728*^9}},ExpressionUUID->"c9513829-cd68-4cd5-8ab8-\
+09ede5a6470d"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/a/168166/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/a/168166/38205"]
+}], "Text",
+ CellChangeTimes->{{3.7408052297116833`*^9, 3.7408052310483503`*^9}, {
+  3.740805268923736*^9, 
+  3.74080526892873*^9}},ExpressionUUID->"eb01eb7a-3aa6-481a-b6e0-\
+156ecd790f7f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["LoadingPanel", "Subsubsection",
+ CellChangeTimes->{{3.740804763136999*^9, 
+  3.740804765577718*^9}},ExpressionUUID->"f53f88e4-957e-4b22-873d-\
+568ea6527ee6"],
+
+Cell[TextData[{
+ "This just makes a nicely formatted panel with a 9-patch ",
+ Cell[BoxData["Appearance"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "b42733aa-1add-478c-9a78-f8859cb9f8a3"],
+ " argument:"
+}], "Text",
+ CellChangeTimes->{{3.740805270744795*^9, 
+  3.740805295015745*^9}},ExpressionUUID->"2e9dd296-c4af-438c-a601-\
+2330b48261af"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Internal`LoadingPanel", "@", "\"\<Hello World\>\""}]], "Code",
+ CellChangeTimes->{{3.740805298136553*^9, 3.7408053168313017`*^9}},
+ CellLabel->
+  "In[300]:=",ExpressionUUID->"11070b33-771e-4d4e-921b-bd1a5c5f8803"],
+
+Cell[BoxData[
+ PanelBox[
+  StyleBox["\<\"Hello World\"\>", "Button",
+   StripOnInput->False,
+   LineColor->GrayLevel[0.5],
+   FrontFaceColor->GrayLevel[0.5],
+   BackFaceColor->GrayLevel[0.5],
+   GraphicsColor->GrayLevel[0.5],
+   FontColor->GrayLevel[0.5]],
+  Alignment->{Center, Center},
+  Appearance->{
+   "Default" -> 
+    FrontEnd`FileName[{"Typeset", "PrintTemporary"}, "LightBlue.9.png"]},
+  FrameMargins->{{12, 12}, {8, 12}}]], "Output",
+ CellChangeTimes->{{3.740805303905229*^9, 3.740805317225382*^9}},
+ CellLabel->
+  "Out[300]=",ExpressionUUID->"24b65604-d18a-4c95-bf0a-c14c25b749ae"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Handlers", "Subsubsection",
+ CellChangeTimes->{{3.740805369935075*^9, 
+  3.740805370797976*^9}},ExpressionUUID->"99b52d55-df15-477f-9076-\
+3e8d13f88124"],
+
+Cell[TextData[{
+ "A system of internal handlers for various events that occur. Generally best \
+used with ",
+ Cell[BoxData["Internal`HandlerBlock"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "b01a22ac-c322-434b-bf3c-bf35974e446b"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.7408054627863913`*^9, 
+  3.740805491256318*^9}},ExpressionUUID->"116853c6-3ee4-46ee-af83-\
+6609d6b375c8"],
+
+Cell[TextData[{
+ "See ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/a/139718/38205"], None},
+  ButtonNote->"https://mathematica.stackexchange.com/a/139718/38205"]
+}], "Text",
+ CellChangeTimes->{{3.7408054970800467`*^9, 
+  3.74080552271245*^9}},ExpressionUUID->"82cd5513-b11b-4bb9-9d80-\
+b919ab0f6ca2"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["HandlerBlock", "Subsubsection",
+ CellChangeTimes->{{3.740805363463229*^9, 
+  3.7408053656700163`*^9}},ExpressionUUID->"66f5c935-52e1-4aa9-8f4c-\
+c963f35ab4a3"],
+
+Cell[TextData[{
+ "This acts in much the same way to the handlers, but can treat them in a ",
+ Cell[BoxData["Block"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ad1bd56b-175d-4fe5-9fa5-9fae7694e7a3"],
+ "-like fashion."
+}], "Text",
+ CellChangeTimes->{{3.740805612548671*^9, 
+  3.7408056358595457`*^9}},ExpressionUUID->"eece4471-72cf-4bee-9c0e-\
+e4b4ccc14a22"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["LocalizedBlock", "Subsubsection",
+ CellChangeTimes->{{3.740805640410758*^9, 
+  3.740805643139208*^9}},ExpressionUUID->"7a381123-eaf6-44ac-8075-\
+dbcbb3aa4ea8"],
+
+Cell[TextData[{
+ "Like ",
+ Cell[BoxData["Block"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "129f5dd9-1db8-4d46-a3b7-05a04629f8bf"],
+ " but can localize some non-",
+ Cell[BoxData["Symbol"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "8462d7a7-d434-4c66-9fb4-09c1355a7369"],
+ " arguments."
+}], "Text",
+ CellChangeTimes->{{3.740805644770509*^9, 
+  3.740805659995294*^9}},ExpressionUUID->"d3d777da-165f-4735-a707-\
+a9d17ab4e5d3"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{91, Automatic}, {37, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2490, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3073, 77, 203, 4, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
+Cell[3279, 83, 581, 13, 58, "Text",ExpressionUUID->"4e13a6f7-8b6c-4468-bb16-90fbde9b9323"],
+Cell[CellGroupData[{
+Cell[3885, 100, 154, 3, 40, "Subsubsection",ExpressionUUID->"60120f1d-6c79-4b41-a80b-a48139ceb066"],
+Cell[4042, 105, 395, 10, 35, "Text",ExpressionUUID->"8eefbd66-cc1d-4e55-8e9c-77cc712eca30"],
+Cell[4440, 117, 410, 11, 35, "Text",ExpressionUUID->"dd6370f8-8e9e-48f8-8a79-547861082dc2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4887, 133, 135, 3, 40, "Subsubsection",ExpressionUUID->"b9805ea6-6780-4546-a792-a1ed7b700224"],
+Cell[5025, 138, 302, 8, 35, "Text",ExpressionUUID->"bef09f03-4d69-45d5-a94f-e7cd3d1cfc30"],
+Cell[5330, 148, 410, 11, 35, "Text",ExpressionUUID->"db96a52a-0341-49a9-aca0-63a5ec9fbea3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5777, 164, 158, 3, 40, "Subsubsection",ExpressionUUID->"b860945a-1a20-4280-9ebe-e7635fcbc342"],
+Cell[5938, 169, 302, 8, 35, "Text",ExpressionUUID->"18314603-c485-46c6-916f-0ca10b4dfa3a"],
+Cell[6243, 179, 410, 11, 35, "Text",ExpressionUUID->"17a83c64-39cc-4703-b4d1-9fc1150cd878"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6690, 195, 172, 3, 40, "Subsubsection",ExpressionUUID->"24d09f29-f488-4793-8a2a-6c3e076de347"],
+Cell[6865, 200, 453, 10, 58, "Text",ExpressionUUID->"f8c79f9e-e5fa-4129-b752-06fa005ece98"],
+Cell[7321, 212, 368, 9, 35, "Text",ExpressionUUID->"ce81d1cf-1b61-4d1c-9ed2-45589d9090fa"],
+Cell[7692, 223, 609, 17, 35, "Text",ExpressionUUID->"50e798af-5377-416e-830a-9ff8c8c7f956"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8338, 245, 210, 3, 40, "Subsubsection",ExpressionUUID->"07ebc84f-af73-4ed2-adfd-3ac83cf1f5ed"],
+Cell[8551, 250, 409, 9, 58, "Text",ExpressionUUID->"a6dd8910-0893-4b0e-b103-b59287aa3a15"],
+Cell[8963, 261, 365, 10, 35, "Text",ExpressionUUID->"62817c94-5005-4fbc-bc3d-c7db81ee890c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9365, 276, 150, 3, 40, "Subsubsection",ExpressionUUID->"d85a352b-c7ca-48cd-8c27-25f7ede210d1"],
+Cell[9518, 281, 270, 6, 58, "Text",ExpressionUUID->"c9513829-cd68-4cd5-8ab8-09ede5a6470d"],
+Cell[9791, 289, 417, 11, 35, "Text",ExpressionUUID->"eb01eb7a-3aa6-481a-b6e0-156ecd790f7f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10245, 305, 163, 3, 40, "Subsubsection",ExpressionUUID->"f53f88e4-957e-4b22-873d-568ea6527ee6"],
+Cell[10411, 310, 361, 9, 35, "Text",ExpressionUUID->"2e9dd296-c4af-438c-a601-2330b48261af"],
+Cell[CellGroupData[{
+Cell[10797, 323, 237, 4, 52, "Code",ExpressionUUID->"11070b33-771e-4d4e-921b-bd1a5c5f8803"],
+Cell[11037, 329, 592, 16, 65, "Output",ExpressionUUID->"24b65604-d18a-4c95-bf0a-c14c25b749ae"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11678, 351, 159, 3, 40, "Subsubsection",ExpressionUUID->"99b52d55-df15-477f-9076-3e8d13f88124"],
+Cell[11840, 356, 397, 10, 35, "Text",ExpressionUUID->"116853c6-3ee4-46ee-af83-6609d6b375c8"],
+Cell[12240, 368, 366, 10, 35, "Text",ExpressionUUID->"82cd5513-b11b-4bb9-9d80-b919ab0f6ca2"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12643, 383, 165, 3, 40, "Subsubsection",ExpressionUUID->"66f5c935-52e1-4aa9-8f4c-c963f35ab4a3"],
+Cell[12811, 388, 378, 9, 35, "Text",ExpressionUUID->"eece4471-72cf-4bee-9c0e-e4b4ccc14a22"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13226, 402, 165, 3, 40, "Subsubsection",ExpressionUUID->"7a381123-eaf6-44ac-8075-dbcbb3aa4ea8"],
+Cell[13394, 407, 467, 13, 35, "Text",ExpressionUUID->"d3d777da-165f-4735-a707-a9d17ab4e5d3"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

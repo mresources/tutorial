@@ -1,0 +1,1701 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     66183,       1693]
+NotebookOptionsPosition[     60142,       1589]
+NotebookOutlinePosition[     60569,       1606]
+CellTagsIndexPosition[     60526,       1603]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Interfaces\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Higher-Level Functionality/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.2.4\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 23:24:03\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "23", ",", "24", ",", 
+              "3"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<higher-level-functionality\>\""}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<interfaces\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.723349986122611*^9, 3.723349991904604*^9}, {3.723433937399744*^9, 
+   3.7234339492210913`*^9}, {3.7234339952412663`*^9, 
+   3.7234339982728863`*^9}, {3.740780360018077*^9, 
+   3.740780365002945*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Interfaces", "Subsection",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68705844159857*^9, 3.687058444457397*^9}, {
+   3.723434244569152*^9, 
+   3.7234342447989683`*^9}},ExpressionUUID->"558bd3b7-5bba-478d-a15f-\
+22a733dc4a95"],
+
+Cell[CellGroupData[{
+
+Cell["Button", "Subsubsection",ExpressionUUID->"f51ae292-33cb-48db-a4d2-9fa7cd3e89bb"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Button", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "7efbcb02-f555-46b6-a0f2-c85cae49df42"],
+ " is as simple as they come. It\[CloseCurlyQuote]s just a button. It has an \
+expression it puts on the button and it runs a command and that\
+\[CloseCurlyQuote]s it:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687061357758771*^9, 3.687061391820764*^9}, 
+   3.6870620793663807`*^9},ExpressionUUID->"eb02ab48-cf7c-40a7-8865-\
+c8dca2e2aa03"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Button", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"MouseAppearance", "[", 
+    RowBox[{"\"\<Click Me\>\"", ",", "\n", "\t\t", 
+     RowBox[{"Style", "[", 
+      RowBox[{"\"\<?\>\"", ",", "Large", ",", "Bold"}], "]"}]}], "\n", "\t\t",
+     "]"}], ",", "\n", "\t", 
+   RowBox[{"Print", "[", "\"\<Ouch!\>\"", "]"}]}], "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.687061424133247*^9, 3.687061454283613*^9}, {
+  3.6870617911522923`*^9, 3.687061797166765*^9}, {3.687061834158794*^9, 
+  3.687061879301709*^9}, {3.687062078488508*^9, 3.6870620820467463`*^9}, {
+  3.723433958612442*^9, 
+  3.723433985101714*^9}},ExpressionUUID->"6a1998f6-bbb3-4eb1-9dc6-\
+8a5d4d3cbdbc"],
+
+Cell[BoxData[
+ ButtonBox[
+  TagBox["\<\"Click Me\"\>",
+   MouseAppearanceTag[{
+     StyleBox["\"?\"", Large, Bold, StripOnInput -> False]}]],
+  Appearance->Automatic,
+  ButtonFunction:>Print["Ouch!"],
+  Evaluator->Automatic,
+  Method->"Preemptive"]], "Output",
+ CellChangeTimes->{{3.6870618424689817`*^9, 3.687061869911199*^9}, 
+   3.6870620846058903`*^9},ExpressionUUID->"9812d0b6-4db1-4040-995b-\
+318b46d015cc"]
+}, Open  ]],
+
+Cell["It\[CloseCurlyQuote]s got some nice formatting options:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870618904367237`*^9, 
+   3.687061898867301*^9}},ExpressionUUID->"5e8054f0-464b-4e1f-a21e-\
+3aa5ed436b51"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Row", "@", 
+  RowBox[{"Table", "[", "\n", "\t", 
+   RowBox[{
+    RowBox[{"With", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"a", "=", "a"}], "}"}], ",", "\n", "\t\t", 
+      RowBox[{"Button", "[", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"MouseAppearance", "[", 
+         RowBox[{"\"\<Click Me\>\"", ",", "\n", "\t\t\t\t", 
+          RowBox[{"Style", "[", 
+           RowBox[{"\"\<?\>\"", ",", "Large", ",", "Bold"}], "]"}]}], "\n", 
+         "\t\t\t\t", "]"}], ",", "\n", "\t\t\t", 
+        RowBox[{"Print", "[", "a", "]"}], ",", "\n", "\t\t\t", 
+        RowBox[{"Appearance", "\[Rule]", "a"}]}], "]"}]}], "\n", "\t\t", 
+     "]"}], ",", "\n", "\t", 
+    RowBox[{"{", 
+     RowBox[{"a", ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "Automatic", ",", "\"\<Frameless\>\"", ",", "\"\<Palette\>\"", ",", 
+        "\"\<AbuttingRight\>\"", ",", "\"\<AbuttingLeft\>\""}], "}"}]}], 
+     "}"}]}], "\n", "\t", "]"}]}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.687061424133247*^9, 3.687061454283613*^9}, {
+   3.6870617911522923`*^9, 3.687061797166765*^9}, {3.687061834158794*^9, 
+   3.687062037841525*^9}, 3.687062083778289*^9, {3.7234339586707077`*^9, 
+   3.723433985135103*^9}},ExpressionUUID->"1b0381f6-013c-494d-ae8a-\
+31ff86edd4fd"],
+
+Cell[BoxData[
+ TemplateBox[{ButtonBox[
+    TagBox["\"Click Me\"", 
+     MouseAppearanceTag[{
+       StyleBox["\"?\"", Large, Bold, StripOnInput -> False]}]], 
+    ButtonFunction :> Print[Automatic], Appearance -> Automatic, Evaluator -> 
+    Automatic, Method -> "Preemptive"],ButtonBox[
+    TagBox["\"Click Me\"", 
+     MouseAppearanceTag[{
+       StyleBox["\"?\"", Large, Bold, StripOnInput -> False]}]], 
+    ButtonFunction :> Print["Frameless"], Appearance -> "Frameless", 
+    Evaluator -> Automatic, Method -> "Preemptive"],ButtonBox[
+    TagBox["\"Click Me\"", 
+     MouseAppearanceTag[{
+       StyleBox["\"?\"", Large, Bold, StripOnInput -> False]}]], 
+    ButtonFunction :> Print["Palette"], Appearance -> "Palette", Evaluator -> 
+    Automatic, Method -> "Preemptive"],ButtonBox[
+    TagBox["\"Click Me\"", 
+     MouseAppearanceTag[{
+       StyleBox["\"?\"", Large, Bold, StripOnInput -> False]}]], 
+    ButtonFunction :> Print["AbuttingRight"], Appearance -> "AbuttingRight", 
+    Evaluator -> Automatic, Method -> "Preemptive"],ButtonBox[
+    TagBox["\"Click Me\"", 
+     MouseAppearanceTag[{
+       StyleBox["\"?\"", Large, Bold, StripOnInput -> False]}]], 
+    ButtonFunction :> Print["AbuttingLeft"], Appearance -> "AbuttingLeft", 
+    Evaluator -> Automatic, Method -> "Preemptive"]},
+  "RowDefault"]], "Output",
+ CellChangeTimes->{{3.687061908644684*^9, 3.68706193310616*^9}, {
+   3.687061969305209*^9, 3.687062038345468*^9}, 
+   3.687062085642673*^9},ExpressionUUID->"f76cde21-a692-4aeb-a1b1-\
+ab1fc3bc1782"]
+}, Open  ]],
+
+Cell["And you can change its basic styling:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687062044042581*^9, 
+   3.687062060918716*^9}},ExpressionUUID->"992f8ba8-b801-43f4-bdcf-\
+67a6718c0696"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Button", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"Mouseover", "[", 
+    RowBox[{"\"\<You deserve a break\>\"", ",", "\n", "\t\t", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+      "\"\<Relax and click here\>\"", ",", "\"\<HyperlinkActive\>\""}], 
+      "]"}]}], "\n", "\t\t", "]"}], ",", "\n", "\t", 
+   RowBox[{
+   "SystemOpen", "@", "\"\<https://www.youtube.com/watch?v=cMdiYuzHVZ4\>\""}],
+    ",", "\n", "\t", 
+   RowBox[{"BaseStyle", "\[Rule]", "\"\<Hyperlink\>\""}], ",", "\n", "\t", 
+   RowBox[{"Appearance", "\[Rule]", "\"\<Frameless\>\""}]}], "\n", "\t", 
+  "]"}]], "Code",
+ CellChangeTimes->{{3.687062068657205*^9, 3.687062196123356*^9}, {
+  3.68706234091136*^9, 3.687062343618148*^9}, {3.687062382827142*^9, 
+  3.687062394974378*^9}, {3.687062443250886*^9, 3.687062548611628*^9}, {
+  3.7234339587072372`*^9, 
+  3.723433985167066*^9}},ExpressionUUID->"041807ea-33c8-4728-b5c2-\
+99efbdffc499"],
+
+Cell[BoxData[
+ ButtonBox[
+  PaneSelectorBox[{False->"\<\"You deserve a break\"\>", True->
+   StyleBox["\<\"Relax and click here\"\>", "HyperlinkActive",
+    StripOnInput->False]}, Dynamic[
+    CurrentValue["MouseOver"]],
+   FrameMargins->0,
+   ImageSize->Automatic],
+  Appearance->"Frameless",
+  BaseStyle->"Hyperlink",
+  ButtonFunction:>SystemOpen["https://www.youtube.com/watch?v=cMdiYuzHVZ4"],
+  Evaluator->Automatic,
+  Method->"Preemptive"]], "Output",
+ CellChangeTimes->{
+  3.6870625102175503`*^9, {3.687062540620242*^9, 
+   3.687062549602852*^9}},ExpressionUUID->"a97f467e-4c2e-4c72-b604-\
+a4b6d33fca71"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["InputField", "Subsubsection",ExpressionUUID->"7637dc65-1c68-4ec8-b157-790a6239f992"],
+
+Cell[TextData[{
+ "An ",
+ Cell[BoxData[
+  FormBox["InputField", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "b79d862b-2a43-44ef-888c-f2ba2a00b2dd"],
+ " is pretty self-explanatory:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870625624214582`*^9, 
+   3.6870626013780107`*^9}},ExpressionUUID->"4912567f-2ac6-4ce3-a1e4-\
+5924ec30ffa2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InputField", "[", 
+  RowBox[{"\"\<Hi there\>\"", ",", "String"}], "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68706260286537*^9, 3.687062622675562*^9}, {
+   3.723433958759008*^9, 
+   3.723433985194029*^9}},ExpressionUUID->"977100b5-0d0c-4982-b3fa-\
+947bafd3182c"],
+
+Cell[BoxData[
+ TagBox[
+  DynamicModuleBox[{Typeset`i$$ = "Hi there"}, 
+   InputFieldBox[Dynamic[Typeset`i$$], String],
+   DynamicModuleValues:>{}],
+  InputField[
+   Setting[#], String]& ]], "Output",
+ CellChangeTimes->{{3.687062608023258*^9, 
+  3.687062622959649*^9}},ExpressionUUID->"8d736f98-2fd0-4139-8964-\
+a513f8f0e33f"]
+}, Open  ]],
+
+Cell[TextData[{
+ "Its usefulness comes when combined with ",
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "ca88da34-b333-466b-b7b6-a7a5e39e7935"]
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870626384407682`*^9, 
+   3.687062665807377*^9}},ExpressionUUID->"5f234865-b20e-4ec4-8415-\
+1a2dd316b4a3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"inputVar", "=", "\"\<Change me\>\""}], ";"}], "\n", 
+ RowBox[{"InputField", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"inputVar", ",", "\n", "\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Print", "[", "\"\<Changed!\>\"", "]"}], ";", 
+       RowBox[{"inputVar", "=", "#"}], ";"}], "&"}]}], "]"}], ",", "String"}],
+   "]"}]}], "Code",
+ CellChangeTimes->{{3.687062673235515*^9, 3.6870627146893063`*^9}, {
+  3.6870628617459383`*^9, 3.687062872632821*^9}, {3.687063607137127*^9, 
+  3.687063612761922*^9}, {3.723433958786848*^9, 
+  3.7234339852257357`*^9}},ExpressionUUID->"01de7a37-09f2-4339-8084-\
+a6aea2e02557"],
+
+Cell[BoxData[
+ InputFieldBox[
+  Dynamic[$CellContext`inputVar, (
+   Print["Changed!"]; $CellContext`inputVar = #; Null)& ], String]], "Output",\
+
+ CellChangeTimes->{3.6870627159093533`*^9, 3.6870628731139593`*^9, 
+  3.687063615700597*^9},ExpressionUUID->"069026a6-85c6-4032-91eb-\
+6c17eba832df"]
+}, Open  ]],
+
+Cell[BoxData["inputVar"], "Code",
+ CellChangeTimes->{
+  3.6870636693437347`*^9},ExpressionUUID->"cb5ead83-81d7-4886-8de7-\
+da37a7edf25f"],
+
+Cell["\<\
+It of course has many useful styling and usage options but these are \
+generally pretty well documented so there is no pressing need to discuss them \
+here.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870629192274933`*^9, 3.6870630438824997`*^9}, {
+   3.687063380630939*^9, 3.687063381982367*^9}, {3.687204696944613*^9, 
+   3.68720470016476*^9}},ExpressionUUID->"490919c6-fbc5-4895-8951-\
+e63ed1cdb3b9"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["PopupMenu", "Subsubsection",ExpressionUUID->"e8623a4b-f1db-48d3-9aa3-63ba9abad7eb"],
+
+Cell[TextData[{
+ "A ",
+ Cell[BoxData[
+  FormBox["PopupMenu", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "e7271d13-3c4e-449f-9742-35b43798b798"],
+ " just selects a value from a list:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687063438908687*^9, 
+   3.68706345685876*^9}},ExpressionUUID->"03c1250b-a524-43c3-91c9-\
+65c839362bd1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PopupMenu", "[", 
+  RowBox[{"\"\<\>\"", ",", 
+   RowBox[{"Prepend", "[", 
+    RowBox[{
+     RowBox[{"Names", "[", "\"\<*Data\>\"", "]"}], ",", 
+     RowBox[{"\"\<\>\"", "\[Rule]", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Choose a data type\>\"", ",", "Italic", ",", "Gray"}], 
+       "]"}]}]}], "]"}]}], "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870634593761587`*^9, 3.6870635807359467`*^9}, {
+   3.7234339588991756`*^9, 
+   3.723433985316741*^9}},ExpressionUUID->"d502a5cc-812e-4aab-a439-\
+ae8c055db97a"],
+
+Cell[BoxData[
+ PopupMenuBox["", {""->
+  StyleBox["\<\"Choose a data type\"\>",
+   StripOnInput->False,
+   LineColor->GrayLevel[0.5],
+   FrontFaceColor->GrayLevel[0.5],
+   BackFaceColor->GrayLevel[0.5],
+   GraphicsColor->GrayLevel[0.5],
+   FontSlant->Italic,
+   FontColor->GrayLevel[0.5]], 
+  "AdministrativeDivisionData"->"\<\"AdministrativeDivisionData\"\>", 
+  "AircraftData"->"\<\"AircraftData\"\>", 
+  "AirportData"->"\<\"AirportData\"\>", 
+  "AirPressureData"->"\<\"AirPressureData\"\>", 
+  "AirTemperatureData"->"\<\"AirTemperatureData\"\>", 
+  "AlgebraicRulesData"->"\<\"AlgebraicRulesData\"\>", 
+  "AnatomyData"->"\<\"AnatomyData\"\>", 
+  "AstronomicalData"->"\<\"AstronomicalData\"\>", 
+  "AudioData"->"\<\"AudioData\"\>", "BoxData"->"\<\"BoxData\"\>", 
+  "BridgeData"->"\<\"BridgeData\"\>", 
+  "BroadcastStationData"->"\<\"BroadcastStationData\"\>", 
+  "BuildingData"->"\<\"BuildingData\"\>", "ButtonData"->"\<\"ButtonData\"\>", 
+  "CalendarData"->"\<\"CalendarData\"\>", 
+  "CellGroupData"->"\<\"CellGroupData\"\>", 
+  "ChartElementData"->"\<\"ChartElementData\"\>", 
+  "ChemicalData"->"\<\"ChemicalData\"\>", "CityData"->"\<\"CityData\"\>", 
+  "CloudAccountData"->"\<\"CloudAccountData\"\>", 
+  "CloudLoggingData"->"\<\"CloudLoggingData\"\>", 
+  "CloudObjectInformationData"->"\<\"CloudObjectInformationData\"\>", 
+  "ColorData"->"\<\"ColorData\"\>", 
+  "ColorProfileData"->"\<\"ColorProfileData\"\>", 
+  "CometData"->"\<\"CometData\"\>", "CompanyData"->"\<\"CompanyData\"\>", 
+  "CompressedData"->"\<\"CompressedData\"\>", 
+  "ConstellationData"->"\<\"ConstellationData\"\>", 
+  "ContinuousWaveletData"->"\<\"ContinuousWaveletData\"\>", 
+  "ControllerInformationData"->"\<\"ControllerInformationData\"\>", 
+  "CoordinateChartData"->"\<\"CoordinateChartData\"\>", 
+  "CoordinateTransformData"->"\<\"CoordinateTransformData\"\>", 
+  "CountryData"->"\<\"CountryData\"\>", "DamData"->"\<\"DamData\"\>", 
+  "DeepSpaceProbeData"->"\<\"DeepSpaceProbeData\"\>", 
+  "DiscreteWaveletData"->"\<\"DiscreteWaveletData\"\>", 
+  "DocumentGeneratorInformationData"->"\<\"DocumentGeneratorInformationData\"\
+\>", "EarthImpactData"->"\<\"EarthImpactData\"\>", 
+  "EarthquakeData"->"\<\"EarthquakeData\"\>", 
+  "ElementData"->"\<\"ElementData\"\>", 
+  "EvaluationData"->"\<\"EvaluationData\"\>", 
+  "EventData"->"\<\"EventData\"\>", "ExampleData"->"\<\"ExampleData\"\>", 
+  "ExoplanetData"->"\<\"ExoplanetData\"\>", 
+  "FetalGrowthData"->"\<\"FetalGrowthData\"\>", 
+  "FinancialData"->"\<\"FinancialData\"\>", 
+  "FiniteGroupData"->"\<\"FiniteGroupData\"\>", 
+  "FormulaData"->"\<\"FormulaData\"\>", "GalaxyData"->"\<\"GalaxyData\"\>", 
+  "GenomeData"->"\<\"GenomeData\"\>", "GeodesyData"->"\<\"GeodesyData\"\>", 
+  "GeoElevationData"->"\<\"GeoElevationData\"\>", 
+  "GeogravityModelData"->"\<\"GeogravityModelData\"\>", 
+  "GeologicalPeriodData"->"\<\"GeologicalPeriodData\"\>", 
+  "GeomagneticModelData"->"\<\"GeomagneticModelData\"\>", 
+  "GeoProjectionData"->"\<\"GeoProjectionData\"\>", 
+  "GraphData"->"\<\"GraphData\"\>", 
+  "GraphElementData"->"\<\"GraphElementData\"\>", 
+  "GraphicsData"->"\<\"GraphicsData\"\>", 
+  "HistoricalPeriodData"->"\<\"HistoricalPeriodData\"\>", 
+  "HTTPRequestData"->"\<\"HTTPRequestData\"\>", 
+  "HumanGrowthData"->"\<\"HumanGrowthData\"\>", 
+  "HypothesisTestData"->"\<\"HypothesisTestData\"\>", 
+  "IconData"->"\<\"IconData\"\>", "ImageData"->"\<\"ImageData\"\>", 
+  "IslandData"->"\<\"IslandData\"\>", "IsotopeData"->"\<\"IsotopeData\"\>", 
+  "KnotData"->"\<\"KnotData\"\>", "LakeData"->"\<\"LakeData\"\>", 
+  "LaminaData"->"\<\"LaminaData\"\>", "LanguageData"->"\<\"LanguageData\"\>", 
+  "LatticeData"->"\<\"LatticeData\"\>", 
+  "LiftingFilterData"->"\<\"LiftingFilterData\"\>", 
+  "LinearizingTransformationData"->"\<\"LinearizingTransformationData\"\>", 
+  "MannedSpaceMissionData"->"\<\"MannedSpaceMissionData\"\>", 
+  "MathematicalFunctionData"->"\<\"MathematicalFunctionData\"\>", 
+  "MedicalTestData"->"\<\"MedicalTestData\"\>", 
+  "MeteorShowerData"->"\<\"MeteorShowerData\"\>", 
+  "MineralData"->"\<\"MineralData\"\>", 
+  "MinorPlanetData"->"\<\"MinorPlanetData\"\>", 
+  "MortalityData"->"\<\"MortalityData\"\>", 
+  "MountainData"->"\<\"MountainData\"\>", "MovieData"->"\<\"MovieData\"\>", 
+  "NebulaData"->"\<\"NebulaData\"\>", 
+  "NeighborhoodData"->"\<\"NeighborhoodData\"\>", 
+  "NuclearExplosionData"->"\<\"NuclearExplosionData\"\>", 
+  "NuclearReactorData"->"\<\"NuclearReactorData\"\>", 
+  "OceanData"->"\<\"OceanData\"\>", "OLEData"->"\<\"OLEData\"\>", 
+  "OptimumFlowData"->"\<\"OptimumFlowData\"\>", 
+  "OutputFormData"->"\<\"OutputFormData\"\>", "ParkData"->"\<\"ParkData\"\>", 
+  "ParticleAcceleratorData"->"\<\"ParticleAcceleratorData\"\>", 
+  "ParticleData"->"\<\"ParticleData\"\>", "PersonData"->"\<\"PersonData\"\>", 
+  "PhysicalSystemData"->"\<\"PhysicalSystemData\"\>", 
+  "PIDData"->"\<\"PIDData\"\>", "PlaneCurveData"->"\<\"PlaneCurveData\"\>", 
+  "PlanetaryMoonData"->"\<\"PlanetaryMoonData\"\>", 
+  "PlanetData"->"\<\"PlanetData\"\>", "PlantData"->"\<\"PlantData\"\>", 
+  "PolyhedronData"->"\<\"PolyhedronData\"\>", 
+  "ProteinData"->"\<\"ProteinData\"\>", "PulsarData"->"\<\"PulsarData\"\>", 
+  "RawData"->"\<\"RawData\"\>", 
+  "RebuildPacletData"->"\<\"RebuildPacletData\"\>", 
+  "ResamplingAlgorithmData"->"\<\"ResamplingAlgorithmData\"\>", 
+  "ResourceData"->"\<\"ResourceData\"\>", 
+  "SatelliteData"->"\<\"SatelliteData\"\>", 
+  "ScheduledTaskInformationData"->"\<\"ScheduledTaskInformationData\"\>", 
+  "SeriesData"->"\<\"SeriesData\"\>", 
+  "SocialMediaData"->"\<\"SocialMediaData\"\>", 
+  "SolarSystemFeatureData"->"\<\"SolarSystemFeatureData\"\>", 
+  "SolidData"->"\<\"SolidData\"\>", 
+  "SpaceCurveData"->"\<\"SpaceCurveData\"\>", 
+  "SpeciesData"->"\<\"SpeciesData\"\>", 
+  "StandardAtmosphereData"->"\<\"StandardAtmosphereData\"\>", 
+  "StandardOceanData"->"\<\"StandardOceanData\"\>", 
+  "StarClusterData"->"\<\"StarClusterData\"\>", 
+  "StarData"->"\<\"StarData\"\>", 
+  "StoppingPowerData"->"\<\"StoppingPowerData\"\>", 
+  "StyleData"->"\<\"StyleData\"\>", "SupernovaData"->"\<\"SupernovaData\"\>", 
+  "SurfaceData"->"\<\"SurfaceData\"\>", 
+  "SystemInformationData"->"\<\"SystemInformationData\"\>", 
+  "TemporalData"->"\<\"TemporalData\"\>", "TextData"->"\<\"TextData\"\>", 
+  "ThermodynamicData"->"\<\"ThermodynamicData\"\>", 
+  "TravelDirectionsData"->"\<\"TravelDirectionsData\"\>", 
+  "TropicalStormData"->"\<\"TropicalStormData\"\>", 
+  "TunnelData"->"\<\"TunnelData\"\>", 
+  "UnderseaFeatureData"->"\<\"UnderseaFeatureData\"\>", 
+  "UniverseModelData"->"\<\"UniverseModelData\"\>", 
+  "UniversityData"->"\<\"UniversityData\"\>", 
+  "ValuesData"->"\<\"ValuesData\"\>", 
+  "VectorGlyphData"->"\<\"VectorGlyphData\"\>", 
+  "VirtualGroupData"->"\<\"VirtualGroupData\"\>", 
+  "VolcanoData"->"\<\"VolcanoData\"\>", "WeatherData"->"\<\"WeatherData\"\>", 
+  "WeatherForecastData"->"\<\"WeatherForecastData\"\>", 
+  "WeightedData"->"\<\"WeightedData\"\>", 
+  "WikipediaData"->"\<\"WikipediaData\"\>", 
+  "WindDirectionData"->"\<\"WindDirectionData\"\>", 
+  "WindSpeedData"->"\<\"WindSpeedData\"\>", 
+  "WindVectorData"->"\<\"WindVectorData\"\>", 
+  "WolframLanguageData"->"\<\"WolframLanguageData\"\>", 
+  "WordData"->"\<\"WordData\"\>", 
+  "WordFrequencyData"->"\<\"WordFrequencyData\"\>", 
+  "ZIPCodeData"->"\<\"ZIPCodeData\"\>"}]], "Output",
+ CellChangeTimes->{{3.687063482656784*^9, 3.687063595814507*^9}, 
+   3.6870636755472593`*^9},ExpressionUUID->"4847d8fa-47c6-4f38-bca4-\
+130ee8cded69"]
+}, Open  ]],
+
+Cell["Once again we can also set a variable this way:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870635981822233`*^9, 
+   3.687063632821597*^9}},ExpressionUUID->"64dfc299-4328-4f7d-80cf-\
+350f14336447"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Dynamic", "@", "popupVar"}], ";"}], "\n", 
+ RowBox[{"PopupMenu", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "@", "popupVar"}], ",", 
+   RowBox[{"Prepend", "[", 
+    RowBox[{
+     RowBox[{"Names", "[", "\"\<*Data\>\"", "]"}], ",", 
+     RowBox[{"\"\<\>\"", "\[Rule]", 
+      RowBox[{"Style", "[", 
+       RowBox[{"\"\<Choose a data type\>\"", ",", "Italic", ",", "Gray"}], 
+       "]"}]}]}], "]"}]}], "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.687063638881022*^9, 3.687063651255164*^9}, {
+  3.723433958927196*^9, 
+  3.723433985345859*^9}},ExpressionUUID->"0016b65f-0b0c-4a4a-b13f-\
+75b4bc0213c2"],
+
+Cell[BoxData[
+ PopupMenuBox[Dynamic[$CellContext`popupVar], {""->
+  StyleBox["\<\"Choose a data type\"\>",
+   StripOnInput->False,
+   LineColor->GrayLevel[0.5],
+   FrontFaceColor->GrayLevel[0.5],
+   BackFaceColor->GrayLevel[0.5],
+   GraphicsColor->GrayLevel[0.5],
+   FontSlant->Italic,
+   FontColor->GrayLevel[0.5]], 
+  "AdministrativeDivisionData"->"\<\"AdministrativeDivisionData\"\>", 
+  "AircraftData"->"\<\"AircraftData\"\>", 
+  "AirportData"->"\<\"AirportData\"\>", 
+  "AirPressureData"->"\<\"AirPressureData\"\>", 
+  "AirTemperatureData"->"\<\"AirTemperatureData\"\>", 
+  "AlgebraicRulesData"->"\<\"AlgebraicRulesData\"\>", 
+  "AnatomyData"->"\<\"AnatomyData\"\>", 
+  "AstronomicalData"->"\<\"AstronomicalData\"\>", 
+  "AudioData"->"\<\"AudioData\"\>", "BoxData"->"\<\"BoxData\"\>", 
+  "BridgeData"->"\<\"BridgeData\"\>", 
+  "BroadcastStationData"->"\<\"BroadcastStationData\"\>", 
+  "BuildingData"->"\<\"BuildingData\"\>", "ButtonData"->"\<\"ButtonData\"\>", 
+  "CalendarData"->"\<\"CalendarData\"\>", 
+  "CellGroupData"->"\<\"CellGroupData\"\>", 
+  "ChartElementData"->"\<\"ChartElementData\"\>", 
+  "ChemicalData"->"\<\"ChemicalData\"\>", "CityData"->"\<\"CityData\"\>", 
+  "CloudAccountData"->"\<\"CloudAccountData\"\>", 
+  "CloudLoggingData"->"\<\"CloudLoggingData\"\>", 
+  "CloudObjectInformationData"->"\<\"CloudObjectInformationData\"\>", 
+  "ColorData"->"\<\"ColorData\"\>", 
+  "ColorProfileData"->"\<\"ColorProfileData\"\>", 
+  "CometData"->"\<\"CometData\"\>", "CompanyData"->"\<\"CompanyData\"\>", 
+  "CompressedData"->"\<\"CompressedData\"\>", 
+  "ConstellationData"->"\<\"ConstellationData\"\>", 
+  "ContinuousWaveletData"->"\<\"ContinuousWaveletData\"\>", 
+  "ControllerInformationData"->"\<\"ControllerInformationData\"\>", 
+  "CoordinateChartData"->"\<\"CoordinateChartData\"\>", 
+  "CoordinateTransformData"->"\<\"CoordinateTransformData\"\>", 
+  "CountryData"->"\<\"CountryData\"\>", "DamData"->"\<\"DamData\"\>", 
+  "DeepSpaceProbeData"->"\<\"DeepSpaceProbeData\"\>", 
+  "DiscreteWaveletData"->"\<\"DiscreteWaveletData\"\>", 
+  "DocumentGeneratorInformationData"->"\<\"DocumentGeneratorInformationData\"\
+\>", "EarthImpactData"->"\<\"EarthImpactData\"\>", 
+  "EarthquakeData"->"\<\"EarthquakeData\"\>", 
+  "ElementData"->"\<\"ElementData\"\>", 
+  "EvaluationData"->"\<\"EvaluationData\"\>", 
+  "EventData"->"\<\"EventData\"\>", "ExampleData"->"\<\"ExampleData\"\>", 
+  "ExoplanetData"->"\<\"ExoplanetData\"\>", 
+  "FetalGrowthData"->"\<\"FetalGrowthData\"\>", 
+  "FinancialData"->"\<\"FinancialData\"\>", 
+  "FiniteGroupData"->"\<\"FiniteGroupData\"\>", 
+  "FormulaData"->"\<\"FormulaData\"\>", "GalaxyData"->"\<\"GalaxyData\"\>", 
+  "GenomeData"->"\<\"GenomeData\"\>", "GeodesyData"->"\<\"GeodesyData\"\>", 
+  "GeoElevationData"->"\<\"GeoElevationData\"\>", 
+  "GeogravityModelData"->"\<\"GeogravityModelData\"\>", 
+  "GeologicalPeriodData"->"\<\"GeologicalPeriodData\"\>", 
+  "GeomagneticModelData"->"\<\"GeomagneticModelData\"\>", 
+  "GeoProjectionData"->"\<\"GeoProjectionData\"\>", 
+  "GraphData"->"\<\"GraphData\"\>", 
+  "GraphElementData"->"\<\"GraphElementData\"\>", 
+  "GraphicsData"->"\<\"GraphicsData\"\>", 
+  "HistoricalPeriodData"->"\<\"HistoricalPeriodData\"\>", 
+  "HTTPRequestData"->"\<\"HTTPRequestData\"\>", 
+  "HumanGrowthData"->"\<\"HumanGrowthData\"\>", 
+  "HypothesisTestData"->"\<\"HypothesisTestData\"\>", 
+  "IconData"->"\<\"IconData\"\>", "ImageData"->"\<\"ImageData\"\>", 
+  "IslandData"->"\<\"IslandData\"\>", "IsotopeData"->"\<\"IsotopeData\"\>", 
+  "KnotData"->"\<\"KnotData\"\>", "LakeData"->"\<\"LakeData\"\>", 
+  "LaminaData"->"\<\"LaminaData\"\>", "LanguageData"->"\<\"LanguageData\"\>", 
+  "LatticeData"->"\<\"LatticeData\"\>", 
+  "LiftingFilterData"->"\<\"LiftingFilterData\"\>", 
+  "LinearizingTransformationData"->"\<\"LinearizingTransformationData\"\>", 
+  "MannedSpaceMissionData"->"\<\"MannedSpaceMissionData\"\>", 
+  "MathematicalFunctionData"->"\<\"MathematicalFunctionData\"\>", 
+  "MedicalTestData"->"\<\"MedicalTestData\"\>", 
+  "MeteorShowerData"->"\<\"MeteorShowerData\"\>", 
+  "MineralData"->"\<\"MineralData\"\>", 
+  "MinorPlanetData"->"\<\"MinorPlanetData\"\>", 
+  "MortalityData"->"\<\"MortalityData\"\>", 
+  "MountainData"->"\<\"MountainData\"\>", "MovieData"->"\<\"MovieData\"\>", 
+  "NebulaData"->"\<\"NebulaData\"\>", 
+  "NeighborhoodData"->"\<\"NeighborhoodData\"\>", 
+  "NuclearExplosionData"->"\<\"NuclearExplosionData\"\>", 
+  "NuclearReactorData"->"\<\"NuclearReactorData\"\>", 
+  "OceanData"->"\<\"OceanData\"\>", "OLEData"->"\<\"OLEData\"\>", 
+  "OptimumFlowData"->"\<\"OptimumFlowData\"\>", 
+  "OutputFormData"->"\<\"OutputFormData\"\>", "ParkData"->"\<\"ParkData\"\>", 
+  "ParticleAcceleratorData"->"\<\"ParticleAcceleratorData\"\>", 
+  "ParticleData"->"\<\"ParticleData\"\>", "PersonData"->"\<\"PersonData\"\>", 
+  "PhysicalSystemData"->"\<\"PhysicalSystemData\"\>", 
+  "PIDData"->"\<\"PIDData\"\>", "PlaneCurveData"->"\<\"PlaneCurveData\"\>", 
+  "PlanetaryMoonData"->"\<\"PlanetaryMoonData\"\>", 
+  "PlanetData"->"\<\"PlanetData\"\>", "PlantData"->"\<\"PlantData\"\>", 
+  "PolyhedronData"->"\<\"PolyhedronData\"\>", 
+  "ProteinData"->"\<\"ProteinData\"\>", "PulsarData"->"\<\"PulsarData\"\>", 
+  "RawData"->"\<\"RawData\"\>", 
+  "RebuildPacletData"->"\<\"RebuildPacletData\"\>", 
+  "ResamplingAlgorithmData"->"\<\"ResamplingAlgorithmData\"\>", 
+  "ResourceData"->"\<\"ResourceData\"\>", 
+  "SatelliteData"->"\<\"SatelliteData\"\>", 
+  "ScheduledTaskInformationData"->"\<\"ScheduledTaskInformationData\"\>", 
+  "SeriesData"->"\<\"SeriesData\"\>", 
+  "SocialMediaData"->"\<\"SocialMediaData\"\>", 
+  "SolarSystemFeatureData"->"\<\"SolarSystemFeatureData\"\>", 
+  "SolidData"->"\<\"SolidData\"\>", 
+  "SpaceCurveData"->"\<\"SpaceCurveData\"\>", 
+  "SpeciesData"->"\<\"SpeciesData\"\>", 
+  "StandardAtmosphereData"->"\<\"StandardAtmosphereData\"\>", 
+  "StandardOceanData"->"\<\"StandardOceanData\"\>", 
+  "StarClusterData"->"\<\"StarClusterData\"\>", 
+  "StarData"->"\<\"StarData\"\>", 
+  "StoppingPowerData"->"\<\"StoppingPowerData\"\>", 
+  "StyleData"->"\<\"StyleData\"\>", "SupernovaData"->"\<\"SupernovaData\"\>", 
+  "SurfaceData"->"\<\"SurfaceData\"\>", 
+  "SystemInformationData"->"\<\"SystemInformationData\"\>", 
+  "TemporalData"->"\<\"TemporalData\"\>", "TextData"->"\<\"TextData\"\>", 
+  "ThermodynamicData"->"\<\"ThermodynamicData\"\>", 
+  "TravelDirectionsData"->"\<\"TravelDirectionsData\"\>", 
+  "TropicalStormData"->"\<\"TropicalStormData\"\>", 
+  "TunnelData"->"\<\"TunnelData\"\>", 
+  "UnderseaFeatureData"->"\<\"UnderseaFeatureData\"\>", 
+  "UniverseModelData"->"\<\"UniverseModelData\"\>", 
+  "UniversityData"->"\<\"UniversityData\"\>", 
+  "ValuesData"->"\<\"ValuesData\"\>", 
+  "VectorGlyphData"->"\<\"VectorGlyphData\"\>", 
+  "VirtualGroupData"->"\<\"VirtualGroupData\"\>", 
+  "VolcanoData"->"\<\"VolcanoData\"\>", "WeatherData"->"\<\"WeatherData\"\>", 
+  "WeatherForecastData"->"\<\"WeatherForecastData\"\>", 
+  "WeightedData"->"\<\"WeightedData\"\>", 
+  "WikipediaData"->"\<\"WikipediaData\"\>", 
+  "WindDirectionData"->"\<\"WindDirectionData\"\>", 
+  "WindSpeedData"->"\<\"WindSpeedData\"\>", 
+  "WindVectorData"->"\<\"WindVectorData\"\>", 
+  "WolframLanguageData"->"\<\"WolframLanguageData\"\>", 
+  "WordData"->"\<\"WordData\"\>", 
+  "WordFrequencyData"->"\<\"WordFrequencyData\"\>", 
+  "ZIPCodeData"->"\<\"ZIPCodeData\"\>"}]], "Output",
+ CellChangeTimes->{
+  3.687063651761294*^9},ExpressionUUID->"9524dc11-0b71-426b-bf22-\
+9b30633e42ad"]
+}, Open  ]],
+
+Cell[BoxData["popupVar"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870636560186768`*^9, 
+   3.687063659440922*^9}},ExpressionUUID->"94273b58-53df-4389-9518-\
+8522595ba191"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["EventHandler", "Subsubsection",ExpressionUUID->"31e934f0-2f95-4257-b1ff-27e34e2b0ea2"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["EventHandler", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "2ea5c8bf-3179-4f53-92f9-c678d3209936"],
+ " isn\[CloseCurlyQuote]t really an interface element so much as an extension \
+for them. It catches front end events -- mouse clicks, keyboard input, etc. \
+and routes them through a set of rules. It\[CloseCurlyQuote]s powerful, but \
+can be a little tough to use."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68706379597523*^9, 
+   3.687063905059411*^9}},ExpressionUUID->"a1856143-7fc8-4633-985a-\
+484aa46ad030"],
+
+Cell["\<\
+Mathematica, unlike a more usual front-end system like tkinter, has no rich \
+event syntax, instead it depends on the user querying the front end about \
+global state, such as how one catches a double click event:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687063908543394*^9, 
+   3.687063995353505*^9}},ExpressionUUID->"36254bbc-1999-442a-a11b-\
+cb6b7f289937"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"youDidIt", "=", "False"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"nowClickPrinted", "=", "False"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"wellDonePrinted", "=", "False"}], ";"}], "\n", 
+ RowBox[{"EventHandler", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"MouseAppearance", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"Panel", "[", "\"\<Double click here\>\"", "]"}], ",", "\n", 
+     "\t\t", "\"\<Arrow\>\""}], "]"}], ",", 
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"\"\<MouseEntered\>\"", "\[RuleDelayed]", "\n", "\t\t", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"!", 
+          RowBox[{"(", 
+           RowBox[{"youDidIt", "//", "TrueQ"}], ")"}]}], "&&", 
+         RowBox[{"!", 
+          RowBox[{"(", 
+           RowBox[{"nowClickPrinted", "//", "TrueQ"}], ")"}]}]}], ",", 
+        RowBox[{
+         RowBox[{"Print", "[", "\"\<Now click\>\"", "]"}], ";", "\n", 
+         "\t\t\t", 
+         RowBox[{"nowClickPrinted", "=", "True"}]}]}], "]"}]}], ",", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<MouseClicked\>\"", "\[RuleDelayed]", "\n", "\t\t", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"CurrentValue", "@", "\"\<MouseClickCount\>\""}], "\[Equal]",
+          "2"}], ",", "\n", "\t\t\t", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"!", 
+           RowBox[{"(", 
+            RowBox[{"youDidIt", "//", "TrueQ"}], ")"}]}], ",", "\n", 
+          "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"Print", "[", "\"\<You did it!\>\"", "]"}], ";", "\n", 
+           "\t\t\t\t", 
+           RowBox[{"youDidIt", "=", "True"}]}]}], "\n", "\t\t\t\t", "]"}]}], 
+       "\n", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+     RowBox[{"\"\<MouseExited\>\"", "\[RuleDelayed]", 
+      RowBox[{"If", "[", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{"youDidIt", "&&", 
+         RowBox[{"!", 
+          RowBox[{"(", 
+           RowBox[{"wellDonePrinted", "//", "TrueQ"}], ")"}]}]}], ",", "\n", 
+        "\t\t\t", 
+        RowBox[{
+         RowBox[{"Print", "[", "\"\<Well done\>\"", "]"}], ";", "\n", 
+         "\t\t\t", 
+         RowBox[{"wellDonePrinted", "=", "True"}]}]}], "]"}]}]}], "\n", 
+    "\t\t", "}"}]}], "\n", "\t", "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.687064011014958*^9, 3.687064027042124*^9}, {
+  3.687064064480363*^9, 3.687064102029735*^9}, {3.687064337781115*^9, 
+  3.6870643577071047`*^9}, {3.687064701495417*^9, 3.687064997799548*^9}, {
+  3.723433959014839*^9, 
+  3.72343398542306*^9}},ExpressionUUID->"4296f35e-663f-4883-8202-\
+04a0a7bb1d9b"],
+
+Cell[BoxData[
+ TagBox[
+  TagBox[
+   PanelBox["\<\"Double click here\"\>"],
+   MouseAppearanceTag["Arrow"]],
+  EventHandlerTag[{"MouseEntered" :> If[
+      And[
+       Not[
+        TrueQ[$CellContext`youDidIt]], 
+       Not[
+        TrueQ[$CellContext`nowClickPrinted]]], 
+      Print["Now click"]; $CellContext`nowClickPrinted = True], 
+    "MouseClicked" :> If[CurrentValue["MouseClickCount"] == 2, 
+      If[
+       Not[
+        TrueQ[$CellContext`youDidIt]], 
+       Print["You did it!"]; $CellContext`youDidIt = True]], "MouseExited" :> 
+    If[
+      And[$CellContext`youDidIt, 
+       Not[
+        TrueQ[$CellContext`wellDonePrinted]]], 
+      Print["Well done"]; $CellContext`wellDonePrinted = True], Method -> 
+    "Preemptive", PassEventsDown -> Automatic, PassEventsUp -> 
+    True}]]], "Output",
+ CellChangeTimes->{
+  3.687064358974704*^9, 3.687064718007983*^9, 3.687064768440967*^9, 
+   3.687064813109969*^9, {3.687064865855064*^9, 3.687064911590625*^9}, 
+   3.687064998639571*^9},ExpressionUUID->"d6a98362-d785-4f5e-ad64-\
+1247ada0fe3d"]
+}, Open  ]],
+
+Cell["\<\
+This is an undeniably poor way to do things with myriad pitfalls, but it is \
+one of the restrictions of the system, unfortunately.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687064374402021*^9, 
+   3.687064413785016*^9}},ExpressionUUID->"446ab6dc-1c82-4e92-b08c-\
+19c529d26ae1"],
+
+Cell[TextData[{
+ "The full list of events that ",
+ Cell[BoxData[
+  FormBox["EventHandler", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "70129c8a-f8e8-4544-a1f1-78ac0532ddde"],
+ " can use isn\[CloseCurlyQuote]t completely clear, but the most common use \
+cases are on its doc page. Others can be found by ",
+ Cell[BoxData[
+  TagBox[
+   ButtonBox[
+    PaneSelectorBox[{False->
+     StyleBox["\<\"googling\"\>", "Text",
+      StripOnInput->False], True->
+     StyleBox[
+      StyleBox["\<\"googling\"\>", "Text",
+       StripOnInput->False], "HyperlinkActive"]}, Dynamic[
+      CurrentValue["MouseOver"]],
+     BaseStyle->{"Hyperlink"},
+     FrameMargins->0,
+     ImageSize->Automatic],
+    BaseStyle->"Hyperlink",
+    ButtonData->{
+      URL[
+      "https://www.google.com/search?q=site%3Amathematica.stackexchange.com+%\
+27EventHandler%27+complete+event&oq=site%3Amathematica.stackexchange.com+%\
+27EventHandler%27+complete+event"], None},
+    ButtonNote->
+     "https://www.google.com/search?q=site%3Amathematica.stackexchange.com+%\
+27EventHandler%27+complete+event&oq=site%3Amathematica.stackexchange.com+%\
+27EventHandler%27+complete+event"],
+   Annotation[#, 
+    "https://www.google.com/search?q=site%3Amathematica.stackexchange.com+%\
+27EventHandler%27+complete+event&oq=site%3Amathematica.stackexchange.com+%\
+27EventHandler%27+complete+event", "Hyperlink"]& ]], "InlineInput",
+  ExpressionUUID->"5e0664b1-9d42-4cbf-88ca-308b51888d2e"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687064486770174*^9, 3.6870645307326927`*^9}, {
+   3.687066612289146*^9, 3.687066626212853*^9}, {3.6870667071974087`*^9, 
+   3.687066721731431*^9}},ExpressionUUID->"f5f70877-6a8f-4cfa-8754-\
+86664bcf017c"],
+
+Cell[TextData[{
+ "One class of events to know about is the class of ",
+ Cell[BoxData["\"\<MenuCommand\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "d72a23f3-2bbc-41a0-8741-8cd62d9f33a1"],
+ " events. These look like ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"{", 
+    RowBox[{"\"\<MenuCommand\>\"", ",", " ", "token"}], "}"}], 
+   TextInlineCell]], "InlineInput",ExpressionUUID->
+  "17bf2013-fdca-4c4a-b4c1-b3a9a3237e31"],
+ " and of these particularly crucial are the tokens ",
+ Cell[BoxData["\"\<HandleShiftReturn\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "85bc19f5-492e-4856-aa21-6796907276f7"],
+ " and ",
+ Cell[BoxData["\"\<EvaluateCells\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "dc4c5da5-0121-47cb-9673-6b5a1d8b9e34"],
+ ". These prevent Shift-Return or Keypad-Enter from evaluating and creating a \
+new cell. Here\[CloseCurlyQuote]s a way to use this:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687205057648178*^9, 3.687205137733115*^9}, {
+   3.687205178274085*^9, 3.687205258821177*^9}, {3.723434148358685*^9, 
+   3.723434156435482*^9}},ExpressionUUID->"d020fb0d-ede3-4c73-8c6b-\
+894d3fb43532"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"HandlerInputField", "[", 
+   RowBox[{
+    RowBox[{"sym", ":", 
+     RowBox[{"_Dynamic", "|", "None"}], ":", "None"}], ",", 
+    "handlerFunction_", ",", "ops___"}], "]"}], ":=", "\n", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"dynSym", "=", 
+      RowBox[{"Replace", "[", 
+       RowBox[{"sym", ",", "\n", "\t\t", 
+        RowBox[{"None", "\[RuleDelayed]", 
+         RowBox[{"With", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"u", "=", 
+             RowBox[{"Unique", "@", "\"\<handlerInputFieldValue$\>\""}]}], 
+            "}"}], ",", 
+           RowBox[{
+            RowBox[{"u", "=", "Null"}], ";", 
+            RowBox[{"Dynamic", "@", "u"}]}]}], "]"}]}]}], "\n", "\t\t", 
+       "]"}]}], "}"}], ",", "\n", 
+    RowBox[{"EventHandler", "[", 
+     RowBox[{
+      RowBox[{"InputField", "[", 
+       RowBox[{"dynSym", ",", "ops"}], "]"}], ",", 
+      RowBox[{"{", "\n", "\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<MenuCommand\>\"", ",", "\"\<HandleShiftReturn\>\""}], 
+          "}"}], "\[RuleDelayed]", "\n", "\t\t", 
+         RowBox[{"Replace", "[", "\n", "\t\t\t", 
+          RowBox[{"dynSym", ",", "\n", "\t\t\t", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", 
+             RowBox[{"s_", ",", "___"}], "]"}], "\[RuleDelayed]", 
+            RowBox[{"(", "\n", "\t\t\t\t", 
+             RowBox[{
+              RowBox[{"handlerFunction", "@", "s"}], ";", "\n", "\t\t\t\t", 
+              RowBox[{"s", "=", "\"\<\>\""}]}], "\n", "\t\t\t\t", ")"}]}]}], 
+          "\n", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"\"\<MenuCommand\>\"", ",", "\"\<EvaluateCells\>\""}], 
+          "}"}], "\[RuleDelayed]", "\n", "\t\t", 
+         RowBox[{"Replace", "[", "\n", "\t\t\t", 
+          RowBox[{"dynSym", ",", "\n", "\t\t\t", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"Verbatim", "[", "Dynamic", "]"}], "[", 
+             RowBox[{"s_", ",", "___"}], "]"}], "\[RuleDelayed]", 
+            RowBox[{"(", "\n", "\t\t\t\t", 
+             RowBox[{
+              RowBox[{"handlerFunction", "@", "s"}], ";", "\n", "\t\t\t\t", 
+              RowBox[{"s", "=", "\"\<\>\""}]}], "\n", "\t\t\t\t", ")"}]}]}], 
+          "\n", "\t\t\t", "]"}]}], ",", "\n", "\t\t", 
+        RowBox[{"\"\<ReturnKeyDown\>\"", "\[RuleDelayed]", 
+         RowBox[{"NotebookWrite", "[", 
+          RowBox[{
+           RowBox[{"EvaluationNotebook", "[", "]"}], ",", "\"\<\\n\>\""}], 
+          "]"}]}]}], "\n", "\t\t", "}"}]}], "\n", "\t", "]"}]}], "\n", 
+   "]"}]}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.687205367297386*^9, 3.687205402106206*^9}, {
+  3.6872056670178747`*^9, 3.687205743679166*^9}, {3.7234339590637207`*^9, 
+  3.723433985460293*^9}},ExpressionUUID->"a1e31784-bd91-4761-9cee-\
+7d9ff6169234"],
+
+Cell["\<\
+This creates and input field wrapped in an event handler. Now we\
+\[CloseCurlyQuote]ll make an interface that can log the most common words we \
+type. Type normally and return with Shift-Return.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687205408416321*^9, 3.687205466047122*^9}, {
+   3.687205497297531*^9, 3.6872055066648493`*^9}, {3.687206477782732*^9, 
+   3.6872064913023243`*^9}},ExpressionUUID->"fa327217-bc23-4cbd-b613-\
+82708a697b1b"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wordLog", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{"Column", "[", 
+  RowBox[{
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"HandlerInputField", "[", "\n", "\t\t\t", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"wordLog", "=", 
+          RowBox[{"Join", "[", 
+           RowBox[{"wordLog", ",", "\n", "\t\t\t\t\t", 
+            RowBox[{"ToLowerCase", "/@", 
+             RowBox[{"StringSplit", "@", 
+              RowBox[{"StringReplace", "[", 
+               RowBox[{"#", ",", 
+                RowBox[{
+                 RowBox[{"Except", "[", 
+                  RowBox[{"WordCharacter", "|", "\"\<'\>\""}], "]"}], 
+                 "\[Rule]", "\"\< \>\""}]}], "]"}]}]}]}], "\n", "\t\t\t\t\t", 
+           "]"}]}], ")"}], "&"}], ",", "\n", "\t\t\t", "String"}], "\n", 
+      "\t\t\t", "]"}], ",", "\n", "\t\t", 
+     RowBox[{"Dynamic", "[", "\n", "\t\t\t", 
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"a", "=", 
+          RowBox[{"Counts", "@", "wordLog"}]}], "}"}], ",", "\n", "\t\t\t\t", 
+        
+        RowBox[{"BarChart", "[", 
+         RowBox[{
+          RowBox[{"Values", "@", "a"}], ",", "\n", "\t\t\t\t\t", 
+          RowBox[{"ChartLabels", "\[Rule]", 
+           RowBox[{"Keys", "@", "a"}]}]}], "]"}]}], "\n", "\t\t\t\t", "]"}], 
+      "\n", "\t\t\t", "]"}]}], "\n", "\t\t", "}"}], ",", "\n", "\t", 
+   RowBox[{"Dividers", "\[Rule]", 
+    RowBox[{"{", " ", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2", "\[Rule]", "Gray"}], "}"}]}], "}"}]}]}], "\n", "\t", 
+  "]"}]}], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687205507646656*^9, 3.687205520251115*^9}, {
+   3.68720555043882*^9, 3.687205646443988*^9}, {3.687205787529418*^9, 
+   3.687205823145851*^9}, {3.6872058542579327`*^9, 3.687205883254807*^9}, {
+   3.687205951886702*^9, 3.6872062654968*^9}, {3.687206355613598*^9, 
+   3.687206462608932*^9}, {3.687206494944687*^9, 3.687206606855097*^9}, {
+   3.723433959105565*^9, 3.723433985497403*^9}, 
+   3.723596641609694*^9},ExpressionUUID->"1bca9571-b5fb-4cc8-90b3-\
+c40e3f653748"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["OpenerView and Toggler", "Subsubsection",ExpressionUUID->"9b086148-8173-44f4-812a-734b4b703fe6"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["OpenerView", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "33779001-578d-4126-87aa-76556e495131"],
+ " is a particularly nice formatting element which let\[CloseCurlyQuote]s \
+expressions be hidden but a title displayed:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687065026318254*^9, 3.687065063091601*^9}, {
+   3.687065180857197*^9, 
+   3.6870651814802427`*^9}},ExpressionUUID->"4791da18-5348-4751-8071-\
+aaeb074604e3"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenerView", "@", 
+  RowBox[{"{", 
+   RowBox[{"\"\<Updating dynamic thing\>\"", ",", "\n", "\t", 
+    RowBox[{"Dynamic", "[", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Pause", "[", ".5", "]"}], ";", "\n", "\t\t", 
+       RowBox[{"Graphics", "@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"RandomColor", "[", "]"}], ",", 
+          RowBox[{"Disk", "[", "]"}]}], "}"}]}]}], ",", "\n", "\t\t", 
+      RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}]}], "}"}]}]], "Code",\
+
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687065064225762*^9, 3.6870651545613317`*^9}, {
+   3.7234339591441393`*^9, 
+   3.723433985533351*^9}},ExpressionUUID->"555e292c-c7e7-44bb-95f4-\
+22db6b9d9668"],
+
+Cell[BoxData[
+ TagBox[
+  DynamicModuleBox[{Typeset`var$$ = False}, 
+   InterpretationBox[
+    StyleBox[
+     PaneSelectorBox[{False->GridBox[{
+        {
+         OpenerBox[Dynamic[Typeset`var$$],
+          Appearance->Automatic,
+          AutoAction->False,
+          ContinuousAction->False,
+          Enabled->Automatic], "\<\"Updating dynamic thing\"\>"}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Columns" -> {{Left}}},
+       GridBoxBackground->{"Columns" -> {{Automatic}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+       
+       GridBoxSpacings->{"Columns" -> {{0.2}}, "Rows" -> {{0.5}}}], True->
+      GridBox[{
+        {
+         OpenerBox[Dynamic[Typeset`var$$],
+          Appearance->Automatic,
+          AutoAction->False,
+          ContinuousAction->False,
+          Enabled->Automatic], "\<\"Updating dynamic thing\"\>"},
+        {"", 
+         PaneBox[
+          DynamicBox[ToBoxes[Pause[0.5]; Graphics[{
+               RandomColor[], 
+               Disk[]}], StandardForm],
+           ImageSizeCache->{360., {177., 182.}},
+           UpdateInterval->1],
+          ImageMargins->0]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Columns" -> {{Left}}},
+       GridBoxBackground->{"Columns" -> {{Automatic}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+       
+       GridBoxSpacings->{"Columns" -> {{0.2}}, "Rows" -> {{0.5}}}]}, Dynamic[
+      Typeset`var$$],
+      Alignment->Automatic,
+      BaselinePosition->Baseline,
+      DefaultBaseStyle->"OpenerView",
+      ImageMargins->0,
+      ImageSize->Automatic],
+     Deployed->False,
+     StripOnInput->False],
+    OpenerView[{"Updating dynamic thing", 
+      Dynamic[Pause[0.5]; Graphics[{
+          RandomColor[], 
+          Disk[]}], UpdateInterval -> 1]}, False]],
+   DynamicModuleValues:>{}],
+  Setting[#, {0}]& ]], "Output",
+ CellChangeTimes->{{3.687065083818068*^9, 3.687065108204751*^9}, 
+   3.687065158806885*^9},ExpressionUUID->"5808389d-c833-4d76-bffe-\
+f38a33f99b33"]
+}, Open  ]],
+
+Cell[TextData[{
+ "It\[CloseCurlyQuote]s really a subclass of ",
+ Cell[BoxData[
+  FormBox["Toggler", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "a2a4396f-10de-4479-ad35-a8a5011711cf"],
+ " (well it\[CloseCurlyQuote]s parent function ",
+ Cell[BoxData[
+  FormBox["Opener", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "9af63a87-17c9-4344-a4f1-19205997049f"],
+ " is) but worth mentioning because of how useful it is. A nice way to add \
+underlines is to use ",
+ Cell[BoxData[
+  FormBox["Column", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "e4b2e0e8-37b2-41a5-8f94-4233164c7d29"],
+ ":"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687065192359942*^9, 3.687065236646742*^9}, {
+   3.687065446032174*^9, 3.687065512267748*^9}, {3.6870655469156103`*^9, 
+   3.687065554258357*^9}},ExpressionUUID->"cd2a5f75-987a-4c16-b9c5-\
+97c4b3735a55"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"OpenerView", "@", 
+  RowBox[{"{", "\n", "\t", 
+   RowBox[{
+    RowBox[{"Column", "[", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"{", "\"\<Updating dynamic thing\>\"", "}"}], ",", "\n", "\t\t", 
+      RowBox[{"Dividers", "\[Rule]", 
+       RowBox[{"{", " ", 
+        RowBox[{
+         RowBox[{"{", "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"2", "\[Rule]", "Gray"}], "}"}]}], "}"}]}]}], "\n", "\t\t", 
+     "]"}], ",", "\n", "\t", 
+    RowBox[{"Dynamic", "[", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Pause", "[", ".5", "]"}], ";", "\n", "\t\t", 
+       RowBox[{"Graphics", "@", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"RandomColor", "[", "]"}], ",", 
+          RowBox[{"Disk", "[", "]"}]}], "}"}]}]}], ",", "\n", "\t\t", 
+      RowBox[{"UpdateInterval", "\[Rule]", "1"}]}], "]"}]}], "}"}]}]], "Code",\
+
+ GeneratedCell->False,
+ CellChangeTimes->{{3.687065512782587*^9, 3.6870655354672813`*^9}, {
+   3.72343395917999*^9, 3.72343398556067*^9}, 
+   3.723596641625404*^9},ExpressionUUID->"a7a18563-09c9-4117-97d6-\
+b11a307f6e55"],
+
+Cell[BoxData[
+ TagBox[
+  DynamicModuleBox[{Typeset`var$$ = False}, 
+   InterpretationBox[
+    StyleBox[
+     PaneSelectorBox[{False->GridBox[{
+        {
+         OpenerBox[Dynamic[Typeset`var$$],
+          Appearance->Automatic,
+          AutoAction->False,
+          ContinuousAction->False,
+          Enabled->Automatic], 
+         TagBox[GridBox[{
+            {"\<\"Updating dynamic thing\"\>"}
+           },
+           DefaultBaseStyle->"Column",
+           GridBoxAlignment->{"Columns" -> {{Left}}},
+           GridBoxDividers->{"RowsIndexed" -> {2 -> GrayLevel[0.5]}},
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+          "Column"]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Columns" -> {{Left}}},
+       GridBoxBackground->{"Columns" -> {{Automatic}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+       
+       GridBoxSpacings->{"Columns" -> {{0.2}}, "Rows" -> {{0.5}}}], True->
+      GridBox[{
+        {
+         OpenerBox[Dynamic[Typeset`var$$],
+          Appearance->Automatic,
+          AutoAction->False,
+          ContinuousAction->False,
+          Enabled->Automatic], 
+         TagBox[GridBox[{
+            {"\<\"Updating dynamic thing\"\>"}
+           },
+           DefaultBaseStyle->"Column",
+           GridBoxAlignment->{"Columns" -> {{Left}}},
+           GridBoxDividers->{"RowsIndexed" -> {2 -> GrayLevel[0.5]}},
+           
+           GridBoxItemSize->{
+            "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+          "Column"]},
+        {"", 
+         PaneBox[
+          DynamicBox[ToBoxes[Pause[0.5]; Graphics[{
+               RandomColor[], 
+               Disk[]}], StandardForm],
+           ImageSizeCache->{360., {177., 182.}},
+           UpdateInterval->1],
+          ImageMargins->0]}
+       },
+       AutoDelete->False,
+       BaselinePosition->{1, 1},
+       GridBoxAlignment->{"Columns" -> {{Left}}},
+       GridBoxBackground->{"Columns" -> {{Automatic}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+       
+       GridBoxSpacings->{"Columns" -> {{0.2}}, "Rows" -> {{0.5}}}]}, Dynamic[
+      Typeset`var$$],
+      Alignment->Automatic,
+      BaselinePosition->Baseline,
+      DefaultBaseStyle->"OpenerView",
+      ImageMargins->0,
+      ImageSize->Automatic],
+     Deployed->False,
+     StripOnInput->False],
+    OpenerView[{
+      Column[{"Updating dynamic thing"}, 
+       Dividers -> {{}, {2 -> GrayLevel[0.5]}}], 
+      Dynamic[Pause[0.5]; Graphics[{
+          RandomColor[], 
+          Disk[]}], UpdateInterval -> 1]}, False]],
+   DynamicModuleValues:>{}],
+  Setting[#, {0}]& ]], "Output",
+ CellChangeTimes->{{3.687065521961557*^9, 
+  3.687065535766508*^9}},ExpressionUUID->"344fdd9a-f98f-449c-9b2a-\
+d566f10cb930"]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Toggler", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "d53082be-4501-4355-a430-c6dcf1964268"],
+ " just toggles between expressions when clicked"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687065192359942*^9, 3.687065236646742*^9}, {
+   3.687065446032174*^9, 3.687065455855032*^9}, {3.6870656059082336`*^9, 
+   3.687065609136785*^9}},ExpressionUUID->"3e357f38-fde1-4ef6-af41-\
+be35eea96402"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Toggler", "[", 
+  RowBox[{"1", ",", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"i", "\[Rule]", 
+      RowBox[{"Framed", "[", "\n", "\t", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"i", ",", 
+          RowBox[{"FontColor", "\[Rule]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"i", "<", "5"}], ",", "White", ",", "Black"}], "]"}]}]}],
+          "]"}], ",", "\n", "\t", 
+        RowBox[{"RoundingRadius", "\[Rule]", "5"}], ",", "\n", "\t", 
+        RowBox[{"FrameStyle", "\[Rule]", "None"}], ",", "\n", "\t", 
+        RowBox[{"Background", "\[Rule]", 
+         RowBox[{"GrayLevel", "[", 
+          RowBox[{"i", "/", "10"}], "]"}]}]}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "10"}], "}"}]}], "]"}]}], "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68706523822644*^9, 3.687065380713937*^9}, {
+   3.7234339592124*^9, 
+   3.723433985586411*^9}},ExpressionUUID->"7fa68fa2-5646-47fc-a973-\
+549963fe5edc"],
+
+Cell[BoxData[
+ TogglerBox[1, {1->
+  FrameBox[
+   StyleBox["1",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[1, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 2->
+  FrameBox[
+   StyleBox["2",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[1, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 3->
+  FrameBox[
+   StyleBox["3",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[3, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 4->
+  FrameBox[
+   StyleBox["4",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[2, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 5->
+  FrameBox[
+   StyleBox["5",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[1, 2]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 6->
+  FrameBox[
+   StyleBox["6",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[3, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 7->
+  FrameBox[
+   StyleBox["7",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[7, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 8->
+  FrameBox[
+   StyleBox["8",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[4, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 9->
+  FrameBox[
+   StyleBox["9",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[9, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 10->
+  FrameBox[
+   StyleBox["10",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[1],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False]}, "1"]], "Output",
+ CellChangeTimes->{{3.687065247201996*^9, 3.687065253241654*^9}, {
+  3.687065310504822*^9, 3.687065331876409*^9}, {3.6870653723436127`*^9, 
+  3.6870653984080763`*^9}, {3.6870656001299763`*^9, 
+  3.6870656022585897`*^9}},ExpressionUUID->"05c3e05b-e6d3-4921-afea-\
+694f67266df9"]
+}, Open  ]],
+
+Cell[TextData[{
+ "And ",
+ Cell[BoxData[
+  FormBox["Toggler", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "503e6c3d-554c-41b1-a32f-3fb1cc21799c"],
+ " can similarly be used as a variable setter:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.687065400640212*^9, 
+   3.687065416497628*^9}},ExpressionUUID->"b4632369-f740-4da8-b8f5-\
+e60c472085fc"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"togglerVar", "=", "1"}], ";"}], "\n", 
+ RowBox[{"Toggler", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "@", "togglerVar"}], ",", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"i", "\[Rule]", 
+      RowBox[{"Framed", "[", "\n", "\t", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"i", ",", 
+          RowBox[{"FontColor", "\[Rule]", 
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"i", "<", "5"}], ",", "White", ",", "Black"}], "]"}]}]}],
+          "]"}], ",", "\n", "\t", 
+        RowBox[{"RoundingRadius", "\[Rule]", "5"}], ",", "\n", "\t", 
+        RowBox[{"FrameStyle", "\[Rule]", "None"}], ",", "\n", "\t", 
+        RowBox[{"Background", "\[Rule]", 
+         RowBox[{"GrayLevel", "[", 
+          RowBox[{"i", "/", "10"}], "]"}]}]}], "]"}]}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "10"}], "}"}]}], "]"}]}], "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6870655668534822`*^9, 3.687065578858246*^9}, {
+  3.723433959241044*^9, 
+  3.723433985615506*^9}},ExpressionUUID->"9c87b651-8287-443c-9223-\
+70444eaf124e"],
+
+Cell[BoxData[
+ TogglerBox[Dynamic[$CellContext`togglerVar], {1->
+  FrameBox[
+   StyleBox["1",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[1, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 2->
+  FrameBox[
+   StyleBox["2",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[1, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 3->
+  FrameBox[
+   StyleBox["3",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[3, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 4->
+  FrameBox[
+   StyleBox["4",
+    StripOnInput->False,
+    FontColor->GrayLevel[1]],
+   Background->GrayLevel[
+     Rational[2, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 5->
+  FrameBox[
+   StyleBox["5",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[1, 2]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 6->
+  FrameBox[
+   StyleBox["6",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[3, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 7->
+  FrameBox[
+   StyleBox["7",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[7, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 8->
+  FrameBox[
+   StyleBox["8",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[4, 5]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 9->
+  FrameBox[
+   StyleBox["9",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[
+     Rational[9, 10]],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False], 10->
+  FrameBox[
+   StyleBox["10",
+    StripOnInput->False,
+    FontColor->GrayLevel[0]],
+   Background->GrayLevel[1],
+   FrameStyle->None,
+   RoundingRadius->5,
+   StripOnInput->False]}, 
+  DynamicBox[ToBoxes[$CellContext`togglerVar, StandardForm],
+   ImageSizeCache->{8., {0., 9.}}]]], "Output",
+ CellChangeTimes->{
+  3.6870655792215567`*^9},ExpressionUUID->"cc96ac76-5fba-4b70-902b-\
+d4afe72f7cdd"]
+}, Open  ]],
+
+Cell[BoxData["togglerVar"], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6870655808891993`*^9, 
+   3.6870655841495953`*^9}},ExpressionUUID->"bd65ee47-918e-4c7e-95c4-\
+2c25590231fc"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{65, Automatic}, {Automatic, 22}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2582, 54, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3165, 78, 235, 5, 41, "Subsection",ExpressionUUID->"558bd3b7-5bba-478d-a15f-22a733dc4a95"],
+Cell[CellGroupData[{
+Cell[3425, 87, 86, 0, 40, "Subsubsection",ExpressionUUID->"f51ae292-33cb-48db-a4d2-9fa7cd3e89bb"],
+Cell[3514, 89, 499, 11, 58, "Text",ExpressionUUID->"eb02ab48-cf7c-40a7-8865-c8dca2e2aa03"],
+Cell[CellGroupData[{
+Cell[4038, 104, 699, 15, 129, "Code",ExpressionUUID->"6a1998f6-bbb3-4eb1-9dc6-8a5d4d3cbdbc"],
+Cell[4740, 121, 413, 11, 45, "Output",ExpressionUUID->"9812d0b6-4db1-4040-995b-318b46d015cc"]
+}, Open  ]],
+Cell[5168, 135, 225, 4, 35, "Text",ExpressionUUID->"5e8054f0-464b-4e1f-a21e-3aa5ed436b51"],
+Cell[CellGroupData[{
+Cell[5418, 143, 1289, 30, 243, "Code",ExpressionUUID->"1b0381f6-013c-494d-ae8a-31ff86edd4fd"],
+Cell[6710, 175, 1526, 31, 45, "Output",ExpressionUUID->"f76cde21-a692-4aeb-a1b1-ab1fc3bc1782"]
+}, Open  ]],
+Cell[8251, 209, 205, 4, 35, "Text",ExpressionUUID->"992f8ba8-b801-43f4-bdcf-67a6718c0696"],
+Cell[CellGroupData[{
+Cell[8481, 217, 925, 20, 186, "Code",ExpressionUUID->"041807ea-33c8-4728-b5c2-99efbdffc499"],
+Cell[9409, 239, 610, 16, 36, "Output",ExpressionUUID->"a97f467e-4c2e-4c72-b604-a4b6d33fca71"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10068, 261, 90, 0, 51, "Subsubsection",ExpressionUUID->"7637dc65-1c68-4ec8-b157-790a6239f992"],
+Cell[10161, 263, 354, 10, 35, "Text",ExpressionUUID->"4912567f-2ac6-4ce3-a1e4-5924ec30ffa2"],
+Cell[CellGroupData[{
+Cell[10540, 277, 306, 7, 52, "Code",ExpressionUUID->"977100b5-0d0c-4982-b3fa-947bafd3182c"],
+Cell[10849, 286, 325, 9, 44, "Output",ExpressionUUID->"8d736f98-2fd0-4139-8964-a513f8f0e33f"]
+}, Open  ]],
+Cell[11189, 298, 353, 9, 35, "Text",ExpressionUUID->"5f234865-b20e-4ec4-8415-1a2dd316b4a3"],
+Cell[CellGroupData[{
+Cell[11567, 311, 664, 16, 91, "Code",ExpressionUUID->"01de7a37-09f2-4339-8084-a6aea2e02557"],
+Cell[12234, 329, 295, 7, 44, "Output",ExpressionUUID->"069026a6-85c6-4032-91eb-6c17eba832df"]
+}, Open  ]],
+Cell[12544, 339, 137, 3, 52, "Code",ExpressionUUID->"cb5ead83-81d7-4886-8de7-da37a7edf25f"],
+Cell[12684, 344, 431, 9, 58, "Text",ExpressionUUID->"490919c6-fbc5-4895-8951-e63ed1cdb3b9"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13152, 358, 89, 0, 51, "Subsubsection",ExpressionUUID->"e8623a4b-f1db-48d3-9aa3-63ba9abad7eb"],
+Cell[13244, 360, 353, 10, 35, "Text",ExpressionUUID->"03c1250b-a524-43c3-91c9-65c839362bd1"],
+Cell[CellGroupData[{
+Cell[13622, 374, 560, 14, 52, "Code",ExpressionUUID->"d502a5cc-812e-4aab-a439-ae8c055db97a"],
+Cell[14185, 390, 7476, 139, 43, "Output",ExpressionUUID->"4847d8fa-47c6-4f38-bca4-130ee8cded69"]
+}, Open  ]],
+Cell[21676, 532, 217, 4, 35, "Text",ExpressionUUID->"64dfc299-4328-4f7d-80cf-350f14336447"],
+Cell[CellGroupData[{
+Cell[21918, 540, 646, 17, 72, "Code",ExpressionUUID->"0016b65f-0b0c-4a4a-b13f-75b4bc0213c2"],
+Cell[22567, 559, 7455, 139, 43, "Output",ExpressionUUID->"9524dc11-0b71-426b-bf22-9b30633e42ad"]
+}, Open  ]],
+Cell[30037, 701, 187, 4, 52, "Code",ExpressionUUID->"94273b58-53df-4389-9518-8522595ba191"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30261, 710, 92, 0, 51, "Subsubsection",ExpressionUUID->"31e934f0-2f95-4257-b1ff-27e34e2b0ea2"],
+Cell[30356, 712, 578, 12, 81, "Text",ExpressionUUID->"a1856143-7fc8-4633-985a-484aa46ad030"],
+Cell[30937, 726, 389, 8, 58, "Text",ExpressionUUID->"36254bbc-1999-442a-a11b-cb6b7f289937"],
+Cell[CellGroupData[{
+Cell[31351, 738, 2601, 66, 471, "Code",ExpressionUUID->"4296f35e-663f-4883-8202-04a0a7bb1d9b"],
+Cell[33955, 806, 1050, 28, 50, "Output",ExpressionUUID->"d6a98362-d785-4f5e-ad64-1247ada0fe3d"]
+}, Open  ]],
+Cell[35020, 837, 307, 7, 58, "Text",ExpressionUUID->"446ab6dc-1c82-4e92-b08c-19c529d26ae1"],
+Cell[35330, 846, 1719, 41, 60, "Text",ExpressionUUID->"f5f70877-6a8f-4cfa-8754-86664bcf017c"],
+Cell[37052, 889, 1195, 27, 104, "Text",ExpressionUUID->"d020fb0d-ede3-4c73-8c6b-894d3fb43532"],
+Cell[38250, 918, 2943, 70, 510, "Code",ExpressionUUID->"a1e31784-bd91-4761-9cee-7d9ff6169234"],
+Cell[41196, 990, 470, 9, 58, "Text",ExpressionUUID->"fa327217-bc23-4cbd-b613-82708a697b1b"],
+Cell[41669, 1001, 2168, 53, 358, "Code",ExpressionUUID->"1bca9571-b5fb-4cc8-90b3-c40e3f653748"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[43874, 1059, 102, 0, 51, "Subsubsection",ExpressionUUID->"9b086148-8173-44f4-812a-734b4b703fe6"],
+Cell[43979, 1061, 484, 11, 35, "Text",ExpressionUUID->"4791da18-5348-4751-8071-aaeb074604e3"],
+Cell[CellGroupData[{
+Cell[44488, 1076, 737, 19, 129, "Code",ExpressionUUID->"555e292c-c7e7-44bb-95f4-22db6b9d9668"],
+Cell[45228, 1097, 2121, 59, 36, "Output",ExpressionUUID->"5808389d-c833-4d76-bffe-f38a33f99b33"]
+}, Open  ]],
+Cell[47364, 1159, 863, 20, 58, "Text",ExpressionUUID->"cd2a5f75-987a-4c16-b9c5-97c4b3735a55"],
+Cell[CellGroupData[{
+Cell[48252, 1183, 1098, 29, 205, "Code",ExpressionUUID->"a7a18563-09c9-4117-97d6-b11a307f6e55"],
+Cell[49353, 1214, 2858, 81, 38, "Output",ExpressionUUID->"344fdd9a-f98f-449c-9b2a-d566f10cb930"]
+}, Open  ]],
+Cell[52226, 1298, 455, 10, 35, "Text",ExpressionUUID->"3e357f38-fde1-4ef6-af41-be35eea96402"],
+Cell[CellGroupData[{
+Cell[52706, 1312, 1018, 26, 129, "Code",ExpressionUUID->"7fa68fa2-5646-47fc-a973-549963fe5edc"],
+Cell[53727, 1340, 2352, 95, 46, "Output",ExpressionUUID->"05c3e05b-e6d3-4921-afea-694f67266df9"]
+}, Open  ]],
+Cell[56094, 1438, 364, 10, 35, "Text",ExpressionUUID->"b4632369-f740-4da8-b8f5-e60c472085fc"],
+Cell[CellGroupData[{
+Cell[56483, 1452, 1120, 29, 148, "Code",ExpressionUUID->"9c87b651-8287-443c-9223-70444eaf124e"],
+Cell[57606, 1483, 2302, 95, 46, "Output",ExpressionUUID->"cc96ac76-5fba-4b70-902b-d4afe72f7cdd"]
+}, Open  ]],
+Cell[59923, 1581, 191, 4, 52, "Code",ExpressionUUID->"bd65ee47-918e-4c7e-95c4-2c25590231fc"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

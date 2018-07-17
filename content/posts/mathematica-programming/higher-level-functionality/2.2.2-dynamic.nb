@@ -1,0 +1,857 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     33955,        849]
+NotebookOptionsPosition[     30662,        787]
+NotebookOutlinePosition[     31089,        804]
+CellTagsIndexPosition[     31046,        801]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Dynamic\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Higher-Level Functionality/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.2.2\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Wed 27 Dec 2017 16:10:55\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "27", ",", "16", ",", "10", ",", 
+              "55"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<higher-level-functionality\>\""}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<dynamic\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.7233498703162107`*^9, 3.723349889263369*^9}, {3.740780343274675*^9, 
+   3.7407803505765247`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Dynamic", "Subsection",
+ CellChangeTimes->{{3.68461473107541*^9, 
+  3.684614732410369*^9}},ExpressionUUID->"23d90171-4b93-4946-9c5b-\
+6bee9b41f5ab"],
+
+Cell[TextData[{
+ "Everything done up to here has involved static content. Often, though, \
+dynamic content is what you need. I don\[CloseCurlyQuote]t have the time to \
+explain all of ",
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "47357fd1-6b8c-44a9-a54d-2ef5fbcd95a1"],
+ " here, given how many things one can do with ",
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "3f0a73aa-f6ec-4bb2-b81d-17f90b228d32"],
+ ", but it\[CloseCurlyQuote]s worth going over a few critical things."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863632201765633`*^9, 3.6863632993690767`*^9}, {
+   3.723349924365391*^9, 3.723349925050663*^9}, {3.723397288949729*^9, 
+   3.7233972891939898`*^9}},ExpressionUUID->"711a475b-7f14-4941-b415-\
+f4efc9ca2b59"],
+
+Cell[CellGroupData[{
+
+Cell["Dynamic as formatting head", "Subsubsection",ExpressionUUID->"4bfb4da7-c8da-441a-90ea-ad9e9fc65566"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "ebd09820-d7d2-4dff-9a88-f5f548931c90"],
+ " only ever updates while it\[CloseCurlyQuote]s on screen. This is one of it\
+\[CloseCurlyQuote]s key features, as otherwise things could get out of hand. \
+How this works is that ",
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "6d477cd8-723c-41bf-8acf-7ad45d91a023"],
+ " is just something that the Mathematica front end sees and creates \
+listeners to update."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863633351446257`*^9, 3.6863634639363213`*^9}, 
+   3.6863635915559397`*^9},ExpressionUUID->"f079c5d4-3be2-401f-8e08-\
+74c1e9e95e66"],
+
+Cell[TextData[{
+ "This means, though, that if your content will never display it won\
+\[CloseCurlyQuote]t update. If you need an invisible updater, use ",
+ Cell[BoxData[
+  FormBox["DynamicWrapper", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "94be0462-97f9-44f6-8c2f-8e5f9a7e3735"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363596441156*^9, 
+   3.686363631915337*^9}},ExpressionUUID->"c41e3d69-47a6-447c-a332-\
+3d1d1543efc3"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Dynamic\[CloseCurlyQuote]s second argument", "Subsubsection",ExpressionUUID->"309ade38-07b3-4700-b52c-20e5984ca470"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "70429a5b-174f-4885-8c65-5f4abe998edd"],
+ " takes a function as a second argument that it calls whenever it tries to \
+update, passing the update value as the first argument. We can use this to do \
+fancy things like the following:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.68636363680999*^9, 
+   3.68636369490834*^9}},ExpressionUUID->"77c4778c-9ea5-4b72-8f5a-\
+54be87a9512f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Slider", "@", 
+  RowBox[{"Dynamic", "[", 
+   RowBox[{"x", ",", " ", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"x", "=", 
+       RowBox[{"RandomReal", "[", "]"}]}], ")"}], "&"}]}], "]"}]}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363696484733*^9, 3.6863637833063087`*^9}, 
+   3.723389153353073*^9, 
+   3.7233901460351353`*^9},ExpressionUUID->"249ca45d-3d5f-4139-9fcb-\
+598669b99815"],
+
+Cell[BoxData[
+ SliderBox[
+  Dynamic[$CellContext`x, ($CellContext`x = RandomReal[])& ]]], "Output",
+ CellChangeTimes->{{3.6863637659725027`*^9, 3.686363784083954*^9}, 
+   3.7233892108560743`*^9},ExpressionUUID->"a71f4552-1012-4c4d-bfd3-\
+daabd76772ed"]
+}, Open  ]],
+
+Cell["\<\
+The variable takes a random value every time we try to update it.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363808628083*^9, 
+   3.686363823808756*^9}},ExpressionUUID->"893cbc54-d131-44aa-920f-\
+1db4dda26382"],
+
+Cell["This could also be used to record responses:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363833182714*^9, 
+   3.686363869416857*^9}},ExpressionUUID->"3c56fafa-87d4-4538-87b5-\
+58109f04bfab"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$responseCache", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{"Grid", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{"{", "\n", "\t\t\t", 
+     RowBox[{
+      RowBox[{"SetterBar", "[", "\n", "\t\t\t\t", 
+       RowBox[{
+        RowBox[{"Dynamic", "[", 
+         RowBox[{
+          RowBox[{"Last", "@", 
+           RowBox[{"Replace", "[", 
+            RowBox[{"$responseCache", ",", 
+             RowBox[{
+              RowBox[{"{", "}"}], "\[RuleDelayed]", 
+              RowBox[{"{", "None", "}"}]}]}], "]"}]}], ",", "\n", 
+          "\t\t\t\t\t", 
+          RowBox[{
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"$responseCache", ",", "#"}], "]"}], "&"}]}], "\n", 
+         "\t\t\t\t\t", "]"}], ",", "\n", "\t\t\t\t", 
+        RowBox[{"Range", "[", "10", "]"}]}], "\n", "\t\t\t\t", "]"}], ",", 
+      "\n", "\t\t\t", 
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Column", "@", "$responseCache"}]}]}], "\n", "\t\t\t", "}"}], 
+    "\n", "\t\t", "}"}], ",", "\n", "\t", 
+   RowBox[{"Alignment", "\[Rule]", "Top"}]}], "\n", "\t", "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.686363874490637*^9, 3.686364039599246*^9}, 
+   3.7233891533898573`*^9, {3.7233901535276546`*^9, 
+   3.7233901853832197`*^9}},ExpressionUUID->"db525c61-87c8-4960-bab9-\
+b9a5cf26b67e"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     InterpretationBox[
+      StyleBox[GridBox[{
+         {
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {1}, "1"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {2}, "2"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {3}, "3"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {4}, "4"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {5}, "5"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {6}, "6"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {7}, "7"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {8}, "8"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {9}, "9"], 
+          SetterBox[Dynamic[
+            Last[
+             Replace[$CellContext`$responseCache, {} :> {None}]], 
+            AppendTo[$CellContext`$responseCache, #]& ], {10}, "10"]}
+        },
+        BaselinePosition->{1, 1},
+        GridBoxSpacings->{"Columns" -> {
+            Offset[0.27999999999999997`], {
+             Offset[0.]}, 
+            Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, 
+          "Rows" -> {
+            Offset[0.2], {
+             Offset[0.4]}, 
+            Offset[0.2]}, "RowsIndexed" -> {}}],
+       Deployed->True],
+      SetterBar[
+       Dynamic[
+        Last[
+         Replace[$CellContext`$responseCache, {} :> {None}]], 
+        AppendTo[$CellContext`$responseCache, #]& ], {1, 2, 3, 4, 5, 6, 7, 8, 
+       9, 10}]], 
+     DynamicBox[ToBoxes[
+       Column[$CellContext`$responseCache], StandardForm],
+      ImageSizeCache->{8., {21., 26.}}]}
+   },
+   AutoDelete->False,
+   GridBoxAlignment->{"Rows" -> {{Top}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.6863639397406883`*^9, 3.686364060202613*^9}, 
+   3.7233892085525618`*^9, 3.723390191450025*^9, 
+   3.723397355101213*^9},ExpressionUUID->"d7b68156-83d7-410a-8e0e-\
+bccf2ce1bb44"]
+}, Open  ]],
+
+Cell["Each click adds to the response cache.", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686364062408321*^9, 
+   3.686364078323764*^9}},ExpressionUUID->"0f92c12b-2824-43c6-a899-\
+26fd8ebeafeb"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["TrackedSymbols", "Subsubsection",ExpressionUUID->"38bcf041-31b9-4c6b-97c8-1ef5bc13e9b8"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "dd117dcd-5b40-4237-9b82-d1a391784a46"],
+ " usually decides in a semi-opaque manner which symbols to track changes in, \
+but we can force it to follow symbol updates. Let\[CloseCurlyQuote]s make a \
+",
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "81ffe22e-4783-4a36-a19a-8deb1aface70"],
+ " thing that passes colors back and forth. We\[CloseCurlyQuote]ll write it \
+using ",
+ Cell[BoxData[
+  FormBox["Mouseover", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "88aaf3f2-2d62-4647-a70b-1bc4aae5ef9e"],
+ " so the passing only occurs when we\[CloseCurlyQuote]re hovering"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863640974366093`*^9, 3.686364185057576*^9}, {
+   3.686365150267745*^9, 3.6863651651460447`*^9}, {3.686365225835314*^9, 
+   3.686365235824627*^9}, {3.723389399475194*^9, 
+   3.723389399730844*^9}},ExpressionUUID->"5ea293b7-23d8-475b-acde-\
+68a56f6911ab"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"c1", "=", "Gray"}], ";", 
+  RowBox[{"c2", "=", "Green"}], ";", 
+  RowBox[{"counter", "=", "1"}], ";"}], "\n", 
+ RowBox[{"Mouseover", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"Row", "@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{"{", 
+         RowBox[{"c1", ",", 
+          RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}], ",", 
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{"{", 
+         RowBox[{"c2", ",", 
+          RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}]}], "}"}]}], ",", "\n", 
+   "\t", 
+   RowBox[{"Row", "@", 
+    RowBox[{"{", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", 
+       RowBox[{
+        RowBox[{"Graphics", "[", 
+         RowBox[{"{", "\n", "\t\t\t\t", 
+          RowBox[{
+           RowBox[{"c1", "=", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"counter", "<", "5"}], ",", "\n", "\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"counter", "++"}], ";", 
+               RowBox[{"Pause", "[", ".1", "]"}], ";", "c1"}], ",", "\n", 
+              "\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"counter", "=", "1"}], ";", "c2"}]}], "]"}]}], ",", 
+           "\n", "\t\t\t\t", 
+           RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}], ",", "\n", "\t\t", 
+        RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+         RowBox[{"{", 
+          RowBox[{"c1", ",", "c2", ",", "counter"}], "}"}]}]}], "]"}], ",", 
+      "\n", "\t", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{
+        RowBox[{"Graphics", "[", 
+         RowBox[{"{", "\n", "\t\t\t", 
+          RowBox[{
+           RowBox[{"c2", "=", 
+            RowBox[{"If", "[", 
+             RowBox[{
+              RowBox[{"c1", "===", "c2"}], ",", 
+              RowBox[{"RandomColor", "[", "]"}], ",", "c2"}], "]"}]}], ",", 
+           "\n", "\t\t\t", 
+           RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+         RowBox[{"{", 
+          RowBox[{"c1", ",", "c2", ",", "counter"}], "}"}]}]}], "]"}]}], "\n",
+      "\t", "}"}]}]}], "\n", "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.686364136988346*^9, 3.686364153218885*^9}, {
+   3.686364186897956*^9, 3.686364350654792*^9}, {3.686364448589079*^9, 
+   3.686364450755084*^9}, {3.686364931592062*^9, 3.686365065005156*^9}, {
+   3.686365132134068*^9, 3.686365138916567*^9}, {3.686365168977077*^9, 
+   3.686365217306181*^9}, {3.68636530271332*^9, 3.6863653053846903`*^9}, 
+   3.7233891534248466`*^9},ExpressionUUID->"41c94f77-01f7-4d22-950d-\
+5551d3ea3618"],
+
+Cell[BoxData[
+ PaneSelectorBox[{False->
+  TemplateBox[{DynamicBox[
+     ToBoxes[
+      Graphics[{$CellContext`c1, 
+        Disk[]}], StandardForm]],DynamicBox[
+     ToBoxes[
+      Graphics[{$CellContext`c2, 
+        Disk[]}], StandardForm]]},
+   "RowDefault"], True->
+  TemplateBox[{DynamicBox[
+     ToBoxes[
+      Graphics[{$CellContext`c1 = 
+        If[$CellContext`counter < 5, Increment[$CellContext`counter]; 
+          Pause[0.1]; $CellContext`c1, $CellContext`counter = 
+           1; $CellContext`c2], 
+        Disk[]}], StandardForm], 
+     TrackedSymbols :> {$CellContext`c1, $CellContext`c2, \
+$CellContext`counter}],DynamicBox[
+     ToBoxes[
+      Graphics[{$CellContext`c2 = If[$CellContext`c1 === $CellContext`c2, 
+          RandomColor[], $CellContext`c2], 
+        Disk[]}], StandardForm], 
+     TrackedSymbols :> {$CellContext`c1, $CellContext`c2, \
+$CellContext`counter}]},
+   "RowDefault"]}, Dynamic[
+   CurrentValue["MouseOver"]],
+  FrameMargins->0,
+  ImageSize->Automatic]], "Output",
+ CellChangeTimes->{{3.686364995709958*^9, 3.686364998949759*^9}, {
+   3.686365046568914*^9, 3.686365065399104*^9}, 3.686365135031122*^9, {
+   3.686365205168742*^9, 3.686365218844421*^9}, 3.686365305736027*^9, 
+   3.723389213734788*^9},ExpressionUUID->"3045177f-6756-4751-b9ec-\
+0adc23668570"]
+}, Open  ]],
+
+Cell["You\[CloseCurlyQuote]ll notice this works exactly as expected. ", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686364358143325*^9, 3.686364403627284*^9}, {
+   3.6863653388790913`*^9, 
+   3.6863654207269163`*^9}},ExpressionUUID->"77289aba-79ac-498f-9bac-\
+5ea1f2aee9f7"],
+
+Cell[TextData[{
+ "Often, however, one runs into issues with ",
+ Cell[BoxData[
+  FormBox["TrackedSymbols", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "796cc922-b959-40d3-aabf-b43ebacb0378"],
+ ". This is because of an interesting implementation choice. To track a \
+symbol, it needs to appear in the display expression and not too deep. \
+Usually I simply put the symbol in as part of a ",
+ Cell[BoxData[
+  FormBox["CompoundExpression", TextInlineCell]], "InlineInput",
+  ExpressionUUID->"13b958c8-45ae-4c9e-bf59-58f6f1a98dbd"],
+ " so it does nothing, but ",
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "dbd7735d-e0f8-4aca-bac8-1d4add88c773"],
+ " knows to track it. The following is probably the safer way to write this, \
+to ensure tracking:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686364358143325*^9, 3.686364403627284*^9}, {
+   3.6863653388790913`*^9, 
+   3.686365448411216*^9}},ExpressionUUID->"dba57c77-7ebd-48bc-8ed1-\
+8694071ce92d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"c1", "=", "Gray"}], ";", 
+  RowBox[{"c2", "=", "Green"}], ";", 
+  RowBox[{"counter", "=", "1"}], ";"}], "\n", 
+ RowBox[{"Mouseover", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"Row", "@", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{"{", 
+         RowBox[{"c1", ",", 
+          RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}], ",", 
+      RowBox[{"Dynamic", "@", 
+       RowBox[{"Graphics", "[", 
+        RowBox[{"{", 
+         RowBox[{"c2", ",", 
+          RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}]}], "}"}]}], ",", "\n", 
+   "\t", 
+   RowBox[{"Row", "@", 
+    RowBox[{"{", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"Dynamic", "[", 
+       RowBox[{
+        RowBox[{"counter", ";", "c1", ";", "c2", ";", 
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", "\n", "\t\t\t\t", 
+           RowBox[{
+            RowBox[{"c1", "=", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"counter", "<", "5"}], ",", "\n", "\t\t\t\t\t", 
+               RowBox[{
+                RowBox[{"counter", "++"}], ";", 
+                RowBox[{"Pause", "[", ".1", "]"}], ";", "c1"}], ",", "\n", 
+               "\t\t\t\t\t", 
+               RowBox[{
+                RowBox[{"counter", "=", "1"}], ";", "c2"}]}], "]"}]}], ",", 
+            "\n", "\t\t\t\t", 
+            RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}], ",", "\n", "\t\t", 
+        RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+         RowBox[{"{", 
+          RowBox[{"c1", ",", "c2", ",", "counter"}], "}"}]}]}], "]"}], ",", 
+      "\n", "\t", 
+      RowBox[{"Dynamic", "[", 
+       RowBox[{
+        RowBox[{"c1", ";", "c2", ";", 
+         RowBox[{"Graphics", "[", 
+          RowBox[{"{", "\n", "\t\t\t", 
+           RowBox[{
+            RowBox[{"c2", "=", 
+             RowBox[{"If", "[", 
+              RowBox[{
+               RowBox[{"c1", "===", "c2"}], ",", 
+               RowBox[{"RandomColor", "[", "]"}], ",", "c2"}], "]"}]}], ",", 
+            "\n", "\t\t\t", 
+            RowBox[{"Disk", "[", "]"}]}], "}"}], "]"}]}], ",", 
+        RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+         RowBox[{"{", 
+          RowBox[{"c1", ",", "c2", ",", "counter"}], "}"}]}]}], "]"}]}], "\n",
+      "\t", "}"}]}]}], "\n", "]"}]}], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.686364136988346*^9, 3.686364153218885*^9}, {
+   3.686364186897956*^9, 3.686364350654792*^9}, {3.686364448589079*^9, 
+   3.686364450755084*^9}, {3.686364931592062*^9, 3.686365065005156*^9}, {
+   3.686365132134068*^9, 3.686365138916567*^9}, {3.686365168977077*^9, 
+   3.686365217306181*^9}, {3.6863652496264553`*^9, 3.686365290656958*^9}, 
+   3.723389153481979*^9},ExpressionUUID->"8922cca3-fae3-4c31-8268-\
+f8e3a9466da9"],
+
+Cell[BoxData[
+ PaneSelectorBox[{False->
+  TemplateBox[{DynamicBox[
+     ToBoxes[
+      Graphics[{$CellContext`c1, 
+        Disk[]}], StandardForm]],DynamicBox[
+     ToBoxes[
+      Graphics[{$CellContext`c2, 
+        Disk[]}], StandardForm]]},
+   "RowDefault"], True->
+  TemplateBox[{DynamicBox[
+     ToBoxes[$CellContext`counter; $CellContext`c1; $CellContext`c2; 
+      Graphics[{$CellContext`c1 = 
+         If[$CellContext`counter < 5, Increment[$CellContext`counter]; 
+           Pause[0.1]; $CellContext`c1, $CellContext`counter = 
+            1; $CellContext`c2], 
+         Disk[]}], StandardForm], 
+     TrackedSymbols :> {$CellContext`c1, $CellContext`c2, \
+$CellContext`counter}],DynamicBox[
+     ToBoxes[$CellContext`c1; $CellContext`c2; 
+      Graphics[{$CellContext`c2 = If[$CellContext`c1 === $CellContext`c2, 
+           RandomColor[], $CellContext`c2], 
+         Disk[]}], StandardForm], 
+     TrackedSymbols :> {$CellContext`c1, $CellContext`c2, \
+$CellContext`counter}]},
+   "RowDefault"]}, Dynamic[
+   CurrentValue["MouseOver"]],
+  FrameMargins->0,
+  ImageSize->Automatic]], "Output",
+ CellChangeTimes->{{3.6863652612967653`*^9, 3.686365291050912*^9}, 
+   3.723389215814617*^9, 
+   3.72339732493522*^9},ExpressionUUID->"371153ff-a4d1-4a36-bf47-\
+bf9496b7480d"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["UpdateInterval", "Subsubsection",ExpressionUUID->"62ddc5ba-dc60-4204-ac54-918526ca79f9"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Dynamic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "1f545683-1f10-4646-9b47-581751fa774a"],
+ " can also be scheduled to simply update on a given time frame, which is \
+usually a fall back for when there\[CloseCurlyQuote]s no other way to get \
+symbol tracking to work right or there are no symbols to track. In this case \
+it\[CloseCurlyQuote]s very important the ",
+ Cell[BoxData[
+  FormBox["TrackedSymbols", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "865bd8e3-a8cc-4188-bec2-bd65ed20f938"],
+ " be passed an empty list."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686365490387765*^9, 
+   3.686365556712348*^9}},ExpressionUUID->"430b30fe-b3cf-4240-8442-\
+66a0856546bb"],
+
+Cell["Here\[CloseCurlyQuote]s a classic stop watch example:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686365564003229*^9, 3.6863655724398746`*^9}, {
+   3.686365676873474*^9, 3.686365691424148*^9}, {3.686366194934043*^9, 
+   3.686366197472291*^9}},ExpressionUUID->"8aa93720-792e-49d7-af28-\
+d9101ad3ce34"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"startTime", "=", "None"}], ";", 
+  RowBox[{"updateInterval", "=", "\[Infinity]"}], ";"}], "\n", 
+ RowBox[{"Panel", "@", 
+  RowBox[{"Grid", "[", 
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<Start\>\"", ",", "\n", "\t\t\t\t", 
+         RowBox[{
+          RowBox[{"startTime", "=", 
+           RowBox[{"TimeObject", "[", "]"}]}], ";", "\n", "\t\t\t\t", 
+          RowBox[{"updateInterval", "=", ".1"}]}]}], "]"}], ",", "\n", 
+       "\t\t\t", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<Stop\>\"", ",", 
+         RowBox[{"updateInterval", "=", "\[Infinity]"}]}], "]"}], ",", "\n", 
+       "\t\t\t", 
+       RowBox[{"Button", "[", 
+        RowBox[{"\"\<Reset\>\"", ",", 
+         RowBox[{"startTime", "=", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"updateInterval", "===", "\[Infinity]"}], ",", "None", 
+            ",", 
+            RowBox[{"TimeObject", "[", "]"}]}], "]"}]}]}], "]"}]}], "\n", 
+      "\t\t\t", "}"}], ",", "\n", "\t\t", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"Panel", "@", 
+        RowBox[{"Panel", "[", "\n", "\t\t\t\t", 
+         RowBox[{
+          RowBox[{"Dynamic", "[", "\n", "\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{
+            "updateInterval", ";", "\n", "\t\t\t\t\t", "startTime", ";", "\n",
+              "\t\t\t\t\t", 
+             RowBox[{"Dynamic", "[", "\n", "\t\t\t\t\t\t", 
+              RowBox[{
+               RowBox[{"TemplateApply", "[", 
+                RowBox[{"\"\<``:``:``\>\"", ",", "\n", "\t\t\t\t\t\t\t", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"If", "[", 
+                    RowBox[{
+                    RowBox[{"MatchQ", "[", 
+                    RowBox[{"#", ",", "_Integer"}], "]"}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t", 
+                    RowBox[{"StringPadLeft", "[", 
+                    RowBox[{
+                    RowBox[{"ToString", "[", "#", "]"}], ",", "2", ",", 
+                    "\"\<0\>\""}], "]"}], ",", "\n", "\t\t\t\t\t\t\t\t", 
+                    RowBox[{"ToString", "@", "#"}]}], "]"}], "&"}], "/@", 
+                  RowBox[{"First", "@", 
+                   RowBox[{"TimeObject", "@", 
+                    RowBox[{"(", "\n", "\t\t\t\t\t\t\t\t", 
+                    RowBox[{"If", "[", "\n", "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{
+                    RowBox[{"startTime", "===", "None"}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", "0"}], "}"}], ",", "\n", 
+                    "\t\t\t\t\t\t\t\t\t", 
+                    RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", 
+                    RowBox[{"Round", "[", 
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{
+                    RowBox[{"TimeObject", "[", "]"}], "-", "startTime"}], "//",
+                     "QuantityMagnitude"}], ",", ".01"}], "]"}]}], "}"}]}], 
+                    "]"}], ")"}]}]}]}]}], "\n", "\t\t\t\t\t\t\t", "]"}], ",", 
+               "\n", "\t\t\t\t\t\t", 
+               RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+                RowBox[{"{", "}"}]}], ",", "\n", "\t\t\t\t\t\t", 
+               RowBox[{"UpdateInterval", "\[Rule]", "updateInterval"}]}], 
+              "]"}]}], ",", "\n", "\t\t\t\t\t", 
+            RowBox[{"TrackedSymbols", "\[RuleDelayed]", 
+             RowBox[{"{", 
+              RowBox[{"updateInterval", ",", "startTime"}], "}"}]}]}], "]"}], 
+          ",", "\n", "\t\t\t\t", 
+          RowBox[{"ImageSize", "\[Rule]", "200"}], ",", "\n", "\t\t\t\t", 
+          RowBox[{"Alignment", "\[Rule]", "Center"}], ",", "\n", "\t\t\t\t", 
+          RowBox[{"Background", "\[Rule]", "White"}]}], "]"}]}], ",", "\n", 
+       "\t\t\t", "SpanFromLeft"}], "}"}]}], "\n", "\t\t", "}"}], 
+   "]"}]}]}], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686365559186701*^9, 3.686365875349642*^9}, {
+   3.686365915543004*^9, 3.68636591738234*^9}, {3.686365949581788*^9, 
+   3.686366175534175*^9}, {3.686366210270117*^9, 3.686366322754672*^9}, {
+   3.686366362072839*^9, 3.686366748839872*^9}, {3.686366782437417*^9, 
+   3.6863668018812027`*^9}, {3.686366845156147*^9, 3.686366905646282*^9}, 
+   3.723389153600148*^9},ExpressionUUID->"bef0f3f1-6538-4c03-88a9-\
+f8d2194f4f02"],
+
+Cell[BoxData[
+ PanelBox[
+  TagBox[GridBox[{
+     {
+      ButtonBox["\<\"Start\"\>",
+       Appearance->Automatic,
+       ButtonFunction:>($CellContext`startTime = 
+         TimeObject[]; $CellContext`updateInterval = 0.1),
+       Evaluator->Automatic,
+       Method->"Preemptive"], 
+      ButtonBox["\<\"Stop\"\>",
+       Appearance->Automatic,
+       ButtonFunction:>($CellContext`updateInterval = Infinity),
+       Evaluator->Automatic,
+       Method->"Preemptive"], 
+      ButtonBox["\<\"Reset\"\>",
+       Appearance->Automatic,
+       ButtonFunction:>($CellContext`startTime = 
+        If[$CellContext`updateInterval === Infinity, None, 
+          TimeObject[]]),
+       Evaluator->Automatic,
+       Method->"Preemptive"]},
+     {
+      PanelBox[
+       PanelBox[
+        DynamicBox[
+         ToBoxes[$CellContext`updateInterval; $CellContext`startTime; 
+          Dynamic[
+            TemplateApply["``:``:``", 
+             Map[If[
+               MatchQ[#, 
+                Blank[Integer]], 
+               StringPadLeft[
+                ToString[#], 2, "0"], 
+               ToString[#]]& , 
+              First[
+               TimeObject[
+                If[$CellContext`startTime === None, {0, 0, 0}, {0, 0, 
+                  Round[
+                   QuantityMagnitude[TimeObject[] - $CellContext`startTime], 
+                   0.01]}]]]]], TrackedSymbols :> {}, 
+            UpdateInterval -> $CellContext`updateInterval], StandardForm],
+         ImageSizeCache->{41., {1., 8.}},
+         TrackedSymbols:>{$CellContext`updateInterval, \
+$CellContext`startTime}],
+        Alignment->Center,
+        Background->GrayLevel[1],
+        ImageSize->200]], "\[SpanFromLeft]", "\[SpanFromLeft]"}
+    },
+    AutoDelete->False,
+    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+   "Grid"]]], "Output",
+ CellChangeTimes->{
+  3.686365655832868*^9, {3.686365713914674*^9, 3.6863657240047894`*^9}, {
+   3.686365780390085*^9, 3.68636580023885*^9}, {3.6863658557924643`*^9, 
+   3.686365875837552*^9}, 3.686365918203088*^9, {3.686365952419368*^9, 
+   3.686365969524022*^9}, 3.6863660396702423`*^9, 3.6863660903290977`*^9, {
+   3.68636612303249*^9, 3.686366283000946*^9}, {3.686366317591887*^9, 
+   3.686366323240425*^9}, {3.686366477580729*^9, 3.686366652238085*^9}, 
+   3.686366689554617*^9, {3.686366722162114*^9, 3.686366802322398*^9}, 
+   3.686366853217317*^9, 3.686366906068816*^9, 3.686366948051095*^9, {
+   3.723389243722187*^9, 3.723389248803034*^9}, 
+   3.72339736285279*^9},ExpressionUUID->"91b077db-c300-4c88-940a-\
+e5747b7564e2"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{64, Automatic}, {Automatic, 33}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2475, 52, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3058, 76, 154, 3, 41, "Subsection",ExpressionUUID->"23d90171-4b93-4946-9c5b-6bee9b41f5ab"],
+Cell[3215, 81, 829, 17, 81, "Text",ExpressionUUID->"711a475b-7f14-4941-b415-f4efc9ca2b59"],
+Cell[CellGroupData[{
+Cell[4069, 102, 106, 0, 40, "Subsubsection",ExpressionUUID->"4bfb4da7-c8da-441a-90ea-ad9e9fc65566"],
+Cell[4178, 104, 740, 16, 81, "Text",ExpressionUUID->"f079c5d4-3be2-401f-8e08-74c1e9e95e66"],
+Cell[4921, 122, 458, 11, 58, "Text",ExpressionUUID->"c41e3d69-47a6-447c-a332-3d1d1543efc3"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5416, 138, 122, 0, 40, "Subsubsection",ExpressionUUID->"309ade38-07b3-4700-b52c-20e5984ca470"],
+Cell[5541, 140, 497, 11, 58, "Text",ExpressionUUID->"77c4778c-9ea5-4b72-8f5a-54be87a9512f"],
+Cell[CellGroupData[{
+Cell[6063, 155, 430, 12, 52, "Code",ExpressionUUID->"249ca45d-3d5f-4139-9fcb-598669b99815"],
+Cell[6496, 169, 252, 5, 42, "Output",ExpressionUUID->"a71f4552-1012-4c4d-bfd3-daabd76772ed"]
+}, Open  ]],
+Cell[6763, 177, 241, 6, 35, "Text",ExpressionUUID->"893cbc54-d131-44aa-920f-1db4dda26382"],
+Cell[7007, 185, 212, 4, 35, "Text",ExpressionUUID->"3c56fafa-87d4-4538-87b5-58109f04bfab"],
+Cell[CellGroupData[{
+Cell[7244, 193, 1356, 34, 319, "Code",ExpressionUUID->"db525c61-87c8-4960-bab9-b9a5cf26b67e"],
+Cell[8603, 229, 3004, 74, 67, "Output",ExpressionUUID->"d7b68156-83d7-410a-8e0e-bccf2ce1bb44"]
+}, Open  ]],
+Cell[11622, 306, 206, 4, 35, "Text",ExpressionUUID->"0f92c12b-2824-43c6-a899-26fd8ebeafeb"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11865, 315, 94, 0, 51, "Subsubsection",ExpressionUUID->"38bcf041-31b9-4c6b-97c8-1ef5bc13e9b8"],
+Cell[11962, 317, 1031, 22, 81, "Text",ExpressionUUID->"5ea293b7-23d8-475b-acde-68a56f6911ab"],
+Cell[CellGroupData[{
+Cell[13018, 343, 2659, 68, 319, "Code",ExpressionUUID->"41c94f77-01f7-4d22-950d-5551d3ea3618"],
+Cell[15680, 413, 1298, 33, 109, "Output",ExpressionUUID->"3045177f-6756-4751-b9ec-0adc23668570"]
+}, Open  ]],
+Cell[16993, 449, 285, 5, 35, "Text",ExpressionUUID->"77289aba-79ac-498f-9bac-5ea1f2aee9f7"],
+Cell[17281, 456, 1008, 22, 104, "Text",ExpressionUUID->"dba57c77-7ebd-48bc-8ed1-8694071ce92d"],
+Cell[CellGroupData[{
+Cell[18314, 482, 2781, 70, 319, "Code",ExpressionUUID->"8922cca3-fae3-4c31-8268-f8e3a9466da9"],
+Cell[21098, 554, 1277, 32, 109, "Output",ExpressionUUID->"371153ff-a4d1-4a36-bf47-bf9496b7480d"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22424, 592, 94, 0, 51, "Subsubsection",ExpressionUUID->"62ddc5ba-dc60-4204-ac54-918526ca79f9"],
+Cell[22521, 594, 746, 16, 81, "Text",ExpressionUUID->"430b30fe-b3cf-4240-8442-66a0856546bb"],
+Cell[23270, 612, 319, 5, 35, "Text",ExpressionUUID->"8aa93720-792e-49d7-af28-d9101ad3ce34"],
+Cell[CellGroupData[{
+Cell[23614, 621, 4440, 96, 604, "Code",ExpressionUUID->"bef0f3f1-6538-4c03-88a9-f8d2194f4f02"],
+Cell[28057, 719, 2565, 63, 118, "Output",ExpressionUUID->"91b077db-c300-4c88-940a-e5747b7564e2"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

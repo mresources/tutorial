@@ -1,0 +1,595 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23223,        587]
+NotebookOptionsPosition[     18917,        514]
+NotebookOutlinePosition[     19344,        531]
+CellTagsIndexPosition[     19301,        528]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Paclet Distribution\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Package Usage and Development/Paclet Development/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.3.3\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 13 Jul 2018 20:40:35\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "13", ",", "20", ",", "40", ",", 
+              "35"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<package-usage-and-development\>\"", "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<packages\>\"", ",", " ", "\"\<paclets\>\"", ",", " ", 
+      "\"\<distribution\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.740255371551134*^9, 3.740255441548623*^9}, {3.740257785728876*^9, 
+   3.740257787359725*^9}, {3.740258871202475*^9, 3.740258879451874*^9}, {
+   3.740259049250639*^9, 3.7402590549178123`*^9}, {3.740499593308742*^9, 
+   3.74049959645723*^9}, {3.740499662784543*^9, 3.7404996642237453`*^9}, {
+   3.740499728069169*^9, 3.740499760532651*^9}, {3.740499835787034*^9, 
+   3.740499837765148*^9}, {3.740511787373929*^9, 3.740511787864347*^9}, {
+   3.740513133400173*^9, 3.7405131628282537`*^9}, {3.740515862908148*^9, 
+   3.740515863359661*^9}, {3.740515997166277*^9, 3.740516011405345*^9}, {
+   3.740525064757324*^9, 3.740525065190974*^9}, {3.740773489630138*^9, 
+   3.740773511182369*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Paclet Distribution", "Subsection",
+ CellChangeTimes->{{3.740255477850593*^9, 3.740255479529958*^9}, {
+  3.7402590618688087`*^9, 3.740259062909335*^9}, {3.740499791584087*^9, 
+  3.740499794062068*^9}, {3.740499914683754*^9, 3.7404999150677223`*^9}, {
+  3.740500461916469*^9, 3.74050046599055*^9}, {3.7405131650041113`*^9, 
+  3.7405131665968647`*^9}, {3.7405159990191107`*^9, 
+  3.740516000987028*^9}},ExpressionUUID->"36c68aba-ef4e-4c2d-a805-\
+3af3c2d932e3"],
+
+Cell["\<\
+We can distribute paclets in either of two ways. We can distribute a packed \
+.paclet file directly or distribute via a server.\
+\>", "Text",
+ CellChangeTimes->{{3.740513170179833*^9, 3.7405132299233313`*^9}, {
+  3.7405230068771772`*^9, 
+  3.7405230664862022`*^9}},ExpressionUUID->"f4cb9bfb-ac12-48c5-b771-\
+ea91cf8e0663"],
+
+Cell["\<\
+Whichever route we go, though, we\[CloseCurlyQuote]ll first need the .paclet \
+file.\
+\>", "Text",
+ CellChangeTimes->{{3.740523078392538*^9, 
+  3.74052308921616*^9}},ExpressionUUID->"67724497-4a2c-44fd-b4a5-\
+50e4d1d6e99f"],
+
+Cell[CellGroupData[{
+
+Cell["Creating a .paclet File", "Subsubsection",
+ CellChangeTimes->{{3.740523091792447*^9, 
+  3.740523095864023*^9}},ExpressionUUID->"fd1b2a2d-9e95-45ca-9d13-\
+f80185ee9b91"],
+
+Cell[TextData[{
+ "To create a .paclet file we use the ",
+ Cell[BoxData["PackPaclet"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "e7120cb4-0480-4b1e-9363-8b5c19bc7f85"],
+ " function in the ",
+ Cell[BoxData["\"\<PacletManager`\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "63186331-4efa-401e-978c-68aa747bf592"],
+ " context. We can call it one of two ways:"
+}], "Text",
+ CellChangeTimes->{{3.7405230975932083`*^9, 3.7405231084640217`*^9}, {
+  3.7405231416391687`*^9, 
+  3.740523167452538*^9}},ExpressionUUID->"cfc26212-b03d-4e53-b68a-\
+2107a7ccdb29"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ Cell[BoxData[
+  RowBox[{"PackPaclet", "[", "dir", "]"}]], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "361ff384-72c9-4053-bb1a-0bcd5a0c4d48"],
+ " \[LongDash] creates a packed .paclet file from ",
+ Cell[BoxData["dir"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a6bae330-43f9-4750-a4bf-6ad8ee7fd66c"],
+ " and places it in ",
+ Cell[BoxData["dir"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "fbeb6300-51ec-44bb-b365-22fb582c31f5"]
+}], "Item",
+ CellChangeTimes->{{3.740523152159172*^9, 
+  3.740523189081827*^9}},ExpressionUUID->"dfc0b065-6368-4ebe-89e2-\
+3f8812a15744"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  RowBox[{"PackPaclet", "[", 
+   RowBox[{"dir", ",", " ", "dest"}], "]"}]], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "08e9dbdb-37a1-4394-885c-2716dac08e1e"],
+ " \[LongDash] creates a packed .paclet file from ",
+ Cell[BoxData["dir"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "c2de5fdc-54e1-4a5c-ad9d-0d8b0c19e8ba"],
+ " and places it in ",
+ Cell[BoxData["dest"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "07a39131-228d-4f8d-99b6-335a4fd9838e"]
+}], "Item",
+ CellChangeTimes->{{3.740523152159172*^9, 
+  3.740523196137959*^9}},ExpressionUUID->"3d69dbde-b3cc-4558-bcbd-\
+aabe3b6b24b3"]
+}, Open  ]],
+
+Cell["\<\
+Say, for the sake of argument, that I am Etienne Bernard and write the \
+Machine Learning functionality packaged into Mathematica. I can find my \
+paclet directory like\
+\>", "Text",
+ CellChangeTimes->{{3.740523198876005*^9, 3.740523209947259*^9}, {
+  3.7405232678933573`*^9, 
+  3.740523302043057*^9}},ExpressionUUID->"c1847d57-bb8a-43bf-a89a-\
+5a74dbf3563b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"dir", " ", "=", " ", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"PacletFind", "[", "\"\<MachineLearning\>\"", "]"}], "[", 
+    RowBox[{"[", "1", "]"}], "]"}], "[", "\"\<Location\>\"", "]"}]}]], "Code",\
+
+ CellChangeTimes->{{3.740523306852488*^9, 3.740523320178796*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"89c98246-1c3f-4f08-93fb-3eb5ea0486f8"],
+
+Cell[BoxData["\<\"/Applications/Mathematica.app/Contents/SystemFiles/\
+Components/MachineLearning\"\>"], "Output",
+ CellChangeTimes->{3.740523320582045*^9},
+ CellLabel->"Out[88]=",ExpressionUUID->"d3fd151d-e912-42aa-92e7-a5dad2f34e43"]
+}, Open  ]],
+
+Cell["Then this can be packed into a .paclet file like:", "Text",
+ CellChangeTimes->{{3.740523324642682*^9, 
+  3.740523340251295*^9}},ExpressionUUID->"6c2dfcf0-892e-4916-89a0-\
+a26f681f90d6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"paclet", " ", "=", " ", 
+  RowBox[{"PackPaclet", "[", 
+   RowBox[{"dir", ",", " ", "$TemporaryDirectory"}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.740523444896204*^9, 3.740523451169982*^9}},
+ CellLabel->"In[94]:=",ExpressionUUID->"d2c086ef-0609-4f57-a305-30da796c1df6"],
+
+Cell[BoxData["\<\"/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/\
+MachineLearning-1.1.0.paclet\"\>"], "Output",
+ CellChangeTimes->{3.7405234522300863`*^9},
+ CellLabel->"Out[94]=",ExpressionUUID->"c40ef91d-4e1b-4cee-9641-680d237d56dd"]
+}, Open  ]],
+
+Cell["And now this can be distributed", "Text",
+ CellChangeTimes->{{3.740523456121315*^9, 
+  3.740523460191852*^9}},ExpressionUUID->"09c01b2d-dab0-4729-8c0b-\
+1fc73c940e36"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Direct Distribution", "Subsubsection",
+ CellChangeTimes->{{3.7405234650077953`*^9, 
+  3.740523470839501*^9}},ExpressionUUID->"1fb61448-0535-4d88-b3d5-\
+9f2d8a9495db"],
+
+Cell["\<\
+Once a paclet is packed it can be distributed directly as it. For instance, I \
+can put this in on my Wolfram Cloud account:\
+\>", "Text",
+ CellChangeTimes->{{3.740523474807727*^9, 
+  3.740523507727119*^9}},ExpressionUUID->"7e08ced1-3e75-469d-b373-\
+b58bc2560897"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"CopyFile", "[", "\n", "\t", 
+   RowBox[{"paclet", ",", " ", "\n", "\t", 
+    RowBox[{"CloudObject", "[", 
+     RowBox[{"\"\<user:b3m2a1.testing/MachineLearning.paclet\>\"", ",", " ", 
+      RowBox[{"Permissions", "\[Rule]", "\"\<Public\>\""}]}], "]"}]}], "\n", 
+   "\t", "]"}], "//", "Most"}]], "Code",
+ CellChangeTimes->{{3.740523511280507*^9, 3.740523534648275*^9}, {
+  3.7405235691763077`*^9, 
+  3.740523604244156*^9}},ExpressionUUID->"26d02f50-6a16-477a-b533-\
+88cae63c1f9d"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"CloudObject", "[", 
+   TemplateBox[{
+    "\"https://www.wolframcloud.com/objects/b3m2a1.testing/MachineLearning.\
+paclet\"",
+     "https://www.wolframcloud.com/objects/b3m2a1.testing/MachineLearning.\
+paclet"},
+    "HyperlinkURL"], "]"}],
+  CloudObject[
+  "https://www.wolframcloud.com/objects/b3m2a1.testing/MachineLearning.\
+paclet"],
+  SelectWithContents->True]], "Output",
+ CellChangeTimes->{3.74052360492428*^9},
+ CellLabel->
+  "Out[100]=",ExpressionUUID->"faa66281-0c26-4b72-b09b-04f1994c71c0"]
+}, Open  ]],
+
+Cell["And now anyone could come along and install this with:", "Text",
+ CellChangeTimes->{{3.740523608955883*^9, 
+  3.740523619667701*^9}},ExpressionUUID->"765924c1-256c-41df-bf43-\
+5ead017b37af"],
+
+Cell[BoxData[
+ RowBox[{"PacletInstall", "@", "\n", "\t", 
+  "\"\<http://www.wolframcloud.com/objects/b3m2a1.testing/MachineLearning.\
+paclet\>\""}]], "Code",
+ CellChangeTimes->{{3.740523621835868*^9, 
+  3.7405236436593313`*^9}},ExpressionUUID->"3b570376-456b-4964-84b5-\
+29d4995684c8"],
+
+Cell["Often we want something a little more sophisticated, though.", "Text",
+ CellChangeTimes->{{3.7405236638349943`*^9, 
+  3.7405236748587437`*^9}},ExpressionUUID->"78e40f38-a76f-4896-9c86-\
+a311ab934803"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Paclet Servers", "Subsection",
+ CellChangeTimes->{{3.740523657396491*^9, 
+  3.7405236608749857`*^9}},ExpressionUUID->"a7bd9736-5b2b-4a82-8672-\
+32441a3acdb5"],
+
+Cell[TextData[{
+ "Paclet servers exist to make it easy to serve many paclets from the same \
+location. The ",
+ Cell[BoxData[
+ "PacletManager"], "InlineInput",ExpressionUUID->
+  "52215d4b-529c-4129-a4c8-9d31092c65da"],
+ " indexes all the paclet servers available to it and figures out where to \
+install paclets from if simply provided with a name. Therefore it\
+\[CloseCurlyQuote]s useful for us to be able to set up our own servers."
+}], "Text",
+ CellChangeTimes->{{3.740523678234654*^9, 
+  3.740523742161834*^9}},ExpressionUUID->"7bbbb0e0-c7f0-4b7d-83b1-\
+8cffc873e133"],
+
+Cell[TextData[{
+ "To do this we simply need to add a ",
+ Cell[BoxData[
+ "Paclets"], "InlineText",ExpressionUUID->
+  "b0007f0e-b3b9-458d-ae53-4fabcc8314bf"],
+ " directory to our server and provide a compressed metadata file ",
+ Cell[BoxData[
+  RowBox[{"PacletSite", ".", "mz"}]], "InlineText",ExpressionUUID->
+  "3d99f622-e7f0-4d84-85e1-c03ce2b74f64"],
+ ". Overall our server will look like:"
+}], "Text",
+ CellChangeTimes->{{3.7405237819006844`*^9, 
+  3.740523858867332*^9}},ExpressionUUID->"8165101a-628a-4ffc-b0bb-\
+8cadd9c096a9"],
+
+Cell[BoxData[{"none", "\n", "Server", "\n", 
+ RowBox[{" ", 
+  RowBox[{"PacletSite", ".", "mz"}]}], "\n", 
+ RowBox[{" ", "Paclets"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"Paclet1", "-", 
+   RowBox[{"version1", ".", "paclet"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"Paclet1", "-", 
+   RowBox[{"version2", ".", "paclet"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"Paclet2", "-", 
+   RowBox[{"version1", ".", "paclet"}]}]}], "\n", 
+ RowBox[{"  ", "..."}]}], "FencedCode",
+ CellChangeTimes->{{3.740523861852735*^9, 3.740523897626803*^9}, {
+  3.74052841620639*^9, 
+  3.740528417588521*^9}},ExpressionUUID->"5ad16def-73fc-4a20-8e3c-\
+964494cc1643"],
+
+Cell[CellGroupData[{
+
+Cell["PacletSite.mz", "Subsubsection",
+ CellChangeTimes->{{3.740523954476514*^9, 
+  3.7405239571004763`*^9}},ExpressionUUID->"38e9cd9b-de20-4158-8e8c-\
+014ad4cfe8b3"],
+
+Cell[TextData[{
+ "The paclet manager indexes the paclets on the server by looking at ",
+ Cell[BoxData[
+  RowBox[{"PacletSite", ".", "mz"}]], "InlineText",ExpressionUUID->
+  "5b5587c6-6201-4c87-b5a6-164e9e8f9b7f"],
+ ", which is much like a ",
+ Cell[BoxData[
+  RowBox[{"PacletInfo", ".", "m"}]], "InlineText",ExpressionUUID->
+  "c65c9942-cb70-4dc7-b119-0dc881befd93"],
+ " file, except instead of containing a single ",
+ Cell[BoxData["Paclet"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "5d0a2d04-6306-4c88-a8fa-8d9cc888cc4e"],
+ " expression it contains a ",
+ Cell[BoxData["PacletSite"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ea85804d-bafb-433e-8082-8cb2f5b92b58"],
+ " expression that bundles up a bunch of different ",
+ Cell[BoxData["Paclet"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "769210b2-aae2-4ca0-ab10-65d5dbf5ae79"],
+ " expressions."
+}], "Text",
+ CellChangeTimes->{{3.740523911146944*^9, 
+  3.740524018867964*^9}},ExpressionUUID->"7180067d-6c4c-4488-8666-\
+3b6148352beb"],
+
+Cell["In all it\[CloseCurlyQuote]ll look like:", "Text",
+ CellChangeTimes->{{3.740524025446786*^9, 
+  3.740524029062801*^9}},ExpressionUUID->"15407031-7e75-4ca0-b90f-\
+b127f9d4bf1c"],
+
+Cell[BoxData[
+ RowBox[{"PacletSite", "[", "\n", " ", 
+  RowBox[{
+   RowBox[{"Paclet", "[", "\n", "  ", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\"\<MyPaclet1\>\""}], ",", "\n", "  ", 
+     "..."}], "\n", "  ", "]"}], ",", "\n", " ", 
+   RowBox[{"Paclet", "[", "\n", "  ", 
+    RowBox[{
+     RowBox[{"Name", "\[Rule]", "\"\<MyPaclet2\>\""}], ",", "\n", "  ", 
+     "..."}], "\n", "  ", "]"}], ",", "\n", " ", "..."}], "\n", " ", 
+  "]"}]], "Code",
+ CellChangeTimes->{{3.7405240350388412`*^9, 
+  3.740524058774436*^9}},ExpressionUUID->"0aa81106-6427-4b02-b54c-\
+962d9819180d"],
+
+Cell["\<\
+Then this gets written to a file as an expression and ZIP compressed.\
+\>", "Text",
+ CellChangeTimes->{{3.740524063022018*^9, 
+  3.740524083157913*^9}},ExpressionUUID->"fece6ec6-b1a7-4c06-a657-\
+6e9d371a98e5"],
+
+Cell[TextData[{
+ "In general we don\[CloseCurlyQuote]t need to handle this ourselves, though, \
+as there\[CloseCurlyQuote]s a function in the ",
+ Cell[BoxData["PacletManager"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "62888044-04a2-4e69-9cbc-dec3dab94a5f"],
+ " that does this. If we call ",
+ Cell[BoxData["PacletManager`Package`BuildPacletSiteFiles"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "99c26a1b-aa78-435e-b514-31b9179928dd"],
+ " on our target directory it will do this for us."
+}], "Text",
+ CellChangeTimes->{{3.740524086965468*^9, 3.740524093245687*^9}, {
+  3.7405241574234324`*^9, 3.740524163871303*^9}, {3.7405242247631493`*^9, 
+  3.740524272191142*^9}, {3.740524353003414*^9, 
+  3.7405244145836153`*^9}},ExpressionUUID->"d1853432-7f40-485a-8ee9-\
+ce972e6c5427"],
+
+Cell["For instance, I could call:", "Text",
+ CellChangeTimes->{{3.740524824065209*^9, 
+  3.740524827271887*^9}},ExpressionUUID->"9ead388d-d713-480d-a700-\
+f30216eafd4b"],
+
+Cell[BoxData[
+ RowBox[{"PacletManager`Package`BuildPacletSiteFiles", "@", 
+  "\[IndentingNewLine]", 
+  RowBox[{
+  "ExpandFileName", "@", 
+   "\"\<~/Documents/GitHub/GitHubServer\>\""}]}]], "Code",
+ CellChangeTimes->{{3.740524458678364*^9, 3.7405244590750303`*^9}, {
+  3.7405247600097523`*^9, 3.740524768145265*^9}, {3.740524813268382*^9, 
+  3.7405248165463133`*^9}},
+ CellLabel->
+  "In[109]:=",ExpressionUUID->"ecf39d34-c5c4-4e46-a0f2-6d46fa38e9d7"],
+
+Cell[TextData[{
+ "And all of the files in the ",
+ Cell[BoxData[
+ "Paclets"], "InlineText",ExpressionUUID->
+  "612fbdef-6877-4e3a-b2c3-bdbe7e8f4b47"],
+ "  sub-folder will get indexed into a ",
+ Cell[BoxData[
+  RowBox[{"PacletSite", ".", "m"}]], "InlineText",ExpressionUUID->
+  "6836db31-caff-486c-b843-03aa1be2c425"],
+ "  and ",
+ Cell[BoxData[
+  RowBox[{"PacletSite", ".", "mz"}]], "InlineText",ExpressionUUID->
+  "410ebc17-4da2-4d9e-a042-01faa3975898"],
+ "  file."
+}], "Text",
+ CellChangeTimes->{{3.74052482915977*^9, 
+  3.740524866911417*^9}},ExpressionUUID->"fbf11fae-74e8-499b-a88a-\
+9e1b44be01d6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Setting Up a Paclet Server", "Subsubsection",
+ CellChangeTimes->{{3.740524879867351*^9, 
+  3.740524885627157*^9}},ExpressionUUID->"ec03efdf-6313-435d-ad33-\
+624883ab5d78"],
+
+Cell[TextData[{
+ "Once the construction is done locally, the server should be served over \
+HTTP if possible. Older versions of the ",
+ Cell[BoxData["PacletManager"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "394745bd-f950-4276-a002-c3e4fdf4c279"],
+ " failed to deal appropriately with HTTPS content."
+}], "Text",
+ CellChangeTimes->{{3.740524887443095*^9, 
+  3.740524928818688*^9}},ExpressionUUID->"6d0e7194-04fa-49f0-a21c-\
+b6c90209e3a6"],
+
+Cell["I tend to serve mine via the Wolfram Cloud or GitHub.", "Text",
+ CellChangeTimes->{{3.7405249305705214`*^9, 
+  3.7405249398421907`*^9}},ExpressionUUID->"79577dc3-1a73-42ab-afc1-\
+a70886986d86"],
+
+Cell[TextData[{
+ "An example of the former is ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/"], 
+    None},
+  ButtonNote->
+   "https://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer/"],
+ " and the latter is ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://paclets.github.io/PacletServer/"], None},
+  ButtonNote->"https://paclets.github.io/PacletServer/"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740524942626122*^9, 3.740524986233817*^9}, 
+   3.740525055297653*^9},ExpressionUUID->"652daef8-3925-4362-9a0e-\
+887a261bf501"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 260}, {9, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3096, 60, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3679, 84, 464, 7, 41, "Subsection",ExpressionUUID->"36c68aba-ef4e-4c2d-a805-3af3c2d932e3"],
+Cell[4146, 93, 332, 7, 58, "Text",ExpressionUUID->"f4cb9bfb-ac12-48c5-b771-ea91cf8e0663"],
+Cell[4481, 102, 233, 6, 35, "Text",ExpressionUUID->"67724497-4a2c-44fd-b4a5-50e4d1d6e99f"],
+Cell[CellGroupData[{
+Cell[4739, 112, 174, 3, 40, "Subsubsection",ExpressionUUID->"fd1b2a2d-9e95-45ca-9d13-f80185ee9b91"],
+Cell[4916, 117, 594, 14, 58, "Text",ExpressionUUID->"cfc26212-b03d-4e53-b68a-2107a7ccdb29"],
+Cell[CellGroupData[{
+Cell[5535, 135, 643, 16, 32, "Item",ExpressionUUID->"dfc0b065-6368-4ebe-89e2-3f8812a15744"],
+Cell[6181, 153, 676, 17, 32, "Item",ExpressionUUID->"3d69dbde-b3cc-4558-bcbd-aabe3b6b24b3"]
+}, Open  ]],
+Cell[6872, 173, 369, 8, 58, "Text",ExpressionUUID->"c1847d57-bb8a-43bf-a89a-5a74dbf3563b"],
+Cell[CellGroupData[{
+Cell[7266, 185, 365, 8, 52, "Code",ExpressionUUID->"89c98246-1c3f-4f08-93fb-3eb5ea0486f8"],
+Cell[7634, 195, 235, 3, 34, "Output",ExpressionUUID->"d3fd151d-e912-42aa-92e7-a5dad2f34e43"]
+}, Open  ]],
+Cell[7884, 201, 191, 3, 35, "Text",ExpressionUUID->"6c2dfcf0-892e-4916-89a0-a26f681f90d6"],
+Cell[CellGroupData[{
+Cell[8100, 208, 294, 5, 52, "Code",ExpressionUUID->"d2c086ef-0609-4f57-a305-30da796c1df6"],
+Cell[8397, 215, 245, 3, 34, "Output",ExpressionUUID->"c40ef91d-4e1b-4cee-9641-680d237d56dd"]
+}, Open  ]],
+Cell[8657, 221, 173, 3, 35, "Text",ExpressionUUID->"09c01b2d-dab0-4729-8c0b-1fc73c940e36"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8867, 229, 172, 3, 40, "Subsubsection",ExpressionUUID->"1fb61448-0535-4d88-b3d5-9f2d8a9495db"],
+Cell[9042, 234, 274, 6, 58, "Text",ExpressionUUID->"7e08ced1-3e75-469d-b373-b58bc2560897"],
+Cell[CellGroupData[{
+Cell[9341, 244, 514, 11, 110, "Code",ExpressionUUID->"26d02f50-6a16-477a-b533-88cae63c1f9d"],
+Cell[9858, 257, 545, 15, 60, "Output",ExpressionUUID->"faa66281-0c26-4b72-b09b-04f1994c71c0"]
+}, Open  ]],
+Cell[10418, 275, 196, 3, 35, "Text",ExpressionUUID->"765924c1-256c-41df-bf43-5ead017b37af"],
+Cell[10617, 280, 285, 6, 72, "Code",ExpressionUUID->"3b570376-456b-4964-84b5-29d4995684c8"],
+Cell[10905, 288, 206, 3, 35, "Text",ExpressionUUID->"78e40f38-a76f-4896-9c86-a311ab934803"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11160, 297, 164, 3, 41, "Subsection",ExpressionUUID->"a7bd9736-5b2b-4a82-8672-32441a3acdb5"],
+Cell[11327, 302, 572, 12, 81, "Text",ExpressionUUID->"7bbbb0e0-c7f0-4b7d-83b1-8cffc873e133"],
+Cell[11902, 316, 531, 13, 60, "Text",ExpressionUUID->"8165101a-628a-4ffc-b0bb-8cadd9c096a9"],
+Cell[12436, 331, 635, 17, 170, "FencedCode",ExpressionUUID->"5ad16def-73fc-4a20-8e3c-964494cc1643"],
+Cell[CellGroupData[{
+Cell[13096, 352, 166, 3, 40, "Subsubsection",ExpressionUUID->"38e9cd9b-de20-4158-8e8c-014ad4cfe8b3"],
+Cell[13265, 357, 1047, 25, 83, "Text",ExpressionUUID->"7180067d-6c4c-4488-8666-3b6148352beb"],
+Cell[14315, 384, 182, 3, 35, "Text",ExpressionUUID->"15407031-7e75-4ca0-b90f-b127f9d4bf1c"],
+Cell[14500, 389, 580, 14, 243, "Code",ExpressionUUID->"0aa81106-6427-4b02-b54c-962d9819180d"],
+Cell[15083, 405, 219, 5, 35, "Text",ExpressionUUID->"fece6ec6-b1a7-4c06-a657-6e9d371a98e5"],
+Cell[15305, 412, 818, 16, 81, "Text",ExpressionUUID->"d1853432-7f40-485a-8ee9-ce972e6c5427"],
+Cell[16126, 430, 169, 3, 35, "Text",ExpressionUUID->"9ead388d-d713-480d-a700-f30216eafd4b"],
+Cell[16298, 435, 449, 10, 72, "Code",ExpressionUUID->"ecf39d34-c5c4-4e46-a0f2-6d46fa38e9d7"],
+Cell[16750, 447, 601, 17, 60, "Text",ExpressionUUID->"fbf11fae-74e8-499b-a88a-9e1b44be01d6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17388, 469, 177, 3, 40, "Subsubsection",ExpressionUUID->"ec03efdf-6313-435d-ad33-624883ab5d78"],
+Cell[17568, 474, 461, 10, 58, "Text",ExpressionUUID->"6d0e7194-04fa-49f0-a21c-b6c90209e3a6"],
+Cell[18032, 486, 199, 3, 35, "Text",ExpressionUUID->"79577dc3-1a73-42ab-afc1-a70886986d86"],
+Cell[18234, 491, 655, 19, 35, "Text",ExpressionUUID->"652daef8-3925-4362-9a0e-887a261bf501"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

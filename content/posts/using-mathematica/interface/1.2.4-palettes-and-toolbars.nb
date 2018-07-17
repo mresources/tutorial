@@ -1,0 +1,150 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5573,        142]
+NotebookOptionsPosition[      4604,        119]
+NotebookOutlinePosition[      5031,        136]
+CellTagsIndexPosition[      4988,        133]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Palettes and Toolbars\>\""}], ",",
+    "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Using Mathematica/Interface\>\""}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", "\"\<1.2.4\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 01:49:00\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "1", ",", "49", ",", 
+              "0"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<using-mathematica\>\"", ",", "\"\<interface\>\""}], "}"}]}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<palettes\>\"", ",", " ", "\"\<toolbars\>\""}], "}"}]}], ",",
+    "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723203862030583*^9, 3.723203882695241*^9}, {3.723204068783868*^9, 
+   3.72320408189968*^9}, {3.723251376316903*^9, 3.723251382266656*^9}, {
+   3.7233476763812838`*^9, 3.723347697986979*^9}, {3.723518938163103*^9, 
+   3.7235189397670717`*^9}, {3.740779794820323*^9, 
+   3.740779811045445*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Palettes and Toolbars", "Subsection",
+ CellChangeTimes->{{3.684759073672641*^9, 3.684759075647698*^9}, {
+  3.684795018833992*^9, 
+  3.684795021809886*^9}},ExpressionUUID->"cfafe34b-a3e5-4abc-b7c7-\
+e9fed28147ce"],
+
+Cell["Mathematica provides a series of toolbars and palettes. ", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329886487534*^9, 
+   3.685329945228312*^9}},ExpressionUUID->"b3b2c432-7288-4274-aaa2-\
+4b05d6d7bf82"],
+
+Cell["Toolbars are found under Window \[RightPointer] Toolbar", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329946685318*^9, 
+   3.685329969642193*^9}},ExpressionUUID->"82d1be1d-77c8-47a9-9649-\
+3232566c0c0d"],
+
+Cell["Palettes are found under the Palettes menu", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329946685318*^9, 
+   3.685329987417981*^9}},ExpressionUUID->"8d524b21-59c3-48f0-b67d-\
+f216b7a3fe5e"],
+
+Cell["\<\
+Most useful of the toolbars for every day use is the Formatting toolbar.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329886487534*^9, 3.685329940299151*^9}, {
+   3.685329989105906*^9, 
+   3.685329989825782*^9}},ExpressionUUID->"e6e807c3-0235-4930-8f19-\
+203550acf3e3"],
+
+Cell["\<\
+All of the palettes are useful, but perhaps the Writing Assistant more so \
+than the others.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6853299984452677`*^9, 3.685330039946966*^9}, {
+   3.723347766775725*^9, 
+   3.723347774163776*^9}},ExpressionUUID->"65d6e56d-59eb-4d49-8c80-\
+268486288a58"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{94, Automatic}, {Automatic, 25}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2497, 51, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3080, 75, 218, 4, 41, "Subsection",ExpressionUUID->"cfafe34b-a3e5-4abc-b7c7-e9fed28147ce"],
+Cell[3301, 81, 224, 4, 35, "Text",ExpressionUUID->"b3b2c432-7288-4274-aaa2-4b05d6d7bf82"],
+Cell[3528, 87, 223, 4, 35, "Text",ExpressionUUID->"82d1be1d-77c8-47a9-9649-3232566c0c0d"],
+Cell[3754, 93, 210, 4, 35, "Text",ExpressionUUID->"8d524b21-59c3-48f0-b67d-f216b7a3fe5e"],
+Cell[3967, 99, 298, 7, 35, "Text",ExpressionUUID->"e6e807c3-0235-4930-8f19-203550acf3e3"],
+Cell[4268, 108, 320, 8, 35, "Text",ExpressionUUID->"65d6e56d-59eb-4d49-8c80-268486288a58"]
+}, Open  ]]
+}
+]
+*)
+

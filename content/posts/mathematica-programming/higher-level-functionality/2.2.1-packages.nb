@@ -1,0 +1,400 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15252,        392]
+NotebookOptionsPosition[     12305,        340]
+NotebookOutlinePosition[     12732,        357]
+CellTagsIndexPosition[     12689,        354]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Packages\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Higher-Level Functionality/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.2.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Wed 27 Dec 2017 13:45:44\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "27", ",", "13", ",", "45", ",", 
+              "44"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<higher-level-functionality\>\""}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<packages\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.740780335514495*^9, 
+   3.740780340834638*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Packages", "Subsection",
+ CellChangeTimes->{{3.684718925647359*^9, 
+  3.684718933078238*^9}},ExpressionUUID->"799560a0-7f72-4efc-88a8-\
+5173f3414046"],
+
+Cell["\<\
+Packages are a convenient way to partition code into chunks that don\
+\[CloseCurlyQuote]t interact with each other needlessly, allowing for simpler \
+programming. Mathematica even has a special package file type, the .m file, \
+which is closer to plain-text than a .nb file.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362272461993*^9, 
+   3.686362339459392*^9}},ExpressionUUID->"da7bb5f8-542b-4718-a358-\
+1a21bb56546b"],
+
+Cell[TextData[{
+ "A package is really just a collection of symbols in a given context, \
+defined so as to interact with only the ",
+ Cell[BoxData[
+  FormBox["System", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "409d6337-2300-4c38-9e80-de49bc9a5e2d"],
+ " context and whichever contexts the user loads, which protects from name \
+overlaps and things."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362353526595*^9, 
+   3.6863624335528173`*^9}},ExpressionUUID->"e9d21b3b-7f91-4bed-82f3-\
+a56046695593"],
+
+Cell[CellGroupData[{
+
+Cell["Definition", "Subsubsection",ExpressionUUID->"014fe225-169d-4f6d-9a61-f78a31d8c603"],
+
+Cell[TextData[{
+ "A package may be defined anywhere, using ",
+ Cell[BoxData[
+  FormBox["BeginPackage", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "a75abf84-27c2-4e3a-8ea4-8b377d18d019"],
+ " and ",
+ Cell[BoxData[
+  FormBox["EndPackage", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "eda7208b-883d-4893-9a3e-070b4eeab719"],
+ ". Usually one inserts a Private context into the package, however, to make \
+definitions cleaner, and only exposes a certain subset of functions, which \
+are given usage messages. For example let\[CloseCurlyQuote]s define a simple \
+package:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362435773147*^9, 3.6863625035832167`*^9}, {
+   3.686362551036083*^9, 
+   3.686362556380466*^9}},ExpressionUUID->"7a55aca5-2603-49c9-9b49-\
+a34f3ec94230"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"BeginPackage", "[", "\"\<BabysFirstPackage`\>\"", "]"}], 
+  ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362519546515*^9, 3.6863625324530067`*^9}, 
+   3.7233891427181892`*^9},ExpressionUUID->"d4ac592f-85d2-4bc8-bec1-\
+24e76eb04254"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"function1", "::", "usage"}], "=", "\"\<an exposed function\>\""}],
+   ";"}], "\n", 
+ RowBox[{
+  RowBox[{"function2", "::", "usage"}], "=", "\"\<another one!\>\""}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"$constant", "::", "usage"}], "=", "\"\<a package constant\>\""}], 
+  ";"}]}], "Code",
+ CellChangeTimes->{{3.686362538774061*^9, 3.686362586867495*^9}, 
+   3.723389142750963*^9},ExpressionUUID->"f468dc29-9a67-42fb-b546-\
+8a6ad7059c85"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Begin", "[", "\"\<`Private`\>\"", "]"}], ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362590364901*^9, 3.6863625990671673`*^9}, 
+   3.723389142777933*^9},ExpressionUUID->"c7a9a336-70bf-40de-bc1a-\
+1a89fabcd0db"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"function1", "[", "x_", "]"}], ":=", 
+   RowBox[{"function2", "[", 
+    RowBox[{"1", ",", "x"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"function2", "[", 
+    RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{"$constant", "=", 
+     RowBox[{
+      RowBox[{"RandomReal", "[", "]"}], "*", "x", "*", "y"}]}], ")"}]}], 
+  ";"}]}], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362602419982*^9, 3.6863626499299726`*^9}, 
+   3.723389142795803*^9},ExpressionUUID->"ffa86fb3-bba9-42c5-98b9-\
+8e866e53dcab"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"End", "[", "]"}], ";"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863626515301743`*^9, 3.686362655609592*^9}, 
+   3.723389142831502*^9},ExpressionUUID->"d67e9caa-45e4-440e-9d46-\
+0547ac4b780a"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"EndPackage", "[", "]"}], ";"}]], "Code",
+ CellChangeTimes->{{3.68636265783486*^9, 3.686362659747006*^9}, 
+   3.7233891428563538`*^9},ExpressionUUID->"681f0c0a-d7f0-4aeb-bb99-\
+c41528afa3f1"],
+
+Cell["\<\
+Note that the symbols must be used before they are given private definitions \
+or else the definitions will be on private symbols.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863626634669247`*^9, 
+   3.686362696424621*^9}},ExpressionUUID->"7b3c9e39-9553-4c6d-8d92-\
+8b9c2f344287"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Get and Needs", "Subsubsection",ExpressionUUID->"20355f34-03b0-40db-9d04-8bd4b2b88f3e"],
+
+Cell[TextData[{
+ "Once the package is defined, it\[CloseCurlyQuote]s later imported using ",
+ Cell[BoxData[
+  FormBox["Get", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "e9955869-ed30-4d0e-9a67-a8b23927d560"],
+ " or ",
+ Cell[BoxData[
+  FormBox["Needs", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "dfaa77a8-b713-47b4-a86b-bf524a8ac0cb"],
+ ", the difference between which can be found in the documentation (there are \
+no subtleties to be warned about, here)."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362698587463*^9, 
+   3.6863627998859587`*^9}},ExpressionUUID->"52f9c5e8-8f2a-4aa2-abf7-\
+8fb4784dabb3"],
+
+Cell[TextData[{
+ "Note that both ",
+ Cell[BoxData[
+  FormBox["Get", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "0de16102-2939-4eb7-8dbc-06382ffc5b05"],
+ " and ",
+ Cell[BoxData[
+  FormBox["Needs", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "607ea9aa-c4b0-4654-a26c-0e1738856463"],
+ " only work on these very plain .m and .wl files. One cannot run ",
+ Cell[BoxData[
+  FormBox["Get", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "9b2969e1-d41b-4f1d-a374-e7b5e2957c18"],
+ " on a notebook file and evaluate the expressions contained within so simply."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863628034306602`*^9, 
+   3.686362873812059*^9}},ExpressionUUID->"e3316773-b705-4280-b729-\
+2925d0352d75"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["AutoGeneratedPackage and InitializationGroups", "Subsubsection",ExpressionUUID->"62538586-47a5-446d-a9ff-3cce71dd3579"],
+
+Cell[TextData[{
+ "Happily there is a way to define packages within notebooks, using the ",
+ Cell[BoxData[
+  FormBox["AutoGeneratePackage", TextInlineCell]], "InlineInput",
+  ExpressionUUID->"8c8255de-8b06-4a0e-91bd-26e15154a357"],
+ " option for the notebook. When this is set to ",
+ Cell[BoxData[
+  FormBox["Automatic", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "91266903-85a5-41bb-94dc-756583ea5634"],
+ ", every time the notebook is saved it saves all of the initialization cells \
+within to a package file with the same file name."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686362890029814*^9, 
+   3.686362958753723*^9}},ExpressionUUID->"619bba51-3ad9-40fd-bd96-\
+ebbf51d43e4d"],
+
+Cell[TextData[{
+ "If this were all, that wouldn\[CloseCurlyQuote]t be too useful, as having \
+to specify all of the initialization cells is a pain. Happily we evade that \
+problem by using an ",
+ Cell[BoxData[
+  FormBox["InitializationGroup", TextInlineCell]], "InlineInput",
+  ExpressionUUID->"3acde5dc-74cf-4706-9d9e-44f61a520b7b"],
+ ", which is simply a cell group where all of the evaluatable cells are \
+automatically initialization cells."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863629616512823`*^9, 
+   3.686363039431781*^9}},ExpressionUUID->"8ae1edc7-a370-4d35-9625-\
+13c76938adca"],
+
+Cell["\<\
+The way I often go about using this is creating two cell groups:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863630426015463`*^9, 
+   3.686363061518962*^9}},ExpressionUUID->"a97f42c1-c229-4705-b6c2-\
+f8d29e3ca2ca"],
+
+Cell[CellGroupData[{
+
+Cell["Package", "Subsubsubsection",ExpressionUUID->"8fd89d0c-05f8-4811-af3a-2c2ec0769689"],
+
+Cell["I put all of my package code here.", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363069466138*^9, 
+   3.686363079630167*^9}},ExpressionUUID->"62765339-503c-46e4-a520-\
+7ad17c620620"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Testing", "Subsubsubsection",ExpressionUUID->"2cd89316-c0d1-4ffd-8a19-96a2dd4bed1d"],
+
+Cell["And run all of my tests here.", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363081671501*^9, 
+   3.686363086862327*^9}},ExpressionUUID->"d383a14f-5caf-478d-86ff-\
+25936d65f918"],
+
+Cell[TextData[{
+ "Then I make the Package cell an ",
+ Cell[BoxData[
+  FormBox["InitializationGroup", TextInlineCell]], "InlineInput",
+  ExpressionUUID->"c1a6da40-8356-4d6e-9b45-910307ad8ea1"],
+ ". This way I can simply add and subtract from the package at will, but \
+still get all the benefits of a notebook for testing and formatting."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6863630919302998`*^9, 
+   3.68636313463697*^9}},ExpressionUUID->"e98ec2b5-db62-4e13-9930-\
+83336a88ada1"],
+
+Cell["\<\
+Packages are also a great way to store useful tricks and things you develop \
+for doing problem sets or similar projects. Just toss all of your tricks in \
+one package and you can get them all at once.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.686363154289785*^9, 
+   3.6863632007312202`*^9}},ExpressionUUID->"a3a877bf-c850-48e2-8b16-\
+270ba31fbb10"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{60, Automatic}, {Automatic, 34}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2427, 52, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3010, 76, 156, 3, 41, "Subsection",ExpressionUUID->"799560a0-7f72-4efc-88a8-5173f3414046"],
+Cell[3169, 81, 450, 9, 81, "Text",ExpressionUUID->"da7bb5f8-542b-4718-a358-1a21bb56546b"],
+Cell[3622, 92, 523, 12, 58, "Text",ExpressionUUID->"e9d21b3b-7f91-4bed-82f3-a56046695593"],
+Cell[CellGroupData[{
+Cell[4170, 108, 90, 0, 40, "Subsubsection",ExpressionUUID->"014fe225-169d-4f6d-9a61-f78a31d8c603"],
+Cell[4263, 110, 796, 18, 81, "Text",ExpressionUUID->"7a55aca5-2603-49c9-9b49-a34f3ec94230"],
+Cell[5062, 130, 288, 7, 52, "Code",ExpressionUUID->"d4ac592f-85d2-4bc8-bec1-24e76eb04254"],
+Cell[5353, 139, 487, 13, 91, "Code",ExpressionUUID->"f468dc29-9a67-42fb-b546-8a6ad7059c85"],
+Cell[5843, 154, 267, 6, 52, "Code",ExpressionUUID->"c7a9a336-70bf-40de-bc1a-1a89fabcd0db"],
+Cell[6113, 162, 593, 18, 72, "Code",ExpressionUUID->"ffa86fb3-bba9-42c5-98b9-8e866e53dcab"],
+Cell[6709, 182, 244, 6, 52, "Code",ExpressionUUID->"d67e9caa-45e4-440e-9d46-0547ac4b780a"],
+Cell[6956, 190, 225, 5, 52, "Code",ExpressionUUID->"681f0c0a-d7f0-4aeb-bb99-c41528afa3f1"],
+Cell[7184, 197, 308, 7, 58, "Text",ExpressionUUID->"7b3c9e39-9553-4c6d-8d92-8b9c2f344287"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7529, 209, 93, 0, 40, "Subsubsection",ExpressionUUID->"20355f34-03b0-40db-9d04-8bd4b2b88f3e"],
+Cell[7625, 211, 639, 15, 58, "Text",ExpressionUUID->"52f9c5e8-8f2a-4aa2-abf7-8fb4784dabb3"],
+Cell[8267, 228, 734, 18, 58, "Text",ExpressionUUID->"e3316773-b705-4280-b729-2925d0352d75"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9038, 251, 125, 0, 51, "Subsubsection",ExpressionUUID->"62538586-47a5-446d-a9ff-3cce71dd3579"],
+Cell[9166, 253, 706, 15, 81, "Text",ExpressionUUID->"619bba51-3ad9-40fd-bd96-ebbf51d43e4d"],
+Cell[9875, 270, 611, 13, 81, "Text",ExpressionUUID->"8ae1edc7-a370-4d35-9625-13c76938adca"],
+Cell[10489, 285, 242, 6, 35, "Text",ExpressionUUID->"a97f42c1-c229-4705-b6c2-f8d29e3ca2ca"],
+Cell[CellGroupData[{
+Cell[10756, 295, 90, 0, 46, "Subsubsubsection",ExpressionUUID->"8fd89d0c-05f8-4811-af3a-2c2ec0769689"],
+Cell[10849, 297, 202, 4, 35, "Text",ExpressionUUID->"62765339-503c-46e4-a520-7ad17c620620"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11088, 306, 90, 0, 46, "Subsubsubsection",ExpressionUUID->"2cd89316-c0d1-4ffd-8a19-96a2dd4bed1d"],
+Cell[11181, 308, 197, 4, 35, "Text",ExpressionUUID->"d383a14f-5caf-478d-86ff-25936d65f918"],
+Cell[11381, 314, 502, 11, 58, "Text",ExpressionUUID->"e98ec2b5-db62-4e13-9930-83336a88ada1"],
+Cell[11886, 327, 379, 8, 58, "Text",ExpressionUUID->"a3a877bf-c850-48e2-8b16-270ba31fbb10"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

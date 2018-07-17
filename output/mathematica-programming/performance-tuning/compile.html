@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html>
+<title>
+        Compile
+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+      rel='apple-touch-icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/apple-touch-icon.png'
+      sizes='180x180'
+  >
+<link
+      rel='icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/favicon-32x32.png'
+      sizes='32x32'
+  >
+<link
+      rel='icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/favicon-16x16.png'
+      sizes='16x16'
+  >
+<link
+      rel='manifest'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/manifest.json'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/pygments/default.min.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/bootstrap.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/font-awesome.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.w3schools.com/w3css/4/w3.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Robot'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Montserrat'
+  >
+<link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Source+Code+Pro'
+  >
+<link
+      rel='stylesheet'
+      href='https://reference.wolfram.com/language-assets/css/special-styles.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/common.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/style.css'
+  >
+      <meta name="description" content="">
+  <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+  <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
+  <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script>
+    function accordionOpen() {
+      var thumb = document.getElementById("accordion-thumb");
+      var nb = document.getElementById("accordion-notebook");
+      thumb.onclick= accordionClose;
+      nb.classList.add("accordion-visible");
+      nb.classList.remove("accordion-hidden");
+      thumb.classList.add("accordion-thumb-visible");
+      thumb.classList.remove("accordion-thumb-hidden");
+      }
+    function accordionClose() {
+      var thumb = document.getElementById("accordion-thumb");
+      var nb = document.getElementById("accordion-notebook");
+      thumb.onclick= accordionOpen;
+      nb.classList.remove("accordion-visible");
+      nb.classList.add("accordion-hidden");
+      thumb.classList.remove("accordion-thumb-visible");
+      thumb.classList.add("accordion-thumb-hidden")
+      }
+  </script>
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<body
+  class="w3-content"
+  onload="
+  PR.prettyPrint();
+"
+  >
+<!-- Sidebar/menu -->
+<nav
+  class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top sidebar"
+  style="z-index:3;width:250px"
+  id="mySidebar"
+  >
+  <div class="w3-container w3-display-container w3-padding-16">
+    <div
+      onclick="w3_close()"
+      class="fa fa-remove w3-hide-large w3-button w3-display-topright"
+      id="menu-thumb"
+      >
+    </div>
+  </div>
+  <h3 class="w3-wide w3-bar-item">
+<a
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/'
+  >
+      Home</a>
+<div class="search-box">
+  <script>
+    var search_SiteURL = "https://www.wolframcloud.com/objects/b3m2a1/tutorial"
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/tipuesearch/tipuesearch.css">
+  <form action="https://www.wolframcloud.com/objects/b3m2a1/tutorial/search.html">
+    <div class="tipue_search_group">
+      <input
+        type="text"
+        name="q"
+        id="tipue_search_input"
+        pattern=".{3,}"
+        title="At least 3 characters" required>
+      <button type="submit" class="tipue_search_button">
+        <div class="tipue_search_icon">&#9906;</div>
+      </button>
+    </div>
+  </form>
+</div>
+  </h3>
+  <div class="w3-large w3-text-grey">
+    <div class="w3-bar-block">
+      <ul class="list-inline row">
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/about.html'
+  >
+      About</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/toc.html'
+  >
+      Table Of Contents</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/categories.html'
+  >
+      Categories</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/tags.html'
+  >
+      Tags</a>
+</li>
+</ul>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <ul>
+        <h4 class="w3-bar-item index-section">
+          Using Mathematica
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Basics
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/types.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Types
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/variables.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Variables
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/functions.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Functions
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/loops-and-scoping.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Loops and Scoping
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/errors.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Errors
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/clear.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Clear
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Interface
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/function-aliases.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Aliases
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/documentation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Documentation
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/keyboard-aliases-and-special-characters.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Keyboard Aliases and Special Characters
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/palettes-and-toolbars.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Palettes and Toolbars
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/styles.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Styles
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Useful Features
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/plotting.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Plotting
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/symbolic-algebra.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Symbolic Algebra
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/calculus.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Calculus
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/builtin-data-and-units.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Built-in Data and Units
+      </a>
+        <h4 class="w3-bar-item index-section">
+          Mathematica Programming
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Code Structure
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/symbols-and-expressions.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Symbols and Expressions
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/expressions-structure.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Expressions Structure
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/patterns.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Patterns
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/replacement-patterns.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Replacement Patterns
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/functions.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Functions
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/contexts.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Contexts
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/ownvalues-set-and-setdelayed.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        OwnValues, Set, and SetDelayed
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/function-values-and-definition-clearing-.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Values and Definition Clearing
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/hold-and-evaluation-order.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Hold and Evaluation Order
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/scoping-revisited.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Scoping Revisited
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/flow-control.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Flow Control
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/error-handling.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Error Handling
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Higher-Level Functionality
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/dynamic.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Dynamic
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/formatting.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Formatting
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/interfaces.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Interfaces
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/the-front-end.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        The Front End
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/remote-kernels.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Remote Kernels
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Assorted Tricks
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/trottstrzebonski.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Trott-Strzebonski
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/villegasgayley.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Villegas-Gayley
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/import-and-readlist.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Import and ReadList
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/currentvalue-and-frontendtokens.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        CurrentValue and FrontEndTokens
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/info-scraping.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Info Scraping
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/object-oriented-programming.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Object Oriented Programming
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Functional Programming
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/procedural-programming.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Procedural Programming
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/table--do.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Table / Do
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/map--scan.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Map / Scan
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/nest--nestlist.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Nest / NestList
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/fold--foldlist.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Fold / FoldList
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/fixedpoint-and-gradients.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FixedPoint and Gradients
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Performance Tuning
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/performance-tuning/compile.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Compile
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/performance-tuning/special-array-types.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Array Types
+      </a>
+        <h4 class="w3-bar-item index-section">
+          Package Usage and Development
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Overview
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/basics/packages-in-mathematica.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Packages in Mathematica
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/basics/paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclets
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Paclet Usage
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-usage/installation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Installation
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-usage/paclet-servers.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclet Servers
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Paclet Development
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/pacletinfo-and-paclet-structure.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        PacletInfo and Paclet Structure
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/paclet-development.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclet Development
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/paclet-distribution.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclet Distribution
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/tips-and-tricks.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Tips and Tricks
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/sample-paclet-structures.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Sample Paclet Structures
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Higher-Level Features
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/multipackage-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Multipackage Paclets
+      </a>
+        <h4 class="w3-bar-item index-section">
+          Reference Guides
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Undocumented Contexts
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/overview.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Overview
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Internal
+      </a>
+    </ul>
+  </div>
+</nav>
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">
+<a
+      class='w3-text-white'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/main.html'
+  >
+      Home</a>
+  </div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+    <div class="main" id="main-content">
+    <div class="main-content">
+      <div class="centered">
+        <!-- Page Header -->
+        <div class="w3-display-container w3-content w3-wide" id="header">
+        </div>
+        <!-- Main Body -->
+  <article class="article">
+        <h2>
+          Mathematica Programming &raquo; Performance Tuning
+        </h2>
+    <div class="article content">
+      <p>
+Mathematica is what is often called a high-level programming language, because when you are writing programs, you don&apos;t need to worry about how the computer is doing its job. This provides notable gains in simplicity and scalability of large programs, but it comes at the cost of the speed and efficiency of low-level computations.</p>
+<a shape='rect' id='basics-of-compilation' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Basics of Compilation</h2>
+<p>To get around this Mathematica provides the function <a href='https://reference.wolfram.com/language/ref/Compile.html'><code>Compile</code></a>  which will generate a low-level function that we can then apply with fantastic results. For example, in the section on <code>Nest</code>  I provided a random vector generator:</p>
+<p>This creates a compiled function that will perform the task at hand, in this case taking a vector of <code>Real</code>  numbers and returning a vector. Just so we can see the difference let&apos;s create the same function, uncompiled and compare the two:
+</p>
+<pre class='prettyprint'>
+ <code>randomVector=
+  Compile[{{mag,_Real}},
+    mag*(#/Norm[#])&amp;@RandomReal[{-1,1},3]
+    ]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/251compile-6656821290333338907.png' alt='251compile-6656821290333338907' />
+<pre class='prettyprint'>
+ <code>randomVectorU=
+  Function[mag,
+    mag*Normalize@RandomReal[{-1,1},3]
+    ];</code>
+</pre>
+<p>Then we&apos;ll compare them using a little timing function:
+</p>
+<pre class='prettyprint'>
+ <code>compareTiming[f1_,f2_,its_:1]:=
+  With[{
+      tf1=First@AbsoluteTiming[Do[f1,its]],tf2=First@AbsoluteTiming[Do[f2,its]]},
+    (tf2-tf1)/Max@{tf1,tf2}
+    ];
+compareTiming~SetAttributes~HoldAll;
+compareTiming[
+  randomVector[1],
+  randomVectorU[1],
+  10^6
+  ]
+(*Out:*)
+0.5244177474084153`</code>
+</pre>
+<p>So we get a 52% speed boost from essentially just changing <code>Function</code>  to <code>Compile</code>  on the simplest function imaginable. If we had a more involved function the speed boost would likely be even larger. But since it&apos;s so simple we can easily dissect what is giving the speed boost:
+</p>
+<h3> Analyzing Compile</h3>
+<p>We&apos;ll build from the bottom up:
+</p>
+<pre class='prettyprint'>
+ <code>randomReal3=Compile[{},RandomReal[{-1,1},3]];
+randomReal3U=Function[RandomReal[{-1,1},3]];
+compareTiming[randomReal3[], randomReal3U[],10^6]
+(*Out:*)
+0.4059389866935647`</code>
+</pre>
+<p>This alone is 40% faster! Of course when we know how many vectors we&apos;ll need ahead of time the fastest thing is to use the syntax <code>RandomReal[range,{count,3}]</code>  which can, for example, generate  10<sup>8</sup>  random  vectors in a fraction of a second, which is much, much faster than our compiled form:
+</p>
+<pre class='prettyprint'>
+ <code>compareTiming[Do[randomReal3[], 10^7], RandomReal[{-1, 1}, {3, 10^7}]]
+(*Out:*)
+-0.9477078222470973`</code>
+</pre>
+<p>Ignoring the correct way to do this, though, and considering out surprising result, this is likely an artifact of type-checking in the compiled function that has to be performed at each call in the uncompiled one.</p>
+<p>When we add our normalization now:
+</p>
+<pre class='prettyprint'>
+ <code>randomVectorNoMag=
+  Compile[{},
+    (#/Norm[#]&amp;)@RandomReal[{-1,1},3]
+    ];
+randomVectorNoMagU=
+  Function[
+    Normalize@RandomReal[{-1,1},3]
+    ];
+compareTiming[randomVectorNoMag[], randomVectorNoMagU[], 10^6]
+(*Out:*)
+0.4923576135986387`</code>
+</pre>
+<p>Now we&apos;re a full 50% faster than we were (that this is greater than our original 40 is likely just a lack of consistency between runs).</p>
+<p>Note that I&apos;m in the <code>CompiledFunction</code>  I&apos;m not using <code>Normalize</code> . This is because <code>Normalize</code>  cannot be directly compiled.</p>
+<p>We can see this by looking at the intermediate representation generated when we use it:
+</p>
+<pre class='prettyprint'>
+ <code>&lt;&lt;CompiledFunctionTools`
+CompilePrint@
+  Compile[{},
+    Normalize@RandomReal[{-1,1}, 3]
+    ]//Snippet[#, -5]&amp;</code>
+</pre>
+<pre class='programprettyprint'>
+ <code style='width: 100%; white-space: pre-wrap;'>-----------Out-----------
+1 R0 = I1
+2 R1 = I2
+3 T(R1)1 = RandomReals[ R0, R1, T(I1)0]]
+4 T(R1)2 = MainEvaluate[ Hold[Normalize][ T(R1)1]]
+5 Return</code>
+</pre>
+<p>The call to <code>&quot;MainEvaluate&quot;</code>  means that the compiled function couldn&apos;t handle this and thus it returns the value to the main evaluator to process.
+</p>
+<h3> Drastic Examples</h3>
+<p>The previous case was simple so that it could easily be analyzed, but for more complicated cases we can much bigger gains. Consider the primary gradient function we used in the section on <code>FixedPoint</code> :
+</p>
+<pre class='prettyprint'>
+ <code>gradient=
+  Compile[{{pos,_Real,1}},
+    {
+      Piecewise[{
+          {Sqrt@-(#+2),#&lt;-3},
+          {(-(#+2)^3),-3&lt;#&lt;0},
+          {-((#-2)^3),0&lt;=#&lt;3},
+          {-Sqrt@(#-2),3&lt;=#}
+          },#]&amp;@pos[[1]],
+      Piecewise[{
+          {Sqrt@-(#),#&lt;-1},
+          {(-(#)^3),-1&lt;=#&lt;=1},
+          {-Sqrt@(#),1&lt;=#}
+          },#]&amp;@pos[[2]],
+      Piecewise[{
+          {Sqrt@-(#),#&lt;-1},
+          {(-(#)^3),-1&lt;=#&lt;=1},
+          {-Sqrt@(#),1&lt;=#}
+          },#]&amp;@pos[[3]]
+      }
+    ];</code>
+</pre>
+<p>And then consider its uncompiled cousin:
+</p>
+<pre class='prettyprint'>
+ <code>gradientU=
+  Function[pos,
+    {
+      Piecewise[{
+          {Sqrt@-(#+2),#&lt;-3},
+          {(-(#+2)^3),-3&lt;#&lt;0},
+          {-((#-2)^3),0&lt;=#&lt;3},
+          {-Sqrt@(#-2),3&lt;=#}
+          },#]&amp;@pos[[1]],
+      Piecewise[{
+          {Sqrt@-(#),#&lt;-1},
+          {(-(#)^3),-1&lt;=#&lt;=1},
+          {-Sqrt@(#),1&lt;=#}
+          },#]&amp;@pos[[2]],
+      Piecewise[{
+          {Sqrt@-(#),#&lt;-1},
+          {(-(#)^3),-1&lt;=#&lt;=1},
+          {-Sqrt@(#),1&lt;=#}
+          },#]&amp;@pos[[3]]
+      }
+    ];
+With[{grid=RandomReal[{-5,5},{10^5,3}]},
+  compareTiming[
+    gradient@g,
+    gradientU@g,
+    {g,grid}]
+  ]
+(*Out:*)
+0.8961919038258733`</code>
+</pre>
+<p>So the simple application of <code>Compile</code>  provides a 90% speed boost.</p>
+<p>As another example, one can implement numerical integration of a volume over a surface via:
+</p>
+<pre class='prettyprint'>
+ <code>compDotCross=
+  Compile[{{coords, _Real, 2}, {abc,_Integer,1}},
+    coords[[ abc[[1]] ]].
+    Cross[coords[[ abc[[2]] ]], coords[[ abc[[3]] ]]]
+    ];
+vol[s_?RegionQ]:=
+  With[
+    {coords = MeshCoordinates[s]},
+    (MeshCells[s, 2]/.Polygon[g_List] :&gt; compDotCross[coords, g])
+    //Total
+    ]/6</code>
+</pre>
+<p>then get an interesting surface:
+</p>
+<pre class='prettyprint'>
+ <code>surf=
+  RegionUnion@@
+    With[
+      {
+        graphics=
+          FirstCase[
+            ChemicalData[&quot;Caffeine&quot;, &quot;SpaceFillingMoleculePlot&quot;], 
+            _GraphicsComplex,
+             None, 
+            &#8734;
+            ]
+        },
+      Cases[
+        graphics[[2]],
+        Sphere[s_, r_]:&gt;Ball[graphics[[1, s]], r]
+        ]
+      ]//BoundaryDiscretizeRegion[#, MaxCellMeasure-&gt;{1-&gt;20}]&amp;
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/251compile-1541471245257336081.png' alt='251compile-1541471245257336081' />
+<p>And compute its volume:
+</p>
+<pre class='prettyprint'>
+ <code>vol@surf//RepeatedTiming
+(*Out:*)
+{0.0989207000000000003`2.,1.6728430521905467`*^8}
+Volume@surf//RepeatedTiming
+(*Out:*)
+{0.0010948070175438598`2.,1.6728430521905503`*^8}</code>
+</pre>
+<p>Our little compiled implementation is much slower than the built-in implementation, of course, but it&apos;s still incredibly fast for the level of mesh refinement.</p>
+<p>Personally, I this it for computing atomic orbital volumes derived from orbital contour plots.</p>
+<p>Lets then to a version without the compiled dot-cross:
+</p>
+<pre class='prettyprint'>
+ <code>uncompDotCross=
+  Function[{coords, abc},
+    coords[[ abc[[1]] ]].
+    Cross[coords[[ abc[[2]] ]], coords[[ abc[[3]] ]]]
+    ];
+volU[s_?RegionQ]:=
+  With[
+    {coords = MeshCoordinates[s]},
+    (MeshCells[s, 2]/.Polygon[g_List] :&gt; uncompDotCross[coords, g])
+    //Total
+    ]/6
+compareTiming[vol@surf, volU@surf]
+(*Out:*)
+0.9539375762845481`</code>
+</pre>
+<p>Ours is a whopping 95% faster. As the surface refinement increases this can be the difference between a function being nearly instantaneous versus a major speed bump in the research process.</p>
+<p>We can also compare the version where we compile to C (i.e. we use <code>CompilationTarget-&gt;&quot;C&quot;</code></p>
+<pre class='prettyprint'>
+ <code>compDotCross=
+  Compile[{{coords, _Real, 2}, {abc,_Integer,1}},
+    coords[[ abc[[1]] ]].
+    Cross[coords[[ abc[[2]] ]], coords[[ abc[[3]] ]]],
+    CompilationTarget-&gt;&quot;C&quot;
+    ];
+volC[s_?RegionQ]:=
+  With[
+    {coords = MeshCoordinates[s]},
+    With[{compiledDotCross=compDotCross},
+      (MeshCells[s, 2]/.Polygon[g_List] :&gt; compiledDotCross[coords, g])
+      //Total
+      ]/6
+    ]
+compareTiming[volC@surf, vol@surf]
+(*Out:*)
+0.13463908089141324`</code>
+</pre>
+<p>And simply compiling to C made the function 13% faster. More performance can be eked but by using the difference <a href='https://reference.wolfram.com/language/ref/RuntimeOptions.html'><code>RuntimeOptions</code></a>  and things.
+</p>
+<h3> Using Compile</h3>
+<p>It&apos;s often unclear whether a given function can be compiled or not, but happily Mathematica provides all of the possible compilable functions in <code>Compile`CompilerFunctions</code> . We can use this to make a <code>compileableQ</code>  type function:
+</p>
+<pre class='prettyprint'>
+ <code>compilableQ[f_]:=
+MemberQ[Compile`CompilerFunctions[], f]</code>
+</pre>
+<p>For example, we can see that, say, <code>RandomVariate</code>  is compilable:
+</p>
+<pre class='prettyprint'>
+ <code>compilableQ@RandomVariate
+(*Out:*)
+True</code>
+</pre>
+<p>Alternatively we can figure out which <code>Random&#8902;</code>  functions are compilable:
+</p>
+<pre class='prettyprint'>
+ <code>compilableSelect[p_]:=
+Select[Compile`CompilerFunctions[], StringMatchQ[ToString@#,p]&amp;]
+compilableSelect@&quot;Random*&quot;
+(*Out:*)
+{RandomChoice,RandomSample,RandomInteger,RandomVariate,RandomComplex,RandomReal,Random}</code>
+</pre>
+<p>Once we have that, <code>Compile</code>  has a very simple call structure that is similar to <code>Module</code> :
+</p>
+<pre class='prettyprint'>
+ <code>Compile[
+  {
+    {var1,type1,arraySize1},
+    {var2,type2,arraySize2},
+    ...
+    },
+  expression,
+  ops
+  ]</code>
+</pre>
+<p>This will generate a <code>CompiledFunction</code>  which is just a function in either Mathematica byte code or C byte code, as specified by the <code>CompilationTarget</code>  option. In most cases Mathematica byte code is more than fast enough, but there are cases where the C code is a significantly better choice.</p>
+    </div>
+  </article>
+  <br>
+  <hr>
+<ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/fixedpoint-and-gradients.html"
+        >
+        <span aria-hidden="true">
+            &laquo; FixedPoint and Gradients
+          </span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+  <li class="page-item">
+    <a
+      class="page-link"
+      href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/performance-tuning/special-array-types.html"
+      >
+      <span aria-hidden="true">
+        Special Array Types &raquo;
+      </span>
+      <span class="sr-only">Next</span>
+    </a>
+  </li>
+</ul>
+  <br>
+  <div class="embedded-notebook">
+    <button
+      class="accordion-thumb accordion-thumb-hidden"
+      onclick="accordionOpen()"
+      id="accordion-thumb"
+      >
+    </button>
+    <div class="accordion-hidden" id="accordion-notebook">
+      <div
+  style=
+    'width:
+      100%;
+    height:
+      400px;
+    position: relative;
+    overflow: hidden;
+    '
+    >
+    <iframe
+        src="https://sandbox.open.wolframcloud.com/app/view/newNotebook"
+        style='
+          position: absolute;
+          left:-2px;
+          top:
+          -85px;
+          '
+        width=
+          '100%'
+        height=
+          '485px'
+        >
+    </iframe>
+</div>
+    </div>
+  </div>
+      </div>
+      </div>
+    </div>
+  <!-- Footer -->
+  <div class="w3-center w3-black w3-padding-16">
+        <div class="w3-black w3-center w3-padding-24">
+            Powered by
+            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">
+              w3.css
+            </a>
+        </div>
+  </div>
+  <!-- End page content -->
+</div>
+<script>
+// Accordion
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+</body>
+</html>

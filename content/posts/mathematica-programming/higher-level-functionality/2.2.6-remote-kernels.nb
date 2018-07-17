@@ -1,0 +1,373 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14251,        365]
+NotebookOptionsPosition[     11856,        322]
+NotebookOutlinePosition[     12283,        339]
+CellTagsIndexPosition[     12240,        336]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Remote Kernels\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Higher-Level Functionality/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.2.6\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 23:23:35\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "23", ",", "23", ",", 
+              "35"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<higher-level-functionality\>\""}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<kernels\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.723349986122611*^9, 3.723349991904604*^9}, {3.72343451977883*^9, 
+   3.723434525962545*^9}, {3.74078036708195*^9, 3.740780373413253*^9}, {
+   3.7407807206370153`*^9, 3.740780734746408*^9}, {3.740780915877236*^9, 
+   3.7407809209386683`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Remote Kernels", "Subsection",
+ CellChangeTimes->{{3.740780804760412*^9, 
+  3.740780806808661*^9}},ExpressionUUID->"aa75d371-6468-441f-8fdd-\
+b25ecc0a031c"],
+
+Cell["\<\
+As mentioned in the previous section, in addition to the front-end there is \
+the kernel. One very useful feature of Mathematica, though, is that it allows \
+for multiple kernels to be running.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69063379632171*^9, 
+   3.690633874956954*^9}},ExpressionUUID->"7acfb8ca-d193-4278-8e9c-\
+8eed1fe67eb8"],
+
+Cell["\<\
+Remember that the kernel is where your code runs, so if you have a \
+particularly time-intensive calculation running in one kernel it can be \
+convenient to have a secondary kernel running.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690633878278335*^9, 3.6906338979717913`*^9}, {
+   3.690633931741662*^9, 3.690633932821312*^9}, {3.6906339937309732`*^9, 
+   3.690633996806435*^9}, {3.690634208428685*^9, 3.6906342253121643`*^9}, {
+   3.690634285167178*^9, 
+   3.6906343216204967`*^9}},ExpressionUUID->"8676e14e-20bb-4889-9f99-\
+849c99b58f8f"],
+
+Cell[CellGroupData[{
+
+Cell["Add kernels", "Subsubsection",ExpressionUUID->"c1d647ee-f02b-4ad2-8584-df6c684bff53"],
+
+Cell[TextData[{
+ "We start another kernel via the front end. Go to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+    "Evaluation", " ", "\[RightPointer]", " ", "Kernel", " ", "Configuration",
+      " ", "Options"}], "..."}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"5a5ce810-113a-4548-86c2-0a30f2e9cd95"],
+ " and then click ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Add", "..."}], TextInlineCell]], "InlineInput",ExpressionUUID->
+  "791cf056-9b72-4d45-9fd8-c014bd64263f"],
+ " and give a name to your new kernel."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690634325710044*^9, 3.690634367050395*^9}, {
+   3.69063443147154*^9, 3.6906345177528057`*^9}, {3.690634613048543*^9, 
+   3.6906346547914*^9}, {3.690635065411826*^9, 
+   3.690635065946192*^9}},ExpressionUUID->"5ee3102e-c711-414a-a3b7-\
+8c949d23fedc"],
+
+Cell[TextData[{
+ "Then in a new notebook go to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Evaluation", " ", "\[RightPointer]", " ", 
+    RowBox[{"Notebook", "'"}], "s", " ", "Kernel"}], TextInlineCell]], 
+  "InlineInput",ExpressionUUID->"ef11e16d-e955-4af5-b9f5-7c862545cb87"],
+ " and choose this new kernel you created."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690634724804421*^9, 3.6906347686345663`*^9}, 
+   3.6906349797759657`*^9},ExpressionUUID->"9c045b2a-ef64-41f3-ba16-\
+447ae7b51bda"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Add kernels via FrontEndTokens", "Subsubsection",ExpressionUUID->"b71f3bd3-31ae-4ebb-bb42-ce258e26db8a"],
+
+Cell[TextData[{
+ "We\[CloseCurlyQuote]ll discuss ",
+ Cell[BoxData[
+  FormBox["FrontEndTokens", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "03b05be8-5961-4773-9eef-bedaf33eb6bd"],
+ " more later, but for now just consider them a mechanism to use all front \
+end functionality from the kernel."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906351113180027`*^9, 
+   3.690635176943261*^9}},ExpressionUUID->"c9704c6d-100e-4fcf-9eb1-\
+cb993f06cb15"],
+
+Cell[TextData[{
+ "For our cases here, we can make our lives a little bit easier by using a \
+special ",
+ Cell[BoxData[
+  FormBox["FrontEndToken", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "aca46bca-60f3-422e-b41b-869ef74ec5f3"]
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690635181069766*^9, 3.690635189222353*^9}, {
+   3.690635416706562*^9, 
+   3.6906354486706743`*^9}},ExpressionUUID->"295d9115-d7b9-424c-8051-\
+653dbc57ddd1"],
+
+Cell[BoxData[
+ RowBox[{"FrontEndExecute", "@", 
+  RowBox[{
+  "FrontEndToken", "[", "\"\<ModifyEvaluatorNames\>\"", "]"}]}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690635450936612*^9, 
+  3.690635488672038*^9}},ExpressionUUID->"a71ff909-77bc-4096-b35f-\
+0ff0692d6bb3"],
+
+Cell["or more simply:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906355839629602`*^9, 
+   3.690635586600613*^9}},ExpressionUUID->"d9e911ec-d8ae-4760-96b0-\
+a03199d11196"],
+
+Cell[BoxData[
+ RowBox[{"FrontEndTokenExecute", "[", "\"\<ModifyEvaluatorNames\>\"", 
+  "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.690635590956023*^9, 
+  3.690635601683179*^9}},ExpressionUUID->"0aab9ac0-8512-4584-9ecc-\
+7d4a5fc6be65"],
+
+Cell[TextData[{
+ "This gives us the add dialog. Unfortunately ",
+ Cell[BoxData[
+  FormBox["FrontEndTokens", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "b9493771-a0b6-4a63-815a-73ad0ac68151"],
+ " are not particularly well documented and so the command for setting a \
+notebook\[CloseCurlyQuote]s kernel remains opaque."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906354979041147`*^9, 3.690635507263892*^9}, {
+   3.69063557533016*^9, 
+   3.69063563171929*^9}},ExpressionUUID->"e0f0c08a-3e8f-454a-8ed2-\
+0cac141fe71c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Remote kernels", "Subsubsection",ExpressionUUID->"db78df94-053a-45ed-9881-52bb7d3add76"],
+
+Cell[TextData[{
+ "One useful feature of kernels is that they can be run \
+anywhere\[LongDash]not just on your local computer. If, then, Mathematica \
+exists on a remote server, call it ",
+ Cell[BoxData[
+  FormBox["\"\<server.place.dom\>\"", TextInlineCell]], "InlineInput",
+  ExpressionUUID->"07e36c81-eb19-4143-8e13-c8846103c865"],
+ ", say, a kernel can be initiated there and connected to your local front \
+end, by passing X-Windows or a similar remote GUI system."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690635642830379*^9, 3.690635773249756*^9}, {
+   3.69063651111341*^9, 3.690636527258115*^9}, {3.7407808995818787`*^9, 
+   3.740780902670079*^9}},ExpressionUUID->"e0182ed6-2144-4b2a-abca-\
+a72c2dbfdce4"],
+
+Cell[TextData[{
+ "We can access this by going back to ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+    "Evaluation", " ", "\[RightPointer]", " ", "Kernel", " ", "Configuration",
+      " ", "Options"}], "..."}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"5326a4f4-f482-48ae-9f5a-0babd5bd9772"],
+ " or doing the same via the following:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.69063578055707*^9, 3.690635783040451*^9}, {
+   3.690635817616848*^9, 
+   3.690635842456746*^9}},ExpressionUUID->"73de2a08-ca97-4e31-bc7a-\
+7be2fbc7fcca"],
+
+Cell[BoxData[
+ RowBox[{"FrontEndTokenExecute", "[", "\"\<ModifyEvaluatorNames\>\"", 
+  "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{
+  3.6906358461815434`*^9},ExpressionUUID->"0e580554-65c4-4cfd-a59e-\
+50b40775c2bd"],
+
+Cell[TextData[{
+ "Then in ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Add", "..."}], TextInlineCell]], "InlineInput",ExpressionUUID->
+  "158ccf2a-fba2-406f-bb91-4357ee07e4cb"],
+ " under ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Basic", " ", "Options"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"b3775d57-a512-4f43-bb40-c436166da9d3"],
+ " select ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Remote", " ", "Machine"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"6c181fe5-c0bb-4ae8-befc-608e258015bf"],
+ " and input your info. If the server is ",
+ Cell[BoxData[
+  FormBox["\"\<server.place.dom\>\"", TextInlineCell]], "InlineInput",
+  ExpressionUUID->"f5cdc574-6c40-43e5-a250-cfee4c713bc1"],
+ ", put that as the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Remote", " ", "host"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"7e5593c2-cf48-4dca-a865-26287669ba90"],
+ " and give your info as the ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Remote", " ", "user"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"f5a1c0b2-15d1-42b1-8b6e-0439bb9c946c"],
+ "."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690636351128806*^9, 3.690636392454452*^9}, {
+   3.690636431784693*^9, 3.690636496372477*^9}, {3.690636540821314*^9, 
+   3.690636597159678*^9}, {3.6906366339775887`*^9, 3.690636647579692*^9}, {
+   3.7407808862045317`*^9, 
+   3.740780893391268*^9}},ExpressionUUID->"e317adec-81d7-4aeb-97d8-\
+f189207bf390"],
+
+Cell["\<\
+Then whenever you give that kernel as a notebook name and try to evaluate \
+anything or start the kernel, Mathematica will pop up a dialog asking for \
+your password.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.690636649232445*^9, 
+   3.690636681554147*^9}},ExpressionUUID->"066a1981-a26c-4821-b8e3-\
+017989607754"],
+
+Cell["\<\
+If you have RSA authentication enabled, this password step becomes \
+unnecessary.\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6906366871699753`*^9, 
+   3.690636727892476*^9}},ExpressionUUID->"1be0ecea-3b66-4ed6-930d-\
+bd1d81f8ab2c"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{108, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2626, 54, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3209, 78, 162, 3, 41, "Subsection",ExpressionUUID->"aa75d371-6468-441f-8fdd-b25ecc0a031c"],
+Cell[3374, 83, 368, 8, 58, "Text",ExpressionUUID->"7acfb8ca-d193-4278-8e9c-8eed1fe67eb8"],
+Cell[3745, 93, 569, 11, 58, "Text",ExpressionUUID->"8676e14e-20bb-4889-9f99-849c99b58f8f"],
+Cell[CellGroupData[{
+Cell[4339, 108, 91, 0, 40, "Subsubsection",ExpressionUUID->"c1d647ee-f02b-4ad2-8584-df6c684bff53"],
+Cell[4433, 110, 839, 21, 58, "Text",ExpressionUUID->"5ee3102e-c711-414a-a3b7-8c949d23fedc"],
+Cell[5275, 133, 509, 12, 35, "Text",ExpressionUUID->"9c045b2a-ef64-41f3-ba16-447ae7b51bda"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5821, 150, 110, 0, 40, "Subsubsection",ExpressionUUID->"b71f3bd3-31ae-4ebb-bb42-ce258e26db8a"],
+Cell[5934, 152, 465, 11, 58, "Text",ExpressionUUID->"c9704c6d-100e-4fcf-9eb1-cb993f06cb15"],
+Cell[6402, 165, 452, 11, 35, "Text",ExpressionUUID->"295d9115-d7b9-424c-8051-653dbc57ddd1"],
+Cell[6857, 178, 281, 7, 52, "Code",ExpressionUUID->"a71ff909-77bc-4096-b35f-0ff0692d6bb3"],
+Cell[7141, 187, 185, 4, 35, "Text",ExpressionUUID->"d9e911ec-d8ae-4760-96b0-a03199d11196"],
+Cell[7329, 193, 251, 6, 52, "Code",ExpressionUUID->"0aab9ac0-8512-4584-9ecc-7d4a5fc6be65"],
+Cell[7583, 201, 540, 12, 58, "Text",ExpressionUUID->"e0f0c08a-3e8f-454a-8ed2-0cac141fe71c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8160, 218, 94, 0, 40, "Subsubsection",ExpressionUUID->"db78df94-053a-45ed-9881-52bb7d3add76"],
+Cell[8257, 220, 729, 14, 81, "Text",ExpressionUUID->"e0182ed6-2144-4b2a-abca-a72c2dbfdce4"],
+Cell[8989, 236, 565, 15, 58, "Text",ExpressionUUID->"73de2a08-ca97-4e31-bc7a-7be2fbc7fcca"],
+Cell[9557, 253, 229, 6, 52, "Code",ExpressionUUID->"0e580554-65c4-4cfd-a59e-50b40775c2bd"],
+Cell[9789, 261, 1432, 38, 58, "Text",ExpressionUUID->"e317adec-81d7-4aeb-97d8-f189207bf390"],
+Cell[11224, 301, 342, 8, 58, "Text",ExpressionUUID->"066a1981-a26c-4821-b8e3-017989607754"],
+Cell[11569, 311, 259, 7, 35, "Text",ExpressionUUID->"1be0ecea-3b66-4ed6-930d-bd1d81f8ab2c"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

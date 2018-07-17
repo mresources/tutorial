@@ -1,0 +1,142 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5171,        134]
+NotebookOptionsPosition[      4383,        113]
+NotebookOutlinePosition[      4810,        130]
+CellTagsIndexPosition[      4767,        127]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Overview\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Reference Guides/Undocumented Contexts/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<4.1.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Tue 17 Jul 2018 01:16:59\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "17", ",", "1", ",", "16", ",", 
+              "59.037302`8.523701475112768"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<reference-guides\>\"", ",", "\"\<undocumented-contexts\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<undocumented\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.74077953306179*^9, 
+   3.7407795404796257`*^9}, {3.740804293761916*^9, 3.740804334443972*^9}, {
+   3.740804640308864*^9, 
+   3.7408046433547697`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Undocumented Functions", "Subsection",
+ CellChangeTimes->{{3.74080434357171*^9, 
+  3.74080434755488*^9}},ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-\
+adb5ce7e4ec7"],
+
+Cell[TextData[{
+ "Mathematica is a sprawling system and WRI loves to brag about the number of \
+functions in it. Unfortunately it also often under-performs due to this \
+sprawl. Targeted, highly-specialized functions get buried deep in the system, \
+while the most general form of the function exists at the ",
+ Cell[BoxData["\"\<System`\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "30c30753-58f9-45b6-9895-b295be822d4f"],
+ " level."
+}], "Text",
+ CellChangeTimes->{{3.740804348729918*^9, 
+  3.74080446158939*^9}},ExpressionUUID->"54864930-a49a-4a8b-93b4-\
+14b375923806"],
+
+Cell["\<\
+Therefore, a lot of using Mathematica well comes from taking advantage of the \
+nominally undocumented, unsupported parts of the system. \
+\>", "Text",
+ CellChangeTimes->{{3.740804470309781*^9, 
+  3.740804501956493*^9}},ExpressionUUID->"191a4abf-d677-414c-b17b-\
+0f15baffc479"],
+
+Cell["\<\
+To make this easier, I\[CloseCurlyQuote]ve attempted to compile lists of \
+useful undocumented functionality, separated by context.\
+\>", "Text",
+ CellChangeTimes->{{3.740804503603189*^9, 
+  3.740804548112772*^9}},ExpressionUUID->"1b3c7c1c-edec-4935-9211-\
+b4d606d17d3e"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{91, Automatic}, {37, Automatic}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2443, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3026, 77, 168, 3, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
+Cell[3197, 82, 596, 12, 81, "Text",ExpressionUUID->"54864930-a49a-4a8b-93b4-14b375923806"],
+Cell[3796, 96, 287, 6, 58, "Text",ExpressionUUID->"191a4abf-d677-414c-b17b-0f15baffc479"],
+Cell[4086, 104, 281, 6, 58, "Text",ExpressionUUID->"1b3c7c1c-edec-4935-9211-b4d606d17d3e"]
+}, Open  ]]
+}
+]
+*)
+

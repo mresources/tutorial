@@ -1,0 +1,210 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8145,        202]
+NotebookOptionsPosition[      7350,        181]
+NotebookOutlinePosition[      7782,        198]
+CellTagsIndexPosition[      7739,        195]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Making an Atom\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Atoms\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.3.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<atoms\>\""}], "}"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<systems\>\"", ",", "\"\<object-oriented-programming\>\"", ",", 
+      "\"\<chemical-atom\>\""}], "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 3.723435549502858*^9}, {3.723435626994491*^9, 
+   3.723435705605221*^9}, {3.723436653781901*^9, 
+   3.723436668193194*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Making an Atom", "Subsection",
+ CellChangeTimes->{{3.684455715082788*^9, 
+  3.6844557180979853`*^9}},ExpressionUUID->"a29e725e-cbe7-414c-997c-\
+caf8b55209b0"],
+
+Cell[TextData[{
+ "To make an atom we start out by simply making an association to hold the \
+properties of the atom and wrapping the ",
+ Cell[BoxData[
+  FormBox["Head", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "e634c392-8ffa-49e6-b4a1-ef1a6cd65f21"],
+ " ",
+ Cell[BoxData[
+  FormBox["Atom", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "8eb4f079-3085-44bf-82f8-5ea24882809a"],
+ " around it:"
+}], "Text",
+ CellChangeTimes->{{3.684451597190517*^9, 3.68445162858814*^9}, {
+  3.684453255980072*^9, 3.684453259011836*^9}, {3.690653977517576*^9, 
+  3.690653991846147*^9}},ExpressionUUID->"497be1cf-0a6e-4022-a95a-\
+e8822df1e72f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetChemicalSystemUpValues", "@", "Atom"}], ";"}]], "Code",
+ CellChangeTimes->{{3.684545999720277*^9, 3.684546000975404*^9}, 
+   3.723436686816378*^9},ExpressionUUID->"2900bcf6-8002-48d7-beac-\
+6ae69aa36ff5"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"elementDict", "[", "el_", "]"}], ":=", 
+   RowBox[{"<|", "\n", "\t", 
+    RowBox[{
+     RowBox[{"\"\<Position\>\"", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], ",", "\n", "\t", 
+     RowBox[{"\"\<Mass\>\"", "\[Rule]", 
+      RowBox[{"ElementData", "[", 
+       RowBox[{"el", ",", "\"\<AtomicMass\>\""}], "]"}]}], ",", "\n", "\t", 
+     RowBox[{"\"\<Radius\>\"", "\[Rule]", 
+      RowBox[{"ElementData", "[", 
+       RowBox[{"el", ",", "\"\<VanDerWaalsRadius\>\""}], "]"}]}], ",", "\n", 
+     "\t", 
+     RowBox[{"\"\<Bonds\>\"", "\[Rule]", 
+      RowBox[{"{", "}"}]}], ",", "\n", "\t", 
+     RowBox[{"\"\<Valence\>\"", "\[Rule]", 
+      RowBox[{"ElementData", "[", 
+       RowBox[{"el", ",", "\"\<Valence\>\""}], "]"}]}], ",", "\n", "\t", 
+     RowBox[{"\"\<Color\>\"", "\[Rule]", 
+      RowBox[{
+       RowBox[{"ColorData", "[", "\"\<Atoms\>\"", "]"}], "[", "el", "]"}]}]}],
+     "\n", "\t", "|>"}]}], ";"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Atom", "[", 
+     RowBox[{"attrs", ":", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"_Rule", "|", "_RuleDelayed"}], ")"}], ".."}]}], "]"}], ":=", 
+    
+    RowBox[{"ChemicalSystemAdd", "[", "\n", "\t\t", 
+     RowBox[{"Atom", "@", 
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"ad", "=", 
+          RowBox[{"<|", "attrs", "|>"}]}], "}"}], ",", "\n", "\t\t\t\t", 
+        RowBox[{"Replace", "[", 
+         RowBox[{
+          RowBox[{"ad", "[", "\"\<Element\>\"", "]"}], ",", 
+          RowBox[{"{", "\n", "\t\t\t\t\t\t", 
+           RowBox[{
+            RowBox[{"e_String", ":>", 
+             RowBox[{"Merge", "[", 
+              RowBox[{
+               RowBox[{"{", 
+                RowBox[{"ad", ",", 
+                 RowBox[{"elementDict", "[", "e", "]"}]}], "}"}], ",", 
+               "First"}], "]"}]}], ",", "\n", "\t\t\t\t\t\t", 
+            RowBox[{"_", "\[Rule]", "$Failed"}]}], "}"}]}], "]"}]}], "\n", 
+       "\t\t\t\t", "]"}]}], "]"}]}], ";"}]}], "\n", 
+ RowBox[{"\t\t\t", 
+  RowBox[{
+   RowBox[{"Atom", "[", 
+    RowBox[{"element_String", ",", "\n", "\t\t\t\t", 
+     RowBox[{"position", ":", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"x_", "?", "NumericQ"}], ",", 
+        RowBox[{"y_", "?", "NumericQ"}], ",", 
+        RowBox[{"z_", "?", "NumericQ"}]}], "}"}], ":", "Automatic"}], ",", 
+     "\n", "\t\t\t\t", 
+     RowBox[{"mass", ":", 
+      RowBox[{"_", "?", "NumericQ"}], ":", "Automatic"}]}], "\n", "\t\t\t\t", 
+    "]"}], ":=", 
+   RowBox[{"Atom", "@@", 
+    RowBox[{"DeleteCases", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"\"\<Element\>\"", "\[Rule]", "element"}], ",", 
+        RowBox[{"\"\<Position\>\"", "\[Rule]", "position"}], ",", 
+        RowBox[{"\"\<Mass\>\"", "\[Rule]", "mass"}]}], "}"}], ",", 
+      RowBox[{"_", "\[Rule]", "Automatic"}]}], "]"}]}]}]}]}], "Code",
+ CellChangeTimes->{{3.6842564349065933`*^9, 3.684256496917939*^9}, {
+   3.684439156555572*^9, 3.684439179484017*^9}, {3.684451633764497*^9, 
+   3.684451640892362*^9}, {3.6844516757632637`*^9, 3.684451722914344*^9}, {
+   3.6844517839485826`*^9, 3.684451786518067*^9}, {3.684451957442157*^9, 
+   3.684451966424494*^9}, {3.684452005746378*^9, 3.684452254175847*^9}, {
+   3.684452490045063*^9, 3.684452669467375*^9}, {3.6844527234907846`*^9, 
+   3.684452742314251*^9}, {3.6845311916431313`*^9, 3.684531203004374*^9}, {
+   3.6845439648934107`*^9, 3.684543990186653*^9}, {3.684544553291051*^9, 
+   3.684544556807365*^9}, {3.6845451021093187`*^9, 3.684545104520258*^9}, 
+   3.6845451750760527`*^9, {3.684546915015855*^9, 3.68454691656773*^9}, {
+   3.6906539988468943`*^9, 3.6906540003111143`*^9}, 
+   3.723436686855654*^9},ExpressionUUID->"cad1d172-490f-4341-b9c4-\
+110c505998ba"]
+}, Open  ]]
+},
+WindowSize->{808, 754},
+WindowMargins->{{316, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1880, 35, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2463, 59, 164, 3, 52, "Subsection",ExpressionUUID->"a29e725e-cbe7-414c-997c-caf8b55209b0"],
+Cell[2630, 64, 638, 15, 58, "Text",ExpressionUUID->"497be1cf-0a6e-4022-a95a-e8822df1e72f"],
+Cell[3271, 81, 242, 5, 52, "Code",ExpressionUUID->"2900bcf6-8002-48d7-beac-6ae69aa36ff5"],
+Cell[3516, 88, 3818, 90, 377, "Code",ExpressionUUID->"cad1d172-490f-4341-b9c4-110c505998ba"]
+}, Open  ]]
+}
+]
+*)
+

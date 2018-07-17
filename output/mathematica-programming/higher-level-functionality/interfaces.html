@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html>
+<title>
+        Interfaces
+</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+      rel='apple-touch-icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/apple-touch-icon.png'
+      sizes='180x180'
+  >
+<link
+      rel='icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/favicon-32x32.png'
+      sizes='32x32'
+  >
+<link
+      rel='icon'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/favicon-16x16.png'
+      sizes='16x16'
+  >
+<link
+      rel='manifest'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/manifest.json'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/pygments/default.min.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/bootstrap.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/font-awesome.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.w3schools.com/w3css/4/w3.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Robot'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Montserrat'
+  >
+<link
+      rel='stylesheet'
+      href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://fonts.googleapis.com/css?family=Source+Code+Pro'
+  >
+<link
+      rel='stylesheet'
+      href='https://reference.wolfram.com/language-assets/css/special-styles.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/common.css'
+  >
+<link
+      rel='stylesheet'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/css/style.css'
+  >
+      <meta name="description" content="">
+  <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
+  <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
+  <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script>
+    function accordionOpen() {
+      var thumb = document.getElementById("accordion-thumb");
+      var nb = document.getElementById("accordion-notebook");
+      thumb.onclick= accordionClose;
+      nb.classList.add("accordion-visible");
+      nb.classList.remove("accordion-hidden");
+      thumb.classList.add("accordion-thumb-visible");
+      thumb.classList.remove("accordion-thumb-hidden");
+      }
+    function accordionClose() {
+      var thumb = document.getElementById("accordion-thumb");
+      var nb = document.getElementById("accordion-notebook");
+      thumb.onclick= accordionOpen;
+      nb.classList.remove("accordion-visible");
+      nb.classList.add("accordion-hidden");
+      thumb.classList.remove("accordion-thumb-visible");
+      thumb.classList.add("accordion-thumb-hidden")
+      }
+  </script>
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+<script>
+  (function(i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function() {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o);
+    a.async = 1;
+    a.src = g;
+    m = s.getElementsByTagName(o)[0];
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-103560228-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<body
+  class="w3-content"
+  onload="
+  PR.prettyPrint();
+"
+  >
+<!-- Sidebar/menu -->
+<nav
+  class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top sidebar"
+  style="z-index:3;width:250px"
+  id="mySidebar"
+  >
+  <div class="w3-container w3-display-container w3-padding-16">
+    <div
+      onclick="w3_close()"
+      class="fa fa-remove w3-hide-large w3-button w3-display-topright"
+      id="menu-thumb"
+      >
+    </div>
+  </div>
+  <h3 class="w3-wide w3-bar-item">
+<a
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/'
+  >
+      Home</a>
+<div class="search-box">
+  <script>
+    var search_SiteURL = "https://www.wolframcloud.com/objects/b3m2a1/tutorial"
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <link rel="stylesheet" href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/tipuesearch/tipuesearch.css">
+  <form action="https://www.wolframcloud.com/objects/b3m2a1/tutorial/search.html">
+    <div class="tipue_search_group">
+      <input
+        type="text"
+        name="q"
+        id="tipue_search_input"
+        pattern=".{3,}"
+        title="At least 3 characters" required>
+      <button type="submit" class="tipue_search_button">
+        <div class="tipue_search_icon">&#9906;</div>
+      </button>
+    </div>
+  </form>
+</div>
+  </h3>
+  <div class="w3-large w3-text-grey">
+    <div class="w3-bar-block">
+      <ul class="list-inline row">
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/about.html'
+  >
+      About</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/toc.html'
+  >
+      Table Of Contents</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/categories.html'
+  >
+      Categories</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/tags.html'
+  >
+      Tags</a>
+</li>
+</ul>
+    </div>
+  </div>
+  <hr>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <ul>
+        <h4 class="w3-bar-item index-section">
+          Using Mathematica
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Basics
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/types.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Types
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/variables.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Variables
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/functions.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Functions
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/loops-and-scoping.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Loops and Scoping
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/errors.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Errors
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/basics/clear.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Clear
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Interface
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/function-aliases.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Aliases
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/documentation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Documentation
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/keyboard-aliases-and-special-characters.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Keyboard Aliases and Special Characters
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/palettes-and-toolbars.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Palettes and Toolbars
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/interface/styles.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Styles
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Useful Features
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/plotting.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Plotting
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/symbolic-algebra.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Symbolic Algebra
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/calculus.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Calculus
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/using-mathematica/useful-features/builtin-data-and-units.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Built-in Data and Units
+      </a>
+        <h4 class="w3-bar-item index-section">
+          Mathematica Programming
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Code Structure
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/symbols-and-expressions.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Symbols and Expressions
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/expressions-structure.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Expressions Structure
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/patterns.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Patterns
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/replacement-patterns.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Replacement Patterns
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/functions.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Functions
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/contexts.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Contexts
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/ownvalues-set-and-setdelayed.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        OwnValues, Set, and SetDelayed
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/function-values-and-definition-clearing-.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Values and Definition Clearing
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/hold-and-evaluation-order.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Hold and Evaluation Order
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/scoping-revisited.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Scoping Revisited
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/flow-control.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Flow Control
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/code-structure/error-handling.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Error Handling
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Higher-Level Functionality
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/dynamic.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Dynamic
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/formatting.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Formatting
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/interfaces.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Interfaces
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/the-front-end.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        The Front End
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/remote-kernels.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Remote Kernels
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Assorted Tricks
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/trottstrzebonski.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Trott-Strzebonski
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/villegasgayley.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Villegas-Gayley
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/import-and-readlist.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Import and ReadList
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/currentvalue-and-frontendtokens.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        CurrentValue and FrontEndTokens
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/info-scraping.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Info Scraping
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/assorted-tricks/object-oriented-programming.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Object Oriented Programming
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Functional Programming
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/procedural-programming.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Procedural Programming
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/table--do.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Table / Do
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/map--scan.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Map / Scan
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/nest--nestlist.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Nest / NestList
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/fold--foldlist.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Fold / FoldList
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/functional-programming/fixedpoint-and-gradients.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FixedPoint and Gradients
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Performance Tuning
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/performance-tuning/compile.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Compile
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/performance-tuning/special-array-types.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Array Types
+      </a>
+        <h4 class="w3-bar-item index-section">
+          Package Usage and Development
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Overview
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/basics/packages-in-mathematica.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Packages in Mathematica
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/basics/paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclets
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Paclet Usage
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-usage/installation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Installation
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-usage/paclet-servers.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclet Servers
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Paclet Development
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/pacletinfo-and-paclet-structure.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        PacletInfo and Paclet Structure
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/paclet-development.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclet Development
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/paclet-distribution.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Paclet Distribution
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/tips-and-tricks.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Tips and Tricks
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/paclet-development/sample-paclet-structures.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Sample Paclet Structures
+      </a>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Higher-Level Features
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/multipackage-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Multipackage Paclets
+      </a>
+        <h4 class="w3-bar-item index-section">
+          Reference Guides
+        </h4>
+        <h5 class="w3-bar-item w3-padding-medium index-subsection">
+          Undocumented Contexts
+        </h5>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/overview.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Overview
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Internal
+      </a>
+    </ul>
+  </div>
+</nav>
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">
+<a
+      class='w3-text-white'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/main.html'
+  >
+      Home</a>
+  </div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+    <div class="main" id="main-content">
+    <div class="main-content">
+      <div class="centered">
+        <!-- Page Header -->
+        <div class="w3-display-container w3-content w3-wide" id="header">
+        </div>
+        <!-- Main Body -->
+  <article class="article">
+        <h2>
+          Mathematica Programming &raquo; Higher-Level Functionality
+        </h2>
+    <div class="article content">
+      <a shape='rect' id='interfaces' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> Interfaces</h2>
+<h3> Button</h3>
+<p><code>Button</code>  is as simple as they come. It&#8217;s just a button. It has an expression it puts on the button and it runs a command and that&#8217;s it:
+</p>
+<pre class='prettyprint'>
+ <code>Button[
+ MouseAppearance[&quot;Click Me&quot;,
+  Style[&quot;?&quot;,Large,Bold]
+  ],
+ Print[&quot;Ouch!&quot;]]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-2797206139365313108.png' alt='22-2797206139365313108' />
+<p>It&#8217;s got some nice formatting options:
+</p>
+<pre class='prettyprint'>
+ <code>Row@Table[
+ With[{a=a},
+  Button[
+   MouseAppearance[&quot;Click Me&quot;,
+    Style[&quot;?&quot;,Large,Bold]
+    ],
+   Print[a],
+   Appearance<span class='special-character Rule'>&#62754;</span>a]
+  ],
+ {a,{Automatic,&quot;Frameless&quot;,&quot;Palette&quot;,&quot;AbuttingRight&quot;,&quot;AbuttingLeft&quot;}}
+ ]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-873404383870698890.png' alt='22-873404383870698890' />
+<p>And you can change its basic styling:
+</p>
+<pre class='prettyprint'>
+ <code>Button[
+ Mouseover[&quot;You deserve a break&quot;,
+  Style[&quot;Relax and click here&quot;,&quot;HyperlinkActive&quot;]
+  ],
+ SystemOpen@&quot;https://www.youtube.com/watch?v=cMdiYuzHVZ4&quot;,
+ BaseStyle<span class='special-character Rule'>&#62754;</span>&quot;Hyperlink&quot;,
+ Appearance<span class='special-character Rule'>&#62754;</span>&quot;Frameless&quot;
+ ]
+(*Out:*)
+[&quot;You deserve a break&quot;](#&quot;You deserve a break&quot;)</code>
+</pre>
+<h3> InputField</h3>
+<p>An <code>InputField</code>  is pretty self-explanatory:
+</p>
+<pre class='prettyprint'>
+ <code>InputField[&quot;Hi there&quot;,String]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-5451681266245674562.png' alt='22-5451681266245674562' />
+<p>Its usefulness comes when combined with <code>Dynamic</code></p>
+<pre class='prettyprint'>
+ <code>inputVar=&quot;Change me&quot;;
+InputField[Dynamic[inputVar,
+ Print[&quot;Changed!&quot;];inputVar=#;&amp;],String]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-3974473653961945538.png' alt='22-3974473653961945538' />
+<pre class='prettyprint'>
+ <code>inputVar</code>
+</pre>
+<p>It of course has many useful styling and usage options but these are generally pretty well documented so there is no pressing need to discuss them here.
+</p>
+<h3> PopupMenu</h3>
+<p>A <code>PopupMenu</code>  just selects a value from a list:
+</p>
+<pre class='prettyprint'>
+ <code>PopupMenu[&quot;&quot;,Prepend[Names[&quot;*Data&quot;],&quot;&quot;<span class='special-character Rule'>&#62754;</span>Style[&quot;Choose a data type&quot;,Italic,Gray]]]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-7860618826219449006.png' alt='22-7860618826219449006' />
+<p>Once again we can also set a variable this way:
+</p>
+<pre class='prettyprint'>
+ <code>Dynamic@popupVar;
+PopupMenu[Dynamic@popupVar,Prepend[Names[&quot;*Data&quot;],&quot;&quot;-&gt;Style[&quot;Choose a data type&quot;,Italic,Gray]]]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-4855681135816685350.png' alt='22-4855681135816685350' />
+<pre class='prettyprint'>
+ <code>popupVar</code>
+</pre>
+<h3> EventHandler</h3>
+<p><code>EventHandler</code>  isn&#8217;t really an interface element so much as an extension for them. It catches front end events -- mouse clicks, keyboard input, etc. and routes them through a set of rules. It&#8217;s powerful, but can be a little tough to use.</p>
+<p>Mathematica, unlike a more usual front-end system like tkinter, has no rich event syntax, instead it depends on the user querying the front end about global state, such as how one catches a double click event:
+</p>
+<pre class='prettyprint'>
+ <code>youDidIt=False;
+nowClickPrinted=False;
+wellDonePrinted=False;
+EventHandler[
+ MouseAppearance[
+  Panel[&quot;Double click here&quot;],
+  &quot;Arrow&quot;],{
+  &quot;MouseEntered&quot;:&gt;
+  If[!(youDidIt//TrueQ)&amp;&amp;!(nowClickPrinted//TrueQ),Print[&quot;Now click&quot;];
+   nowClickPrinted=True],
+  &quot;MouseClicked&quot;:&gt;
+  If[CurrentValue@&quot;MouseClickCount&quot;==2,
+   If[!(youDidIt//TrueQ),
+    Print[&quot;You did it!&quot;];
+    youDidIt=True
+    ]
+   ],
+  &quot;MouseExited&quot;:&gt;If[
+   youDidIt&amp;&amp;!(wellDonePrinted//TrueQ),
+   Print[&quot;Well done&quot;];
+   wellDonePrinted=True]
+  }
+ ]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-395271241287311702.png' alt='22-395271241287311702' />
+<p>This is an undeniably poor way to do things with myriad pitfalls, but it is one of the restrictions of the system, unfortunately.</p>
+<p>The full list of events that <code>EventHandler</code>  can use isn&#8217;t completely clear, but the most common use cases are on its doc page. Others can be found by  ``<a href='https://www.google.com/search?q=site%3Amathematica.stackexchange.com+%27EventHandler%27+complete+event&amp;oq=site%3Amathematica.stackexchange.com+%27EventHandler%27+complete+event'>&quot;googling&quot;</a>``` .</p>
+<p>One class of events to know about is the class of <code>&quot;MenuCommand&quot;</code>  events. These look like <code>{&quot;MenuCommand&quot;, token}</code>  and of these particularly crucial are the tokens <code>&quot;HandleShiftReturn&quot;</code>  and <code>&quot;EvaluateCells&quot;</code> . These prevent Shift-Return or Keypad-Enter from evaluating and creating a new cell. Here&#8217;s a way to use this:
+</p>
+<pre class='prettyprint'>
+ <code>HandlerInputField[sym:_Dynamic|None:None,handlerFunction_,ops___]:=
+With[{dynSym=Replace[sym,
+  None<span class='special-character RuleDelayed'>&#10740;</span>With[{u=Unique@&quot;handlerInputFieldValue$&quot;},u=Null;Dynamic@u]
+  ]},
+EventHandler[InputField[dynSym,ops],{
+  {&quot;MenuCommand&quot;,&quot;HandleShiftReturn&quot;}<span class='special-character RuleDelayed'>&#10740;</span>
+  Replace[
+   dynSym,
+   Verbatim[Dynamic][s_,___]<span class='special-character RuleDelayed'>&#10740;</span>(
+    handlerFunction@s;
+    s=&quot;&quot;
+    )
+   ],
+  {&quot;MenuCommand&quot;,&quot;EvaluateCells&quot;}<span class='special-character RuleDelayed'>&#10740;</span>
+  Replace[
+   dynSym,
+   Verbatim[Dynamic][s_,___]<span class='special-character RuleDelayed'>&#10740;</span>(
+    handlerFunction@s;
+    s=&quot;&quot;
+    )
+   ],
+  &quot;ReturnKeyDown&quot;<span class='special-character RuleDelayed'>&#10740;</span>NotebookWrite[EvaluationNotebook[],&quot;\n&quot;]
+  }
+ ]
+]</code>
+</pre>
+<p>This creates and input field wrapped in an event handler. Now we&#8217;ll make an interface that can log the most common words we type. Type normally and return with Shift-Return.
+</p>
+<pre class='prettyprint'>
+ <code>wordLog={};
+Column[{
+  HandlerInputField[
+   (wordLog=Join[wordLog,
+     ToLowerCase/@StringSplit@StringReplace[#,Except[WordCharacter|&quot;&apos;&quot;]-&gt;&quot; &quot;]
+     ])&amp;,
+   String
+   ],
+  Dynamic[
+   With[{a=Counts@wordLog},
+    BarChart[Values@a,
+     ChartLabels-&gt;Keys@a]
+    ]
+   ]
+  },
+ Dividers-&gt;{ {},{2-&gt;Gray}}
+ ]</code>
+</pre>
+<h3> OpenerView and Toggler</h3>
+<p><code>OpenerView</code>  is a particularly nice formatting element which let&#8217;s expressions be hidden but a title displayed:
+</p>
+<pre class='prettyprint'>
+ <code>OpenerView@{&quot;Updating dynamic thing&quot;,
+ Dynamic[
+  Pause[.5];
+  Graphics@{RandomColor[],Disk[]},
+  UpdateInterval<span class='special-character Rule'>&#62754;</span>1]}
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-5509702874528235278.png' alt='22-5509702874528235278' />
+<p>It&#8217;s really a subclass of <code>Toggler</code>  (well it&#8217;s parent function <code>Opener</code>  is) but worth mentioning because of how useful it is. A nice way to add underlines is to use <code>Column</code> :
+</p>
+<pre class='prettyprint'>
+ <code>OpenerView@{
+ Column[
+  {&quot;Updating dynamic thing&quot;},
+  Dividers<span class='special-character Rule'>&#62754;</span>{ {},{2<span class='special-character Rule'>&#62754;</span>Gray}}
+  ],
+ Dynamic[
+  Pause[.5];
+  Graphics@{RandomColor[],Disk[]},
+  UpdateInterval<span class='special-character Rule'>&#62754;</span>1]}
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-2781982858912025980.png' alt='22-2781982858912025980' />
+<p><code>Toggler</code>  just toggles between expressions when clicked
+</p>
+<pre class='prettyprint'>
+ <code>Toggler[1,Table[i<span class='special-character Rule'>&#62754;</span>Framed[
+ Style[i,FontColor<span class='special-character Rule'>&#62754;</span>If[i&lt;5,White,Black]],
+ RoundingRadius<span class='special-character Rule'>&#62754;</span>5,
+ FrameStyle<span class='special-character Rule'>&#62754;</span>None,
+ Background<span class='special-character Rule'>&#62754;</span>GrayLevel[i/10]],{i,10}]]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-4991518592214860267.png' alt='22-4991518592214860267' />
+<p>And <code>Toggler</code>  can similarly be used as a variable setter:
+</p>
+<pre class='prettyprint'>
+ <code>togglerVar=1;
+Toggler[Dynamic@togglerVar,Table[i-&gt;Framed[
+ Style[i,FontColor-&gt;If[i&lt;5,White,Black]],
+ RoundingRadius-&gt;5,
+ FrameStyle-&gt;None,
+ Background-&gt;GrayLevel[i/10]],{i,10}]]
+(*Out:*)</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-5678734961258451771.png' alt='22-5678734961258451771' />
+<pre class='prettyprint'>
+ <code>togglerVar</code>
+</pre>
+    </div>
+  </article>
+  <br>
+  <hr>
+<ul class="pagination">
+    <li class="page-item">
+      <a
+        class="page-link"
+        href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/formatting.html"
+        >
+        <span aria-hidden="true">
+            &laquo; Formatting
+          </span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+  <li class="page-item">
+    <a
+      class="page-link"
+      href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-programming/higher-level-functionality/the-front-end.html"
+      >
+      <span aria-hidden="true">
+        The Front End &raquo;
+      </span>
+      <span class="sr-only">Next</span>
+    </a>
+  </li>
+</ul>
+  <br>
+  <div class="embedded-notebook">
+    <button
+      class="accordion-thumb accordion-thumb-hidden"
+      onclick="accordionOpen()"
+      id="accordion-thumb"
+      >
+    </button>
+    <div class="accordion-hidden" id="accordion-notebook">
+      <div
+  style=
+    'width:
+      100%;
+    height:
+      400px;
+    position: relative;
+    overflow: hidden;
+    '
+    >
+    <iframe
+        src="https://sandbox.open.wolframcloud.com/app/view/newNotebook"
+        style='
+          position: absolute;
+          left:-2px;
+          top:
+          -85px;
+          '
+        width=
+          '100%'
+        height=
+          '485px'
+        >
+    </iframe>
+</div>
+    </div>
+  </div>
+      </div>
+      </div>
+    </div>
+  <!-- Footer -->
+  <div class="w3-center w3-black w3-padding-16">
+        <div class="w3-black w3-center w3-padding-24">
+            Powered by
+            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">
+              w3.css
+            </a>
+        </div>
+  </div>
+  <!-- End page content -->
+</div>
+<script>
+// Accordion
+function myAccFunc() {
+    var x = document.getElementById("demoAcc");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+// Script to open and close sidebar
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myOverlay").style.display = "block";
+}
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1375 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     58315,       1367]
+NotebookOptionsPosition[     52578,       1271]
+NotebookOutlinePosition[     53242,       1294]
+CellTagsIndexPosition[     53199,       1291]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Error Handling\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Code Structure\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.1.12\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Mon 16 Jul 2018 22:25:47\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "16", ",", "22", ",", "25", ",", 
+              "47.782392`8.43184286320269"}], "}"}], ",", "\"Instant\"", ",", 
+          "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<code-structure\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<errors\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723348665617456*^9, 3.723348677211186*^9}, {
+   3.723348793415567*^9, 3.7233488015589314`*^9}, {3.723348858273123*^9, 
+   3.723348869709263*^9}, {3.7233491878388033`*^9, 3.723349193403183*^9}, {
+   3.7233493421558933`*^9, 3.7233493550726223`*^9}, {3.7233495375423727`*^9, 
+   3.723349543343267*^9}, {3.740780218342493*^9, 3.740780226567594*^9}, {
+   3.740795963637587*^9, 3.7407959711604633`*^9}, {3.740797529376173*^9, 
+   3.74079755317804*^9}, {3.740797633329316*^9, 3.7407976615762177`*^9}, {
+   3.7407978329598722`*^9, 3.7407978369958143`*^9}, {3.7407980234268847`*^9, 
+   3.740798025617154*^9}, {3.740804181368449*^9, 
+   3.7408041817899523`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Error Handling", "Subsection",
+ CellChangeTimes->{{3.7408004999832773`*^9, 
+  3.740800503735969*^9}},ExpressionUUID->"b5e57875-0aee-4931-9c63-\
+be8f0ba316fe"],
+
+Cell["\<\
+As we noted before, errors in Mathematica are much more subtle than in many \
+languages.\
+\>", "Text",
+ CellChangeTimes->{{3.740798140141876*^9, 3.740798158316238*^9}, {
+  3.740798209605547*^9, 
+  3.740798213549258*^9}},ExpressionUUID->"0bca7200-cdee-4f71-92b8-\
+b8267adad72e"],
+
+Cell["\<\
+There is no compiler, so nothing will warn you about compile-time errors, and \
+there is no real concept of an automatic runtime error\[LongDash]i.e. there \
+is nothing in the language enforcing any type of strict semantics. Because of \
+this we need to be particularly careful about validating errors ourselves.\
+\>", "Text",
+ CellChangeTimes->{{3.740798216324806*^9, 3.7407982829320908`*^9}, {
+  3.7407983835892553`*^9, 
+  3.7407984029249783`*^9}},ExpressionUUID->"076b24e6-1293-4231-8c65-\
+e9c7f8cb15d9"],
+
+Cell["\<\
+When we catch one of these errors we then have the question of what to do \
+with it. We\[CloseCurlyQuote]ll work through this in order of least-to-most \
+suggested.\
+\>", "Text",
+ CellChangeTimes->{{3.740798556873687*^9, 
+  3.740798623764758*^9}},ExpressionUUID->"b3163223-aa20-47d5-8267-\
+285315f94646"],
+
+Cell[CellGroupData[{
+
+Cell["Abort", "Subsubsection",
+ CellChangeTimes->{{3.740798625484104*^9, 
+  3.740798628508649*^9}},ExpressionUUID->"69475f1d-1c07-4923-ae01-\
+8758bf11c5aa"],
+
+Cell[TextData[{
+ "When an error is caught, we could simply do as most programming languages \
+do and simply abort the calculation, in this case via the function ",
+ Cell[BoxData["Abort"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ddc8ab36-2ce2-4c7b-8be4-a7a955e02c84"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740798630459816*^9, 
+  3.740798665803453*^9}},ExpressionUUID->"41053c6f-bcc0-4f3b-bab2-\
+5e57895d2cce"],
+
+Cell[CellGroupData[{
+
+Cell["Issues", "Subsubsubsection",
+ CellChangeTimes->{{3.740798942573867*^9, 
+  3.7407989468439283`*^9}},ExpressionUUID->"e8869133-f8e5-4bd5-ae50-\
+26145d726559"],
+
+Cell[TextData[{
+ "The problem with this is that it is a potential overreaction as if we are \
+producing code that others will use, this ",
+ Cell[BoxData["Abort"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "fef13193-ea04-4fc2-ae5a-e0764ebb677b"],
+ " will be passed up into any of their functions, too."
+}], "Text",
+ CellChangeTimes->{{3.740798675518777*^9, 
+  3.740798720942678*^9}},ExpressionUUID->"23049324-9b84-4974-b923-\
+a801580bb822"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Message", "Subsubsection",
+ CellChangeTimes->{{3.74079872388571*^9, 
+  3.7407987248142977`*^9}},ExpressionUUID->"58bf0e44-7432-44ca-adb4-\
+b1fcf627d223"],
+
+Cell[TextData[{
+ "The standard way Mathematica functions handle cases like this is by \
+emitting a ",
+ Cell[BoxData["Message"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "c511c58c-9c07-463f-b187-5bea0a297e0e"],
+ " and then returning some type of failure tag, e.g. something like this:"
+}], "Text",
+ CellChangeTimes->{{3.740798726157628*^9, 
+  3.740798757765832*^9}},ExpressionUUID->"74efb84f-232f-404b-953d-\
+2b0328f8d90d"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{"x", ",", " ", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", " ", "10"}], "}"}]}], "]"}]], "Code",
+ CellChangeTimes->{{3.7407987594789543`*^9, 3.740798773749134*^9}},
+ CellLabel->
+  "In[151]:=",ExpressionUUID->"04657e1d-03ae-4be5-95fb-6a8470465253"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Integrate","ilim",
+   "\"Invalid integration variable or limit(s) in \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{\\\"1\\\", \\\",\\\", \\\"10\\\"}], \\\"}\\\"}]\\).\"",2,151,54,
+   27970062580965588239,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.740798774366398*^9, 3.7407987839812403`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[151]:=",ExpressionUUID->"8b7f7677-57e8-4f33-a436-e90084e53660"],
+
+Cell[BoxData[
+ RowBox[{"Integrate", "[", 
+  RowBox[{"x", ",", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "10"}], "}"}]}], "]"}]], "Output",
+ CellChangeTimes->{{3.740798774373756*^9, 3.740798784016897*^9}},
+ CellLabel->
+  "Out[151]=",ExpressionUUID->"e23dc0ea-854e-44f9-9319-f0bf046da5bf"]
+}, Open  ]],
+
+Cell["\<\
+Since this was an unhandled-arguments type of error, the function simply \
+bottoms out and says: \[OpenCurlyDoubleQuote]I\[CloseCurlyQuote]m going to \
+stay unevaluated\[CloseCurlyDoubleQuote]. \
+\>", "Text",
+ CellChangeTimes->{{3.7407987929351807`*^9, 
+  3.740798910208083*^9}},ExpressionUUID->"7e1e6588-2428-49df-80e9-\
+0c4cdb3421a1"],
+
+Cell[CellGroupData[{
+
+Cell["Aside", "Subsubsubsection",
+ CellChangeTimes->{{3.740798913897544*^9, 3.74079892035497*^9}, 
+   3.740799045911497*^9},ExpressionUUID->"fe98384c-b113-4b75-afad-\
+1e1f8655d496"],
+
+Cell[TextData[{
+ "For those interested, this type of behaviour most commonly occurs when a ",
+ Cell[BoxData[
+ "Condition"], "InlineInput",ExpressionUUID->
+  "b4bdaed6-82b2-4a6d-a4a2-22e951fad4ea"],
+ " is failed in either the pattern test of the function arguments or if a ",
+ Cell[BoxData[
+ "Condition"], "InlineInput",ExpressionUUID->
+  "d59d2c48-4ece-4edb-a4f5-13a09e952eeb"],
+ " is found at the end of a scoping construct, e.g.:"
+}], "Text",
+ CellChangeTimes->{{3.7407987929351807`*^9, 
+  3.7407989054043903`*^9}},ExpressionUUID->"e1c60b4e-5c53-433e-89ac-\
+e27187dc292f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"doNothing", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{"Module", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{"{", "}"}], ",", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"doNothing", "::", "no"}], "=", "\"\<Nope :)\>\""}], ";", "\n", 
+     "\t\t", 
+     RowBox[{"\"\<Something!\>\"", "/;", 
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"\"\<Something\>\"", "=!=", "Nothing"}], ",", " ", 
+        RowBox[{"Message", "[", 
+         RowBox[{"doNothing", "::", "no"}], "]"}], ",", " ", "True"}], 
+       "]"}]}]}]}], "\n", "\t\t", "]"}]}], "\n", 
+ RowBox[{"doNothing", "[", "]"}]}], "Code",
+ CellChangeTimes->{{3.7408000395567827`*^9, 3.7408001174264727`*^9}},
+ CellLabel->
+  "In[171]:=",ExpressionUUID->"0f14620a-1e67-4308-91c7-aace2b19b2cf"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "doNothing","no","\"Nope :)\"",2,172,56,27970062580965588239,"Local",
+   "Global`doNothing"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{3.740800117839149*^9},
+ CellLabel->
+  "During evaluation of \
+In[171]:=",ExpressionUUID->"390f2599-f7c2-497a-9d93-fa4d29a7d582"],
+
+Cell[BoxData[
+ RowBox[{"doNothing", "[", "]"}]], "Output",
+ CellChangeTimes->{3.7408001178516293`*^9},
+ CellLabel->
+  "Out[172]=",ExpressionUUID->"d45d853b-e85b-431b-ad17-a8e03128becd"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Issues", "Subsubsubsection",
+ CellChangeTimes->{{3.740799048991276*^9, 
+  3.740799049759646*^9}},ExpressionUUID->"519266ff-f875-458c-bca4-\
+242015e93fb7"],
+
+Cell[TextData[{
+ "If ",
+ Cell[BoxData[
+ "Abort"], "InlineInput",ExpressionUUID->
+  "bee5cd44-c3f1-4e7d-8024-d9b26d79cdb0"],
+ " is too much, this approach is too little. An error caught deep inside a \
+function shouldn\[CloseCurlyQuote]t have to be passed step-by-step up through \
+the rest of the function."
+}], "Text",
+ CellChangeTimes->{{3.740799071123329*^9, 3.7407991364623003`*^9}, {
+  3.7407992311873693`*^9, 
+  3.740799253555314*^9}},ExpressionUUID->"79dc02fb-84a7-4076-83ff-\
+c356e6a9d8d1"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Throw / Catch", "Subsubsection",
+ CellChangeTimes->{{3.740799538579383*^9, 3.7407995461078777`*^9}, {
+  3.740799622180612*^9, 
+  3.740799622378998*^9}},ExpressionUUID->"878405e4-074c-45a2-a3ca-\
+8b9136751397"],
+
+Cell[TextData[{
+ "The ",
+ ButtonBox["Throw",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Throw"],
+ " / ",
+ ButtonBox["Catch",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Catch"],
+ " mechanism provides a much more robust way to handle errors in Mathematica. \
+",
+ Cell[BoxData["Catch"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "f6afc036-4753-4d5d-8dbc-cfa650cbe902"],
+ " takes a second argument that can be a pattern to catch the different error \
+tags that ",
+ Cell[BoxData["Throw"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ed1d23f2-8d4d-4373-8999-e45a2af54150"],
+ " can attach to its results. By doing this we can get deeply-nested \
+functions to throw to high-level and be caught only by the handlers we want, \
+for instance we can do something like:"
+}], "Text",
+ CellChangeTimes->{{3.740799555098959*^9, 3.740799591212837*^9}, {
+  3.740799625562613*^9, 3.740799634235753*^9}, {3.740799667306651*^9, 
+  3.740799747370126*^9}},ExpressionUUID->"a25170b5-9dc3-433e-89bb-\
+9c653cf147ef"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"main", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{"NumberForm", "[", 
+   RowBox[{
+    RowBox[{"Catch", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"sub1", "[", "]"}], ",", " ", 
+        RowBox[{"sub2", "[", "]"}], ",", " ", 
+        RowBox[{"sub3", "[", "]"}]}], "}"}], ",", " ", 
+      RowBox[{"\"\<err1\>\"", "|", "\"\<err2\>\"", "|", "\"\<err3\>\""}]}], 
+     "]"}], ",", " ", "3"}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"sub1", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"#", "<", ".25"}], ",", " ", 
+      RowBox[{"Throw", "[", 
+       RowBox[{
+        RowBox[{"StringForm", "[", 
+         RowBox[{"\"\<`` too large\>\"", ",", " ", "#"}], "]"}], ",", " ", 
+        "\"\<err1\>\""}], "]"}], ",", " ", "#"}], "]"}], "&"}], "@", 
+   RowBox[{"RandomReal", "[", "]"}]}]}], "\n", 
+ RowBox[{
+  RowBox[{"sub2", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"#", "<", ".5"}], ",", " ", 
+      RowBox[{"Throw", "[", 
+       RowBox[{
+        RowBox[{"StringForm", "[", 
+         RowBox[{"\"\<`` two large\>\"", ",", " ", "#"}], "]"}], ",", " ", 
+        "\"\<err2\>\""}], "]"}], ",", " ", "#"}], "]"}], "&"}], "@", 
+   RowBox[{"RandomReal", "[", "]"}]}]}], "\n", 
+ RowBox[{
+  RowBox[{"sub3", "[", "]"}], ":=", "\n", "\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"#", "<", ".75"}], ",", " ", 
+      RowBox[{"Throw", "[", 
+       RowBox[{
+        RowBox[{"StringForm", "[", 
+         RowBox[{"\"\<`` three large\>\"", ",", " ", "#"}], "]"}], ",", " ", 
+        "\"\<err3\>\""}], "]"}], ",", " ", "#"}], "]"}], "&"}], "@", 
+   RowBox[{"RandomReal", "[", "]"}]}]}]}], "Code",
+ CellChangeTimes->{{3.740799751306444*^9, 3.740799907850637*^9}, {
+   3.740799953236463*^9, 3.740799957265286*^9}, 3.740806266216516*^9},
+ CellLabel->
+  "In[165]:=",ExpressionUUID->"41f99736-87b3-48ff-b55e-0a6ad924bff0"],
+
+Cell["And when we use this:", "Text",
+ CellChangeTimes->{{3.74079991505786*^9, 
+  3.740799917994582*^9}},ExpressionUUID->"46b26ff6-b4cf-4d21-9af6-\
+7f205c045105"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ToString", "/@", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{"main", "[", "]"}], ",", " ", "10"}], "]"}]}]], "Code",
+ CellChangeTimes->{{3.740799919755796*^9, 3.7407999380801*^9}, {
+  3.74080625071201*^9, 3.740806273154161*^9}},
+ CellLabel->
+  "In[302]:=",ExpressionUUID->"62997bdf-34b4-4a4b-9de2-4524f4f37985"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"0.137 two large\"\>", ",", "\<\"0.18 too large\"\>", 
+   ",", "\<\"0.704 three large\"\>", ",", "\<\"0.18 too large\"\>", 
+   ",", "\<\"0.0282 three large\"\>", ",", "\<\"0.463 three large\"\>", 
+   ",", "\<\"0.0129 too large\"\>", ",", "\<\"0.634 three large\"\>", 
+   ",", "\<\"0.104 too large\"\>", ",", "\<\"0.464 two large\"\>"}], 
+  "}"}]], "Output",
+ CellChangeTimes->{{3.740799923698542*^9, 3.740799959158814*^9}, {
+  3.740806255164226*^9, 3.740806273549508*^9}},
+ CellLabel->
+  "Out[302]=",ExpressionUUID->"7afc0af8-4c96-43c2-9e57-3d5eb2af9837"]
+}, Open  ]],
+
+Cell["\<\
+We see that the different errors were caught, each with their messages, and \
+we didn\[CloseCurlyQuote]t have to catch and pass up on each round.\
+\>", "Text",
+ CellChangeTimes->{{3.740799966839469*^9, 
+  3.740800031795803*^9}},ExpressionUUID->"c5b0f1af-e045-4271-b148-\
+4ad555ae707f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Standardized Error Handling", "Subsubsection",
+ CellChangeTimes->{{3.740800489527751*^9, 3.740800493175177*^9}, {
+  3.7408012173764763`*^9, 
+  3.7408012221046343`*^9}},ExpressionUUID->"ce7eb6b3-8daf-4636-a89b-\
+496bec292712"],
+
+Cell[TextData[{
+ "We can combine these approaches to make a more robust approach to error \
+handling. We\[CloseCurlyQuote]ll use ",
+ Cell[BoxData["Message"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "dfe44bb0-f035-48ba-8baf-f3a813cc17f0"],
+ " to tell the user about the source of the error, ",
+ Cell[BoxData["Throw"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "ecc86795-39e4-45fe-af1d-9e15b5ed9d8b"],
+ " and ",
+ Cell[BoxData["Catch"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "9887b6ec-5730-435d-8d31-24ba9258cea9"],
+ " to pass the error to top-level cleanly, and finally we\[CloseCurlyQuote]ll \
+use the ",
+ Cell[BoxData["Failure"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "d57fa5bd-5276-444c-b0ee-727ef619176b"],
+ " object to capture the message feed them to ",
+ Cell[BoxData["Throw"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "392fa18d-e2cf-4188-9d46-9b838b549808"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740801032520454*^9, 3.740801070795786*^9}, {
+  3.740801115354659*^9, 
+  3.740801288328827*^9}},ExpressionUUID->"1f8ef897-b8d9-4bba-9af2-\
+bb655694fc61"],
+
+Cell[TextData[{
+ "We can go one step further, though, and allow any exceptions caught by ",
+ Cell[BoxData["Catch"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "9c5a3e6a-9a93-46aa-81dd-32716dc59c8e"],
+ " to optionally be passed up"
+}], "Text",
+ CellChangeTimes->{{3.7408014449904633`*^9, 
+  3.740801494783092*^9}},ExpressionUUID->"f4b4e779-6566-4482-b7c0-\
+0e96d798913b"],
+
+Cell["Here\[CloseCurlyQuote]s a sample way this could work:", "Text",
+ CellChangeTimes->{{3.7408012903841763`*^9, 
+  3.740801297480608*^9}},ExpressionUUID->"91d78343-dd17-419a-85e7-\
+0041c344075e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Protect", "[", "$$tagStack", "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"catchExceptions", "[", 
+    RowBox[{"expr_", ",", " ", 
+     RowBox[{"tags", ":", 
+      RowBox[{"{", "___", "}"}]}], ",", " ", 
+     RowBox[{"passUp", ":", 
+      RowBox[{"True", "|", "False"}], ":", "True"}]}], "]"}], ":=", "\n", 
+   "\t", 
+   RowBox[{"Block", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t\t", 
+      RowBox[{"$$tagStack", "=", "\n", "\t\t\t\t", 
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"ListQ", "@", "$$tagStack"}], ",", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Join", "@@", "$$tagStack"}], ",", " ", "tags"}], "}"}], 
+         ",", " ", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", "}"}], ",", " ", "tags"}], "}"}]}], "]"}]}], "\n", 
+      "\t\t\t", "}"}], ",", "\n", "\t\t", 
+     RowBox[{"Catch", "[", 
+      RowBox[{"expr", ",", " ", "\n", "\t\t\t", 
+       RowBox[{"Alternatives", "@@", "tags"}], ",", "\n", "\t\t\t", 
+       RowBox[{"If", "[", 
+        RowBox[{"passUp", ",", "\n", "\t\t\t\t", 
+         RowBox[{
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"MemberQ", "[", 
+             RowBox[{
+              RowBox[{"First", "@", "$$tagStack"}], ",", " ", "#2"}], "]"}], 
+            ",", " ", "\n", "\t\t\t\t\t", 
+            RowBox[{"Throw", "[", "##", "]"}], ",", "\n", "\t\t\t\t\t", "#"}],
+            "\n", "\t\t\t\t\t", "]"}], "&"}], ",", "\n", "\t\t\t\t", 
+         RowBox[{"#", "&"}]}], "\n", "\t\t\t\t", "]"}]}], "\n", "\t\t\t", 
+      "]"}]}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"catchExceptions", "~", "SetAttributes", "~", "HoldFirst"}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"raiseException", "[", 
+    RowBox[{
+     RowBox[{"HoldPattern", "[", 
+      RowBox[{"msg", ":", 
+       RowBox[{"MessageName", "[", 
+        RowBox[{"sym_", ",", " ", "tag_", ",", " ", "___"}], "]"}]}], "]"}], 
+     ",", " ", "params___"}], "]"}], ":=", "\n", "\t", 
+   RowBox[{"(", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"Message", "[", 
+      RowBox[{"msg", ",", " ", "params"}], "]"}], ";", "\n", "\t\t", 
+     RowBox[{"Throw", "[", "\n", "\t\t\t", 
+      RowBox[{
+       RowBox[{"Failure", "[", 
+        RowBox[{"tag", ",", " ", "\n", "\t\t\t\t", 
+         RowBox[{"<|", 
+          RowBox[{
+           RowBox[{"\"\<MessageTemplate\>\"", "\[RuleDelayed]", "msg"}], ",", 
+           " ", 
+           RowBox[{"\"\<MessageParameters\>\"", "\[Rule]", 
+            RowBox[{"{", "params", "}"}]}]}], "|>"}]}], "]"}], ",", "\n", 
+       "\t\t\t", "tag"}], "\n", "\t\t\t", "]"}]}], "\n", "\t\t", ")"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"raiseException", "~", "SetAttributes", "~", "HoldFirst"}], 
+  ";"}]}], "Code",
+ CellChangeTimes->{{3.740801300209771*^9, 3.740801330324551*^9}, {
+   3.740801402400606*^9, 3.7408014410873327`*^9}, {3.740801506547694*^9, 
+   3.740801822334262*^9}, {3.740801932870376*^9, 3.740801981683728*^9}, {
+   3.740802655887323*^9, 3.740802659128384*^9}, {3.7408027048631697`*^9, 
+   3.740802759020287*^9}, {3.7408028225546923`*^9, 3.740802868301283*^9}, {
+   3.740802914930093*^9, 3.740802915433241*^9}, 3.740802951098516*^9, {
+   3.74080325750826*^9, 3.74080326202745*^9}, 3.740803619946671*^9, {
+   3.740803652834382*^9, 3.7408036831073017`*^9}, {3.740803724831036*^9, 
+   3.740803805476231*^9}},
+ CellLabel->
+  "In[254]:=",ExpressionUUID->"610c700d-f3a6-481d-8206-5980f339abc1"],
+
+Cell[TextData[{
+ "We create a function that sets up a stack of tags being checked for, calls ",
+ Cell[BoxData[
+ "Catch"], "InlineInput",ExpressionUUID->
+  "eac08d64-e8cc-4044-ab4d-e0b86a89d785"],
+ " with the set of currently tracked tags, if the error is caught, it \
+conditionally checks whether the tag is in the head of the stack and if so \
+passes it up."
+}], "Text",
+ CellChangeTimes->{{3.740802650028891*^9, 3.740802687740571*^9}, {
+  3.740802767785941*^9, 3.74080278906562*^9}, {3.740802895142722*^9, 
+  3.740802938734747*^9}},ExpressionUUID->"8e437830-68e2-4575-8bb4-\
+5e9088d7b0eb"],
+
+Cell[TextData[{
+ "Next we take a function that will ",
+ Cell[BoxData["Throw"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "05916e8b-2962-491a-ba82-4c2a4200c57f"],
+ " to this ",
+ Cell[BoxData["Catch"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a2fedb4e-31fb-493a-b2ce-b28b32759cfd"],
+ " block and return a nice structure to go with it."
+}], "Text",
+ CellChangeTimes->{{3.7408032675924664`*^9, 
+  3.7408032907446012`*^9}},ExpressionUUID->"c6fd499c-b7c5-4fe5-b564-\
+2fee0cc28432"],
+
+Cell["Here\[CloseCurlyQuote]s this in action:", "Text",
+ CellChangeTimes->{{3.740802943078109*^9, 3.740802960221653*^9}, {
+  3.740802999506174*^9, 
+  3.740802999914337*^9}},ExpressionUUID->"4aebdb04-2d30-4116-861a-\
+1eaa01b5cfdd"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"myCoolFunction", "::", "err1"}], "=", 
+   "\"\<Uh oh spaghetti-Os!\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"myCoolFunction", "::", "err2"}], "=", "\"\<Oh deary me!\>\""}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"myCoolFunction", "::", "err3"}], "=", 
+   "\"\<Why did you do this to me ``?\>\""}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"myCoolFunction", "[", "name_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"catchExceptions", "[", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{"winAwards", "@", "\n", "\t\t\t", 
+      RowBox[{"callMeBy", "@", "\n", "\t\t\t\t", 
+       RowBox[{"yourName", "@", "name"}]}]}], ",", "\n", "\t\t", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<err1\>\"", ",", " ", "\"\<err2\>\"", ",", " ", "\"\<err3\>\""}], 
+      "}"}]}], "\n", "\t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"winAwards", "[", "movie_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"!", 
+      RowBox[{"StringQ", "@", "movie"}]}], ",", " ", "\n", "\t\t", 
+     RowBox[{"raiseException", "[", 
+      RowBox[{"myCoolFunction", "::", "err1"}], "]"}], ",", " ", "\n", "\t\t", 
+     RowBox[{"StringForm", "[", 
+      RowBox[{"\"\<`` won an award!\>\"", ",", " ", "movie"}], "]"}]}], "\n", 
+    "\t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"callMeBy", "[", "name_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"RandomReal", "[", "]"}], "<", ".5"}], ",", " ", "\n", "\t\t", 
+     RowBox[{"raiseException", "[", 
+      RowBox[{"myCoolFunction", "::", "err2"}], "]"}], ",", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"\"\<Call Me By \>\"", "<>", "name"}], "//", "Quiet"}]}], "\n", 
+    "\t\t", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"yourName", "[", "name_", "]"}], ":=", "\n", "\t", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"StringQ", "@", "name"}], "&&", 
+      RowBox[{"StringFreeQ", "[", 
+       RowBox[{"name", ",", " ", "\"\< \>\""}], "]"}]}], ",", " ", "\n", 
+     "\t\t", 
+     RowBox[{"raiseException", "[", 
+      RowBox[{
+       RowBox[{"myCoolFunction", "::", "err3"}], ",", " ", "name"}], "]"}], 
+     ",", "\n", "\t\t", "name"}], "\n", "\t\t", "]"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.740799751306444*^9, 3.740799907850637*^9}, {
+  3.740799953236463*^9, 3.740799957265286*^9}, {3.740802977346813*^9, 
+  3.740803253130549*^9}, {3.7408033033290787`*^9, 3.7408034704144783`*^9}, {
+  3.740803820157156*^9, 3.740803821226163*^9}, {3.740803892849596*^9, 
+  3.740803906638302*^9}},
+ CellLabel->
+  "In[278]:=",ExpressionUUID->"7e00c4c7-00de-4922-a8b4-afaa33808bd8"],
+
+Cell["And now we can use it on some examples:", "Text",
+ CellChangeTimes->{{3.7408034749870453`*^9, 
+  3.740803483697938*^9}},ExpressionUUID->"1f1bc7e2-201d-481f-921b-\
+2412f1b9e13c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"myCoolFunction", "/@", "\n", "\t", 
+  RowBox[{"Join", "[", "\n", "\t\t", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"StringRiffle", "@*", "DeleteDuplicates"}], "/@", "\n", "\t", 
+     "\t\t", 
+     RowBox[{"Tuples", "[", 
+      RowBox[{
+       RowBox[{"EntityValue", "[", 
+        RowBox[{
+         RowBox[{"RandomEntity", "[", 
+          RowBox[{"\"\<GivenName\>\"", ",", " ", "2"}], "]"}], ",", " ", 
+         "\"\<Label\>\""}], "]"}], ",", " ", "2"}], "]"}]}], ",", "\n", 
+    "\t\t", 
+    RowBox[{"{", "1", "}"}]}], "\n", "\t\t", "]"}]}]], "Code",
+ CellChangeTimes->{{3.7408034851580973`*^9, 3.74080349876054*^9}, {
+  3.740803533406727*^9, 3.740803591975589*^9}, {3.740803825226796*^9, 
+  3.740803886894309*^9}},
+ CellLabel->
+  "In[287]:=",ExpressionUUID->"6fef1354-5603-4f2a-8784-152e7a3a26ab"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "myCoolFunction","err3",
+   "\"Why did you do this to me \\!\\(\\*RowBox[{\\\"\\\\\\\"Icelyn\\\\\\\"\\\
+\"}]\\)?\"",2,287,112,27970062580965588239,"Local","Global`myCoolFunction"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.740803825688006*^9, {3.740803895674554*^9, 3.7408039171906967`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[287]:=",ExpressionUUID->"49076ff3-285b-4461-8a84-4fc0b7a6e194"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "myCoolFunction","err2","\"Oh deary me!\"",2,287,113,27970062580965588239,
+   "Local","Global`myCoolFunction"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.740803825688006*^9, {3.740803895674554*^9, 3.740803917224671*^9}},
+ CellLabel->
+  "During evaluation of \
+In[287]:=",ExpressionUUID->"5109aa59-ac7e-47ab-94ab-58a07b590d35"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "myCoolFunction","err3",
+   "\"Why did you do this to me \
+\\!\\(\\*RowBox[{\\\"\\\\\\\"Shota\\\\\\\"\\\"}]\\)?\"",2,287,114,
+   27970062580965588239,"Local","Global`myCoolFunction"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.740803825688006*^9, {3.740803895674554*^9, 3.7408039172501173`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[287]:=",ExpressionUUID->"61e287c6-ab29-45d0-8462-ebe97944fb7a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "myCoolFunction","err1","\"Uh oh spaghetti-Os!\"",2,287,115,
+   27970062580965588239,"Local","Global`myCoolFunction"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.740803825688006*^9, {3.740803895674554*^9, 3.740803917277781*^9}},
+ CellLabel->
+  "During evaluation of \
+In[287]:=",ExpressionUUID->"b1330bc8-f996-4c92-993a-cb4f1217ca8b"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   InterpretationBox[
+    RowBox[{
+     TagBox["Failure",
+      "SummaryHead"], "[", 
+     DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+      "Ready"}, 
+      TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"Why did you do this to me \
+\\!\\(\\*TagBox[\\\"\\\\\\\"Icelyn\\\\\\\"\\\", Function[Short[Slot[1], \
+5]]]\\)?\"", "SummaryItem"]}}, GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err3\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"Why did you do this to me \
+\\!\\(\\*TagBox[\\\"\\\\\\\"Icelyn\\\\\\\"\\\", Function[Short[Slot[1], \
+5]]]\\)?\"", "SummaryItem"]}}, GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err3\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+       "SummaryPanel"],
+      DynamicModuleValues:>{}], "]"}],
+    Failure["err3", 
+     Association[
+     "MessageTemplate" :> MessageName[$CellContext`myCoolFunction, "err3"], 
+      "MessageParameters" -> {"Icelyn"}]],
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False], ",", 
+   InterpretationBox[
+    RowBox[{
+     TagBox["Failure",
+      "SummaryHead"], "[", 
+     DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+      "Ready"}, 
+      TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Oh deary me!\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err2\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Oh deary me!\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err2\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+       "SummaryPanel"],
+      DynamicModuleValues:>{}], "]"}],
+    Failure["err2", 
+     Association[
+     "MessageTemplate" :> MessageName[$CellContext`myCoolFunction, "err2"], 
+      "MessageParameters" -> {}]],
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False], ",", 
+   InterpretationBox["\<\"Call Me By Shota Icelyn won an award!\"\>",
+    StringForm["`` won an award!", "Call Me By Shota Icelyn"],
+    Editable->False], ",", 
+   InterpretationBox[
+    RowBox[{
+     TagBox["Failure",
+      "SummaryHead"], "[", 
+     DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+      "Ready"}, 
+      TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"Why did you do this to me \
+\\!\\(\\*TagBox[\\\"\\\\\\\"Shota\\\\\\\"\\\", Function[Short[Slot[1], \
+5]]]\\)?\"", "SummaryItem"]}}, GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err3\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox[
+                    "\"Why did you do this to me \
+\\!\\(\\*TagBox[\\\"\\\\\\\"Shota\\\\\\\"\\\", Function[Short[Slot[1], \
+5]]]\\)?\"", "SummaryItem"]}}, GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err3\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+       "SummaryPanel"],
+      DynamicModuleValues:>{}], "]"}],
+    Failure["err3", 
+     Association[
+     "MessageTemplate" :> MessageName[$CellContext`myCoolFunction, "err3"], 
+      "MessageParameters" -> {"Shota"}]],
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False], ",", 
+   InterpretationBox[
+    RowBox[{
+     TagBox["Failure",
+      "SummaryHead"], "[", 
+     DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = 
+      "Ready"}, 
+      TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Uh oh spaghetti-Os!\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err1\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}], True -> GridBox[{{
+              FrameBox[
+               StyleBox["\"\[WarningSign]\"", 
+                Directive["Message", 35], StripOnInput -> False], 
+               ContentPadding -> False, FrameStyle -> None, 
+               FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+              GridBox[{{
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"Uh oh spaghetti-Os!\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+                 TagBox[
+                  GridBox[{{
+                    TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                    "\[InvisibleSpace]", 
+                    TagBox["\"err1\"", "SummaryItem"]}}, 
+                   GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                   GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                   GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}},
+                GridBoxAlignment -> {
+                "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+               False, GridBoxItemSize -> {
+                "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+               GridBoxSpacings -> {
+                "Columns" -> {{2}}, "Rows" -> {{Automatic}}}, 
+               BaseStyle -> {
+                ShowStringCharacters -> False, NumberMarks -> False, 
+                 PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+            GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+            GridBoxItemSize -> {
+             "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+            BaselinePosition -> {1, 1}]}, 
+         Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+       "SummaryPanel"],
+      DynamicModuleValues:>{}], "]"}],
+    Failure["err1", 
+     Association[
+     "MessageTemplate" :> MessageName[$CellContext`myCoolFunction, "err1"], 
+      "MessageParameters" -> {}]],
+    Editable->False,
+    SelectWithContents->True,
+    Selectable->False]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.740803825842846*^9, {3.740803895821835*^9, 3.7408039173088083`*^9}},
+ CellLabel->
+  "Out[287]=",ExpressionUUID->"78080491-c3eb-435c-85cb-beecb56197dd"]
+}, Open  ]],
+
+Cell["\<\
+And we can nest this without end and it will always throw all the way up to \
+top-level:\
+\>", "Text",
+ CellChangeTimes->{{3.740803929644044*^9, 
+  3.740803963829571*^9}},ExpressionUUID->"8db86a37-e970-46c8-acef-\
+d446a062db18"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"catchExceptions", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{"catchExceptions", "[", 
+    RowBox[{
+     RowBox[{"myCoolFunction", "[", "1", "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<err1\>\"", ",", " ", "\"\<err2\>\"", ",", " ", "\"\<err3\>\""}], 
+      "}"}]}], "]"}], ",", " ", "\n", "\t", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<err1\>\"", ",", " ", "\"\<err2\>\"", ",", " ", "\"\<err3\>\""}], 
+    "}"}]}], "\n", "\t", "]"}]], "Code",
+ CellChangeTimes->{{3.740803968946443*^9, 3.740803999658606*^9}, {
+  3.7408040370949087`*^9, 3.7408040617752037`*^9}},
+ CellLabel->
+  "In[295]:=",ExpressionUUID->"4d84b871-f418-4284-8326-9c7adbb42416"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "myCoolFunction","err1","\"Uh oh spaghetti-Os!\"",2,295,134,
+   27970062580965588239,"Local","Global`myCoolFunction"},
+  "MessageTemplate2"]], "Message", "MSG",
+ CellChangeTimes->{{3.7408039954015427`*^9, 3.740804000039839*^9}, {
+  3.740804062099763*^9, 3.740804068373887*^9}},
+ CellLabel->
+  "During evaluation of \
+In[295]:=",ExpressionUUID->"8d302511-12ef-49e8-adc7-2a25f4e18dc7"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{
+   TagBox["Failure",
+    "SummaryHead"], "[", 
+   DynamicModuleBox[{Typeset`open$$ = False, Typeset`embedState$$ = "Ready"}, 
+    
+    TemplateBox[{PaneSelectorBox[{False -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"Uh oh spaghetti-Os!\"", "SummaryItem"]}}, 
+                 GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                 GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                 GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+               TagBox[
+                GridBox[{{
+                   TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"err1\"", "SummaryItem"]}}, 
+                 GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                 GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                 GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}], True -> GridBox[{{
+            FrameBox[
+             StyleBox["\"\[WarningSign]\"", 
+              Directive["Message", 35], StripOnInput -> False], 
+             ContentPadding -> False, FrameStyle -> None, 
+             FrameMargins -> {{0, 0}, {0, 0}}, StripOnInput -> False], 
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   TagBox["\"Message: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"Uh oh spaghetti-Os!\"", "SummaryItem"]}}, 
+                 GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                 GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                 GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}, {
+               TagBox[
+                GridBox[{{
+                   TagBox["\"Tag: \"", "SummaryItemAnnotation"], 
+                   "\[InvisibleSpace]", 
+                   TagBox["\"err1\"", "SummaryItem"]}}, 
+                 GridBoxItemSize -> {"Columns" -> {6.5, All}}, 
+                 GridBoxAlignment -> {"Columns" -> {{Left}}}, 
+                 GridBoxSpacings -> {"Columns" -> {{0}}}], "SummaryItem"]}}, 
+             GridBoxAlignment -> {
+              "Columns" -> {{Left}}, "Rows" -> {{Automatic}}}, AutoDelete -> 
+             False, GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{2}}, "Rows" -> {{Automatic}}},
+              BaseStyle -> {
+              ShowStringCharacters -> False, NumberMarks -> False, 
+               PrintPrecision -> 3, ShowSyntaxStyles -> False}]}}, 
+          GridBoxAlignment -> {"Rows" -> {{Top}}}, AutoDelete -> False, 
+          GridBoxItemSize -> {
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+          BaselinePosition -> {1, 1}]}, 
+       Dynamic[Typeset`open$$], ImageSize -> Automatic]},
+     "SummaryPanel"],
+    DynamicModuleValues:>{}], "]"}],
+  Failure["err1", 
+   Association[
+   "MessageTemplate" :> MessageName[$CellContext`myCoolFunction, "err1"], 
+    "MessageParameters" -> {}]],
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.740803995515082*^9, 3.740804000132826*^9}, {
+  3.740804062138973*^9, 3.740804068415925*^9}},
+ CellLabel->
+  "Out[295]=",ExpressionUUID->"aa28e284-4f0d-46ec-94e1-bd7af7031779"]
+}, Open  ]],
+
+Cell["\<\
+More extensions can be built on top of this, but this gets us a good ways \
+beyond passing failed arguments up through our call stack.\
+\>", "Text",
+ CellChangeTimes->{{3.740804153580374*^9, 
+  3.740804176667207*^9}},ExpressionUUID->"dd272d59-6a84-4e45-82e8-\
+beebb5d238b3"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 195}, {Automatic, 33}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[
+    StyleDefinitions -> 
+     FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", CharacterEncoding -> 
+       "UTF-8"]]]}, Visible -> False, FrontEndVersion -> 
+  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2990, 59, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3573, 83, 164, 3, 41, "Subsection",ExpressionUUID->"b5e57875-0aee-4931-9c63-be8f0ba316fe"],
+Cell[3740, 88, 287, 7, 35, "Text",ExpressionUUID->"0bca7200-cdee-4f71-92b8-b8267adad72e"],
+Cell[4030, 97, 517, 9, 81, "Text",ExpressionUUID->"076b24e6-1293-4231-8c65-e9c7f8cb15d9"],
+Cell[4550, 108, 314, 7, 58, "Text",ExpressionUUID->"b3163223-aa20-47d5-8267-285315f94646"],
+Cell[CellGroupData[{
+Cell[4889, 119, 156, 3, 40, "Subsubsection",ExpressionUUID->"69475f1d-1c07-4923-ae01-8758bf11c5aa"],
+Cell[5048, 124, 434, 10, 58, "Text",ExpressionUUID->"41053c6f-bcc0-4f3b-bab2-5e57895d2cce"],
+Cell[CellGroupData[{
+Cell[5507, 138, 162, 3, 35, "Subsubsubsection",ExpressionUUID->"e8869133-f8e5-4bd5-ae50-26145d726559"],
+Cell[5672, 143, 460, 10, 58, "Text",ExpressionUUID->"23049324-9b84-4974-b923-a801580bb822"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6181, 159, 159, 3, 40, "Subsubsection",ExpressionUUID->"58bf0e44-7432-44ca-adb4-b1fcf627d223"],
+Cell[6343, 164, 444, 10, 58, "Text",ExpressionUUID->"74efb84f-232f-404b-953d-2b0328f8d90d"],
+Cell[CellGroupData[{
+Cell[6812, 178, 295, 7, 52, "Code",ExpressionUUID->"04657e1d-03ae-4be5-95fb-6a8470465253"],
+Cell[7110, 187, 452, 10, 24, "Message",ExpressionUUID->"8b7f7677-57e8-4f33-a436-e90084e53660"],
+Cell[7565, 199, 285, 7, 34, "Output",ExpressionUUID->"e23dc0ea-854e-44f9-9319-f0bf046da5bf"]
+}, Open  ]],
+Cell[7865, 209, 346, 7, 58, "Text",ExpressionUUID->"7e1e6588-2428-49df-80e9-0c4cdb3421a1"],
+Cell[CellGroupData[{
+Cell[8236, 220, 181, 3, 35, "Subsubsubsection",ExpressionUUID->"fe98384c-b113-4b75-afad-1e1f8655d496"],
+Cell[8420, 225, 574, 13, 58, "Text",ExpressionUUID->"e1c60b4e-5c53-433e-89ac-e27187dc292f"],
+Cell[CellGroupData[{
+Cell[9019, 242, 798, 20, 167, "Code",ExpressionUUID->"0f14620a-1e67-4308-91c7-aace2b19b2cf"],
+Cell[9820, 264, 314, 8, 24, "Message",ExpressionUUID->"390f2599-f7c2-497a-9d93-fa4d29a7d582"],
+Cell[10137, 274, 185, 4, 34, "Output",ExpressionUUID->"d45d853b-e85b-431b-ad17-a8e03128becd"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10371, 284, 160, 3, 35, "Subsubsubsection",ExpressionUUID->"519266ff-f875-458c-bca4-242015e93fb7"],
+Cell[10534, 289, 498, 12, 58, "Text",ExpressionUUID->"79dc02fb-84a7-4076-83ff-c356e6a9d8d1"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11081, 307, 215, 4, 40, "Subsubsection",ExpressionUUID->"878405e4-074c-45a2-a3ca-8b9136751397"],
+Cell[11299, 313, 1039, 26, 104, "Text",ExpressionUUID->"a25170b5-9dc3-433e-89bb-9c653cf147ef"],
+Cell[12341, 341, 2006, 56, 187, "Code",ExpressionUUID->"41f99736-87b3-48ff-b55e-0a6ad924bff0"],
+Cell[14350, 399, 162, 3, 35, "Text",ExpressionUUID->"46b26ff6-b4cf-4d21-9af6-7f205c045105"],
+Cell[CellGroupData[{
+Cell[14537, 406, 341, 8, 52, "Code",ExpressionUUID->"62997bdf-34b4-4a4b-9de2-4524f4f37985"],
+Cell[14881, 416, 598, 11, 77, "Output",ExpressionUUID->"7afc0af8-4c96-43c2-9e57-3d5eb2af9837"]
+}, Open  ]],
+Cell[15494, 430, 295, 6, 58, "Text",ExpressionUUID->"c5b0f1af-e045-4271-b148-4ad555ae707f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15826, 441, 231, 4, 40, "Subsubsection",ExpressionUUID->"ce7eb6b3-8daf-4636-a89b-496bec292712"],
+Cell[16060, 447, 1171, 28, 81, "Text",ExpressionUUID->"1f8ef897-b8d9-4bba-9af2-bb655694fc61"],
+Cell[17234, 477, 390, 9, 35, "Text",ExpressionUUID->"f4b4e779-6566-4482-b7c0-0e96d798913b"],
+Cell[17627, 488, 197, 3, 35, "Text",ExpressionUUID->"91d78343-dd17-419a-85e7-0041c344075e"],
+Cell[17827, 493, 3491, 84, 586, "Code",ExpressionUUID->"610c700d-f3a6-481d-8206-5980f339abc1"],
+Cell[21321, 579, 591, 12, 81, "Text",ExpressionUUID->"8e437830-68e2-4575-8bb4-5e9088d7b0eb"],
+Cell[21915, 593, 519, 13, 35, "Text",ExpressionUUID->"c6fd499c-b7c5-4fe5-b564-2fee0cc28432"],
+Cell[22437, 608, 230, 4, 35, "Text",ExpressionUUID->"4aebdb04-2d30-4116-861a-1eaa01b5cfdd"],
+Cell[22670, 614, 2689, 69, 509, "Code",ExpressionUUID->"7e00c4c7-00de-4922-a8b4-afaa33808bd8"],
+Cell[25362, 685, 183, 3, 35, "Text",ExpressionUUID->"1f1bc7e2-201d-481f-921b-2412f1b9e13c"],
+Cell[CellGroupData[{
+Cell[25570, 692, 819, 20, 148, "Code",ExpressionUUID->"6fef1354-5603-4f2a-8784-152e7a3a26ab"],
+Cell[26392, 714, 452, 10, 24, "Message",ExpressionUUID->"49076ff3-285b-4461-8a84-4fc0b7a6e194"],
+Cell[26847, 726, 381, 9, 24, "Message",ExpressionUUID->"5109aa59-ac7e-47ab-94ab-58a07b590d35"],
+Cell[27231, 737, 455, 11, 24, "Message",ExpressionUUID->"61e287c6-ab29-45d0-8462-ebe97944fb7a"],
+Cell[27689, 750, 388, 9, 24, "Message",ExpressionUUID->"b1330bc8-f996-4c92-993a-cb4f1217ca8b"],
+Cell[28080, 761, 18365, 365, 178, "Output",ExpressionUUID->"78080491-c3eb-435c-85cb-beecb56197dd"]
+}, Open  ]],
+Cell[46460, 1129, 238, 6, 35, "Text",ExpressionUUID->"8db86a37-e970-46c8-acef-d446a062db18"],
+Cell[CellGroupData[{
+Cell[46723, 1139, 682, 17, 110, "Code",ExpressionUUID->"4d84b871-f418-4284-8326-9c7adbb42416"],
+Cell[47408, 1158, 414, 9, 24, "Message",ExpressionUUID->"8d302511-12ef-49e8-adc7-2a25f4e18dc7"],
+Cell[47825, 1169, 4426, 89, 64, "Output",ExpressionUUID->"aa28e284-4f0d-46ec-94e1-bd7af7031779"]
+}, Open  ]],
+Cell[52266, 1261, 284, 6, 58, "Text",ExpressionUUID->"dd272d59-6a84-4e45-82e8-beebb5d238b3"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,523 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     19607,        515]
+NotebookOptionsPosition[     16631,        457]
+NotebookOutlinePosition[     17058,        474]
+CellTagsIndexPosition[     17015,        471]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Replacement Patterns\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Code Structure\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.1.4\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Wed 27 Dec 2017 16:12:10\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "27", ",", "16", ",", "12", ",", 
+              "10"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<code-structure\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<patterns\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723348665617456*^9, 3.723348677211186*^9}, {
+   3.723348793415567*^9, 3.7233488015589314`*^9}, {3.7407801426708*^9, 
+   3.740780147559105*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Replacement Patterns", "Subsection",
+ CellChangeTimes->{{3.6847595603341923`*^9, 
+  3.6847595633092327`*^9}},ExpressionUUID->"cd43585c-0e9c-4c85-a4cc-\
+047d91cd44a6"],
+
+Cell["\<\
+The fundamental usage of patterns is in replacement. This is just what it \
+sounds like. One replaces part of an expression with something else. There\
+\[CloseCurlyQuote]s a whole family of functions built around this concept, \
+too, and they\[CloseCurlyQuote]re some of the oldest functions in the \
+language. They all share one parent, though\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685328412260922*^9, 
+   3.68532849395191*^9}},ExpressionUUID->"0027297e-8d40-4def-a967-\
+e31beb6f970f"],
+
+Cell[CellGroupData[{
+
+Cell["Replace", "Subsubsection",ExpressionUUID->"06250e64-f01d-4d26-8704-73586b8753d5"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Replace", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "153ba6dc-b73a-43eb-82ad-f978030aa028"],
+ " is possibly the most fundamental function in Mathematica. It takes an \
+expression and if it matches a pattern, replaces it with that value. For \
+example:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6853285223267317`*^9, 
+   3.68532861074998*^9}},ExpressionUUID->"3e53ff53-2fc9-4982-9605-\
+909352ff3ce1"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", 
+   RowBox[{
+    RowBox[{"a", ":", 
+     RowBox[{"{", "__Integer", "}"}]}], "\[RuleDelayed]", 
+    RowBox[{"Column", "@", "a"}]}]}], "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6853286148718224`*^9, 3.685328660196866*^9}, 
+   3.7233887596705112`*^9},ExpressionUUID->"2ff3623a-f279-4e17-81f2-\
+06a71648ffd5"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"1"},
+    {"2"},
+    {"3"}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Left}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{{3.685328648921404*^9, 
+  3.685328660486354*^9}},ExpressionUUID->"0d169f60-4777-441e-b9b8-\
+ceba8df51045"]
+}, Open  ]],
+
+Cell["If the pattern doesn\[CloseCurlyQuote]t match, nothing happens:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6853286724852962`*^9, 
+   3.685328685756575*^9}},ExpressionUUID->"ec1d82de-cb96-448e-8db7-\
+8376a3713877"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", "\n", "\t", 
+   RowBox[{
+    RowBox[{"a", ":", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"RandomInteger", "[", "1000", "]"}], ",", 
+       RowBox[{"RandomReal", "[", "1000", "]"}], ",", 
+       RowBox[{"RandomReal", "[", "1000", "]"}]}], "}"}]}], "\[RuleDelayed]", 
+    "\n", "\t\t", 
+    "\"\<This has a 1/1000000000 chance of being the result\>\""}]}], "\n", 
+  "\t", "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6853286906782*^9, 3.685328765675321*^9}, {
+   3.723387958549684*^9, 3.723387963413498*^9}, 
+   3.72338875970813*^9},ExpressionUUID->"2584d976-378b-4796-9035-\
+918185709256"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1", ",", "2", ",", "3"}], "}"}]], "Output",
+ CellChangeTimes->{{3.685328766207773*^9, 
+  3.685328767970257*^9}},ExpressionUUID->"99b2a7d4-dedc-4a78-a3e0-\
+eaa9b31b173c"]
+}, Open  ]],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Replace", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "881cd6c7-a4b6-4a41-8416-a524ad3b8da2"],
+ " can also try a list of replacements:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685328959014042*^9, 
+   3.685328974700904*^9}},ExpressionUUID->"a0d2fb74-b41a-4c6a-b45f-\
+d140ed9ce55f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "3"}], "}"}], ",", "\n", "\t", 
+   RowBox[{"{", "\n", "\t\t", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"_Integer", ",", "_Integer", ",", "_String"}], "}"}], 
+      "\[RuleDelayed]", "\"\<No\>\""}], ",", "\n", "\t", "\t", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"_Integer", ",", "_Integer", ",", "_List"}], "}"}], 
+      "\[RuleDelayed]", "\"\<No\>\""}], ",", "\n", "\t", "\t", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"_Integer", ",", "_Integer", ",", "_Association"}], "}"}], 
+      "\[RuleDelayed]", "\"\<No\>\""}], ",", "\n", "\t", "\t", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"_Integer", ",", "_Integer", ",", "_Integer"}], "}"}], 
+      "\[RuleDelayed]", "\"\<Yes!\>\""}], ",", "\n", "\t", "\t", 
+     RowBox[{
+      RowBox[{"{", "__Integer", "}"}], "\[RuleDelayed]", 
+      "\"\<Yes, but won't happen\>\""}]}], "\n", "\t", "\t", "}"}]}], "\n", 
+  "\t", "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.6853289769187403`*^9, 3.685329038980986*^9}, {
+   3.723387965877598*^9, 3.7233879722167053`*^9}, 
+   3.723388759790695*^9},ExpressionUUID->"b0543c52-240f-4ec2-bf68-\
+62485b28cc42"],
+
+Cell[BoxData["\<\"Yes!\"\>"], "Output",
+ CellChangeTimes->{
+  3.685329044098729*^9},ExpressionUUID->"5a09fbfa-fa98-4d85-9790-\
+449ab553e514"]
+}, Open  ]],
+
+Cell["You\[CloseCurlyQuote]ll notice it only matches the first pattern that \
+fits.", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329047525243*^9, 
+   3.685329064267617*^9}},ExpressionUUID->"4465b4c2-53d1-4ee4-8bad-\
+695cd19fa927"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["Replace", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "10e9c95a-f544-449e-a055-69826cd8fe5f"],
+ " can also work at various levels of an expression:"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329074044353*^9, 3.6853290819234457`*^9}, {
+   3.685329120914517*^9, 
+   3.685329132458143*^9}},ExpressionUUID->"0ed045ae-c461-4a2c-a5f7-\
+fa912d294ee2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Replace", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "\"\<3\>\"", ",", "2", ",", "1"}], "}"}], ",",
+    "\n", "\t", 
+   RowBox[{"i_Integer", "\[RuleDelayed]", 
+    RowBox[{"(", 
+     RowBox[{"\"\<int \>\"", "<>", 
+      RowBox[{"ToString", "@", "i"}]}], ")"}]}], ",", "\n", "\t", "1"}], 
+  "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.685329134580264*^9, 3.685329171050427*^9}, 
+   3.723388759840547*^9},ExpressionUUID->"afa9f509-0620-4563-a2d2-\
+d7f88280a57e"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"int 1\"\>", ",", "\<\"int 2\"\>", ",", "\<\"3\"\>", 
+   ",", "\<\"int 2\"\>", ",", "\<\"int 1\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{{3.685329159372979*^9, 
+  3.685329173098776*^9}},ExpressionUUID->"b1e32e7c-a896-4e7b-ad47-\
+c1aa4a254335"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["ReplaceAll", "Subsubsection",ExpressionUUID->"a249d874-aaf6-490a-9238-febe19b1bed1"],
+
+Cell[TextData[{
+ Cell[BoxData[
+  FormBox["ReplaceAll", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "c535f676-2d8d-411e-93bb-45f1110112d9"],
+ " is the only other member of the family I\[CloseCurlyQuote]ll mention here. \
+It works similarly to ",
+ Cell[BoxData[
+  FormBox["Replace", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "d9291c9a-10a4-4619-a229-1f2131d77baf"],
+ ", except the replacements can happen at any level of the expression. This \
+is dangerous, but also useful."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329296921687*^9, 3.685329347984514*^9}, {
+   3.6853297140855722`*^9, 
+   3.685329714085702*^9}},ExpressionUUID->"a522c4c9-7a05-4124-acd7-\
+858c14816c9c"],
+
+Cell[TextData[{
+ "Also useful is the fact that it has a keyboard alias: ",
+ Cell[BoxData[
+  FormBox["/.", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "42f740e3-6b3c-4da1-bc01-cac8c723e006"]
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329392802594*^9, 
+   3.685329407356244*^9}},ExpressionUUID->"6bfdc5dd-4be8-4495-92f3-\
+266e77c3213d"],
+
+Cell["Here\[CloseCurlyQuote]s a fun example:", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329663468463*^9, 
+   3.685329668072792*^9}},ExpressionUUID->"c1af5c64-2b7a-416f-be91-\
+3d9b8b6786a8"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"GraphicsGrid", "[", "\n", "\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Table", "[", "\n", "\t\t", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"RandomInteger", "[", "100", "]"}], ",", "\n", "\t", "\t\t", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", " ", 
+          RowBox[{"RandomInteger", "[", 
+           RowBox[{"{", 
+            RowBox[{"1", ",", "6"}], "}"}], "]"}]}], "}"}]}], "]"}], ",", 
+      "\n", "\t", "\t", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", 
+        RowBox[{"RandomInteger", "[", 
+         RowBox[{"{", 
+          RowBox[{"3", ",", "5"}], "}"}], "]"}]}], "}"}]}], "\n", "\t", "\t", 
+     "]"}], "/.", 
+    RowBox[{"i_Integer", "\[RuleDelayed]", 
+     RowBox[{"Graphics", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"RandomColor", "[", "]"}], ",", 
+         RowBox[{"Disk", "[", "]"}]}], "}"}], ",", " ", 
+       RowBox[{"ImageSize", "\[Rule]", "i"}]}], "]"}]}]}], ",", "\n", "\t", 
+   RowBox[{"Spacings", "\[Rule]", "0"}]}], "\n", "\t", "]"}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.685329352754623*^9, 3.685329677073653*^9}, {
+   3.723388759900238*^9, 3.723388818615258*^9}, {3.723388853671479*^9, 
+   3.7233889145669527`*^9}},ExpressionUUID->"52d5309a-c7f4-4cf8-aafd-\
+feab605f1840"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.18281586581592002`, 0.4287805708845407, 0.49701288167733226`], 
+        DiskBox[{0, 0}]},
+       ImageSize->80], NCache[{Rational[95, 2], -47.5}, {47.5, -47.5}], 
+      ImageScaled[{0.5, 0.5}], {80, 80.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[0.582494013685408, 0.31490505848329375`, 0.4231402972985887],
+         DiskBox[{0, 0}]},
+       ImageSize->55], NCache[{Rational[285, 2], -47.5}, {142.5, -47.5}], 
+      ImageScaled[{0.5, 0.5}], {55, 55.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[0.8527634777776378, 0.01276095375697528, 0.9020686033138166],
+         DiskBox[{0, 0}]},
+       ImageSize->35], NCache[{Rational[475, 2], -47.5}, {237.5, -47.5}], 
+      ImageScaled[{0.5, 0.5}], {35, 35.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.9542004914554414, 0.7209088771074992, 0.37064466349783487`], 
+        DiskBox[{0, 0}]},
+       ImageSize->53], NCache[{Rational[665, 2], -47.5}, {332.5, -47.5}], 
+      ImageScaled[{0.5, 0.5}], {53, 53.}]}, {InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.9065586974155615, 0.17215281789492276`, 0.32581303255619387`], 
+        DiskBox[{0, 0}]},
+       ImageSize->15], NCache[{Rational[95, 2], -142.5}, {47.5, -142.5}], 
+      ImageScaled[{0.5, 0.5}], {15, 15.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.25677785211476856`, 0.45784296612476405`, 0.49198939949518605`], 
+        DiskBox[{0, 0}]},
+       ImageSize->95], NCache[{Rational[285, 2], -142.5}, {142.5, -142.5}], 
+      ImageScaled[{0.5, 0.5}], {95, 95.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.28066314375936874`, 0.785320652220507, 0.12433268679273746`], 
+        DiskBox[{0, 0}]},
+       ImageSize->83], NCache[{Rational[475, 2], -142.5}, {237.5, -142.5}], 
+      ImageScaled[{0.5, 0.5}], {83, 83.}], 
+     TagBox[
+      InsetBox["", NCache[{Rational[665, 2], -142.5}, {332.5, -142.5}], {
+       Center, Center}, {95, 95.}],
+      "InsetString"]}, {InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.7397121117754508, 0.47053080035430095`, 0.8387384822709743], 
+        DiskBox[{0, 0}]},
+       ImageSize->36], NCache[{Rational[95, 2], -237.5}, {47.5, -237.5}], 
+      ImageScaled[{0.5, 0.5}], {36, 36.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[0.4011787287257218, 0.2300504767924243, 0.6244340861952464], 
+        DiskBox[{0, 0}]},
+       ImageSize->67], NCache[{Rational[285, 2], -237.5}, {142.5, -237.5}], 
+      ImageScaled[{0.5, 0.5}], {67, 67.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[0.9490805269539642, 0.8848316747600349, 0.07748912366223903],
+         DiskBox[{0, 0}]},
+       ImageSize->70], NCache[{Rational[475, 2], -237.5}, {237.5, -237.5}], 
+      ImageScaled[{0.5, 0.5}], {70, 70.}], InsetBox[
+      GraphicsBox[
+       {RGBColor[
+        0.27780361892064653`, 0.7207019009061406, 0.4066248016320122], 
+        DiskBox[{0, 0}]},
+       ImageSize->72], NCache[{Rational[665, 2], -237.5}, {332.5, -237.5}], 
+      ImageScaled[{0.5, 0.5}], {72, 72.}]}}, {}},
+  ContentSelectable->True,
+  ImageSize->{392, 297.},
+  PlotRangePadding->{6, 5}]], "Output",
+ CellChangeTimes->{{3.723388859203574*^9, 
+  3.723388919064337*^9}},ExpressionUUID->"6494d5b7-7869-4b02-96c3-\
+7ed3176336f6"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Replace\[Star]", "Subsubsection",ExpressionUUID->"fb070562-aaef-47fd-9cd5-ceaf5433decd"],
+
+Cell[TextData[{
+ "The rest of this family share the name ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"Replace", "\[Star]"}], TextInlineCell]], "InlineInput",
+  ExpressionUUID->"4b8dfe25-f7d3-45b2-b362-221309384d86"],
+ " and most of them work quite like ",
+ Cell[BoxData[
+  FormBox["Replace", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "8727061b-cadd-451d-88f0-d670479a27a6"],
+ ", with the notable exception of ",
+ Cell[BoxData[
+  FormBox["ReplacePart", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "a0a7c7ab-f032-4a5a-a1f8-3af63e917223"]
+}], "Text",
+ InitializationCell->True,
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6853297278039827`*^9, 
+   3.685329834250018*^9}},ExpressionUUID->"ab0f8bfc-705f-4a9b-8a21-\
+4747ee58e463"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{68, Automatic}, {Automatic, 15}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2455, 51, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3038, 75, 172, 3, 41, "Subsection",ExpressionUUID->"cd43585c-0e9c-4c85-a4cc-047d91cd44a6"],
+Cell[3213, 80, 519, 10, 81, "Text",ExpressionUUID->"0027297e-8d40-4def-a967-e31beb6f970f"],
+Cell[CellGroupData[{
+Cell[3757, 94, 87, 0, 40, "Subsubsection",ExpressionUUID->"06250e64-f01d-4d26-8704-73586b8753d5"],
+Cell[3847, 96, 468, 11, 58, "Text",ExpressionUUID->"3e53ff53-2fc9-4982-9605-909352ff3ce1"],
+Cell[CellGroupData[{
+Cell[4340, 111, 443, 12, 52, "Code",ExpressionUUID->"2ff3623a-f279-4e17-81f2-06a71648ffd5"],
+Cell[4786, 125, 372, 12, 65, "Output",ExpressionUUID->"0d169f60-4777-441e-b9b8-ceba8df51045"]
+}, Open  ]],
+Cell[5173, 140, 233, 4, 35, "Text",ExpressionUUID->"ec1d82de-cb96-448e-8db7-8376a3713877"],
+Cell[CellGroupData[{
+Cell[5431, 148, 731, 19, 110, "Code",ExpressionUUID->"2584d976-378b-4796-9035-918185709256"],
+Cell[6165, 169, 209, 5, 34, "Output",ExpressionUUID->"99b2a7d4-dedc-4a78-a3e0-eaa9b31b173c"]
+}, Open  ]],
+Cell[6389, 177, 348, 9, 35, "Text",ExpressionUUID->"a0d2fb74-b41a-4c6a-b45f-d140ed9ce55f"],
+Cell[CellGroupData[{
+Cell[6762, 190, 1252, 31, 205, "Code",ExpressionUUID->"b0543c52-240f-4ec2-bf68-62485b28cc42"],
+Cell[8017, 223, 141, 3, 34, "Output",ExpressionUUID->"5a09fbfa-fa98-4d85-9790-449ab553e514"]
+}, Open  ]],
+Cell[8173, 229, 245, 5, 35, "Text",ExpressionUUID->"4465b4c2-53d1-4ee4-8bad-695cd19fa927"],
+Cell[8421, 236, 413, 10, 35, "Text",ExpressionUUID->"0ed045ae-c461-4a2c-a5f7-fa912d294ee2"],
+Cell[CellGroupData[{
+Cell[8859, 250, 524, 14, 91, "Code",ExpressionUUID->"afa9f509-0620-4563-a2d2-d7f88280a57e"],
+Cell[9386, 266, 289, 6, 34, "Output",ExpressionUUID->"b1e32e7c-a896-4e7b-ad47-c1aa4a254335"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9724, 278, 90, 0, 51, "Subsubsection",ExpressionUUID->"a249d874-aaf6-490a-9238-febe19b1bed1"],
+Cell[9817, 280, 705, 16, 58, "Text",ExpressionUUID->"a522c4c9-7a05-4124-acd7-858c14816c9c"],
+Cell[10525, 298, 360, 9, 35, "Text",ExpressionUUID->"6bfdc5dd-4be8-4495-92f3-266e77c3213d"],
+Cell[10888, 309, 206, 4, 35, "Text",ExpressionUUID->"c1af5c64-2b7a-416f-be91-3d9b8b6786a8"],
+Cell[CellGroupData[{
+Cell[11119, 317, 1317, 34, 186, "Code",ExpressionUUID->"52d5309a-c7f4-4cf8-aafd-feab605f1840"],
+Cell[12439, 353, 3278, 73, 314, "Output",ExpressionUUID->"6494d5b7-7869-4b02-96c3-7ed3176336f6"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15766, 432, 94, 0, 51, "Subsubsection",ExpressionUUID->"fb070562-aaef-47fd-9cd5-ceaf5433decd"],
+Cell[15863, 434, 740, 19, 58, "Text",ExpressionUUID->"ab0f8bfc-705f-4a9b-8a21-4747ee58e463",
+ InitializationCell->True]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,410 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     16132,        402]
+NotebookOptionsPosition[     13739,        361]
+NotebookOutlinePosition[     14166,        378]
+CellTagsIndexPosition[     14123,        375]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Special Paclets\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Package Usage and Development/Higher-Level Features/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.4.5\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Mon 16 Jul 2018 19:11:28\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "16", ",", "19", ",", "11", ",", 
+              "28.632691`8.209437147970263"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<package-usage-and-development\>\"", "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<packages\>\"", ",", " ", "\"\<paclets\>\"", ",", " ", 
+      "\"\<development\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.740255371551134*^9, 3.740255441548623*^9}, {3.740257785728876*^9, 
+   3.740257787359725*^9}, {3.740258871202475*^9, 3.740258879451874*^9}, {
+   3.740259049250639*^9, 3.7402590549178123`*^9}, {3.740499593308742*^9, 
+   3.74049959645723*^9}, {3.740499662784543*^9, 3.7404996642237453`*^9}, {
+   3.740499728069169*^9, 3.740499760532651*^9}, {3.740499835787034*^9, 
+   3.740499837765148*^9}, {3.740511787373929*^9, 3.740511787864347*^9}, {
+   3.740513133400173*^9, 3.7405131628282537`*^9}, {3.740515862908148*^9, 
+   3.740515863359661*^9}, {3.7405159144570227`*^9, 3.740515921268757*^9}, {
+   3.740536644604788*^9, 3.740536662659156*^9}, {3.740779280263788*^9, 
+   3.740779291191787*^9}, {3.7407822750494556`*^9, 3.740782291291424*^9}, {
+   3.740795635529293*^9, 3.740795672733591*^9}, {3.7407958811604977`*^9, 
+   3.740795908518612*^9}, {3.740837888385211*^9, 
+   3.740837888808879*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell["\<\
+Mathematica uses a number of specially constructed paclets to drive some of \
+its frameworks. We\[CloseCurlyQuote]ll briefly talk about these frameworks \
+and how they showcase what paclets can do.\
+\>", "Text",
+ CellChangeTimes->{{3.740782594234872*^9, 3.740782615121249*^9}, {
+  3.74078272210183*^9, 
+  3.740782741405794*^9}},ExpressionUUID->"8e9ea568-1d9a-4036-8184-\
+d94c92e1da5b"],
+
+Cell[CellGroupData[{
+
+Cell["Curated Data", "Subsection",
+ CellChangeTimes->{{3.740782820292141*^9, 3.740782824652515*^9}, {
+  3.740782934338229*^9, 
+  3.7407829369544487`*^9}},ExpressionUUID->"2241edbf-990e-4767-a221-\
+77594e1bcdad"],
+
+Cell[TextData[{
+ "The curated data framework has been in Mathematica since version 6. As I \
+understand it, it is the Ur-usage for paclets. These paclets drive almost all \
+the functions ending in ",
+ Cell[BoxData["Data"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "22534035-e4df-44c0-9e7d-4547f23bc380"],
+ ", like ",
+ Cell[BoxData["ChemicalData"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "9c3f9635-ceb7-4d0c-8444-2e824a5a72ab"],
+ ", ",
+ Cell[BoxData["ElementData"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "f2a5ac64-6556-45bc-8375-d22ac16ac946"],
+ ", and ",
+ Cell[BoxData["ExampleData"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "67134a17-1c72-4b17-a632-56d9d357bd23"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740782948259452*^9, 3.740783018537075*^9}, {
+  3.740783172133885*^9, 
+  3.740783198758176*^9}},ExpressionUUID->"2a561baf-c6f7-48a1-965c-\
+c3f372d9e2cd"],
+
+Cell["\<\
+A curated data function is in some sense a paclet is a divided into 3 chunks. \
+\>", "Text",
+ CellChangeTimes->{{3.740783024636861*^9, 3.7407830435290127`*^9}, {
+  3.740783204263719*^9, 
+  3.740783219901301*^9}},ExpressionUUID->"ef82693e-3fff-4462-8860-\
+4665774b6d96"],
+
+Cell["There is a code paclet that looks like:", "Text",
+ CellChangeTimes->{{3.740783024636861*^9, 3.7407830435290127`*^9}, {
+  3.740783204263719*^9, 
+  3.740783223495467*^9}},ExpressionUUID->"2a5b81f0-d7da-4c0c-ac6c-\
+e251a8709e6b"],
+
+Cell[BoxData[{"none", "\n", 
+ RowBox[{"<", "DataType", ">", "Data"}], "\n", 
+ RowBox[{" ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Kernel"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"init", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", 
+  RowBox[{"<", "DataType", ">", 
+   RowBox[{"Data", ".", "m"}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.7407830479366426`*^9, 3.7407830820319557`*^9}, 
+   3.740792698601536*^9},ExpressionUUID->"fd8e8f65-8757-458e-95ee-\
+d2cd04b91b4a"],
+
+Cell[TextData[{
+ "which configures a function ",
+ Cell["<DataType>Data", "InlineText",ExpressionUUID->
+  "9fe7a1d8-d0b9-4172-97f5-7a5308bb6c36"],
+ " that acts as a router to two resource paclets. "
+}], "Text",
+ CellChangeTimes->{{3.740783083919571*^9, 
+  3.740783130349257*^9}},ExpressionUUID->"c0c3badf-288a-497a-8234-\
+f22e133e51ce"],
+
+Cell["The first resource paclet is looks like", "Text",
+ CellChangeTimes->{{3.740783083919571*^9, 
+  3.740783146278833*^9}},ExpressionUUID->"e818a0a9-98df-4e33-ae82-\
+efb717fde1f9"],
+
+Cell[BoxData[{"none", "\n", 
+ RowBox[{"<", "DataType", ">", "Data_Index"}], "\n", 
+ RowBox[{" ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Data"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Index", ".", "wdx"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Functions", ".", "wdx"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Names", ".", "wdx"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Groups", ".", "wdx"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Properties", ".", "wdx"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PrivateGroups", ".", "wdx"}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.7407830479366426`*^9, 3.7407830820319557`*^9}, {
+  3.740783150680481*^9, 3.740783159430588*^9}, {3.740783413250307*^9, 
+  3.7407834371942587`*^9}},ExpressionUUID->"8598bb9f-289a-421e-93fd-\
+c7618601a890"],
+
+Cell["\<\
+And the raw data distributes over a number of paclets that look like\
+\>", "Text",
+ CellChangeTimes->{{3.740783162774283*^9, 3.740783164478592*^9}, {
+  3.7407832283512583`*^9, 3.740783229079502*^9}, {3.740783388668092*^9, 
+  3.7407833894347563`*^9}, {3.7407834404015636`*^9, 
+  3.740783451921962*^9}},ExpressionUUID->"0e25fac6-0ad8-401e-9691-\
+0ef11de96b6b"],
+
+Cell[BoxData[{"none", "\n", 
+ RowBox[{"<", "DataType", ">", "Data_Part01"}], "\n", 
+ RowBox[{" ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Data"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"Part01", ".", "wdx"}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.7407830479366426`*^9, 3.7407830820319557`*^9}, {
+  3.740783150680481*^9, 3.740783159430588*^9}, {3.740783413250307*^9, 
+  3.740783479241149*^9}},ExpressionUUID->"0ab58a9e-41b3-4ac1-b3b7-\
+b94f7a3d318b"],
+
+Cell[CellGroupData[{
+
+Cell["ExampleData", "Subsubsection",
+ CellChangeTimes->{{3.740783503184016*^9, 
+  3.740783505296391*^9}},ExpressionUUID->"1969c7d1-9d4f-4cff-b055-\
+71cff7f517cd"],
+
+Cell[TextData[{
+ "The ",
+ ButtonBox["ExampleData",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/ExampleData"],
+ " system works in a similar way to the bulk curated data, but since it \
+provides more specialized resources it serves them in a slightly different \
+way. Each of its resources looks like:"
+}], "Text",
+ CellChangeTimes->{{3.740783506528102*^9, 
+  3.74078356023979*^9}},ExpressionUUID->"23327200-e288-4a4b-812f-\
+19098a38dcfc"],
+
+Cell[BoxData[{"none", "\n", 
+ RowBox[{"ExampleData_", "<", "DataName", ">", "\n", " ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Data"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"<", "DataName", ">", 
+    RowBox[{".", "wdx"}]}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.7407830479366426`*^9, 3.7407830820319557`*^9}, {
+  3.740783150680481*^9, 3.740783159430588*^9}, {3.740783413250307*^9, 
+  3.7407834371942587`*^9}, {3.740783591067083*^9, 
+  3.740783601512661*^9}},ExpressionUUID->"7b83018e-cab8-4747-be2b-\
+8ae20d2b28cd"],
+
+Cell["\<\
+You can leverage this to make it serve your own resources with a bit of work.\
+\
+\>", "Text",
+ CellChangeTimes->{{3.740783610911487*^9, 3.740783621390147*^9}, {
+  3.740783742062829*^9, 
+  3.7407837539883957`*^9}},ExpressionUUID->"8ed6bf30-9075-4463-a8b3-\
+129387876d19"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Service Connections", "Subsection",
+ CellChangeTimes->{{3.740782745909368*^9, 
+  3.740782749445606*^9}},ExpressionUUID->"526acf41-25ac-4144-88bc-\
+1501deb22a35"],
+
+Cell[TextData[{
+ "The ",
+ ButtonBox["Service Connections Framework",
+  BaseStyle->"Link",
+  ButtonData->"paclet:guide/AccessingExternalServicesAndAPIs"],
+ " is a good example of the flexibility of the paclet system. It provides a \
+general set of high-level functions ",
+ Cell[BoxData["ServiceConnect"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "c9b5565e-4eca-469a-aa49-40b1ebacd7d1"],
+ ", ",
+ Cell[BoxData["ServiceExecute"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a4a4a61c-795a-4fa5-8ba0-db460a4bee86"],
+ ", ",
+ Cell[BoxData["ServiceDisconnect"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "349dbdaf-0440-4f31-9316-b420ded44547"],
+ ", and low-level infrastructure that allow paclets to provide flexible \
+connections to APIs with little effort."
+}], "Text",
+ CellChangeTimes->{{3.740782751368116*^9, 3.740782817676673*^9}, {
+  3.740782870779636*^9, 3.7407828863471937`*^9}, {3.7407927098897753`*^9, 
+  3.740792758631446*^9}, {3.74079289779425*^9, 3.740792905115237*^9}, {
+  3.740793013244993*^9, 3.740793020691255*^9}, {3.7407933170074377`*^9, 
+  3.7407933196557083`*^9}, {3.740793457415607*^9, 3.7407934621997843`*^9}, {
+  3.740793514369974*^9, 3.74079351783375*^9}, {3.74079357570765*^9, 
+  3.7407936103231153`*^9}},ExpressionUUID->"a5bb7dfc-55fd-41fb-aefd-\
+b8603ceb0b60"],
+
+Cell[TextData[{
+ "Every service in the ",
+ ButtonBox["$Services",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/$Services"],
+ " list provides a paclet which looks like:"
+}], "Text",
+ CellChangeTimes->{{3.740793614458136*^9, 3.740793633840475*^9}, {
+  3.74079373437183*^9, 3.74079373675626*^9}, {3.740793918901161*^9, 
+  3.740793925285315*^9}},ExpressionUUID->"bbddc756-1725-4687-aa26-\
+bad9080dac8f"],
+
+Cell[BoxData[{"none", "\n", 
+ RowBox[{"ServiceConnection_", "<", "ServiceName", ">", "\n", " ", 
+  RowBox[{"+", " ", 
+   RowBox[{"PacletInfo", ".", "m"}]}]}], "\n", 
+ RowBox[{" ", "Kernel"}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"load", ".", "m"}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"<", "ServiceName", ">", 
+    RowBox[{".", "m"}]}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"<", "ServiceName", ">", 
+    RowBox[{"Load", ".", "m"}]}]}]}], "\n", 
+ RowBox[{"  ", 
+  RowBox[{"+", " ", 
+   RowBox[{"<", "ServiceName", ">", 
+    RowBox[{"Functions", ".", "m"}]}]}]}]}], "FencedCode",
+ CellChangeTimes->{{3.740793928773262*^9, 3.740793929436962*^9}, {
+   3.740794006247068*^9, 3.740794045743878*^9}, {3.740794947010642*^9, 
+   3.740794952392481*^9}, {3.740795160902915*^9, 3.7407952053781967`*^9}, 
+   3.740795397607315*^9},ExpressionUUID->"997704a2-655e-4f10-a36d-\
+98a34549d379"],
+
+Cell[TextData[{
+ "The framework first calls ",
+ Cell["load.m", "InlineText",ExpressionUUID->
+  "6e62551e-4b38-418c-98ce-01eb9110c063"],
+ " which then loads the other packages. In the end a single set of functions \
+is returned that encapsulates all the API parameters that the service \
+provides."
+}], "Text",
+ CellChangeTimes->{{3.740795420598093*^9, 
+  3.7407954964133873`*^9}},ExpressionUUID->"ac976800-9cef-493e-b4b6-\
+c2f73133fb4a"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{Automatic, 247}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 3332, 64, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[3893, 86, 395, 8, 58, "Text",ExpressionUUID->"8e9ea568-1d9a-4036-8184-d94c92e1da5b"],
+Cell[CellGroupData[{
+Cell[4313, 98, 211, 4, 41, "Subsection",ExpressionUUID->"2241edbf-990e-4767-a221-77594e1bcdad"],
+Cell[4527, 104, 951, 24, 81, "Text",ExpressionUUID->"2a561baf-c6f7-48a1-965c-c3f372d9e2cd"],
+Cell[5481, 130, 279, 6, 35, "Text",ExpressionUUID->"ef82693e-3fff-4462-8860-4665774b6d96"],
+Cell[5763, 138, 232, 4, 35, "Text",ExpressionUUID->"2a5b81f0-d7da-4c0c-ac6c-e251a8709e6b"],
+Cell[5998, 144, 524, 14, 132, "FencedCode",ExpressionUUID->"fd8e8f65-8757-458e-95ee-d2cd04b91b4a"],
+Cell[6525, 160, 335, 8, 37, "Text",ExpressionUUID->"c0c3badf-288a-497a-8234-f22e133e51ce"],
+Cell[6863, 170, 181, 3, 35, "Text",ExpressionUUID->"e818a0a9-98df-4e33-ae82-efb717fde1f9"],
+Cell[7047, 175, 943, 27, 208, "FencedCode",ExpressionUUID->"8598bb9f-289a-421e-93fd-c7618601a890"],
+Cell[7993, 204, 368, 7, 35, "Text",ExpressionUUID->"0e25fac6-0ad8-401e-9691-0ef11de96b6b"],
+Cell[8364, 213, 515, 12, 113, "FencedCode",ExpressionUUID->"0ab58a9e-41b3-4ac1-b3b7-b94f7a3d318b"],
+Cell[CellGroupData[{
+Cell[8904, 229, 162, 3, 40, "Subsubsection",ExpressionUUID->"1969c7d1-9d4f-4cff-b055-71cff7f517cd"],
+Cell[9069, 234, 440, 11, 58, "Text",ExpressionUUID->"23327200-e288-4a4b-812f-19098a38dcfc"],
+Cell[9512, 247, 582, 13, 113, "FencedCode",ExpressionUUID->"7b83018e-cab8-4747-be2b-8ae20d2b28cd"],
+Cell[10097, 262, 280, 7, 35, "Text",ExpressionUUID->"8ed6bf30-9075-4463-a8b3-129387876d19"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[10426, 275, 167, 3, 41, "Subsection",ExpressionUUID->"526acf41-25ac-4144-88bc-1501deb22a35"],
+Cell[10596, 280, 1343, 28, 81, "Text",ExpressionUUID->"a5bb7dfc-55fd-41fb-aefd-b8603ceb0b60"],
+Cell[11942, 310, 401, 10, 35, "Text",ExpressionUUID->"bbddc756-1725-4687-aa26-bad9080dac8f"],
+Cell[12346, 322, 937, 24, 170, "FencedCode",ExpressionUUID->"997704a2-655e-4f10-a36d-98a34549d379"],
+Cell[13286, 348, 437, 10, 60, "Text",ExpressionUUID->"ac976800-9cef-493e-b4b6-c2f73133fb4a"]
+}, Open  ]]
+}
+]
+*)
+

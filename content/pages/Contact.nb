@@ -1,0 +1,138 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4829,        130]
+NotebookOptionsPosition[      4041,        109]
+NotebookOutlinePosition[      4468,        126]
+CellTagsIndexPosition[      4425,        123]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Contact\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Tue 17 Jul 2018 10:59:26\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "17", ",", "10", ",", "59", ",", 
+              "26.122462`8.169589088156334"}], "}"}], ",", "\"Instant\"", ",",
+           "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<EnableComments\>\"", "\[Rule]", "True"}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.72305362352835*^9, 3.7230536242703047`*^9}, {
+   3.723068028219879*^9, 3.723068034387553*^9}, {3.723200480323265*^9, 
+   3.7232005073774633`*^9}, {3.740833859584896*^9, 3.7408338671621437`*^9}, {
+   3.740837734937046*^9, 3.740837735330605*^9}, {3.7408391632979183`*^9, 
+   3.740839180928204*^9}, 3.7408400463990793`*^9, {3.740841599958251*^9, 
+   3.740841604085101*^9}, {3.7408419701585283`*^9, 
+   3.740841971489846*^9}},ExpressionUUID->"1e451960-39d1-4cc2-9cd6-\
+861c6f3f0295"],
+
+Cell[CellGroupData[{
+
+Cell["Contact", "Subsection",
+ CellChangeTimes->{
+  3.740833839254422*^9, {3.74083811375913*^9, 3.740838116044715*^9}, {
+   3.740839187394589*^9, 
+   3.74083919096872*^9}},ExpressionUUID->"501d2c79-8ce2-4c5c-a2c7-\
+a50197f99de3"],
+
+Cell[TextData[{
+ "If  you need to contact me, there are a few ways to do it. For many \
+inquiries, email will work. My email is ",
+ ButtonBox["b3m2a1@gmail.com",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["mailto:b3m2a1@gmail.com"], None},
+  ButtonNote->"mailto:b3m2a1@gmail.com"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740839195249662*^9, 
+  3.7408392331652107`*^9}},ExpressionUUID->"14789012-3be0-4221-80fc-\
+1fad7a59a173"],
+
+Cell[TextData[{
+ "If you want help from a more public form (recommended) you can ping me on \
+the ",
+ ButtonBox["Mathematica StackExchange chat",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://chat.stackexchange.com/rooms/2234/wolfram-mathematica"], 
+    None},
+  ButtonNote->"https://chat.stackexchange.com/rooms/2234/wolfram-mathematica"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740839236072722*^9, 
+  3.740839274908121*^9}},ExpressionUUID->"4b0150a9-7e52-4ebe-af4d-\
+d174352ffbc9"],
+
+Cell["\<\
+Finally, I\[CloseCurlyQuote]m trying out including comments on pages, so \
+there is a comment area at the bottom of this page. If this works well I \
+might expand this to some other pages and posts.\
+\>", "Text",
+ CellChangeTimes->{{3.7408392764962473`*^9, 3.740839298015107*^9}, {
+  3.7408412657289867`*^9, 3.740841278854257*^9}, {3.740841973689664*^9, 
+  3.740841973897319*^9}},ExpressionUUID->"fa2c90f4-1da1-4ff6-8cfe-\
+77166de84b6c"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{166, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1828, 38, 219, "Metadata",ExpressionUUID->"1e451960-39d1-4cc2-9cd6-861c6f3f0295"],
+Cell[CellGroupData[{
+Cell[2411, 62, 229, 5, 41, "Subsection",ExpressionUUID->"501d2c79-8ce2-4c5c-a2c7-a50197f99de3"],
+Cell[2643, 69, 433, 12, 58, "Text",ExpressionUUID->"14789012-3be0-4221-80fc-1fad7a59a173"],
+Cell[3079, 83, 496, 13, 58, "Text",ExpressionUUID->"4b0150a9-7e52-4ebe-af4d-d174352ffbc9"],
+Cell[3578, 98, 447, 8, 58, "Text",ExpressionUUID->"fa2c90f4-1da1-4ff6-8cfe-77166de84b6c"]
+}, Open  ]]
+}
+]
+*)
+

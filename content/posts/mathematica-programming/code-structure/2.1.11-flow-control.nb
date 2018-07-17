@@ -1,0 +1,318 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     11843,        310]
+NotebookOptionsPosition[     10221,        277]
+NotebookOutlinePosition[     10649,        294]
+CellTagsIndexPosition[     10606,        291]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Flow Control\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Code Structure\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.1.11\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Mon 16 Jul 2018 22:25:47\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "16", ",", "22", ",", "25", ",", 
+              "47.782392`8.43184286320269"}], "}"}], ",", "\"Instant\"", ",", 
+          "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", "\"\<code-structure\>\""}], 
+     "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<flow-control\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723348665617456*^9, 3.723348677211186*^9}, {
+   3.723348793415567*^9, 3.7233488015589314`*^9}, {3.723348858273123*^9, 
+   3.723348869709263*^9}, {3.7233491878388033`*^9, 3.723349193403183*^9}, {
+   3.7233493421558933`*^9, 3.7233493550726223`*^9}, {3.7233495375423727`*^9, 
+   3.723349543343267*^9}, {3.740780218342493*^9, 3.740780226567594*^9}, {
+   3.740795963637587*^9, 3.7407959711604633`*^9}, {3.740797529376173*^9, 
+   3.74079755317804*^9}, {3.740797633329316*^9, 
+   3.7407976615762177`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[TextData[{
+ "Mathematica, being primarily a functional programming language, doesn\
+\[CloseCurlyQuote]t use standard flow-control techniques such as ",
+ ButtonBox["While",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/While"],
+ ", ",
+ ButtonBox["Break",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Break"],
+ ", ",
+ ButtonBox["Continue",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Continue"],
+ ", ",
+ ButtonBox["etc",
+  BaseStyle->"Link",
+  ButtonData->"paclet:guide/FlowControl"],
+ ". to the same degree that a primarily procedural language like python \
+does."
+}], "Text",
+ CellChangeTimes->{{3.7407959960849953`*^9, 3.740796077112851*^9}, {
+  3.740797489771146*^9, 
+  3.740797489777814*^9}},ExpressionUUID->"28717c15-c060-41db-94f8-\
+bec6212a7a41"],
+
+Cell["\<\
+Despite that, these are still useful things to know how to work with. We\
+\[CloseCurlyQuote]ll go through them pretty quickly, one-by-one.\
+\>", "Text",
+ CellChangeTimes->{{3.740796078711709*^9, 3.740796093895746*^9}, {
+  3.740796443671698*^9, 
+  3.740796468054017*^9}},ExpressionUUID->"c3ead592-04ac-4879-818c-\
+c9ec7c18f6e9"],
+
+Cell[CellGroupData[{
+
+Cell["While", "Subsubsection",
+ CellChangeTimes->{{3.7407964701573563`*^9, 
+  3.740796470877872*^9}},ExpressionUUID->"9bb25b72-0bee-4768-94f3-\
+1f4932fae7e7"],
+
+Cell[TextData[{
+ "Of all of these, ",
+ Cell[BoxData["While"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "154b8cc5-9ef1-4b60-b1ac-5bd9b9f0d8fa"],
+ " is likely the most common to be used, although as mentioned previously it \
+can be emulated perhaps more cleanly by ",
+ ButtonBox["Do",
+  BaseStyle->"Link",
+  ButtonData->"paclet:ref/Do"],
+ " with ",
+ Cell[BoxData["Infinity"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "2c3589ad-594e-4870-a789-b8e9d9655be6"],
+ " as the iterator spec."
+}], "Text",
+ CellChangeTimes->{{3.740796472221572*^9, 
+  3.740796548285022*^9}},ExpressionUUID->"13dd6cb1-a0c9-468d-808f-\
+df574f815896"],
+
+Cell[TextData[{
+ "On the other hand, particularly in the context of ",
+ Cell[BoxData["Compile"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "c97e0834-f2eb-49ac-a9d6-bf45feb8b11b"],
+ " or other cases where a predominantly procedural paradigm is use, ",
+ Cell[BoxData["While"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "394e2419-0e03-4208-92dc-f4b5c0496866"],
+ " can be useful."
+}], "Text",
+ CellChangeTimes->{{3.7407965688172007`*^9, 
+  3.740796639460174*^9}},ExpressionUUID->"21e231f7-b0c8-462e-9c68-\
+dafbeaeccc11"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["For", "Subsubsection",
+ CellChangeTimes->{{3.740796664669881*^9, 
+  3.740796665525869*^9}},ExpressionUUID->"8d36f2c0-2046-4c23-9ef6-\
+6221a789ce6a"],
+
+Cell[TextData[{
+ Cell[BoxData["For"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "27cb0fe9-13d7-41d3-88b5-fe543446359f"],
+ " is never useful. Any time it could be used ",
+ Cell[BoxData["Table"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "318fa043-1a3c-4df6-bafe-886880f4b9f6"],
+ " or ",
+ Cell[BoxData["Do"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "fdafd076-10c9-440c-bc6f-0f5cb729a2ce"],
+ " would be a better choice."
+}], "Text",
+ CellChangeTimes->{{3.7407966674618807`*^9, 
+  3.740796697766*^9}},ExpressionUUID->"65e6bcdb-971b-40a9-89ec-6df24daa8533"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Break / Continue / Return", "Subsubsection",
+ CellChangeTimes->{{3.7407967030451603`*^9, 3.740796707645502*^9}, {
+  3.740796899883379*^9, 3.740796900835286*^9}, {3.7407971600446*^9, 
+  3.740797164493019*^9}},ExpressionUUID->"389d6915-9aa9-4345-b209-\
+63226513473d"],
+
+Cell[TextData[{
+ "As noted, ",
+ Cell[BoxData["For"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "c1297a76-da22-4b50-b577-2515ddb4b1d2"],
+ " isn\[CloseCurlyQuote]t useful, which renders moot the primary use case of ",
+ Cell[BoxData["Break"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "6e5f3b29-9e6c-4599-a8f2-8c3661e0efd5"],
+ " and ",
+ Cell[BoxData["Continue"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "6e58d152-778b-410c-b31a-6e8fae0c2a15"],
+ ".  They can potentially still be useful in ",
+ Cell[BoxData["Do"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "bfb1c683-5e2a-402b-8b91-030f28439c9b"],
+ " and ",
+ Cell[BoxData["Table"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "48eef935-8e48-4485-b447-1a4ac494fe79"],
+ ", though."
+}], "Text",
+ CellChangeTimes->{{3.740796709101198*^9, 3.740796766292749*^9}, {
+  3.740796801006617*^9, 
+  3.740796885564518*^9}},ExpressionUUID->"ec94e6bd-012d-4b4c-bc30-\
+df83ebcb6457"],
+
+Cell[TextData[{
+ "All Mathematica functions have an implicit ",
+ Cell[BoxData["Return"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "034a6e3d-e3fe-4f36-9aff-7172e8b00c78"],
+ " in them, which makes use of ",
+ Cell[BoxData["Return"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a3d32a65-6013-4f97-8008-37737bdfb42c"],
+ " infrequent, but it has its place. Especially when there are multiple \
+possible points of exit from a function ",
+ Cell[BoxData["Return"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "62ac80fa-7480-4211-b507-fe04132b54a7"],
+ " can be highly useful."
+}], "Text",
+ CellChangeTimes->{{3.740796905747423*^9, 
+  3.7407970048111553`*^9}},ExpressionUUID->"151ba4db-acc5-42df-91b0-\
+575a68936c05"],
+
+Cell[TextData[{
+ "It also helpfully has a second argument specifying the scope from which the \
+value should be returned, which can allow for somewhat more targeted usage \
+in, say ",
+ Cell[BoxData["Do"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "fae0d30d-0d02-4ae4-bec2-5d67ce08cecc"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.740797006434305*^9, 3.740797039160037*^9}, 
+   3.740797111432712*^9},ExpressionUUID->"e6b2e761-ca3c-46dd-8167-\
+26043aa89751"],
+
+Cell[TextData[{
+ "Similarly, ",
+ Cell[BoxData["FixedPoint"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "3b2f25ec-d61b-4579-a4f8-ead9f31b9b0c"],
+ " and other nested functional programming constructs provide support for ",
+ Cell[BoxData["Return"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "30fccdc2-b388-4459-aa1b-af3cc9488b30"],
+ ", ",
+ Cell[BoxData["Break"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "0b6ed770-9341-4f48-850e-435319ab99e7"],
+ ", and potentially ",
+ Cell[BoxData["Continue"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "49393ffc-bc45-4cb0-9c0e-a8aeb30077b5"],
+ ". "
+}], "Text",
+ CellChangeTimes->{{3.740797124017902*^9, 3.740797158317266*^9}, {
+  3.740797261203013*^9, 3.740797286155684*^9}, {3.740797416706485*^9, 
+  3.740797427874454*^9}},ExpressionUUID->"28438dc3-2e09-4c0f-a8e5-\
+768597b89ac9"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{103, Automatic}, {Automatic, 35}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2845, 58, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[3406, 80, 763, 24, 81, "Text",ExpressionUUID->"28717c15-c060-41db-94f8-bec6212a7a41"],
+Cell[4172, 106, 337, 7, 58, "Text",ExpressionUUID->"c3ead592-04ac-4879-818c-c9ec7c18f6e9"],
+Cell[CellGroupData[{
+Cell[4534, 117, 158, 3, 40, "Subsubsection",ExpressionUUID->"9bb25b72-0bee-4768-94f3-1f4932fae7e7"],
+Cell[4695, 122, 663, 18, 58, "Text",ExpressionUUID->"13dd6cb1-a0c9-468d-808f-df574f815896"],
+Cell[5361, 142, 558, 13, 58, "Text",ExpressionUUID->"21e231f7-b0c8-462e-9c68-dafbeaeccc11"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5956, 160, 154, 3, 40, "Subsubsection",ExpressionUUID->"8d36f2c0-2046-4c23-9ef6-6221a789ce6a"],
+Cell[6113, 165, 617, 15, 35, "Text",ExpressionUUID->"65e6bcdb-971b-40a9-89ec-6df24daa8533"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6767, 185, 271, 4, 40, "Subsubsection",ExpressionUUID->"389d6915-9aa9-4345-b209-63226513473d"],
+Cell[7041, 191, 1016, 26, 58, "Text",ExpressionUUID->"ec94e6bd-012d-4b4c-bc30-df83ebcb6457"],
+Cell[8060, 219, 767, 18, 58, "Text",ExpressionUUID->"151ba4db-acc5-42df-91b0-575a68936c05"],
+Cell[8830, 239, 474, 11, 58, "Text",ExpressionUUID->"e6b2e761-ca3c-46dd-8167-26043aa89751"],
+Cell[9307, 252, 898, 22, 58, "Text",ExpressionUUID->"28438dc3-2e09-4c0f-a8e5-768597b89ac9"]
+}, Open  ]]
+}
+]
+*)
+

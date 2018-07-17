@@ -1,0 +1,214 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8232,        206]
+NotebookOptionsPosition[      7436,        185]
+NotebookOutlinePosition[      7868,        202]
+CellTagsIndexPosition[      7825,        199]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Working with Atoms\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Atoms\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.3.2\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<atoms\>\""}], "}"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<systems\>\"", ",", "\"\<object-oriented-programming\>\"", ",", 
+      "\"\<chemical-atom\>\""}], "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 3.723435549502858*^9}, {3.723435626994491*^9, 
+   3.723435705605221*^9}, {3.723436653781901*^9, 3.723436668193194*^9}, {
+   3.7234367357006283`*^9, 
+   3.723436739304144*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Working with Atoms", "Subsection",
+ CellChangeTimes->{{3.684455776417963*^9, 3.68445577973813*^9}, {
+  3.6845438062642717`*^9, 
+  3.684543809664215*^9}},ExpressionUUID->"15a4552e-aa08-4951-ba4b-\
+ab36f2f7e80e"],
+
+Cell["Next define some general methods for working with atoms:", "Text",
+ CellChangeTimes->{{3.684452765967987*^9, 
+  3.6844527954295263`*^9}},ExpressionUUID->"45904b49-5c6b-4cf0-8d4f-\
+f6413348d3b8"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "MoveAtom", "]"}], "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"\"\<x\>\"", "\[Rule]", "0"}], ",", 
+     RowBox[{"\"\<y\>\"", "\[Rule]", "0"}], ",", 
+     RowBox[{"\"\<z\>\"", "\[Rule]", "0"}]}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"MoveAtom", "[", 
+    RowBox[{"a_Atom", ",", "\n", "\t", 
+     RowBox[{"x", ":", 
+      RowBox[{"_", "?", "NumericQ"}], ":", "Automatic"}], ",", "\n", "\t", 
+     RowBox[{"y", ":", 
+      RowBox[{"_", "?", "NumericQ"}], ":", "Automatic"}], ",", "\n", "\t", 
+     RowBox[{"z", ":", 
+      RowBox[{"_", "?", "NumericQ"}], ":", "Automatic"}], ",", "\n", "\t", 
+     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"a", "[", "\"\<Position\>\"", "]"}], "=", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"a", "[", "\"\<Position\>\"", "]"}], "+", 
+       RowBox[{"{", "\n", "\t\t", 
+        RowBox[{
+         RowBox[{"Replace", "[", 
+          RowBox[{"x", ",", 
+           RowBox[{"Automatic", "\[RuleDelayed]", 
+            RowBox[{"OptionValue", "[", "\"\<x\>\"", "]"}]}]}], "]"}], ",", 
+         "\n", "\t\t", 
+         RowBox[{"Replace", "[", 
+          RowBox[{"y", ",", 
+           RowBox[{"Automatic", "\[RuleDelayed]", 
+            RowBox[{"OptionValue", "[", "\"\<y\>\"", "]"}]}]}], "]"}], ",", 
+         "\n", "\t\t", 
+         RowBox[{"Replace", "[", 
+          RowBox[{"z", ",", 
+           RowBox[{"Automatic", "\[RuleDelayed]", 
+            RowBox[{"OptionValue", "[", "\"\<z\>\"", "]"}]}]}], "]"}]}], "\n",
+         "\t\t", "}"}]}], ")"}]}], ")"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "DisplayAtom", "]"}], "=", 
+   RowBox[{"Flatten", "@", 
+    RowBox[{"{", "\n", "\t", 
+     RowBox[{
+      RowBox[{"FilterRules", "[", 
+       RowBox[{
+        RowBox[{"Options", "@", "Graphics3D"}], ",", "\n", "\t\t", 
+        RowBox[{"Except", "[", 
+         RowBox[{"Boxed", "|", "Lighting", "|", "ImageSize"}], "]"}]}], "\n", 
+       "\t\t", "]"}], ",", "\n", "\t", 
+      RowBox[{"Boxed", "\[Rule]", "False"}], ",", "\n", "\t", 
+      RowBox[{"Lighting", "->", "\"\<Neutral\>\""}], ",", "\n", "\t", 
+      RowBox[{"ImageSize", "\[Rule]", "Small"}], ",", "\n", "\t", 
+      RowBox[{"Scaled", "\[Rule]", ".25"}]}], "\n", "\t", "}"}]}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"DisplayAtom", "[", 
+    RowBox[{"a_Atom", ",", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+   RowBox[{"Graphics3D", "[", 
+    RowBox[{
+     RowBox[{"{", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"a", "[", "\"\<Color\>\"", "]"}], ",", "\n", "\t\t", 
+       RowBox[{"Sphere", "[", 
+        RowBox[{
+         RowBox[{"a", "[", "\"\<Position\>\"", "]"}], ",", 
+         RowBox[{
+          RowBox[{"Replace", "[", 
+           RowBox[{
+            RowBox[{"OptionValue", "[", "Scaled", "]"}], ",", 
+            RowBox[{
+             RowBox[{"Except", "[", 
+              RowBox[{"_", "?", "NumericQ"}], "]"}], "\[RuleDelayed]", 
+             "1"}]}], "]"}], 
+          RowBox[{"QuantityMagnitude", "@", 
+           RowBox[{"UnitConvert", "[", 
+            RowBox[{
+             RowBox[{"a", "[", "\"\<Radius\>\"", "]"}], ",", 
+             "\"\<Angstroms\>\""}], "]"}]}]}]}], "]"}]}], "\n", "\t\t", "}"}],
+      ",", "\n", "\t", 
+     RowBox[{"FilterRules", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"ops", ",", 
+         RowBox[{"Options", "@", "DisplayAtom"}]}], "}"}], ",", 
+       RowBox[{"Options", "@", "Graphics3D"}]}], "]"}]}], "\n", "\t", "]"}]}],
+   ";"}]}], "Code",
+ CellChangeTimes->{{3.684452796729637*^9, 3.684452803653645*^9}, {
+   3.684452864756441*^9, 3.6844530656481667`*^9}, {3.684453178593486*^9, 
+   3.6844531936189423`*^9}, 3.6845309261496773`*^9, {3.684530956642715*^9, 
+   3.6845311254330187`*^9}, 3.684531176211011*^9, {3.684531241390112*^9, 
+   3.684531323036642*^9}, {3.684547655050048*^9, 3.684547692849757*^9}, {
+   3.6845479059190483`*^9, 3.684547954159978*^9}, 3.684548047060011*^9, {
+   3.6845496321307898`*^9, 3.684549638551037*^9}, 
+   3.7234367266579533`*^9},ExpressionUUID->"30172fa0-63a5-4551-88da-\
+56e35b34f040"],
+
+Cell["\<\
+Note that these are just a few of the functions we can define. Later, once \
+our whole framework is set up we can define reams more.\
+\>", "Text",
+ CellChangeTimes->{{3.684532046592331*^9, 
+  3.684532070494825*^9}},ExpressionUUID->"e6a5b018-72e6-4e5c-ac1f-\
+566e78cdd043"]
+}, Open  ]]
+},
+WindowSize->{808, 754},
+WindowMargins->{{316, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1936, 36, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2519, 60, 216, 4, 52, "Subsection",ExpressionUUID->"15a4552e-aa08-4951-ba4b-ab36f2f7e80e"],
+Cell[2738, 66, 200, 3, 35, "Text",ExpressionUUID->"45904b49-5c6b-4cf0-8d4f-f6413348d3b8"],
+Cell[2941, 71, 4194, 103, 510, "Code",ExpressionUUID->"30172fa0-63a5-4551-88da-56e35b34f040"],
+Cell[7138, 176, 282, 6, 58, "Text",ExpressionUUID->"e6a5b018-72e6-4e5c-ac1f-566e78cdd043"]
+}, Open  ]]
+}
+]
+*)
+

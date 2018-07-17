@@ -1,0 +1,371 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14035,        363]
+NotebookOptionsPosition[     11933,        323]
+NotebookOutlinePosition[     12359,        340]
+CellTagsIndexPosition[     12316,        337]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Fold / FoldList\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Mathematica Programming/Functional Programming\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<2.4.5\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 29 Dec 2017 17:19:22\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2017", ",", "12", ",", "29", ",", "17", ",", "19", ",", 
+              "22"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<mathematica-programming\>\"", ",", 
+      "\"\<functional-programming\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<functional-programming\>\"", ",", "\"\<fold\>\"", ",", 
+      "\"\<foldlist\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.723435370397142*^9, 3.723435383633803*^9}, {3.740780288740793*^9, 
+   3.7407802939038363`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Fold / FoldList", "Subsection",
+ CellChangeTimes->{{3.692748080418826*^9, 3.6927480808432417`*^9}, {
+  3.692749712897072*^9, 3.6927497153181868`*^9}, {3.723574760797059*^9, 
+  3.723574761305372*^9}},ExpressionUUID->"d6e092a9-3940-4310-81e9-\
+786d73ccb9b2"],
+
+Cell[TextData[{
+ "Where ",
+ Cell[BoxData[
+  FormBox["Nest", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "084e6fb0-5211-44e9-b332-c72d4c8fc80e"],
+ " applies a function in to the result of the previous function call in a \
+nested fashion, ",
+ Cell[BoxData[
+  FormBox["Fold", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "93451dab-f675-4b70-ad65-e3f10d3e796c"],
+ " and its related functions apply a function to the previous function call \
+and simultaneously map over a list."
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692754887007236*^9, 3.6927548958170567`*^9}, {
+   3.6927576506183767`*^9, 3.692757715547907*^9}, {3.692757749289908*^9, 
+   3.692757752209888*^9}},ExpressionUUID->"f4b22fd4-cc77-4c19-ae30-\
+56a2cfb1f24a"],
+
+Cell["\<\
+As a very simple example we can turn an expression like this:\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6927577619617434`*^9, 
+   3.692757807637114*^9}},ExpressionUUID->"f7c0820e-5d66-4c31-ae3e-\
+1dfd122ce4cf"],
+
+Cell[BoxData[
+ RowBox[{"c", "[", 
+  RowBox[{"a1", ",", "a2", ",", "a3", ",", "...", ",", "an"}], "]"}]], "Code",\
+
+ CellChangeTimes->{{3.692757794397278*^9, 3.692757808657892*^9}, 
+   3.7234353667834272`*^9},ExpressionUUID->"d464298e-eb91-416b-972d-\
+7ac358a7a75e"],
+
+Cell["into one like", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692757810290737*^9, 
+   3.692757812220833*^9}},ExpressionUUID->"ad67e5a7-a9e1-40fe-80a4-\
+82d1bd59d1f7"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"c", "[", "a1", "]"}], "[", "a2", "]"}], "[", "a3", "]"}], "[", "...",
+    "]"}], "[", "an", "]"}]], "Code",
+ CellChangeTimes->{{3.692757820239039*^9, 3.692757820241658*^9}, 
+   3.723435366812448*^9},ExpressionUUID->"7ee72960-95af-4d31-a3ab-\
+18949f110feb"],
+
+Cell["\<\
+in one line of code. This process is closely related to the concept \
+\[OpenCurlyDoubleQuote]currying\[CloseCurlyDoubleQuote] in standard \
+functional programming so we can call this pseudocurrying (in fact this \
+example comes directly from a question I asked on the Mathematica stack \
+exchange):\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.6927578245408916`*^9, 
+   3.692757945208227*^9}},ExpressionUUID->"8a89819e-7898-4f47-acf2-\
+05bf95aa7e87"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"curry", "=", "\n", 
+   RowBox[{"Function", "[", 
+    RowBox[{"expr", ",", "\n", "\t", 
+     RowBox[{"Replace", "[", 
+      RowBox[{"expr", ",", 
+       RowBox[{
+        RowBox[{"h_", "[", "a__", "]"}], ":>", 
+        RowBox[{"Fold", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"#1", "[", "#2", "]"}], "&"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"h", ",", "a"}], "}"}]}], "]"}]}]}], "]"}], ",", "\n", 
+     "\t", "HoldFirst"}], "]"}]}], ";"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.692757843197452*^9, 3.692757844906745*^9}, 
+   3.69275790403012*^9, {3.692757952944667*^9, 3.692757959928946*^9}, {
+   3.692758007177867*^9, 3.692758065557716*^9}, 3.692768775792534*^9, 
+   3.7234353668399363`*^9},ExpressionUUID->"68df930f-fc75-4873-86ef-\
+2d10464030bb"],
+
+Cell[TextData[{
+ "where we take advantage of Mathematica\[CloseCurlyQuote]s ability to set \
+attributes on pure functions. We can use this to, for example, drill into \
+nested associations, where we will also build our association using ",
+ Cell[BoxData[
+  FormBox["Fold", TextInlineCell]], "InlineInput",ExpressionUUID->
+  "9a18b556-06cb-4729-bae3-8a4bf6b61b64"],
+ ":"
+}], "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692758074131744*^9, 3.692758141046678*^9}, {
+   3.692758181039914*^9, 3.69275818654401*^9}, {3.692758325979211*^9, 
+   3.692758352914435*^9}},ExpressionUUID->"a04b943f-5cb1-47f8-b6e8-\
+9eaa90e95f16"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"data", "=", 
+  RowBox[{"Association", "@", 
+   RowBox[{"Fold", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"#2", "\[Rule]", 
+       RowBox[{"Replace", "[", 
+        RowBox[{"#", ",", 
+         RowBox[{"_Rule", "->", 
+          RowBox[{"Association", "@", "#"}]}]}], "]"}]}], "&"}], ",", 
+     RowBox[{"Range", "[", 
+      RowBox[{"1", ",", "10"}], "]"}]}], "]"}]}]}]], "Code",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692758142192082*^9, 3.692758170616816*^9}, {
+   3.692758210381199*^9, 3.692758290829426*^9}, {3.692758354850616*^9, 
+   3.69275835785653*^9}, {3.692768701597122*^9, 3.6927687866007*^9}, 
+   3.7234353668666677`*^9},ExpressionUUID->"89a5ef44-2309-4dda-98be-\
+feb5ebcdc8c8"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"10", "\[Rule]", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"9", "\[Rule]", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{"8", "\[Rule]", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{"7", "\[Rule]", 
+         RowBox[{"\[LeftAssociation]", 
+          RowBox[{"6", "\[Rule]", 
+           RowBox[{"\[LeftAssociation]", 
+            RowBox[{"5", "\[Rule]", 
+             RowBox[{"\[LeftAssociation]", 
+              RowBox[{"4", "\[Rule]", 
+               RowBox[{"\[LeftAssociation]", 
+                RowBox[{"3", "\[Rule]", 
+                 RowBox[{"\[LeftAssociation]", 
+                  RowBox[{"2", "\[Rule]", "1"}], "\[RightAssociation]"}]}], 
+                "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+            "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+        "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+    "\[RightAssociation]"}]}], "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{
+  3.692768727276125*^9, {3.692768763892417*^9, 
+   3.692768786899724*^9}},ExpressionUUID->"9fdc001b-aa09-4757-b546-\
+b531ff1952ea"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"curry", "@", 
+  RowBox[{"data", "[", 
+   RowBox[{"10", ",", "9", ",", "8"}], "]"}]}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.692758110723186*^9, 3.692758115169407*^9}, {
+   3.692768767329617*^9, 3.692768794294862*^9}, {3.692768844297258*^9, 
+   3.6927688816059923`*^9}, 
+   3.723435366891344*^9},ExpressionUUID->"2479eaa3-fc9f-4bb2-8d79-\
+47fc9e5b1e46"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"7", "\[Rule]", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"6", "\[Rule]", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{"5", "\[Rule]", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{"4", "\[Rule]", 
+         RowBox[{"\[LeftAssociation]", 
+          RowBox[{"3", "\[Rule]", 
+           RowBox[{"\[LeftAssociation]", 
+            RowBox[{"2", "\[Rule]", "1"}], "\[RightAssociation]"}]}], 
+          "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+      "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{{3.69276877854281*^9, 3.692768794603531*^9}, {
+  3.692768875828005*^9, 
+  3.692768882020973*^9}},ExpressionUUID->"42cc5f37-7e87-42b3-92d2-\
+f33d338da5b7"]
+}, Open  ]],
+
+Cell["\<\
+Note that Mathematica already implements this type currying for associations:\
+\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692768833024523*^9, 3.692768841470991*^9}, {
+   3.692768884301614*^9, 
+   3.692768893629198*^9}},ExpressionUUID->"132e452e-4938-4583-9b14-\
+48123a73ec33"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"data", "[", 
+  RowBox[{"10", ",", "9", ",", "8"}], "]"}]], "Code",
+ GeneratedCell->False,
+ CellChangeTimes->{{3.692768895775064*^9, 3.692768899021245*^9}, 
+   3.723435366934534*^9},ExpressionUUID->"a45a1717-07eb-4279-93f9-\
+4714ce99ff89"],
+
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", 
+  RowBox[{"7", "\[Rule]", 
+   RowBox[{"\[LeftAssociation]", 
+    RowBox[{"6", "\[Rule]", 
+     RowBox[{"\[LeftAssociation]", 
+      RowBox[{"5", "\[Rule]", 
+       RowBox[{"\[LeftAssociation]", 
+        RowBox[{"4", "\[Rule]", 
+         RowBox[{"\[LeftAssociation]", 
+          RowBox[{"3", "\[Rule]", 
+           RowBox[{"\[LeftAssociation]", 
+            RowBox[{"2", "\[Rule]", "1"}], "\[RightAssociation]"}]}], 
+          "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+      "\[RightAssociation]"}]}], "\[RightAssociation]"}]}], 
+  "\[RightAssociation]"}]], "Output",
+ CellChangeTimes->{
+  3.692768899432424*^9},ExpressionUUID->"801459ab-4e36-43b9-9c76-\
+179bcfadfec7"]
+}, Open  ]],
+
+Cell["\<\
+But for other user-defined types this can be incredibly useful\
+\>", "Text",
+ CellChangeTimes->{
+  3.685311620629414*^9, {3.692768901484558*^9, 
+   3.692768912284479*^9}},ExpressionUUID->"6a1cbd6e-b86c-4344-8711-\
+e9fff7137ee4"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{69, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2632, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3215, 79, 262, 4, 41, "Subsection",ExpressionUUID->"d6e092a9-3940-4310-81e9-786d73ccb9b2"],
+Cell[3480, 85, 750, 17, 58, "Text",ExpressionUUID->"f4b22fd4-cc77-4c19-ae30-56a2cfb1f24a"],
+Cell[4233, 104, 239, 6, 35, "Text",ExpressionUUID->"f7c0820e-5d66-4c31-ae3e-1dfd122ce4cf"],
+Cell[4475, 112, 265, 6, 52, "Code",ExpressionUUID->"d464298e-eb91-416b-972d-7ac358a7a75e"],
+Cell[4743, 120, 181, 4, 35, "Text",ExpressionUUID->"ad67e5a7-a9e1-40fe-80a4-82d1bd59d1f7"],
+Cell[4927, 126, 330, 9, 52, "Code",ExpressionUUID->"7ee72960-95af-4d31-a3ab-18949f110feb"],
+Cell[5260, 137, 476, 10, 81, "Text",ExpressionUUID->"8a89819e-7898-4f47-acf2-05bf95aa7e87"],
+Cell[5739, 149, 833, 21, 110, "Code",ExpressionUUID->"68df930f-fc75-4873-86ef-2d10464030bb"],
+Cell[6575, 172, 628, 13, 58, "Text",ExpressionUUID->"a04b943f-5cb1-47f8-b6e8-9eaa90e95f16"],
+Cell[CellGroupData[{
+Cell[7228, 189, 722, 18, 52, "Code",ExpressionUUID->"89a5ef44-2309-4dda-98be-feb5ebcdc8c8"],
+Cell[7953, 209, 1143, 26, 34, "Output",ExpressionUUID->"9fdc001b-aa09-4757-b546-b531ff1952ea"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9133, 240, 392, 9, 52, "Code",ExpressionUUID->"2479eaa3-fc9f-4bb2-8d79-47fc9e5b1e46"],
+Cell[9528, 251, 799, 19, 34, "Output",ExpressionUUID->"42cc5f37-7e87-42b3-92d2-f33d338da5b7"]
+}, Open  ]],
+Cell[10342, 273, 305, 8, 35, "Text",ExpressionUUID->"132e452e-4938-4583-9b14-48123a73ec33"],
+Cell[CellGroupData[{
+Cell[10672, 285, 262, 6, 52, "Code",ExpressionUUID->"a45a1717-07eb-4279-93f9-4714ce99ff89"],
+Cell[10937, 293, 727, 18, 34, "Output",ExpressionUUID->"801459ab-4e36-43b9-9c76-179bcfadfec7"]
+}, Open  ]],
+Cell[11679, 314, 238, 6, 35, "Text",ExpressionUUID->"6a1cbd6e-b86c-4344-8711-e9fff7137ee4"]
+}, Open  ]]
+}
+]
+*)
+

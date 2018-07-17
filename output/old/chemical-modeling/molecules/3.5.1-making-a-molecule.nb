@@ -1,0 +1,438 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17368,        430]
+NotebookOptionsPosition[     16195,        405]
+NotebookOutlinePosition[     16627,        422]
+CellTagsIndexPosition[     16584,        419]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Making a Molecule\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Molecules\>\""}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.5.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<molecules\>\""}], "}"}]}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<systems\>\"", ",", "\"\<object-oriented-programming\>\"", ",", 
+      "\"\<chemical-molecule\>\""}], "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 3.723435549502858*^9}, {3.723435626994491*^9, 
+   3.723435705605221*^9}, {3.723436653781901*^9, 3.723436668193194*^9}, {
+   3.723436761706489*^9, 3.7234367745441847`*^9}, 3.723437059752784*^9, {
+   3.723437090746611*^9, 
+   3.723437099373788*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Making a Molecule", "Subsection",
+ CellChangeTimes->{{3.684544126599936*^9, 3.6845441286883*^9}, {
+   3.684544950641677*^9, 3.684544951744722*^9}, 
+   3.723437086822749*^9},ExpressionUUID->"49feaca5-b0cb-4448-95ff-\
+e680754accbb"],
+
+Cell["\<\
+At base, the molecule should just be a list of atoms with other properties, \
+but let\[CloseCurlyQuote]s write a nicer constructor than requiring an \
+explicit list of atoms:\
+\>", "Text",
+ CellChangeTimes->{{3.684544130463573*^9, 3.68454415570893*^9}, {
+  3.684544457269127*^9, 
+  3.684544484335423*^9}},ExpressionUUID->"51998ec7-3d12-4bb8-9c39-\
+4f569b62e15b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"SetChemicalSystemUpValues", "@", "Molecule"}], ";"}]], "Code",
+ CellChangeTimes->{{3.684546007215867*^9, 3.684546031506062*^9}, 
+   3.723437078605304*^9},ExpressionUUID->"06b078b0-3b74-486e-bdb8-\
+d046b55d7ec9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Molecule", "[", 
+    RowBox[{
+     RowBox[{"atoms", ":", 
+      RowBox[{"{", 
+       RowBox[{"_Atom", "..."}], "}"}], ":", 
+      RowBox[{"{", "}"}]}], ",", "\n", "\t", 
+     RowBox[{"bonds", ":", 
+      RowBox[{"{", 
+       RowBox[{"_Bond", "..."}], "}"}], ":", 
+      RowBox[{"{", "}"}]}]}], "]"}], ":=", 
+   RowBox[{"ChemicalSystemAdd", "[", 
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"Length", "@", "atoms"}], ">", "0"}], ",", "\n", "\t\t", 
+       RowBox[{
+        RowBox[{"bonds", "/.", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Bond", "[", 
+            RowBox[{"i_Integer", ",", "j_Integer", ",", "t___"}], "]"}], 
+           "\[RuleDelayed]", 
+           RowBox[{"Bond", "[", 
+            RowBox[{
+             RowBox[{"atoms", "[", 
+              RowBox[{"[", "i", "]"}], "]"}], ",", 
+             RowBox[{"atoms", "[", 
+              RowBox[{"[", "j", "]"}], "]"}], ",", "t"}], "]"}]}], "}"}]}], 
+        ";", "\n", "\t\t", 
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"s", "=", 
+            RowBox[{
+             RowBox[{"atoms", "[", 
+              RowBox[{"[", "1", "]"}], "]"}], "[", "\"\<System\>\"", "]"}]}], 
+           "}"}], ",", 
+          RowBox[{"ChemicalSystem", "@", "s"}]}], "]"}]}], ",", "\n", "\t\t", 
+       "$DefaultChemicalSystem"}], "]"}], ",", "\n", "\t", 
+     RowBox[{"Molecule", "@", 
+      RowBox[{"<|", 
+       RowBox[{"\"\<Atoms\>\"", "\[Rule]", "atoms"}], "|>"}]}]}], "\n", 
+    "\t\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.684544489262664*^9, 3.68454452167441*^9}, {
+   3.684544615381072*^9, 3.6845447793480387`*^9}, {3.684544840720615*^9, 
+   3.684544862072982*^9}, 3.684545205869898*^9, {3.684546360939191*^9, 
+   3.684546420336548*^9}, {3.684546467135726*^9, 3.6845465096665163`*^9}, {
+   3.684546879829987*^9, 3.6845468882875443`*^9}, {3.684549673193632*^9, 
+   3.684549753601515*^9}, 3.684549840626165*^9, 3.684549905863571*^9, 
+   3.723437078638873*^9},ExpressionUUID->"ca9588b4-081d-4f39-ad95-\
+24b004ac7955"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll also code in a constructor for molecules in zmatrix \
+form\
+\>", "Text",
+ CellChangeTimes->{{3.68455261689783*^9, 
+  3.684552629097313*^9}},ExpressionUUID->"baed3f34-ed0f-405a-aea7-\
+323373779b7a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"zmConvert", "[", 
+    RowBox[{"{", "el_String", "}"}], "]"}], ":=", 
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"$zmAtomStore", ",", 
+     RowBox[{"{", 
+      RowBox[{"el", ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zmConvert", "[", 
+    RowBox[{"{", 
+     RowBox[{"el_String", ",", "ref_Integer", ",", "dist_"}], "}"}], "]"}], ":=", 
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"$zmAtomStore", ",", 
+     RowBox[{"{", 
+      RowBox[{"el", ",", 
+       RowBox[{
+        RowBox[{"Last", "@", 
+         RowBox[{"$zmAtomStore", "[", 
+          RowBox[{"[", "ref", "]"}], "]"}]}], "+", 
+        RowBox[{"{", 
+         RowBox[{"dist", ",", "0", ",", "0"}], "}"}]}]}], "}"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"zmConvert", "[", 
+    RowBox[{"{", 
+     RowBox[{
+     "el_String", ",", "ref1_Integer", ",", "dist_", ",", "ref2_Integer", ",",
+       "ang_"}], "}"}], "]"}], ":=", 
+   RowBox[{"AppendTo", "[", 
+    RowBox[{"$zmAtomStore", ",", "\n", "\t", 
+     RowBox[{"{", 
+      RowBox[{"el", ",", 
+       RowBox[{"With", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"p1", "=", 
+            RowBox[{"Last", "@", 
+             RowBox[{"$zmAtomStore", "[", 
+              RowBox[{"[", "ref1", "]"}], "]"}]}]}], ",", 
+           RowBox[{"p2", "=", 
+            RowBox[{"Last", "@", 
+             RowBox[{"$zmAtomStore", "[", 
+              RowBox[{"[", "ref2", "]"}], "]"}]}]}]}], "}"}], ",", "\n", 
+         "\t\t\t", 
+         RowBox[{"p1", "+", 
+          RowBox[{"dist", "*", 
+           RowBox[{"Normalize", "[", 
+            RowBox[{
+             RowBox[{"RotationMatrix", "[", 
+              RowBox[{"ang", ",", "\n", "\t\t\t\t", 
+               RowBox[{"Replace", "[", 
+                RowBox[{
+                 RowBox[{
+                  RowBox[{"(", 
+                   RowBox[{"p2", "-", "p1"}], ")"}], "\[Cross]", 
+                  RowBox[{"{", 
+                   RowBox[{"1", ",", "0", ",", "0"}], "}"}]}], ",", "\n", 
+                 "\t\t\t\t\t", 
+                 RowBox[{
+                  RowBox[{
+                   RowBox[{"Except", "[", "_List", "]"}], "|", 
+                   RowBox[{"{", 
+                    RowBox[{"0", ",", "0", ",", "0"}], "}"}]}], "\[Rule]", 
+                  RowBox[{"{", 
+                   RowBox[{"0", ",", "0", ",", "1"}], "}"}]}]}], "]"}]}], 
+              "]"}], ".", 
+             RowBox[{"(", 
+              RowBox[{"p2", "-", "p1"}], ")"}]}], "\n", "\t\t\t\t", 
+            "]"}]}]}]}], "\n", "\t\t\t", "]"}]}], "}"}]}], "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"zmConvert", "[", 
+     RowBox[{"{", 
+      RowBox[{
+      "el_String", ",", "ref1_Integer", ",", "dist_", ",", "ref2_Integer", 
+       ",", "ang_", ",", "ref3_Integer", ",", "dihed_"}], "}"}], "]"}], ":=", 
+    
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"$zmAtomStore", ",", "\n", "\t\t", 
+      RowBox[{"{", 
+       RowBox[{"el", ",", 
+        RowBox[{"With", "[", 
+         RowBox[{
+          RowBox[{"{", "\n", "\t\t\t\t", 
+           RowBox[{
+            RowBox[{"p1", "=", 
+             RowBox[{"Last", "@", 
+              RowBox[{"$zmAtomStore", "[", 
+               RowBox[{"[", "ref1", "]"}], "]"}]}]}], ",", "\n", "\t\t\t\t", 
+            RowBox[{"p2", "=", 
+             RowBox[{"Last", "@", 
+              RowBox[{"$zmAtomStore", "[", 
+               RowBox[{"[", "ref2", "]"}], "]"}]}]}], ",", "\n", "\t\t\t\t", 
+            RowBox[{"p3", "=", 
+             RowBox[{"Last", "@", 
+              RowBox[{"$zmAtomStore", "[", 
+               RowBox[{"[", "ref3", "]"}], "]"}]}]}]}], "}"}], ",", "\n", 
+          "\t\t\t", 
+          RowBox[{"With", "[", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"n", "=", 
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{"p2", "-", "p1"}], ")"}], "\[Cross]", 
+               RowBox[{"(", 
+                RowBox[{"p3", "-", "p1"}], ")"}]}]}], "}"}], ",", "\n", 
+            "\t\t\t\t", 
+            RowBox[{"p1", "+", 
+             RowBox[{"dist", "*", 
+              RowBox[{"Normalize", "@", 
+               RowBox[{"(", "\n", "\t\t\t\t\t", 
+                RowBox[{
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"dihed", "!=", "0"}], ",", "\n", "\t\t\t\t\t\t", 
+                   RowBox[{"RotationMatrix", "[", 
+                    RowBox[{"dihed", ",", 
+                    RowBox[{"p2", "-", "p1"}]}], "]"}], ",", "\n", 
+                   "\t\t\t\t\t\t", 
+                   RowBox[{"IdentityMatrix", "@", "3"}]}], "\n", 
+                  "\t\t\t\t\t\t", "]"}], ".", 
+                 RowBox[{"RotationMatrix", "[", 
+                  RowBox[{"ang", ",", "n"}], "]"}], ".", 
+                 RowBox[{"(", 
+                  RowBox[{"p2", "-", "p1"}], ")"}]}], "\n", "\t\t\t\t\t", 
+                ")"}]}]}]}]}], "\n", "\t\t\t\t", "]"}]}], "]"}]}], "}"}]}], 
+     "]"}]}], ";"}]}], "\n", 
+ RowBox[{"\t\t\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"zmConvert", "[", 
+     RowBox[{"{", 
+      RowBox[{"a1_Integer", ",", "a2_Integer", ",", "t___"}], "}"}], "]"}], ":=", 
+    RowBox[{"AppendTo", "[", 
+     RowBox[{"$zmBondStore", ",", "\n", "\t\t\t\t", 
+      RowBox[{"Bond", "[", "\n", "\t\t\t\t\t", 
+       RowBox[{
+        RowBox[{"a1", "-", 
+         RowBox[{"Length", "@", 
+          RowBox[{"Cases", "[", 
+           RowBox[{
+            RowBox[{"$zmAtomStore", "[", 
+             RowBox[{"[", 
+              RowBox[{";;", "a1"}], "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"\"\<X\>\"", ",", "___"}], "}"}]}], "]"}]}]}], ",", "\n",
+         "\t\t\t\t\t", 
+        RowBox[{"a2", "-", 
+         RowBox[{"Length", "@", 
+          RowBox[{"Cases", "[", 
+           RowBox[{
+            RowBox[{"$zmAtomStore", "[", 
+             RowBox[{"[", 
+              RowBox[{";;", "a2"}], "]"}], "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"\"\<X\>\"", ",", "___"}], "}"}]}], "]"}]}]}], ",", "\n",
+         "\t\t\t\t\t", "t"}], "]"}]}], "]"}]}], ";"}]}]}], "Code",
+ CellChangeTimes->{{3.684549909846374*^9, 3.6845500938523006`*^9}, {
+   3.6845501592359447`*^9, 3.6845502526973553`*^9}, {3.684550391871005*^9, 
+   3.684550404357491*^9}, {3.6845505479501143`*^9, 3.6845506348282757`*^9}, {
+   3.6845506653618717`*^9, 3.684550709318654*^9}, {3.684550749410119*^9, 
+   3.684550817536178*^9}, {3.684550933379591*^9, 3.684550944468464*^9}, 
+   3.684551131692719*^9, {3.684551218169685*^9, 3.684551306852552*^9}, {
+   3.684551342801359*^9, 3.684551346602036*^9}, {3.6845524871529627`*^9, 
+   3.684552520740141*^9}, {3.6845525578833923`*^9, 3.684552575961649*^9}, {
+   3.684552735174622*^9, 3.684552737703759*^9}, {3.684552845656637*^9, 
+   3.684552900377008*^9}, 3.6845530956364594`*^9, {3.6845532482986717`*^9, 
+   3.6845532544823017`*^9}, {3.6845532943866873`*^9, 3.6845533557992887`*^9}, 
+   3.684553388575514*^9, {3.684553689915538*^9, 3.684553691618472*^9}, {
+   3.6845547379946413`*^9, 3.684554750607319*^9}, {3.684555123318034*^9, 
+   3.684555123848455*^9}, {3.684555173172402*^9, 3.684555177153241*^9}, {
+   3.68455646557164*^9, 3.684556466586372*^9}, {3.684556498657082*^9, 
+   3.684556524268536*^9}, {3.684556604827845*^9, 3.684556620370549*^9}, {
+   3.68455689234551*^9, 3.684556894906948*^9}, {3.684556931666663*^9, 
+   3.684556955723072*^9}, {3.6845570115605383`*^9, 3.684557040119403*^9}, {
+   3.684557088771879*^9, 3.684557093921638*^9}, 
+   3.72343707868917*^9},ExpressionUUID->"25bf3c0f-2c0c-40c8-be84-\
+0d6504c72321"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ZMatrixToStandard", "[", 
+    RowBox[{"ZMTable", ":", 
+     RowBox[{"{", 
+      RowBox[{"_List", ".."}], "}"}]}], "]"}], ":=", 
+   RowBox[{"Block", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"$zmAtomStore", "=", 
+        RowBox[{"{", "}"}]}], ",", 
+       RowBox[{"$zmBondStore", "=", 
+        RowBox[{"{", "}"}]}]}], "}"}], ",", "\n", "\t", 
+     RowBox[{
+      RowBox[{"zmConvert", "/@", "ZMTable"}], ";", "\n", "\t", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"DeleteCases", "[", 
+         RowBox[{"$zmAtomStore", ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<X\>\"", ",", "___"}], "}"}]}], "]"}], ",", 
+        "$zmBondStore"}], "}"}]}]}], "\n", "\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.684544489262664*^9, 3.68454452167441*^9}, {
+   3.684544615381072*^9, 3.6845447793480387`*^9}, {3.684544840720615*^9, 
+   3.684544862072982*^9}, 3.684545205869898*^9, {3.684546360939191*^9, 
+   3.684546420336548*^9}, {3.684546467135726*^9, 3.6845465096665163`*^9}, {
+   3.684546879829987*^9, 3.6845468882875443`*^9}, {3.684549673193632*^9, 
+   3.684549753601515*^9}, 3.684549840626165*^9, {3.684549905863571*^9, 
+   3.684549908086268*^9}, {3.6845508216475077`*^9, 3.684550863627829*^9}, {
+   3.684551181356745*^9, 3.68455121611272*^9}, {3.6845513233080997`*^9, 
+   3.684551362400635*^9}, {3.684551465855391*^9, 3.684551483984354*^9}, 
+   3.684552390868022*^9, 
+   3.7234370787245073`*^9},ExpressionUUID->"20d9ead3-296f-4f73-af9b-\
+65fda2953810"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"Molecule", "[", 
+    RowBox[{"ZMTable", ":", 
+     RowBox[{"{", 
+      RowBox[{"_List", ".."}], "}"}]}], "]"}], ":=", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"zmConf", "=", 
+       RowBox[{"ZMatrixToStandard", "@", "ZMTable"}]}], "}"}], ",", "\n", 
+     "\t", 
+     RowBox[{"Molecule", "[", 
+      RowBox[{
+       RowBox[{"Atom", "@@@", 
+        RowBox[{"First", "@", "zmConf"}]}], ",", 
+       RowBox[{"Last", "@", "zmConf"}]}], "]"}]}], "\n", "\t", "]"}]}], 
+  ";"}]], "Code",
+ CellChangeTimes->{{3.684544489262664*^9, 3.68454452167441*^9}, {
+   3.684544615381072*^9, 3.6845447793480387`*^9}, {3.684544840720615*^9, 
+   3.684544862072982*^9}, 3.684545205869898*^9, {3.684546360939191*^9, 
+   3.684546420336548*^9}, {3.684546467135726*^9, 3.6845465096665163`*^9}, {
+   3.684546879829987*^9, 3.6845468882875443`*^9}, {3.684549673193632*^9, 
+   3.684549753601515*^9}, 3.684549840626165*^9, {3.684549905863571*^9, 
+   3.684549908086268*^9}, {3.684552393001474*^9, 3.68455241585564*^9}, 
+   3.723437078789309*^9},ExpressionUUID->"3ef14696-2d78-42b9-89c7-\
+1e565ca408fd"]
+}, Open  ]]
+},
+WindowSize->{808, 754},
+WindowMargins->{{316, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2019, 37, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2602, 61, 236, 4, 52, "Subsection",ExpressionUUID->"49feaca5-b0cb-4448-95ff-e680754accbb"],
+Cell[2841, 67, 372, 8, 58, "Text",ExpressionUUID->"51998ec7-3d12-4bb8-9c39-4f569b62e15b"],
+Cell[3216, 77, 246, 5, 52, "Code",ExpressionUUID->"06b078b0-3b74-486e-bdb8-d046b55d7ec9"],
+Cell[3465, 84, 2124, 54, 167, "Code",ExpressionUUID->"ca9588b4-081d-4f39-ad95-24b004ac7955"],
+Cell[5592, 140, 230, 6, 35, "Text",ExpressionUUID->"baed3f34-ed0f-405a-aea7-323373779b7a"],
+Cell[5825, 148, 7665, 188, 548, "Code",ExpressionUUID->"25bf3c0f-2c0c-40c8-be84-0d6504c72321"],
+Cell[13493, 338, 1537, 35, 110, "Code",ExpressionUUID->"20d9ead3-296f-4f73-af9b-65fda2953810"],
+Cell[15033, 375, 1146, 27, 91, "Code",ExpressionUUID->"3ef14696-2d78-42b9-89c7-1e565ca408fd"]
+}, Open  ]]
+}
+]
+*)
+

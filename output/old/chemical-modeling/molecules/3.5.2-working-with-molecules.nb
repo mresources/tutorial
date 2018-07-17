@@ -1,0 +1,160 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5974,        152]
+NotebookOptionsPosition[      5271,        132]
+NotebookOutlinePosition[      5703,        149]
+CellTagsIndexPosition[      5660,        146]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Working with Molecules\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Molecules\>\""}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.5.2\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<molecules\>\""}], "}"}]}],
+    ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<systems\>\"", ",", "\"\<object-oriented-programming\>\"", ",", 
+      "\"\<chemical-molecule\>\""}], "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 3.723435549502858*^9}, {3.723435626994491*^9, 
+   3.723435705605221*^9}, {3.723436653781901*^9, 3.723436668193194*^9}, {
+   3.723436761706489*^9, 3.7234367745441847`*^9}, 3.723437059752784*^9, {
+   3.723437090746611*^9, 3.7234371163028793`*^9}, 
+   3.723437615356648*^9},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Working with Molecules", "Subsection",
+ CellChangeTimes->{{3.684544336621666*^9, 
+  3.6845443397731247`*^9}},ExpressionUUID->"72997e1f-bd21-41d5-982b-\
+3d45c5be0a83"],
+
+Cell["\<\
+Just like with the bond, let\[CloseCurlyQuote]s only write a single method \
+for now, to display our molecule.\
+\>", "Text",
+ CellChangeTimes->{{3.6845467143401403`*^9, 
+  3.684546754224677*^9}},ExpressionUUID->"4006cdf5-733a-4d0b-8ae8-\
+5d05b3dfa0bf"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "[", "DisplayMolecule", "]"}], "=", 
+   RowBox[{"Options", "@", "DisplayBond"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"DisplayMolecule", "[", 
+   RowBox[{"m_Molecule", ",", 
+    RowBox[{"ops", ":", 
+     RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", "\n", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"atoms", "=", 
+       RowBox[{"m", "[", "\"\<Atoms\>\"", "]"}]}], ",", 
+      RowBox[{"bonds", "=", 
+       RowBox[{"DeleteDuplicates", "@", 
+        RowBox[{"Flatten", "@", 
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", "\"\<Bonds\>\"", "]"}], "&"}], "/@", 
+           RowBox[{"m", "[", "\"\<Atoms\>\"", "]"}]}], ")"}]}]}]}]}], "}"}], 
+    ",", "\n", "\t", 
+    RowBox[{"Graphics3D", "[", 
+     RowBox[{
+      RowBox[{"{", "\n", "\t\t\t", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"First", "@", 
+           RowBox[{"DisplayAtom", "[", "#", "]"}]}], "&"}], "/@", "atoms"}], 
+        ",", "\n", "\t\t\t", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"First", "@", 
+           RowBox[{"DisplayBond", "[", "#", "]"}]}], "&"}], "/@", "bonds"}]}],
+        "}"}], ",", "\n", "\t\t", 
+      RowBox[{"FilterRules", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"ops", ",", "\n", "\t\t\t\t", 
+          RowBox[{"Options", "@", "DisplayMolecule"}]}], "\n", "\t\t\t\t", 
+         "}"}], ",", "\n", "\t\t\t", 
+        RowBox[{"Options", "@", "Graphics3D"}]}], "]"}]}], "\n", "\t\t", 
+     "]"}]}], "\n", "\t", "]"}]}]}], "Code",
+ CellChangeTimes->{{3.684546785284644*^9, 3.684546787329669*^9}, {
+  3.684546960565181*^9, 3.684546965589189*^9}, {3.684547244141124*^9, 
+  3.684547378316489*^9}, {3.684547597506974*^9, 3.684547627849105*^9}, {
+  3.684547728611868*^9, 3.68454773608165*^9}, {3.6845479881488132`*^9, 
+  3.6845480183728743`*^9}, {3.684551866986239*^9, 3.6845519006338243`*^9}, {
+  3.684551937504188*^9, 3.684552149778172*^9}, {3.684552224397945*^9, 
+  3.684552314109651*^9}, {3.723437625264865*^9, 
+  3.7234376311472187`*^9}},ExpressionUUID->"00897293-bf9a-426b-b6ef-\
+88f65757e368"]
+}, Open  ]]
+},
+WindowSize->{808, 754},
+WindowMargins->{{316, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2048, 37, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2631, 61, 172, 3, 52, "Subsection",ExpressionUUID->"72997e1f-bd21-41d5-982b-3d45c5be0a83"],
+Cell[2806, 66, 262, 6, 35, "Text",ExpressionUUID->"4006cdf5-733a-4d0b-8ae8-5d05b3dfa0bf"],
+Cell[3071, 74, 2184, 55, 262, "Code",ExpressionUUID->"00897293-bf9a-426b-b6ef-88f65757e368"]
+}, Open  ]]
+}
+]
+*)
+

@@ -1,0 +1,384 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     15243,        376]
+NotebookOptionsPosition[     13701,        347]
+NotebookOutlinePosition[     14132,        364]
+CellTagsIndexPosition[     14089,        361]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Editing a system\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Path\>\"", "\[Rule]", "\"\<Chemical Modeling/Systems\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.2.2\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<chemical-modeling\>\"", ",", "\"\<systems\>\""}], "}"}]}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<systems\>\"", ",", "\"\<object-oriented-programming\>\"", ",", 
+      "\"\<chemical-system\>\""}], "}"}]}]}], "\[IndentingNewLine]", 
+  "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
+   3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
+   3.7234355085797987`*^9, 3.723435549502858*^9}, {3.723435626994491*^9, 
+   3.723435705605221*^9}, {3.723435751268115*^9, 3.723435754425436*^9}, 
+   3.7234358343518543`*^9},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Editing a system", "Subsection",
+ CellChangeTimes->{{3.684454509165813*^9, 
+  3.684454512196496*^9}},ExpressionUUID->"741cebfc-725c-491e-bcd2-\
+d1dd02824dc8"],
+
+Cell["\<\
+Now that we have our object tracker defined we need a way to edit objects \
+within the system.\
+\>", "Text",
+ CellChangeTimes->{{3.684454544647328*^9, 3.6844545767890263`*^9}, {
+  3.684454751268556*^9, 3.684454807973031*^9}, {3.684454904202964*^9, 
+  3.6844549895810537`*^9}, {3.684455410409062*^9, 3.684455417551258*^9}, {
+  3.6906538054116583`*^9, 
+  3.690653822224703*^9}},ExpressionUUID->"838cdcc8-ee5d-4299-8ac0-\
+f7578ebc11c3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"Options", "@", "ChemicalSystemApply"}], "=", 
+   RowBox[{"{", 
+    RowBox[{"Overwrite", "\[Rule]", "True"}], "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystemApply", "[", 
+    RowBox[{
+     RowBox[{"ChemicalSystem", "[", "system_", "]"}], ",", "function_", ",", 
+     "ID_Integer", ",", 
+     RowBox[{"OptionsPattern", "[", "]"}]}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"o", "=", 
+       RowBox[{"system", "[", "ID", "]"}]}], "}"}], ",", "\n", "\t", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"OptionValue", "@", "Overwrite"}], ",", "\n", "\t\t", 
+       RowBox[{"Replace", "[", 
+        RowBox[{
+         RowBox[{"function", "[", "o", "]"}], ",", "\n", "\t\t\t", 
+         RowBox[{
+          RowBox[{"r_", "?", 
+           RowBox[{"(", 
+            RowBox[{
+             RowBox[{"MatchQ", "[", 
+              RowBox[{
+               RowBox[{"Head", "@", "#"}], ",", 
+               RowBox[{"Head", "@", "o"}]}], "]"}], "&"}], ")"}]}], ":>", 
+          RowBox[{"(", 
+           RowBox[{
+            RowBox[{"system", "[", "ID", "]"}], "=", "r"}], ")"}]}]}], "\n", 
+        "\t\t\t", "]"}], ",", "\n", "\t\t", 
+       RowBox[{"function", "@", "o"}]}], "\n", "\t\t", "]"}]}], "\n", "\t", 
+    "]"}]}], ";"}]}], "Code",
+ CellChangeTimes->{{3.6844549917391243`*^9, 3.684455051216695*^9}, {
+   3.684455090797481*^9, 3.684455117842825*^9}, {3.684455201194368*^9, 
+   3.684455208426076*^9}, {3.6844554236242313`*^9, 3.6844557020909557`*^9}, {
+   3.684455917533877*^9, 3.684456193763506*^9}, {3.6845326193223124`*^9, 
+   3.6845326206523333`*^9}, {3.6845328829428473`*^9, 3.684532883220912*^9}, {
+   3.68454262251609*^9, 3.6845426322708197`*^9}, {3.684546984641677*^9, 
+   3.6845470681971188`*^9}, {3.684547098303145*^9, 3.6845471132134542`*^9}, 
+   3.684548695078814*^9, {3.684548747499292*^9, 3.6845487940147133`*^9}, {
+   3.723435819775852*^9, 
+   3.723435823399757*^9}},ExpressionUUID->"4c9ccaa8-325e-4a37-ba4f-\
+6bfec1e69a5d"],
+
+Cell["\<\
+Note that the way this is defined, the function must return an object of with \
+the same head for the change to be kept.\
+\>", "Text",
+ CellChangeTimes->{{3.684530861572959*^9, 
+  3.6845308942196407`*^9}},ExpressionUUID->"6a1d0d79-b693-45b4-96dd-\
+b82b33015ce4"],
+
+Cell["\<\
+We can make one further simplification: recalling that when an object is \
+added to the system the system ID is tracked we can add the following \
+definition:\
+\>", "Text",
+ CellChangeTimes->{{3.68453269117642*^9, 3.6845327526989317`*^9}, {
+  3.684532888947892*^9, 
+  3.684532895107155*^9}},ExpressionUUID->"29b446c7-4705-4d0a-893f-\
+c900c20f6c13"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystemApply", "[", 
+    RowBox[{"function_", ",", 
+     RowBox[{"h_", "[", 
+      RowBox[{"ID_Integer", ",", "systemID_Integer"}], "]"}], ",", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", 
+   RowBox[{"ChemicalSystemApply", "[", 
+    RowBox[{
+     RowBox[{"ChemicalSystem", "[", "systemID", "]"}], ",", "function", ",", 
+     "ID", ",", "ops"}], "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.6845429878661222`*^9, 3.6845429976730213`*^9}, {
+  3.684543032691511*^9, 3.684543074835123*^9}, {3.6845471215868177`*^9, 
+  3.6845471315401897`*^9}, {3.6845472026679897`*^9, 3.684547202675047*^9}, {
+  3.723435819818564*^9, 
+  3.723435823447534*^9}},ExpressionUUID->"41d85823-fd43-42d0-b031-\
+9efcaa4cd9e9"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystemApply", "[", 
+    RowBox[{"function_", ",", 
+     RowBox[{"h_", "[", "a_Association", "]"}], ",", 
+     RowBox[{"ops", ":", 
+      RowBox[{"OptionsPattern", "[", "]"}]}]}], "]"}], ":=", "\n", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"ID", "=", 
+        RowBox[{"a", "[", "\"\<ID\>\"", "]"}]}], ",", 
+       RowBox[{"system", "=", 
+        RowBox[{"a", "[", "\"\<System\>\"", "]"}]}]}], "}"}], ",", "\n", "\t", 
+     RowBox[{"ChemicalSystemApply", "[", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"ChemicalSystem", "@", "system"}], ",", "\n", "\t\t", 
+       "function", ",", "\n", "\t\t", 
+       RowBox[{"h", "[", 
+        RowBox[{"ID", ",", "system"}], "]"}], ",", "\n", "\t\t", "ops"}], 
+      "\n", "\t\t", "]"}]}], "\n", "\t", "]"}]}], ";"}]], "Code",
+ CellChangeTimes->{{3.68453275413301*^9, 3.6845329104217377`*^9}, {
+   3.684547134813778*^9, 3.684547140061322*^9}, {3.6845472026842213`*^9, 
+   3.684547202690415*^9}, {3.684548262725383*^9, 3.684548266902047*^9}, {
+   3.684548423699388*^9, 3.684548451697414*^9}, 3.684548652048523*^9, {
+   3.723435819848658*^9, 
+   3.7234358234785*^9}},ExpressionUUID->"ed3869b4-ef01-4cae-928a-\
+50b39bd4d788"],
+
+Cell["\<\
+And then knowing that objects will just be heads on associations the \
+following two functions will be useful\
+\>", "Text",
+ CellChangeTimes->{{3.684533023053668*^9, 3.684533071867486*^9}, {
+  3.6845332144845057`*^9, 
+  3.684533214652575*^9}},ExpressionUUID->"877742d5-9ed6-4889-9305-\
+d3e8e367afa7"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystemGet", "[", 
+    RowBox[{
+     RowBox[{"h_", "[", "a_Association", "]"}], ",", "prop_"}], "]"}], ":=", 
+   RowBox[{"a", "[", "prop", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"ChemicalSystemGet", "[", 
+   RowBox[{
+    RowBox[{"h_", "[", 
+     RowBox[{"objectID_Integer", ",", "systemID_Integer"}], "]"}], ",", 
+    "prop_"}], "]"}], ":=", 
+  RowBox[{"ChemicalSystemGet", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"ChemicalSystem", "[", "systemID", "]"}], "[", "objectID", "]"}],
+     ",", "prop"}], "]"}]}]}], "Code",
+ CellChangeTimes->{{3.6845330727384243`*^9, 3.684533208910739*^9}, {
+  3.684545495749193*^9, 3.68454555532345*^9}, {3.684545588886065*^9, 
+  3.684545593674859*^9}, {3.684545680564785*^9, 3.6845456933993893`*^9}, {
+  3.684545825030101*^9, 3.68454582846139*^9}, {3.6845466561955967`*^9, 
+  3.684546658702383*^9}, {3.723435819885727*^9, 
+  3.723435823509047*^9}},ExpressionUUID->"da4f3492-102c-439b-bf14-\
+9dcf03a028b3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystemSet", "[", 
+    RowBox[{
+     RowBox[{"h_", "[", "a_Association", "]"}], ",", "prop_", ",", "val_", 
+     ",", 
+     RowBox[{"function_:", "Set"}]}], "]"}], ":=", 
+   RowBox[{"h", "@", 
+    RowBox[{"Append", "[", 
+     RowBox[{"a", ",", 
+      RowBox[{"Switch", "[", 
+       RowBox[{"function", ",", "Set", ",", 
+        RowBox[{"(", 
+         RowBox[{"prop", "\[Rule]", "val"}], ")"}], ",", "SetDelayed", ",", 
+        RowBox[{"prop", "\[RuleDelayed]", "val"}]}], "]"}]}], "]"}]}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"ChemicalSystemSet", "[", 
+    RowBox[{
+     RowBox[{"h_", "[", 
+      RowBox[{"objectID_Integer", ",", "systemID_Integer"}], "]"}], ",", 
+     "prop_", ",", "val_", ",", 
+     RowBox[{"function_:", "Set"}]}], "]"}], ":=", 
+   RowBox[{"ChemicalSystemSet", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"ChemicalSystem", "[", "systemID", "]"}], "[", "objectID", 
+      "]"}], ",", "prop", ",", "val", ",", "function"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"ChemicalSystemSet", "~", "SetAttributes", "~", "HoldAll"}], 
+  ";"}]}], "Code",
+ CellChangeTimes->{{3.6845330727384243`*^9, 3.684533208910739*^9}, {
+  3.684545495749193*^9, 3.684545540909155*^9}, {3.6845456966805153`*^9, 
+  3.68454572635229*^9}, {3.684545833179718*^9, 3.684545834950466*^9}, {
+  3.6845466634617443`*^9, 3.684546668980035*^9}, {3.723435819921156*^9, 
+  3.723435823550674*^9}},ExpressionUUID->"40c37974-e861-4b47-b1c7-\
+59c168d5704a"],
+
+Cell["\<\
+Finally, for working with objects the following interface to set and get \
+attributes will be helpful:\
+\>", "Text",
+ CellChangeTimes->{{3.68454532190702*^9, 
+  3.684545346778182*^9}},ExpressionUUID->"c217ebde-0d18-43c9-bd9b-\
+06ae61fd60ab"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"SetChemicalSystemUpValues", "[", "sym_Symbol", "]"}], ":=", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"symPattern", "=", 
+       RowBox[{"sym", "[", 
+        RowBox[{"_Association", "|", 
+         RowBox[{"PatternSequence", "[", 
+          RowBox[{"_Integer", ",", "_Integer"}], "]"}]}], "]"}]}], "}"}], ",", 
+     RowBox[{
+      RowBox[{"sym", "/:", 
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{"PropertyValue", "[", 
+         RowBox[{
+          RowBox[{"o", ":", "symPattern"}], ",", "property_"}], "]"}], "]"}], 
+       ":=", 
+       RowBox[{"ChemicalSystemGet", "[", 
+        RowBox[{"o", ",", "property"}], "]"}]}], ";", "\n", "\t", 
+      RowBox[{"sym", "/:", 
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"o", ":", "symPattern"}], ")"}], "[", "property_", "]"}], 
+        "]"}], ":=", 
+       RowBox[{"PropertyValue", "[", 
+        RowBox[{"o", ",", "property"}], "]"}]}], ";", "\n", "\t", 
+      RowBox[{"sym", "/:", 
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{"Set", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"o", ":", "symPattern"}], ")"}], "[", "property_", "]"}], 
+          ",", "val_"}], "]"}], "]"}], ":=", 
+       RowBox[{"ChemicalSystemApply", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ChemicalSystemSet", "[", 
+           RowBox[{"#", ",", "property", ",", "val", ",", "Set"}], "]"}], 
+          "&"}], ",", "o"}], "]"}]}], ";", "\n", "\t", 
+      RowBox[{"sym", "/:", 
+       RowBox[{"HoldPattern", "[", 
+        RowBox[{"SetDelayed", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"o", ":", "symPattern"}], ")"}], "[", 
+          RowBox[{"property_", ",", "val_"}], "]"}], "]"}], "]"}], ":=", 
+       RowBox[{"ChemicalSystemApply", "[", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"ChemicalSystemSet", "[", 
+           RowBox[{"#", ",", "property", ",", "val", ",", "SetDelayed"}], 
+           "]"}], "&"}], ",", "o"}], "]"}]}], ";"}]}], "\n", "\t", "]"}]}], 
+  ";"}], "\n", 
+ RowBox[{
+  RowBox[{"ChemicalSystemUpValues", "~", "SetAttributes", "~", "HoldFirst"}], 
+  ";"}]}], "Code",
+ CellChangeTimes->{{3.684545349248274*^9, 3.684545371675241*^9}, {
+   3.684545404955605*^9, 3.684545455348592*^9}, {3.684545798881836*^9, 
+   3.684545808567875*^9}, {3.6845458489470053`*^9, 3.684545992460507*^9}, {
+   3.684546181708089*^9, 3.684546188587673*^9}, {3.684547147079666*^9, 
+   3.68454716693899*^9}, {3.6845472014516068`*^9, 3.684547202703246*^9}, 
+   3.6845486198013163`*^9, {3.72343581997504*^9, 
+   3.723435823586678*^9}},ExpressionUUID->"0ea91601-a13c-43db-9a31-\
+666e84700eda"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{69, Automatic}, {Automatic, 0}},
+FrontEndVersion->"11.2 for Mac OS X x86 (32-bit, 64-bit Kernel) (September \
+10, 2017)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1912, 35, 259, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[2495, 59, 164, 3, 52, "Subsection",ExpressionUUID->"741cebfc-725c-491e-bcd2-d1dd02824dc8"],
+Cell[2662, 64, 443, 9, 35, "Text",ExpressionUUID->"838cdcc8-ee5d-4299-8ac0-f7578ebc11c3"],
+Cell[3108, 75, 2058, 48, 224, "Code",ExpressionUUID->"4c9ccaa8-325e-4a37-ba4f-6bfec1e69a5d"],
+Cell[5169, 125, 272, 6, 58, "Text",ExpressionUUID->"6a1d0d79-b693-45b4-96dd-b82b33015ce4"],
+Cell[5444, 133, 358, 8, 58, "Text",ExpressionUUID->"29b446c7-4705-4d0a-893f-c900c20f6c13"],
+Cell[5805, 143, 796, 18, 52, "Code",ExpressionUUID->"41d85823-fd43-42d0-b031-9efcaa4cd9e9"],
+Cell[6604, 163, 1261, 29, 205, "Code",ExpressionUUID->"ed3869b4-ef01-4cae-928a-50b39bd4d788"],
+Cell[7868, 194, 310, 7, 35, "Text",ExpressionUUID->"877742d5-9ed6-4889-9305-d3e8e367afa7"],
+Cell[8181, 203, 999, 24, 72, "Code",ExpressionUUID->"da4f3492-102c-439b-bf14-9dcf03a028b3"],
+Cell[9183, 229, 1509, 38, 91, "Code",ExpressionUUID->"40c37974-e861-4b47-b1c7-59c168d5704a"],
+Cell[10695, 269, 251, 6, 35, "Text",ExpressionUUID->"c217ebde-0d18-43c9-bd9b-06ae61fd60ab"],
+Cell[10949, 277, 2736, 67, 149, "Code",ExpressionUUID->"0ea91601-a13c-43db-9a31-666e84700eda"]
+}, Open  ]]
+}
+]
+*)
+

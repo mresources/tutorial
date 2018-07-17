@@ -1,0 +1,270 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10701,        262]
+NotebookOptionsPosition[      8904,        227]
+NotebookOutlinePosition[      9332,        244]
+CellTagsIndexPosition[      9289,        241]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Packages in Mathematica\>\""}], 
+   ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+   "\"\<Path\>\"", "\[Rule]", 
+    "\"\<Package Usage and Development/Overview/\>\""}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ID\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<3.1.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Date\>\"", "\[Rule]", 
+    TemplateBox[{RowBox[{"\"Fri 13 Jul 2018 12:39:40\"", 
+        StyleBox[
+         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
+           StyleBox[
+            RowBox[{"-", "7.`"}], NumberMarks -> False, StripOnInput -> 
+            False]}], FontColor -> GrayLevel[0.5]]}],
+      RowBox[{"DateObject", "[", 
+        RowBox[{
+          RowBox[{"{", 
+            
+            RowBox[{"2018", ",", "7", ",", "13", ",", "12", ",", "39", ",", 
+              "40"}], "}"}], ",", "\"Instant\"", ",", "\"Gregorian\"", ",", 
+          RowBox[{"-", "7.`"}]}], "]"}]},
+     "DateObject",
+     Editable->False]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Modified\>\"", "\[Rule]", "Now"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Authors\>\"", "\[Rule]", 
+    RowBox[{"{", "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"\"\<Categories\>\"", "\[Rule]", 
+    RowBox[{"{", "\"\<package-usage-and-development\>\"", "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<Tags\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<packages\>\"", ",", " ", "\"\<paclets\>\""}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
+ CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
+   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
+   3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
+   3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
+   3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
+   3.723348528182694*^9}, {3.723349786969777*^9, 3.723349817027914*^9}, {
+   3.740255371551134*^9, 3.740255441548623*^9}, {3.740257785728876*^9, 
+   3.740257787359725*^9}, {3.740258871202475*^9, 3.740258879451874*^9}, {
+   3.7402590092497253`*^9, 3.740259025015277*^9}, {3.7404995768415213`*^9, 
+   3.740499577991283*^9}, {3.740777939148587*^9, 
+   3.740777953806213*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+8bb496c1c725"],
+
+Cell[CellGroupData[{
+
+Cell["Packages", "Subsection",
+ CellChangeTimes->{{3.740255477850593*^9, 
+  3.740255479529958*^9}},ExpressionUUID->"36c68aba-ef4e-4c2d-a805-\
+3af3c2d932e3"],
+
+Cell["\<\
+We talked briefly before about packages in the context of programming, but we \
+haven\[CloseCurlyQuote]t talked about packages as an organizational structure \
+in Mathematica.\
+\>", "Text",
+ CellChangeTimes->{{3.7402554829526157`*^9, 
+  3.740255536962838*^9}},ExpressionUUID->"1690f189-1f4b-499d-9030-\
+710456a28504"],
+
+Cell["\<\
+As with most languages, packages provide a way to bundle together different \
+code files and resources. By creating a package a developer allows disparate \
+functionality to act as a single unit. There are packages in C, Java, Python, \
+etc. and while they all have subtle differences in setup and exact usage, \
+they all serve the same purpose. In this regard, Mathematica is no different.\
+\
+\>", "Text",
+ CellChangeTimes->{{3.740257799049858*^9, 3.740257878239314*^9}, {
+  3.740258084887135*^9, 
+  3.7402581475575*^9}},ExpressionUUID->"72e0bf36-85a3-498a-9f3b-e639d9c93b64"],
+
+Cell["\<\
+We\[CloseCurlyQuote]ll go more into how to set up one\[CloseCurlyQuote]s own \
+packages in a later post, but first we\[CloseCurlyQuote]ll deal with some \
+terminology.\
+\>", "Text",
+ CellChangeTimes->{{3.74025815836847*^9, 
+  3.740258196762155*^9}},ExpressionUUID->"522b198c-faa3-4f0d-bb2e-\
+074568ff6271"],
+
+Cell[CellGroupData[{
+
+Cell["Package File", "Subsubsection",
+ CellChangeTimes->{{3.74025820034473*^9, 
+  3.740258222630987*^9}},ExpressionUUID->"d3def6cb-d776-4688-8b42-\
+9bd07406b6f4"],
+
+Cell[TextData[{
+ "Mathematica packages come in two variants. The first is simply bundling a \
+number of functions into a single file with the extension ",
+ Cell[BoxData["\"\<.m\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "b5563e4f-dc4d-4616-96fd-af71d33250c2"],
+ " or ",
+ Cell[BoxData["\"\<.wl\>\""], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "3f2a5ca9-fd74-464a-81a2-88773e06d89c"]
+}], "Text",
+ CellChangeTimes->{{3.740258229463484*^9, 
+  3.740258269051641*^9}},ExpressionUUID->"eba6b0c8-1198-435b-bb2d-\
+6d24b6b9981c"],
+
+Cell[TextData[{
+ ButtonBox["We talked about this earlier",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-\
+programming/higher-level-functionality/packages.html"], None},
+  ButtonNote->
+   "https://www.wolframcloud.com/objects/b3m2a1/tutorial/mathematica-\
+programming/higher-level-functionality/packages.html"],
+ " so in order to minimize repeating myself I won\[CloseCurlyQuote]t go into \
+this here."
+}], "Text",
+ CellChangeTimes->{{3.740258297353462*^9, 3.740258322976663*^9}, {
+  3.740258468183146*^9, 
+  3.7402584798933573`*^9}},ExpressionUUID->"1eb22c17-dffd-42b5-828a-\
+071538c5a190"],
+
+Cell["\<\
+The main case where this type of package is useful is when the size of the \
+code is not particularly large, there aren\[CloseCurlyQuote]t any external \
+resources that should be distributed with the package, versioning and \
+updating is not a concern, and no metadata needs to be stored.\
+\>", "Text",
+ CellChangeTimes->{{3.740258326087549*^9, 3.7402583871113853`*^9}, {
+  3.7402584926279078`*^9, 
+  3.740258500740912*^9}},ExpressionUUID->"ff1bc554-1ff3-4404-8857-\
+468974928e2c"],
+
+Cell["\<\
+Surprisingly this covers the major use case most casual coders will handle.\
+\>", "Text",
+ CellChangeTimes->{{3.74025850661112*^9, 
+  3.740258534979945*^9}},ExpressionUUID->"56ecefab-b9af-481d-9a11-\
+ff0069a1942c"],
+
+Cell[TextData[{
+ "A package file can simply be installed via ",
+ Cell[BoxData["Get"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "232187a0-bff6-4832-a3b7-6f10f5a860e1"],
+ ", so often one need not install a package file explicitly to make use of it."
+}], "Text",
+ CellChangeTimes->{{3.740258728796296*^9, 
+  3.7402587622850313`*^9}},ExpressionUUID->"d8c7fc92-892f-46e3-aacd-\
+154fce13bfed"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Paclet", "Subsubsection",
+ CellChangeTimes->{{3.740258538794818*^9, 
+  3.740258539475459*^9}},ExpressionUUID->"79d0d544-a97d-4858-b7a4-\
+e02eac74fa2d"],
+
+Cell["\<\
+Since the term \[OpenCurlyDoubleQuote]package\[CloseCurlyDoubleQuote] was \
+already used, what most programming languages call a package Mathematica \
+calls a \[OpenCurlyDoubleQuote]paclet\[CloseCurlyDoubleQuote].\
+\>", "Text",
+ CellChangeTimes->{{3.740258546786619*^9, 3.740258593786034*^9}, {
+  3.740258641525938*^9, 
+  3.740258646806831*^9}},ExpressionUUID->"56aadfdc-47fb-4780-b0cb-\
+f0d27a99357e"],
+
+Cell[TextData[{
+ "A paclet is simply a .zip archive by another name that bundles code, \
+resources, and metadata in a way that Mathematica\[CloseCurlyQuote]s native \
+package manager (the ",
+ Cell[BoxData["PacletManager"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "d81418c4-d4ea-4a00-af63-12e083c6433b"],
+ " system) can deal with.  Paclets provide an easy way to install code, \
+resources, stylesheets, palettes, and documentation via the ",
+ Cell[BoxData["PacletInstall"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "b93ddbb9-2401-4f70-b6e2-6a75492c32a5"],
+ " function."
+}], "Text",
+ CellChangeTimes->{{3.7402586484614*^9, 3.74025872591728*^9}, {
+  3.740258767788159*^9, 
+  3.7402588155209*^9}},ExpressionUUID->"41c29645-b29e-417b-823d-b2ffa59a681b"],
+
+Cell["\<\
+When we discuss packages for the rest of this section we will generally be \
+talking about paclets, not package files themselves.\
+\>", "Text",
+ CellChangeTimes->{{3.74025882933211*^9, 
+  3.740258861465632*^9}},ExpressionUUID->"c084790c-502b-48de-a361-\
+6adf0434e857"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{123, Automatic}, {Automatic, 46}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+  CharacterEncoding -> "UTF-8"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 2658, 54, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[CellGroupData[{
+Cell[3241, 78, 156, 3, 41, "Subsection",ExpressionUUID->"36c68aba-ef4e-4c2d-a805-3af3c2d932e3"],
+Cell[3400, 83, 327, 7, 58, "Text",ExpressionUUID->"1690f189-1f4b-499d-9030-710456a28504"],
+Cell[3730, 92, 587, 10, 104, "Text",ExpressionUUID->"72e0bf36-85a3-498a-9f3b-e639d9c93b64"],
+Cell[4320, 104, 316, 7, 35, "Text",ExpressionUUID->"522b198c-faa3-4f0d-bb2e-074568ff6271"],
+Cell[CellGroupData[{
+Cell[4661, 115, 162, 3, 40, "Subsubsection",ExpressionUUID->"d3def6cb-d776-4688-8b42-9bd07406b6f4"],
+Cell[4826, 120, 567, 13, 58, "Text",ExpressionUUID->"eba6b0c8-1198-435b-bb2d-6d24b6b9981c"],
+Cell[5396, 135, 661, 15, 35, "Text",ExpressionUUID->"1eb22c17-dffd-42b5-828a-071538c5a190"],
+Cell[6060, 152, 491, 9, 81, "Text",ExpressionUUID->"ff1bc554-1ff3-4404-8857-468974928e2c"],
+Cell[6554, 163, 224, 5, 35, "Text",ExpressionUUID->"56ecefab-b9af-481d-9a11-ff0069a1942c"],
+Cell[6781, 170, 409, 9, 58, "Text",ExpressionUUID->"d8c7fc92-892f-46e3-aacd-154fce13bfed"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7227, 184, 157, 3, 40, "Subsubsection",ExpressionUUID->"79d0d544-a97d-4858-b7a4-e02eac74fa2d"],
+Cell[7387, 189, 412, 8, 58, "Text",ExpressionUUID->"56aadfdc-47fb-4780-b0cb-f0d27a99357e"],
+Cell[7802, 199, 793, 16, 81, "Text",ExpressionUUID->"41c29645-b29e-417b-823d-b2ffa59a681b"],
+Cell[8598, 217, 278, 6, 58, "Text",ExpressionUUID->"c084790c-502b-48de-a361-6adf0434e857"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
