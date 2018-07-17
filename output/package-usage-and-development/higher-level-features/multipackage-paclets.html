@@ -162,31 +162,38 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <ul class="list-inline row">
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/about.html'
   >
       About</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/toc.html'
   >
       Table Of Contents</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/categories.html'
   >
       Categories</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/tags.html'
   >
       Tags</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/contact.html'
+  >
+      Contact</a>
 </li>
 </ul>
     </div>
@@ -786,21 +793,21 @@ EndPackage[];</code>
 <a shape='rect' id='folderbased-contexts' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Folder-Based Contexts</h2>
 <p>A step up from this allows for different contexts to be supplied, taken from the folder the file is found in. This adds a layer of complexity, as we&apos;ll need a more complicated structure when declaring our symbols, but given the following directory layout:</p>
-<p>```none
+<pre class='prettyprint'>
+ <code class='language-none'>
  MyPaclet 
   + PacletInfo.m 
   Kernel 
    + init.m 
    + Component1.m 
    + Component2.m 
-   Subcontext </p>
-<pre class='prettyprint'>
- <code>+ Component1.m 
-+ Component2.m</code>
-</pre>
-<p>   ...
+   Subcontext 
+    + Component1.m 
+    + Component2.m 
+   ...
  + MyPaclet.m
-```</p>
+</code>
+</pre>
 <p>We could use the following loader:
 </p>
 <pre class='prettyprint'>
@@ -922,7 +929,7 @@ EndPackage[];</code>
   <div class="w3-center w3-black w3-padding-16">
         <div class="w3-black w3-center w3-padding-24">
             Powered by
-            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">
+            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity" style="color: green;">
               w3.css
             </a>
         </div>

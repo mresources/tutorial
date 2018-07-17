@@ -1,4 +1,4 @@
 (* Created with the Wolfram Language : www.wolfram.com *)
-<|Monitor -> True, "LastDeployment" -> 
-  DateObject[{2018, 7, 17, 3, 0, 31.545589`8.25151362140403}, "Instant", 
+<|Monitor -> False, "LastDeployment" -> 
+  DateObject[{2018, 7, 17, 12, 26, 57.084541`8.509093486983463}, "Instant", 
    "Gregorian", -7.]|>

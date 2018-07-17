@@ -162,31 +162,38 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <ul class="list-inline row">
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/about.html'
   >
       About</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/toc.html'
   >
       Table Of Contents</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/categories.html'
   >
       Categories</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/tags.html'
   >
       Tags</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/contact.html'
+  >
+      Contact</a>
 </li>
 </ul>
     </div>
@@ -815,25 +822,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  <li>A helper palette in <code>MyPacletHelper.nb</code></li>
 </ul>
 <p>We&apos;ll add the following folder to our main directory:</p>
-<p>```none
+<pre class='prettyprint'>
+ <code class='language-none'>
   FrontEnd 
-   StyleSheets </p>
-<pre class='prettyprint'>
- <code>MyPaclet 
- + MyPacletStyles.nb</code>
+   StyleSheets 
+    MyPaclet 
+     + MyPacletStyles.nb 
+   Palettes 
+    MyPaclet 
+     + MyPacletHelper.nb 
+   SystemResources 
+    Bitmaps 
+     MyPaclet 
+      + MyPacletIconResource.png
+</code>
 </pre>
-<p>   Palettes </p>
-<pre class='prettyprint'>
- <code>MyPaclet 
- + MyPacletHelper.nb</code>
-</pre>
-<p>   SystemResources </p>
-<pre class='prettyprint'>
- <code>Bitmaps 
- MyPaclet 
-  + MyPacletIconResource.png</code>
-</pre>
-<p>```</p>
 <p>And the info will look like:
 </p>
 <pre class='prettyprint'>
@@ -855,16 +858,15 @@ StyleDefinitions-&gt;FrontEnd`FileName[{&quot;MyPaclet&quot;}, &quot;MyPacletSty
 </code>
 </pre>
 <p>Or if we want to use the paclet icon we can do so with the appropriate <code>FrontEnd`FileName</code> . This time we&apos;ll want <code>FrontEnd`FileName[{&quot;MyPaclet&quot;}, &quot;MyPacletIconResource.png&quot;]</code> . Here&apos;s an example of this:</p>
-<p>```mathematica
-RawBoxes@
-  DynamicBox[</p>
 <pre class='prettyprint'>
- <code>FEPrivate`ImportImage@
-  FrontEnd`FileName[{&quot;MyPaclet&quot;}, &quot;MyPacletIconResource.png&quot;]
-]</code>
+ <code class='language-mathematica'>
+RawBoxes@
+  DynamicBox[
+    FEPrivate`ImportImage@
+      FrontEnd`FileName[{&quot;MyPaclet&quot;}, &quot;MyPacletIconResource.png&quot;]
+    ]
+</code>
 </pre>
-<p>```
-</p>
 <h3> Documentation</h3>
 <p>If we have some documentation pages we have either built with <a href='https://reference.wolfram.com/workbench/index.jsp?topic=%2Fcom.wolfram.eclipse.help%2Fhtml%2Ftasks%2Fdocumentationpaclets%2Fbuild.html'>Workbench</a>  or any of a number of third-part interfaces (<a href='https://github.com/b3m2a1/mathematica-BTools/wiki/Documentation'>here&apos;s mine</a> ), we can add these to our package too. Assuming we have the following English-language documentation pages to add:</p>
 <ul>
@@ -873,19 +875,19 @@ RawBoxes@
  <li>A tutorial, <code>MyPacletOverview.nb</code></li>
 </ul>
 <p>We&apos;ll add the following folder to our directory</p>
-<p>```none
-  Documentation 
-   English </p>
 <pre class='prettyprint'>
- <code>ReferencePages 
- Symbols 
-  + MyPacletSym.nb 
- Guides 
-  + MyPaclet.nb 
- Tutorials 
-  + MyPacletOverview.nb</code>
+ <code class='language-none'>
+  Documentation 
+   English 
+    ReferencePages 
+     Symbols 
+      + MyPacletSym.nb 
+     Guides 
+      + MyPaclet.nb 
+     Tutorials 
+      + MyPacletOverview.nb
+</code>
 </pre>
-<p>```</p>
 <p>And we&apos;ll add the following extension to the paclet info:
 </p>
 <pre class='prettyprint'>
@@ -901,16 +903,16 @@ RawBoxes@
 <h3> Resources</h3>
 <p>Finally, let&apos;s say we want to bundle resources with our paclet, maybe we have a template notebook, <code>MyTemplate.nb</code>  and a bunch of data stored in .mx files, <code>MyDat1.mx</code> , <code>MyDat2.mx</code> , and <code>MyDat3.mx</code></p>
 <p>We can add the following folder structure:</p>
-<p>```none
+<pre class='prettyprint'>
+ <code class='language-none'>
   Resources 
    + MyTemplate.nb 
-   Data </p>
-<pre class='prettyprint'>
- <code>+ MyDat1.mx 
-+ MyDat2.mx 
-+ MyDat3.mx</code>
+   Data 
+    + MyDat1.mx 
+    + MyDat2.mx 
+    + MyDat3.mx
+</code>
 </pre>
-<p>```</p>
 <p>And then add the extension:
 </p>
 <pre class='prettyprint'>
@@ -1002,7 +1004,7 @@ PacletResource[&quot;MyPaclet&quot;, &quot;Template&quot;]
   <div class="w3-center w3-black w3-padding-16">
         <div class="w3-black w3-center w3-padding-24">
             Powered by
-            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">
+            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity" style="color: green;">
               w3.css
             </a>
         </div>

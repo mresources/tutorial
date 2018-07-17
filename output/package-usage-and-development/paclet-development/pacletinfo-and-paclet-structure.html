@@ -162,31 +162,38 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <ul class="list-inline row">
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/about.html'
   >
       About</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/toc.html'
   >
       Table Of Contents</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/categories.html'
   >
       Categories</a>
 </li>
 <li class="list-inline-item">
 <a
-      class='w3-bar-item w3-medium w3-button'
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
       href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/tags.html'
   >
       Tags</a>
+</li>
+<li class="list-inline-item">
+<a
+      class='nav-bar-link w3-bar-item w3-medium w3-button'
+      href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/pages/contact.html'
+  >
+      Contact</a>
 </li>
 </ul>
     </div>
@@ -818,25 +825,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  <li><code>&quot;Symbols&quot;</code>  <span class='special-character LongDash'>&#8212;</span> this supplies a set of symbols that the paclet provides. If the <code>Loading</code>  is set to <code>Automatic</code> , autoloading will be set up for everyone of these symbols.</li>
 </ul>
 <p>For a paclet structure that looks like</p>
-<pre class='prettyprint'>
- <code class='language-'>
-MyPaclet
+<p>```</p>
+<p>MyPaclet
  + PacletInfo.m
  Kernel
   + init.m
  MyPaclet.m
  SubContext.m
-</code>
-</pre>
+```</p>
 <p>We&apos;d write the extension to look like:</p>
-<pre class='prettyprint'>
- <code class='language-{'>
+<p>```{
   &quot;Kernel&quot;,
   &quot;Root&quot;-&gt;&quot;.&quot;,
-  &quot;Context&quot;-&gt;{&quot;MyPaclet`&quot;, &quot;MyPaclet`SubContext`&quot;, ...}
+  &quot;Context&quot;-&gt;{&quot;MyPacle<code>&quot;, &quot;MyPaclet</code>SubContex<code>&quot;, ...}
   }
-</code>
-</pre>
+</code>``
+</p>
 <h3> FrontEnd</h3>
 <p>The <code>&quot;FrontEnd&quot;</code>  extension tells the <code>PacletManager</code>  to make the supplied front-end resources available system-wide. It has a few parameters:</p>
 <ul>
@@ -1029,7 +1033,7 @@ MyPaclet
   <div class="w3-center w3-black w3-padding-16">
         <div class="w3-black w3-center w3-padding-24">
             Powered by
-            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity">
+            <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-opacity" style="color: green;">
               w3.css
             </a>
         </div>
