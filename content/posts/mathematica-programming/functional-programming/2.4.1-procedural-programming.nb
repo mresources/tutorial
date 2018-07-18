@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     10055,        258]
-NotebookOptionsPosition[      8636,        227]
-NotebookOutlinePosition[      9062,        244]
-CellTagsIndexPosition[      9019,        241]
+NotebookDataLength[     11870,        302]
+NotebookOptionsPosition[     10101,        264]
+NotebookOutlinePosition[     10527,        281]
+CellTagsIndexPosition[     10484,        278]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -62,7 +62,7 @@ Cell[BoxData[
       "\"\<procedural-programming\>\""}], "}"}]}], ",", "\[IndentingNewLine]", 
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
@@ -71,8 +71,8 @@ Cell[BoxData[
    3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
    3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
    3.723434738570012*^9, {3.723435106241599*^9, 3.723435134392212*^9}, {
-   3.740780239813044*^9, 
-   3.740780248657238*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.740780239813044*^9, 3.740780248657238*^9}, 
+   3.7408476121487913`*^9},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
@@ -223,6 +223,43 @@ classes of programming issues for us.\
   3.685311620629414*^9, {3.6927468315795794`*^9, 
    3.692746869993803*^9}},ExpressionUUID->"5c9faec0-be0a-4b7f-ac63-\
 d3a09b8e1865"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.7408476293731003`*^9, 
+  3.740847630739828*^9}},ExpressionUUID->"a3eee17a-47c6-4bfa-951a-\
+3170ff3a7067"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/7924/\
+alternatives-to-procedural-loops-and-iterating-over-lists-in-mathematica",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/7924/alternatives-to-\
+procedural-loops-and-iterating-over-lists-in-mathematica"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/7924/alternatives-to-\
+procedural-loops-and-iterating-over-lists-in-mathematica"]], "Item",
+ CellChangeTimes->{{3.740847638705306*^9, 
+  3.740847642834715*^9}},ExpressionUUID->"b5d27feb-5cfd-4ec2-b3cc-\
+f658efb639cd"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+163992/what-makes-mathematica-a-functional-programming-language",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/163992/what-makes-\
+mathematica-a-functional-programming-language"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/163992/what-makes-\
+mathematica-a-functional-programming-language"]], "Item",
+ CellChangeTimes->{{3.740848875462543*^9, 
+  3.7408488781579237`*^9}},ExpressionUUID->"102a171a-824b-41e1-81e9-\
+b8a8ca5bfb2f"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -243,22 +280,29 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2584, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2607, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[3167, 79, 171, 3, 41, "Subsection",ExpressionUUID->"1021c9d0-0e28-482f-b14e-8c6ae01f594f"],
-Cell[3341, 84, 850, 16, 104, "Text",ExpressionUUID->"dc22c4bf-c302-42f6-a68d-5458ca402922"],
+Cell[3190, 79, 171, 3, 41, "Subsection",ExpressionUUID->"1021c9d0-0e28-482f-b14e-8c6ae01f594f"],
+Cell[3364, 84, 850, 16, 104, "Text",ExpressionUUID->"dc22c4bf-c302-42f6-a68d-5458ca402922"],
 Cell[CellGroupData[{
-Cell[4216, 104, 683, 18, 129, "Code",ExpressionUUID->"1bdcff65-5033-44bb-a1a4-68986d1002b9"],
-Cell[4902, 124, 479, 11, 34, "Output",ExpressionUUID->"5a462493-d76a-483d-bac8-56a9bf1dba2f"]
+Cell[4239, 104, 683, 18, 129, "Code",ExpressionUUID->"1bdcff65-5033-44bb-a1a4-68986d1002b9"],
+Cell[4925, 124, 479, 11, 34, "Output",ExpressionUUID->"5a462493-d76a-483d-bac8-56a9bf1dba2f"]
 }, Open  ]],
-Cell[5396, 138, 1375, 33, 104, "Text",ExpressionUUID->"0f567966-199c-4c4f-b743-77d71909908e"],
-Cell[6774, 173, 509, 10, 81, "Text",ExpressionUUID->"457325e5-bc39-472f-8b98-b09236e906a2"],
-Cell[7286, 185, 250, 6, 35, "Text",ExpressionUUID->"d107ab10-8aad-4b81-94a5-910c9f0f94ed"],
+Cell[5419, 138, 1375, 33, 104, "Text",ExpressionUUID->"0f567966-199c-4c4f-b743-77d71909908e"],
+Cell[6797, 173, 509, 10, 81, "Text",ExpressionUUID->"457325e5-bc39-472f-8b98-b09236e906a2"],
+Cell[7309, 185, 250, 6, 35, "Text",ExpressionUUID->"d107ab10-8aad-4b81-94a5-910c9f0f94ed"],
 Cell[CellGroupData[{
-Cell[7561, 195, 290, 7, 52, "Code",ExpressionUUID->"3e581f66-8a8e-47a8-b215-00ff43b4289f"],
-Cell[7854, 204, 457, 10, 56, "Output",ExpressionUUID->"74ead9ae-8402-47b2-9915-4dd4822b9787"]
+Cell[7584, 195, 290, 7, 52, "Code",ExpressionUUID->"3e581f66-8a8e-47a8-b215-00ff43b4289f"],
+Cell[7877, 204, 457, 10, 56, "Output",ExpressionUUID->"74ead9ae-8402-47b2-9915-4dd4822b9787"]
 }, Open  ]],
-Cell[8326, 217, 294, 7, 58, "Text",ExpressionUUID->"5c9faec0-be0a-4b7f-ac63-d3a09b8e1865"]
+Cell[8349, 217, 294, 7, 58, "Text",ExpressionUUID->"5c9faec0-be0a-4b7f-ac63-d3a09b8e1865"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8680, 229, 159, 3, 41, "Subsection",ExpressionUUID->"a3eee17a-47c6-4bfa-951a-3170ff3a7067"],
+Cell[CellGroupData[{
+Cell[8864, 236, 623, 11, 53, "Item",ExpressionUUID->"b5d27feb-5cfd-4ec2-b3cc-f658efb639cd"],
+Cell[9490, 249, 583, 11, 53, "Item",ExpressionUUID->"102a171a-824b-41e1-81e9-b8a8ca5bfb2f"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5171,        134]
-NotebookOptionsPosition[      4383,        113]
-NotebookOutlinePosition[      4810,        130]
-CellTagsIndexPosition[      4767,        127]
+NotebookDataLength[      6210,        159]
+NotebookOptionsPosition[      5198,        134]
+NotebookOutlinePosition[      5625,        151]
+CellTagsIndexPosition[      5582,        148]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -61,7 +61,7 @@ Cell[BoxData[
    
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
@@ -69,8 +69,8 @@ Cell[BoxData[
    3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
    3.723251256681574*^9, 3.723251262240631*^9}, {3.74077953306179*^9, 
    3.7407795404796257`*^9}, {3.740804293761916*^9, 3.740804334443972*^9}, {
-   3.740804640308864*^9, 
-   3.7408046433547697`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.740804640308864*^9, 3.7408046433547697`*^9}, {3.740847007568881*^9, 
+   3.740847007977594*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
@@ -109,6 +109,27 @@ useful undocumented functionality, separated by context.\
  CellChangeTimes->{{3.740804503603189*^9, 
   3.740804548112772*^9}},ExpressionUUID->"1b3c7c1c-edec-4935-9211-\
 b4d606d17d3e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740845614004425*^9, 
+  3.7408456153472223`*^9}},ExpressionUUID->"ec9540ca-0f8a-4db8-82d6-\
+86733d186440"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/805/\
+what-are-some-useful-undocumented-mathematica-functions",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/805/what-are-some-\
+useful-undocumented-mathematica-functions"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/805/what-are-some-useful-\
+undocumented-mathematica-functions"]], "Item",
+ CellChangeTimes->{{3.7408456172183113`*^9, 
+  3.740845619507495*^9}},ExpressionUUID->"1eb17242-5023-44b9-93c0-\
+dc7c26e48151"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -129,12 +150,16 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2443, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2488, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[3026, 77, 168, 3, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
-Cell[3197, 82, 596, 12, 81, "Text",ExpressionUUID->"54864930-a49a-4a8b-93b4-14b375923806"],
-Cell[3796, 96, 287, 6, 58, "Text",ExpressionUUID->"191a4abf-d677-414c-b17b-0f15baffc479"],
-Cell[4086, 104, 281, 6, 58, "Text",ExpressionUUID->"1b3c7c1c-edec-4935-9211-b4d606d17d3e"]
+Cell[3071, 77, 168, 3, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
+Cell[3242, 82, 596, 12, 81, "Text",ExpressionUUID->"54864930-a49a-4a8b-93b4-14b375923806"],
+Cell[3841, 96, 287, 6, 58, "Text",ExpressionUUID->"191a4abf-d677-414c-b17b-0f15baffc479"],
+Cell[4131, 104, 281, 6, 58, "Text",ExpressionUUID->"1b3c7c1c-edec-4935-9211-b4d606d17d3e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[4449, 115, 159, 3, 41, "Subsection",ExpressionUUID->"ec9540ca-0f8a-4db8-82d6-86733d186440"],
+Cell[4611, 120, 571, 11, 53, "Item",ExpressionUUID->"1eb17242-5023-44b9-93c0-dc7c26e48151"]
 }, Open  ]]
 }
 ]

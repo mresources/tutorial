@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -765,21 +821,21 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p><code>OwnValues</code>  are the most fundamental type of <code>&#8902;Values</code> . These represent things like the following:
 </p>
 <pre class='prettyprint'>
- <code>a = 10;
-a := 20;</code>
+ <code>a=10;
+a:=20;</code>
 </pre>
 <p>We can then query the <code>OwnValues</code></p>
 <pre class='prettyprint'>
  <code>OwnValues@a
 (*Out:*)
-{HoldPattern[a] :&gt; 20}</code>
+{HoldPattern[a]:&gt;20}</code>
 </pre>
-<p>We can even edit the <code>OwnValues</code>  manually if we know what we&#8217;re doing:
+<p>We can even edit the <code>OwnValues</code>  manually if we know what we&apos;re doing:
 </p>
 <pre class='prettyprint'>
- <code>OwnValues[a] = Prepend[OwnValues[a], HoldPattern[a] :&gt; 50]
+ <code>OwnValues[a]=Prepend[OwnValues[a], HoldPattern[a]:&gt;50]
 (*Out:*)
-{HoldPattern[a] :&gt; 50, HoldPattern[a] :&gt; 20}
+{HoldPattern[a]:&gt;50,HoldPattern[a]:&gt;20}
 a
 (*Out:*)
 50</code>
@@ -787,29 +843,27 @@ a
 <p>Something interesting happens, though, if you set more values on a via <code>SetDelayed</code> :
 </p>
 <pre class='prettyprint'>
- <code>a := 100
+ <code>a:=100
 OwnValues@a
 (*Out:*)
-{HoldPattern[a] :&gt; 100, HoldPattern[a] :&gt; 20}
-a := 32
+{HoldPattern[a]:&gt;100,HoldPattern[a]:&gt;20}
+a:=32
 OwnValues@a
 (*Out:*)
-{HoldPattern[a] :&gt; 32, HoldPattern[a] :&gt; 20}</code>
+{HoldPattern[a]:&gt;32,HoldPattern[a]:&gt;20}</code>
 </pre>
 <p>Only the first entry is changed. This behavior could be used with something like the following to cache symbol values:
 </p>
 <pre class='prettyprint'>
- <code>setValue[s_Symbol, 
-   v_] := (OwnValues[s] = 
-    Prepend[OwnValues[s], HoldPattern[s] :&gt; v]);
-resetValue[s_Symbol] := (OwnValues[s] = Rest@OwnValues[s]);
-SetAttributes[setValue, HoldFirst];
-SetAttributes[resetValue, HoldFirst]
-setValue[a, 10];
+ <code>setValue[s_Symbol,v_]:=(OwnValues[s]=Prepend[OwnValues[s],HoldPattern[s]:&gt;v]);
+resetValue[s_Symbol]:=(OwnValues[s]=Rest@OwnValues[s]);
+SetAttributes[setValue,HoldFirst];
+SetAttributes[resetValue,HoldFirst]
+setValue[a,10];
 a
 (*Out:*)
 10
-setValue[a, 20];
+setValue[a,20];
 a
 (*Out:*)
 20
@@ -821,30 +875,39 @@ a
 <p>Notice that using a plain <code>Set</code>  erases these changes:
 </p>
 <pre class='prettyprint'>
- <code>a = 10
+ <code>a=10
 (*Out:*)
 10
 OwnValues@a
 (*Out:*)
-{HoldPattern[a] :&gt; 10}</code>
+{HoldPattern[a]:&gt;10}</code>
 </pre>
 <p>Even if now we add more values <code>Set</code>  will erase them all:
 </p>
 <pre class='prettyprint'>
- <code>OwnValues[a] = 
- Join[ConstantArray[HoldPattern[a] :&gt; 25, 10], OwnValues@a]
+ <code>OwnValues[a]=Join[ConstantArray[HoldPattern[a]:&gt;25,10],OwnValues@a]
 (*Out:*)
-{HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 25, 
- HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 25, 
- HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 25, 
- HoldPattern[a] :&gt; 25, HoldPattern[a] :&gt; 10}
-a = 10
+{HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;10}
+a=10
 (*Out:*)
 10
 OwnValues@a
 (*Out:*)
-{HoldPattern[a] :&gt; 10}</code>
+{HoldPattern[a]:&gt;10}</code>
 </pre>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/a/18487/193'>https://mathematica.stackexchange.com/a/18487/193</a>
+ </li>
+ <li>
+  <a href='https://mathematica.stackexchange.com/a/18456/193'>https://mathematica.stackexchange.com/a/18456/193</a>
+ </li>
+ <li>
+  <a href='https://mathematica.stackexchange.com/a/18562/193'>https://mathematica.stackexchange.com/a/18562/193</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

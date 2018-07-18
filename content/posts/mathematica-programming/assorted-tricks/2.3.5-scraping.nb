@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     14343,        385]
-NotebookOptionsPosition[     12957,        356]
-NotebookOutlinePosition[     13384,        373]
-CellTagsIndexPosition[     13341,        370]
+NotebookDataLength[     16192,        430]
+NotebookOptionsPosition[     14453,        394]
+NotebookOutlinePosition[     14880,        411]
+CellTagsIndexPosition[     14837,        408]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -352,6 +352,44 @@ things like this you can mine a lot of it.\
   3.685311620629414*^9, {3.690653394284301*^9, 
    3.690653418403749*^9}},ExpressionUUID->"01a85fcd-3794-4a6f-bde6-\
 fa461b20c00d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740845675402939*^9, 
+  3.740845676665291*^9}},ExpressionUUID->"200ed81d-fdc1-452f-abe1-\
+8b2a5084cdd0"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/809/\
+how-can-one-find-undocumented-options-or-option-values-in-mathematica",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/809/how-can-one-find-\
+undocumented-options-or-option-values-in-mathematica"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/809/how-can-one-find-\
+undocumented-options-or-option-values-in-mathematica"]], "Item",
+ CellChangeTimes->{{3.740845679473639*^9, 
+  3.7408456815392227`*^9}},ExpressionUUID->"f219eb21-52e0-4efc-8f3d-\
+187d9700a8ab"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/1742/\
+what-is-the-most-convenient-way-to-read-definitions-of-in-memory-symbols-when-\
+we",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/1742/what-is-the-most-\
+convenient-way-to-read-definitions-of-in-memory-symbols-when-we"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/1742/what-is-the-most-\
+convenient-way-to-read-definitions-of-in-memory-symbols-when-we"]], "Item",
+ CellChangeTimes->{{3.740846580112451*^9, 
+  3.740846582796914*^9}},ExpressionUUID->"395792bc-5c07-440e-9e4e-\
+a889571ed4ee"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -386,6 +424,13 @@ Cell[7518, 187, 791, 18, 72, "Code",ExpressionUUID->"0fc977c9-16b3-44e6-a98f-540
 Cell[8312, 207, 4322, 136, 392, "Output",ExpressionUUID->"5d05bd81-e571-4802-9461-323fe26771fa"]
 }, Open  ]],
 Cell[12649, 346, 292, 7, 35, "Text",ExpressionUUID->"01a85fcd-3794-4a6f-bde6-fa461b20c00d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[12978, 358, 157, 3, 41, "Subsection",ExpressionUUID->"200ed81d-fdc1-452f-abe1-8b2a5084cdd0"],
+Cell[CellGroupData[{
+Cell[13160, 365, 613, 11, 53, "Item",ExpressionUUID->"f219eb21-52e0-4efc-8f3d-187d9700a8ab"],
+Cell[13776, 378, 649, 12, 53, "Item",ExpressionUUID->"395792bc-5c07-440e-9e4e-a889571ed4ee"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

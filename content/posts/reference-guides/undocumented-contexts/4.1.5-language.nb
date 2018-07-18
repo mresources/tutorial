@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5119,        133]
-NotebookOptionsPosition[      4331,        112]
-NotebookOutlinePosition[      4758,        129]
-CellTagsIndexPosition[      4715,        126]
+NotebookDataLength[      6807,        181]
+NotebookOptionsPosition[      5759,        154]
+NotebookOutlinePosition[      6186,        171]
+CellTagsIndexPosition[      6143,        168]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,7 +21,7 @@ Notebook[{
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Overview\>\""}], ",", 
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Language\>\""}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
    "\[IndentingNewLine]", 
@@ -30,7 +30,7 @@ Cell[BoxData[
     "\"\<Reference Guides/Undocumented Contexts/\>\""}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"\"\<ID\>\"", "\[Rule]", 
-    RowBox[{"{", "\"\<4.1.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", "\"\<4.1.5\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
    RowBox[{"\"\<Date\>\"", "\[Rule]", 
     TemplateBox[{RowBox[{"\"Tue 17 Jul 2018 01:16:59\"", 
         StyleBox[
@@ -61,53 +61,95 @@ Cell[BoxData[
    
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
    3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
    3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
    3.723251256681574*^9, 3.723251262240631*^9}, {3.74077953306179*^9, 
-   3.7407795404796257`*^9}, {3.740804293761916*^9, 
-   3.740804334443972*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.7407795404796257`*^9}, {3.740804293761916*^9, 3.740804334443972*^9}, {
+   3.74085436951602*^9, 
+   3.7408543739175797`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
 
-Cell["Undocumented Functions", "Subsection",
- CellChangeTimes->{{3.74080434357171*^9, 
-  3.74080434755488*^9}},ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-\
+Cell["Language", "Subsection",
+ CellChangeTimes->{{3.74080434357171*^9, 3.74080434755488*^9}, {
+  3.7408543751775913`*^9, 
+  3.74085437600741*^9}},ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-\
 adb5ce7e4ec7"],
 
 Cell[TextData[{
- "Mathematica is a sprawling system and WRI loves to brag about the number of \
-functions in it. Unfortunately it also often under-performs due to this \
-sprawl. Targeted, highly-specialized functions get buried deep in the system, \
-while the most general form of the function exists at the ",
- Cell[BoxData["\"\<System`\>\""], "InlineInput",
+ "The ",
+ Cell[BoxData["\"\<Language`\>\""], "InlineInput",
   FormatType->"StandardForm",ExpressionUUID->
-  "30c30753-58f9-45b6-9895-b295be822d4f"],
- " level."
+  "b46bcecf-2214-4702-8c72-ee905a435031"],
+ " context is a relatively new addition. We won\[CloseCurlyQuote]t get into \
+it too much since it\[CloseCurlyQuote]s already well handled ",
+ ButtonBox["here",
+  BaseStyle->"Hyperlink",
+  ButtonData->{
+    URL["https://mathematica.stackexchange.com/questions/165843/language-\
+documentation-project"], None},
+  ButtonNote->
+   "https://mathematica.stackexchange.com/questions/165843/language-\
+documentation-project"]
 }], "Text",
- CellChangeTimes->{{3.740804348729918*^9, 
-  3.74080446158939*^9}},ExpressionUUID->"54864930-a49a-4a8b-93b4-\
-14b375923806"],
+ CellChangeTimes->{{3.740854378848989*^9, 
+  3.7408544247227707`*^9}},ExpressionUUID->"c1a67754-dd5c-4c0f-ac5b-\
+febfa3bd4d62"]
+}, Open  ]],
 
-Cell["\<\
-Therefore, a lot of using Mathematica well comes from taking advantage of the \
-nominally undocumented, unsupported parts of the system. \
-\>", "Text",
- CellChangeTimes->{{3.740804470309781*^9, 
-  3.740804501956493*^9}},ExpressionUUID->"191a4abf-d677-414c-b17b-\
-0f15baffc479"],
+Cell[CellGroupData[{
 
-Cell["\<\
-To make this easier, I\[CloseCurlyQuote]ve attempted to compile lists of \
-useful undocumented functionality, separated by context.\
-\>", "Text",
- CellChangeTimes->{{3.740804503603189*^9, 
-  3.740804548112772*^9}},ExpressionUUID->"1b3c7c1c-edec-4935-9211-\
-b4d606d17d3e"]
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740854426560343*^9, 
+  3.740854427895155*^9}},ExpressionUUID->"95482786-ed29-48c7-b5e1-\
+5dec0b54d0f2"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+165843/language-documentation-project",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/165843/language-\
+documentation-project"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/165843/language-\
+documentation-project"]], "Item",
+ CellChangeTimes->{{3.7408544290853558`*^9, 
+  3.740854433961638*^9}},ExpressionUUID->"cd02daea-7272-41ab-8084-\
+d2ec4685aa65"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+152823/what-can-the-mutationhandler-functions-do",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/152823/what-can-the-\
+mutationhandler-functions-do"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/152823/what-can-the-\
+mutationhandler-functions-do"]], "Item",
+ CellChangeTimes->{{3.740854446637629*^9, 
+  3.740854454016417*^9}},ExpressionUUID->"369acc64-8e6f-48f7-9663-\
+09a9247cc852"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+52414/error-changing-dataset-using-part",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/52414/error-changing-\
+dataset-using-part"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/52414/error-changing-\
+dataset-using-part"]], "Item",
+ CellChangeTimes->{{3.7408544861244373`*^9, 
+  3.740854494944336*^9}},ExpressionUUID->"8da98c73-9075-42b6-80a5-\
+bd54e104587c"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -128,12 +170,18 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2391, 52, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2441, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[2974, 76, 168, 3, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
-Cell[3145, 81, 596, 12, 81, "Text",ExpressionUUID->"54864930-a49a-4a8b-93b4-14b375923806"],
-Cell[3744, 95, 287, 6, 58, "Text",ExpressionUUID->"191a4abf-d677-414c-b17b-0f15baffc479"],
-Cell[4034, 103, 281, 6, 58, "Text",ExpressionUUID->"1b3c7c1c-edec-4935-9211-b4d606d17d3e"]
+Cell[3024, 77, 204, 4, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
+Cell[3231, 83, 723, 18, 58, "Text",ExpressionUUID->"c1a67754-dd5c-4c0f-ac5b-febfa3bd4d62"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3991, 106, 157, 3, 41, "Subsection",ExpressionUUID->"95482786-ed29-48c7-b5e1-5dec0b54d0f2"],
+Cell[CellGroupData[{
+Cell[4173, 113, 505, 11, 32, "Item",ExpressionUUID->"cd02daea-7272-41ab-8084-d2ec4685aa65"],
+Cell[4681, 126, 536, 11, 32, "Item",ExpressionUUID->"369acc64-8e6f-48f7-9663-09a9247cc852"],
+Cell[5220, 139, 511, 11, 32, "Item",ExpressionUUID->"8da98c73-9075-42b6-80a5-bd54e104587c"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

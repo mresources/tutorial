@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     54603,       1386]
-NotebookOptionsPosition[     45324,       1242]
-NotebookOutlinePosition[     45753,       1259]
-CellTagsIndexPosition[     45710,       1256]
+NotebookDataLength[     55545,       1411]
+NotebookOptionsPosition[     46038,       1263]
+NotebookOutlinePosition[     46467,       1280]
+CellTagsIndexPosition[     46424,       1277]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1238,6 +1238,27 @@ Cell[TextData[{
   3.7405089494518147`*^9}},ExpressionUUID->"fa1937ad-18a4-4412-8bdb-\
 5372f06f6bdb"]
 }, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740846064370718*^9, 
+  3.7408460655778837`*^9}},ExpressionUUID->"f2518c80-18c7-4032-aca9-\
+4856afe64df9"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+132064/pacletinfo-m-documentation-project",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/132064/pacletinfo-m-\
+documentation-project"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/132064/pacletinfo-m-\
+documentation-project"]], "Item",
+ CellChangeTimes->{{3.740846070904895*^9, 
+  3.740846073409923*^9}},ExpressionUUID->"b0e4a10f-6fad-4b0e-a171-\
+f2110adddb7c"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -1387,6 +1408,10 @@ Cell[CellGroupData[{
 Cell[44607, 1222, 222, 4, 40, "Subsubsection",ExpressionUUID->"d0ab929f-9b77-4caa-a36e-a3b09077fe3a"],
 Cell[44832, 1228, 464, 10, 35, "Text",ExpressionUUID->"fa1937ad-18a4-4412-8bdb-5372f06f6bdb"]
 }, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[45345, 1244, 159, 3, 41, "Subsection",ExpressionUUID->"f2518c80-18c7-4032-aca9-4856afe64df9"],
+Cell[45507, 1249, 515, 11, 32, "Item",ExpressionUUID->"b0e4a10f-6fad-4b0e-a171-f2110adddb7c"]
 }, Open  ]]
 }
 ]

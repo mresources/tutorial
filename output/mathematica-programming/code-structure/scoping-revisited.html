@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -759,7 +815,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a shape='rect' id='scoping-revisited' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Scoping Revisited</h2>
 <h3> With, Module, and Block</h3>
-<p>We finally have enough knowledge to understand the differences between the scoping constructs. We&#8217;ll start by writing the same chunk of code with each:
+<p>We finally have enough knowledge to understand the differences between the scoping constructs. We&apos;ll start by writing the same chunk of code with each:
 </p>
 <pre class='prettyprint'>
  <code>Module[{a=35},
@@ -778,7 +834,7 @@ a^2
     (*Out:*)
     1225</code>
 </pre>
-<p>Everything is normal as of now. So let&#8217;s try introducing some held expressions:
+<p>Everything is normal as of now. So let&apos;s try introducing some held expressions:
 </p>
 <pre class='prettyprint'>
  <code>Module[{a=35},
@@ -816,13 +872,13 @@ Hold[a<sup>2</sup>]
  <li><code>With</code>  inserts the given values into the expression</li>
 </ul>
 <p>But what is <code>Block</code>  doing? Nothing seems changed.</p>
-<p>Let&#8217;s look at a different example, just considering <code>Module</code>  and <code>Block</code>  as there is little more to discuss with <code>With</code> , although it should be noted that <code>With</code>  is the cleanest and most useful of all these constructs.</p>
-<p>Let&#8217;s try define a global function:
+<p>Let&apos;s look at a different example, just considering <code>Module</code>  and <code>Block</code>  as there is little more to discuss with <code>With</code> , although it should be noted that <code>With</code>  is the cleanest and most useful of all these constructs.</p>
+<p>Let&apos;s try define a global function:
 </p>
 <pre class='prettyprint'>
  <code>scopeProbe[x_]:=x*b;</code>
 </pre>
-<p>First let&#8217;s use it inside <code>Module</code></p>
+<p>First let&apos;s use it inside <code>Module</code></p>
 <pre class='prettyprint'>
  <code>Module[{b=35},
 scopeProbe[10]
@@ -830,7 +886,7 @@ scopeProbe[10]
     (*Out:*)
     10 b</code>
 </pre>
-<p>This behavior makes perfect sense. The <code>b</code>  defined in <code>Module</code>  is not the global <code>b</code>  so this is what we&#8217;d predict.
+<p>This behavior makes perfect sense. The <code>b</code>  defined in <code>Module</code>  is not the global <code>b</code>  so this is what we&apos;d predict.
 </p>
 <pre class='prettyprint'>
  <code>Block[{b=35},
@@ -840,7 +896,7 @@ scopeProbe[10]
     350</code>
 </pre>
 <p>This here is the critical difference between <code>Module</code>  and <code>Block</code> . <code>Block</code>  reassigns the values of its symbols temporarily, while <code>Module</code>  makes new symbols with temporary values (they have been given the attribute <code>Temporary</code> ).</p>
-<p>This makes <code>Block</code>  incredibly useful, but also potentially dangerous. Names used as variables to <code>Block</code>  should always be made unique enough such that it&#8217;s unlikely they&#8217;ll have been used in a function that will be called by the <code>Block</code> . </p>
+<p>This makes <code>Block</code>  incredibly useful, but also potentially dangerous. Names used as variables to <code>Block</code>  should always be made unique enough such that it&apos;s unlikely they&apos;ll have been used in a function that will be called by the <code>Block</code> . </p>
 <p>An example of how we can use this is in memoization for a recursive function:
 </p>
 <pre class='prettyprint'>
@@ -882,13 +938,20 @@ recursiveNoMemo/@(List@@arg)//Total
  <code>recursiveStep@a[a,a,a,a,a]</code>
 </pre>
 <div class='mma-message'>
-    <span class='mma-message-name'>KeyMemberQ::invas:</span>
-    <span class='mma-message-text'>The argument Global<code>recursiveFunction</code>memoPad is not a valid Association or rule.</span>
+ <span class='mma-message-name'>KeyMemberQ::invas:</span>
+ <span class='mma-message-text'>The argument Globa<code>recursiveFunction</code>memoPad is not a valid Association or rule.</span>
 </div>
 <pre class='prettyprint'>
  <code>(*Out:*)
-If[!KeyMemberQ[Global`recursiveFunction`memoPad,a[a,a,a,a,a]],Global`recursiveFunction`memoPad[a[a,a,a,a,a]]=If[Length[a[a,a,a,a,a]]<span class='special-character Equal'>&#10869;</span>0,Pause[0.5`];Total[ToCharacterCode[ToString[a[a,a,a,a,a]]]],Total[recursiveStep/@List@@a[a,a,a,a,a]]],Global`recursiveFunction`memoPad[a[a,a,a,a,a]]]</code>
+If[!KeyMemberQ[Global`recursiveFunction`memoPad,a[a,a,a,a,a]],Global`recursiveFunction`memoPad[a[a,a,a,a,a]]=If[Length[a[a,a,a,a,a]]==0,Pause[0.5`];Total[ToCharacterCode[ToString[a[a,a,a,a,a]]]],Total[recursiveStep/@List@@a[a,a,a,a,a]]],Global`recursiveFunction`memoPad[a[a,a,a,a,a]]]</code>
 </pre>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/559/what-are-the-use-cases-for-different-scoping-constructs'>https://mathematica.stackexchange.com/questions/559/what-are-the-use-cases-for-different-scoping-constructs</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

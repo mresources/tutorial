@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -803,7 +859,7 @@ thisIsTheLocalContextPath
 {&quot;NameTools`&quot;,&quot;CloudObjectLoader`&quot;,&quot;StreamingLoader`&quot;,&quot;SymbolicMachineLearningLoader`&quot;,&quot;IconizeLoader`&quot;,&quot;HTTPHandlingLoader`&quot;,&quot;PacletManager`&quot;,&quot;System`&quot;,&quot;Global`&quot;}</code>
 </pre>
 <p>Note that <code>BeginPackage</code>  also prepended the context defined to the <code>$ContextPath</code> .</p>
-<p>Anything not in <code>NameTools` </code>  exactly won&#8217;t be found, however:
+<p>Anything not in <code>NameTools` </code>  exactly won&apos;t be found, however:
 </p>
 <pre class='prettyprint'>
  <code>NameTools`hidden`a=100
@@ -820,11 +876,11 @@ a//Context
 </p>
 <pre class='prettyprint'>
  <code>Pane[Column@Names@&quot;System`Private`*&quot;,
-{Automatic,100},Scrollbars<span class='special-character Rule'>&#62754;</span>{False,True},
-AppearanceElements<span class='special-character Rule'>&#62754;</span>None]
+{Automatic,100},Scrollbars-&gt;{False,True},
+AppearanceElements-&gt;None]
     (*Out:*)</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-7468015508976701203.png' alt='21-7468015508976701203' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/216contexts-7468015508976701203.png' alt='216contexts-7468015508976701203' />
 <p>One final useful thing to know is that the current context can be implied when defining a symbol, such as done in the following example:
 </p>
 <pre class='prettyprint'>
@@ -839,6 +895,13 @@ AppearanceElements<span class='special-character Rule'>&#62754;</span>None]
 (*Out:*)
 100</code>
 </pre>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/43381/how-symbol-lookup-actually-works/43629#43629'>https://mathematica.stackexchange.com/questions/43381/how-symbol-lookup-actually-works/43629#43629</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

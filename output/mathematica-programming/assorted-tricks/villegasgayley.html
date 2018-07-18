@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -758,7 +814,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='villegasgayley-internal-function-overloads' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Villegas-Gayley (internal function overloads)</h2>
-<p>This is a way we can assign definitions to built-in functions cleanly. This takes advantage of a two main things, a conditional definition and the power of <code>Block</code> . We&#8217;ll use it to overload how <code>MessageName</code>  works.
+<p>This is a way we can assign definitions to built-in functions cleanly. This takes advantage of a two main things, a conditional definition and the power of <code>Block</code> . We&apos;ll use it to overload how <code>MessageName</code>  works.
 </p>
 <pre class='prettyprint'>
  <code>Unprotect@MessageName;
@@ -774,40 +830,47 @@ Protect@MessageName;</code>
 </pre>
 <p>Now we can do fun things with the <code>MessageName</code>  operator, <code>::</code></p>
 <pre class='prettyprint'>
- <code>object[&lt;|&quot;a&quot;<span class='special-character Rule'>&#62754;</span>b,&quot;c&quot;<span class='special-character Rule'>&#62754;</span>d,&quot;e&quot;<span class='special-character Rule'>&#62754;</span>f|&gt;]::a
+ <code>object[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;]::a
 (*Out:*)
 b</code>
 </pre>
 <p>Usually that would have thrown an error:
 </p>
 <pre class='prettyprint'>
- <code>abject[&lt;|&quot;a&quot;<span class='special-character Rule'>&#62754;</span>b,&quot;c&quot;<span class='special-character Rule'>&#62754;</span>d,&quot;e&quot;<span class='special-character Rule'>&#62754;</span>f|&gt;]::a</code>
+ <code>abject[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;]::a</code>
 </pre>
 <div class='mma-message'>
-    <span class='mma-message-name'>Message::name:</span>
-    <span class='mma-message-text'>Message name MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;] is not of the form symbol::name or symbol::name::language.</span>
+ <span class='mma-message-name'>Message::name:</span>
+ <span class='mma-message-text'>Message name MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;] is not of the form symbol::name or symbol::name::language.</span>
 </div>
 <pre class='prettyprint'>
  <code>(*Out:*)
-MessageName[abject[Association[&quot;a&quot;<span class='special-character Rule'>&#62754;</span>b,&quot;c&quot;<span class='special-character Rule'>&#62754;</span>d,&quot;e&quot;<span class='special-character Rule'>&#62754;</span>f]],&quot;a&quot;]</code>
+MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;]</code>
 </pre>
 <p>And the reason we did this the way we did is because if we assigned some object to a variable, <code>variable::a</code>  would give us something meaningless. See:
 </p>
 <pre class='prettyprint'>
- <code>variable=abject[&lt;|&quot;a&quot;<span class='special-character Rule'>&#62754;</span>b,&quot;c&quot;<span class='special-character Rule'>&#62754;</span>d,&quot;e&quot;<span class='special-character Rule'>&#62754;</span>f|&gt;];
+ <code>variable=abject[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;];
 variable::a
 (*Out:*)
 variable::a</code>
 </pre>
-<p>But if it&#8217;s an object it will be treated differently:
+<p>But if it&apos;s an object it will be treated differently:
 </p>
 <pre class='prettyprint'>
- <code>variable=object[&lt;|&quot;a&quot;<span class='special-character Rule'>&#62754;</span>b,&quot;c&quot;<span class='special-character Rule'>&#62754;</span>d,&quot;e&quot;<span class='special-character Rule'>&#62754;</span>f|&gt;];
+ <code>variable=object[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;];
 variable::a
 (*Out:*)
 b</code>
 </pre>
 <p>And because of the structure of the overload, <code>MessageName</code>  still works normally in every other case.</p>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/39711/understanding-villegas-gayley'>https://mathematica.stackexchange.com/questions/39711/understanding-villegas-gayley</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

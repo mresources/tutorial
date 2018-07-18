@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -758,9 +814,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='error-handling' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Error Handling</h2>
-<p>As we noted before, errors in Mathematica are much more subtle than in many languages.</p>
-<p>There is no compiler, so nothing will warn you about compile-time errors, and there is no real concept of an automatic runtime error<span class='special-character LongDash'>&#8212;</span>i.e. there is nothing in the language enforcing any type of strict semantics. Because of this we need to be particularly careful about validating errors ourselves.</p>
-<p>When we catch one of these errors we then have the question of what to do with it. We&apos;ll work through this in order of least-to-most suggested.
+<p>As we noted before, errors in Mathematica are much more subtle than in many languages. There is no compiler, so nothing will warn you about compile-time errors, and there is no real concept of an automatic runtime error<span class='special-character LongDash'>&#8212;</span>i.e. there is nothing in the language enforcing any type of strict semantics. Because of this we need to be particularly careful about validating errors ourselves.</p>
+<p>When we catch one of these errors we then have the question of what to do with it. To compound the difficulty, there aren&apos;t any official guidelines on the best ways to handle errors. I have my own preferences, and so we&apos;ll work through the various cases in order of least-to-most suggested.
 </p>
 <h3> Abort</h3>
 <p>When an error is caught, we could simply do as most programming languages do and simply abort the calculation, in this case via the function <code>Abort</code> .</p>
@@ -938,6 +993,13 @@ yourName[name_]:=
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/2112errorhandling-6070949172998910373.png' alt='2112errorhandling-6070949172998910373' />
 <p>More extensions can be built on top of this, but this gets us a good ways beyond passing failed arguments up through our call stack.</p>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/29321/what-are-the-best-practices-most-common-idiomatic-ways-to-report-errors-in-m'>https://mathematica.stackexchange.com/questions/29321/what-are-the-best-practices-most-common-idiomatic-ways-to-report-errors-in-m</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

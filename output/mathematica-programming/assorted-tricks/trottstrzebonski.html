@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -758,19 +814,23 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='trottstrzebonski-replace-with-evaluation' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Trott-Strzebonski (replace with evaluation)</h2>
-<p>This is the pattern we saw earlier for replacing a part of an expression with an evaluated expression:</p>
-<pre>
-<code>
-Hold[holdReplace]/.{holdReplace<span class='special-character RuleDelayed'>&#10740;</span>With[{eval=&#8747;<sub>2</sub><sup><span class='special-character Pi'>&#960;</span></sup>Sin[<span class='special-character Theta'>&#952;</span>]<span class='special-character DifferentialD'>&#8518;</span><span class='special-character Theta'>&#952;</span>},eval/;True]}
-</code>
-</pre>
+<p>This is the pattern we saw earlier for replacing a part of an expression with an evaluated expression:
+</p>
 <pre class='prettyprint'>
- <code>(*Out:*)
+ <code>Hold[holdReplace]/.{holdReplace:&gt;With[{eval=Integrate[Sin[<span class='special-character Theta'>&#952;</span>], {<span class='special-character Theta'>&#952;</span>, 2, <span class='special-character Pi'>&#960;</span>}]}, eval/;True]}
+(*Out:*)
 Hold[1+Cos[2]]</code>
 </pre>
 <p>It is a nice trick to keep in mind for those cases when you need to insert something into a held context and it would be too much of a pain to wrap everything in a <code>With</code> .</p>
 <p>This pattern is really a side-effect of the way scoping constructs work in Mathematica. By placing a <code>Condition (/;)</code>  at the end of a scoping construct the whole construct evaluates or not depending on that condition.</p>
 <p>We take advantage of the fact that the scoping construct will always scan to the end if there is a condition there, plus the fact that <code>With</code>  inserts values, not symbols, to force the evaluated chunk of code to be inserted in our otherwise unevaluated structure.</p>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/29317/replacement-inside-held-expression'>https://mathematica.stackexchange.com/questions/29317/replacement-inside-held-expression</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

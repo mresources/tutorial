@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     17842,        449]
-NotebookOptionsPosition[     15611,        408]
-NotebookOutlinePosition[     16039,        425]
-CellTagsIndexPosition[     15996,        422]
+NotebookDataLength[     19614,        493]
+NotebookOptionsPosition[     17030,        445]
+NotebookOutlinePosition[     17458,        462]
+CellTagsIndexPosition[     17415,        459]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -404,6 +404,43 @@ Cell[TextData[{
   3.7407792536472797`*^9, 
   3.740779272128582*^9}},ExpressionUUID->"8aef7394-09c1-467a-877a-\
 d6a836ad63bd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.7408458429822483`*^9, 
+  3.740845845749393*^9}},ExpressionUUID->"d0307b60-7aa9-4555-9f32-\
+d16883dfbb4b"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+176434/declaring-package-with-dependencies-in-multiples-files/176489#176489",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/176434/declaring-\
+package-with-dependencies-in-multiples-files/176489#176489"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/176434/declaring-package-\
+with-dependencies-in-multiples-files/176489#176489"]], "Item",
+ CellChangeTimes->{{3.740854957358851*^9, 
+  3.740854961225416*^9}},ExpressionUUID->"04e62d95-7345-46af-a8c5-\
+e453f9e6fb90"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+109888/general-strategies-to-write-big-code-in-mathematica",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/109888/general-\
+strategies-to-write-big-code-in-mathematica"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/109888/general-strategies-\
+to-write-big-code-in-mathematica"]], "Item",
+ CellChangeTimes->{{3.740854970109326*^9, 
+  3.740854972048647*^9}},ExpressionUUID->"bcbdafd4-0c2f-4a7b-a40c-\
+17da8d9b14e8"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -450,6 +487,13 @@ Cell[14357, 370, 548, 13, 35, "Text",ExpressionUUID->"3c8443ee-cb06-4002-8d08-38
 Cell[CellGroupData[{
 Cell[14942, 388, 163, 3, 41, "Subsection",ExpressionUUID->"edab7a3a-83e6-48fd-bb01-93103757a33b"],
 Cell[15108, 393, 487, 12, 35, "Text",ExpressionUUID->"8aef7394-09c1-467a-877a-d6a836ad63bd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15632, 410, 159, 3, 41, "Subsection",ExpressionUUID->"d0307b60-7aa9-4555-9f32-d16883dfbb4b"],
+Cell[CellGroupData[{
+Cell[15816, 417, 617, 11, 53, "Item",ExpressionUUID->"04e62d95-7345-46af-a8c5-e453f9e6fb90"],
+Cell[16436, 430, 566, 11, 53, "Item",ExpressionUUID->"bcbdafd4-0c2f-4a7b-a40c-17da8d9b14e8"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

@@ -616,6 +616,7 @@ article styles
 .article .content {
   background: white;
   width: 95%;
+  min-height: 750px;
   height: 100%;
   border-radius: 5px;
   padding: 15px 25px;

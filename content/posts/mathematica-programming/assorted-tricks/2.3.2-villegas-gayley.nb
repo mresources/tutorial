@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     13570,        368]
-NotebookOptionsPosition[     11243,        324]
-NotebookOutlinePosition[     11669,        341]
-CellTagsIndexPosition[     11626,        338]
+NotebookDataLength[     14541,        394]
+NotebookOptionsPosition[     11988,        346]
+NotebookOutlinePosition[     12414,        363]
+CellTagsIndexPosition[     12371,        360]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -61,7 +61,7 @@ Cell[BoxData[
     "\[IndentingNewLine]", 
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
@@ -70,7 +70,8 @@ Cell[BoxData[
    3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
    3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, {
    3.7234346877445297`*^9, 3.723434714294877*^9}, {3.7407798892434807`*^9, 
-   3.7407798997561693`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.7407798997561693`*^9}, {3.7408511255491467`*^9, 
+   3.740851125995146*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
@@ -320,6 +321,27 @@ Cell[TextData[{
   3.685311620629414*^9, {3.686361997674252*^9, 
    3.686362019638241*^9}},ExpressionUUID->"c2f986c9-6959-48df-95cd-\
 0adfede15aab"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740850923524654*^9, 
+  3.740850925379674*^9}},ExpressionUUID->"5ad266e6-6433-4fc9-8035-\
+450bd475a88d"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+39711/understanding-villegas-gayley",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/39711/understanding-\
+villegas-gayley"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/39711/understanding-\
+villegas-gayley"]], "Item",
+ CellChangeTimes->{{3.740850975751876*^9, 
+  3.740850980371458*^9}},ExpressionUUID->"3cbf06d7-0929-44c5-8c7c-\
+914836902e8e"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -340,35 +362,39 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2510, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2561, 54, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[3093, 77, 244, 4, 41, "Subsection",ExpressionUUID->"c47e2901-abf2-4289-8410-c462d2fd9194"],
-Cell[3340, 83, 766, 17, 58, "Text",ExpressionUUID->"635cf91c-1ece-4155-9c67-2956348a32fd"],
-Cell[4109, 102, 1316, 36, 224, "Code",ExpressionUUID->"7671088b-0167-430b-a66a-46a630d1145f"],
-Cell[5428, 140, 489, 13, 35, "Text",ExpressionUUID->"c1c296d0-158e-4944-85e7-fdd7731bcab0"],
+Cell[3144, 78, 244, 4, 41, "Subsection",ExpressionUUID->"c47e2901-abf2-4289-8410-c462d2fd9194"],
+Cell[3391, 84, 766, 17, 58, "Text",ExpressionUUID->"635cf91c-1ece-4155-9c67-2956348a32fd"],
+Cell[4160, 103, 1316, 36, 224, "Code",ExpressionUUID->"7671088b-0167-430b-a66a-46a630d1145f"],
+Cell[5479, 141, 489, 13, 35, "Text",ExpressionUUID->"c1c296d0-158e-4944-85e7-fdd7731bcab0"],
 Cell[CellGroupData[{
-Cell[5942, 157, 415, 12, 52, "Code",ExpressionUUID->"314c0207-847d-4247-83b9-f42040ae93e3"],
-Cell[6360, 171, 130, 3, 34, "Output",ExpressionUUID->"84e752cd-c36c-4b6b-89be-b3f5c16790fd"]
+Cell[5993, 158, 415, 12, 52, "Code",ExpressionUUID->"314c0207-847d-4247-83b9-f42040ae93e3"],
+Cell[6411, 172, 130, 3, 34, "Output",ExpressionUUID->"84e752cd-c36c-4b6b-89be-b3f5c16790fd"]
 }, Open  ]],
-Cell[6505, 177, 208, 4, 35, "Text",ExpressionUUID->"35b4ebf7-9ed1-48ea-ab71-0f7dc3ef9b97"],
+Cell[6556, 178, 208, 4, 35, "Text",ExpressionUUID->"35b4ebf7-9ed1-48ea-ab71-0f7dc3ef9b97"],
 Cell[CellGroupData[{
-Cell[6738, 185, 415, 12, 52, "Code",ExpressionUUID->"25b411b8-ca09-4bed-ade7-eb30d0119f82"],
-Cell[7156, 199, 790, 14, 42, "Message",ExpressionUUID->"463dcc5f-2a04-4bbe-ba42-7d670f58ba3b"],
-Cell[7949, 215, 459, 12, 34, "Output",ExpressionUUID->"85b5cadb-9976-463e-9328-847d4d5eecf2"]
+Cell[6789, 186, 415, 12, 52, "Code",ExpressionUUID->"25b411b8-ca09-4bed-ade7-eb30d0119f82"],
+Cell[7207, 200, 790, 14, 42, "Message",ExpressionUUID->"463dcc5f-2a04-4bbe-ba42-7d670f58ba3b"],
+Cell[8000, 216, 459, 12, 34, "Output",ExpressionUUID->"85b5cadb-9976-463e-9328-847d4d5eecf2"]
 }, Open  ]],
-Cell[8423, 230, 480, 12, 58, "Text",ExpressionUUID->"79601d6d-9eb0-4f84-b033-d10e6066df4e"],
-Cell[8906, 244, 449, 13, 52, "Code",ExpressionUUID->"4a3f1923-1a3a-4261-b1e0-b2a7f9935e29"],
+Cell[8474, 231, 480, 12, 58, "Text",ExpressionUUID->"79601d6d-9eb0-4f84-b033-d10e6066df4e"],
+Cell[8957, 245, 449, 13, 52, "Code",ExpressionUUID->"4a3f1923-1a3a-4261-b1e0-b2a7f9935e29"],
 Cell[CellGroupData[{
-Cell[9380, 261, 210, 5, 52, "Code",ExpressionUUID->"efb58bdd-1be1-431e-8044-2b1f823488ce"],
-Cell[9593, 268, 190, 5, 34, "Output",ExpressionUUID->"461adad8-dfe0-42e3-be9f-85474202fe1d"]
+Cell[9431, 262, 210, 5, 52, "Code",ExpressionUUID->"efb58bdd-1be1-431e-8044-2b1f823488ce"],
+Cell[9644, 269, 190, 5, 34, "Output",ExpressionUUID->"461adad8-dfe0-42e3-be9f-85474202fe1d"]
 }, Open  ]],
-Cell[9798, 276, 241, 5, 35, "Text",ExpressionUUID->"32e8cb8d-6a81-4f59-8b5a-b6c5804dba43"],
-Cell[10042, 283, 449, 13, 52, "Code",ExpressionUUID->"a8fc9e32-014c-4ebc-9c34-11196499f9cd"],
+Cell[9849, 277, 241, 5, 35, "Text",ExpressionUUID->"32e8cb8d-6a81-4f59-8b5a-b6c5804dba43"],
+Cell[10093, 284, 449, 13, 52, "Code",ExpressionUUID->"a8fc9e32-014c-4ebc-9c34-11196499f9cd"],
 Cell[CellGroupData[{
-Cell[10516, 300, 158, 4, 52, "Code",ExpressionUUID->"9767cc53-eef0-48cc-ba32-d18d1d5d6505"],
-Cell[10677, 306, 127, 2, 34, "Output",ExpressionUUID->"a420ca09-1fde-4cae-b2a6-eb0fd77af932"]
+Cell[10567, 301, 158, 4, 52, "Code",ExpressionUUID->"9767cc53-eef0-48cc-ba32-d18d1d5d6505"],
+Cell[10728, 307, 127, 2, 34, "Output",ExpressionUUID->"a420ca09-1fde-4cae-b2a6-eb0fd77af932"]
 }, Open  ]],
-Cell[10819, 311, 408, 10, 35, "Text",ExpressionUUID->"c2f986c9-6959-48df-95cd-0adfede15aab"]
+Cell[10870, 312, 408, 10, 35, "Text",ExpressionUUID->"c2f986c9-6959-48df-95cd-0adfede15aab"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11315, 327, 157, 3, 41, "Subsection",ExpressionUUID->"5ad266e6-6433-4fc9-8035-450bd475a88d"],
+Cell[11475, 332, 497, 11, 32, "Item",ExpressionUUID->"3cbf06d7-0929-44c5-8c7c-914836902e8e"]
 }, Open  ]]
 }
 ]

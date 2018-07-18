@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      7243,        192]
-NotebookOptionsPosition[      6141,        166]
-NotebookOutlinePosition[      6568,        183]
-CellTagsIndexPosition[      6525,        180]
+NotebookDataLength[      8308,        219]
+NotebookOptionsPosition[      6982,        189]
+NotebookOutlinePosition[      7409,        206]
+CellTagsIndexPosition[      7366,        203]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -61,7 +61,7 @@ Cell[BoxData[
    ",", "\[IndentingNewLine]", 
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
@@ -69,8 +69,9 @@ Cell[BoxData[
    3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
    3.723251256681574*^9, 3.723251262240631*^9}, {3.723348490300707*^9, 
    3.723348528182694*^9}, {3.723434617203232*^9, 3.7234346495926113`*^9}, 
-   3.723434738570012*^9, {3.740779856066307*^9, 
-   3.740779877258519*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.723434738570012*^9, {3.740779856066307*^9, 3.740779877258519*^9}, {
+   3.740851156071741*^9, 
+   3.740851156491947*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
@@ -98,16 +99,17 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"{", 
        RowBox[{"eval", "=", 
-        RowBox[{
-         SubsuperscriptBox["\[Integral]", "2", "\[Pi]"], 
+        RowBox[{"Integrate", "[", 
          RowBox[{
-          RowBox[{"Sin", "[", "\[Theta]", "]"}], 
-          RowBox[{"\[DifferentialD]", "\[Theta]"}]}]}]}], "}"}], ",", 
+          RowBox[{"Sin", "[", "\[Theta]", "]"}], ",", " ", 
+          RowBox[{"{", 
+           RowBox[{"\[Theta]", ",", " ", "2", ",", " ", "\[Pi]"}], "}"}]}], 
+         "]"}]}], "}"}], ",", " ", 
       RowBox[{"eval", "/;", "True"}]}], "]"}]}], "}"}]}]], "Code",
  GeneratedCell->False,
  CellChangeTimes->{{3.6853202269320183`*^9, 3.6853202635778303`*^9}, {
-  3.685320456029839*^9, 
-  3.685320489471649*^9}},ExpressionUUID->"dbd3b0e7-897e-4855-bb76-\
+  3.685320456029839*^9, 3.685320489471649*^9}, {3.740851139812923*^9, 
+  3.74085115448766*^9}},ExpressionUUID->"dbd3b0e7-897e-4855-bb76-\
 b816291117e5"],
 
 Cell[BoxData[
@@ -162,6 +164,27 @@ inserted in our otherwise unevaluated structure."
   3.685311620629414*^9, {3.690593945426506*^9, 
    3.690594121786405*^9}},ExpressionUUID->"346b8170-36d1-49dc-8db4-\
 9c4d6f8cd0b1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740850709009013*^9, 
+  3.740850710848948*^9}},ExpressionUUID->"1fa72a41-ce3e-4065-ad96-\
+46c4228e471f"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+29317/replacement-inside-held-expression",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/29317/replacement-\
+inside-held-expression"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/29317/replacement-inside-\
+held-expression"]], "Item",
+ CellChangeTimes->{{3.740850712578309*^9, 
+  3.7408507151423693`*^9}},ExpressionUUID->"0671556d-8149-4c49-bb7f-\
+0cafd49f2e72"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -182,17 +205,21 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2484, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2533, 54, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[3067, 77, 120, 0, 41, "Subsection",ExpressionUUID->"77b565ee-2cf6-476d-97e9-4227aa11a6fc"],
-Cell[3190, 79, 336, 8, 35, "Text",ExpressionUUID->"dde54a7a-dd15-4450-9ea0-fea12e4ad108"],
+Cell[3116, 78, 120, 0, 41, "Subsection",ExpressionUUID->"77b565ee-2cf6-476d-97e9-4227aa11a6fc"],
+Cell[3239, 80, 336, 8, 35, "Text",ExpressionUUID->"dde54a7a-dd15-4450-9ea0-fea12e4ad108"],
 Cell[CellGroupData[{
-Cell[3551, 91, 708, 19, 66, "Code",ExpressionUUID->"dbd3b0e7-897e-4855-bb76-b816291117e5"],
-Cell[4262, 112, 214, 6, 34, "Output",ExpressionUUID->"9cd05c39-51e9-4047-8389-b6276378d992"]
+Cell[3600, 92, 789, 20, 52, "Code",ExpressionUUID->"dbd3b0e7-897e-4855-bb76-b816291117e5"],
+Cell[4392, 114, 214, 6, 34, "Output",ExpressionUUID->"9cd05c39-51e9-4047-8389-b6276378d992"]
 }, Open  ]],
-Cell[4491, 121, 482, 12, 58, "Text",ExpressionUUID->"a2e6e5ba-a35b-4abb-8441-fa7e74b83a32"],
-Cell[4976, 135, 573, 14, 81, "Text",ExpressionUUID->"d7a5b9cb-5241-4d3e-8a23-461fc36d7c1f"],
-Cell[5552, 151, 573, 12, 81, "Text",ExpressionUUID->"346b8170-36d1-49dc-8db4-9c4d6f8cd0b1"]
+Cell[4621, 123, 482, 12, 58, "Text",ExpressionUUID->"a2e6e5ba-a35b-4abb-8441-fa7e74b83a32"],
+Cell[5106, 137, 573, 14, 81, "Text",ExpressionUUID->"d7a5b9cb-5241-4d3e-8a23-461fc36d7c1f"],
+Cell[5682, 153, 573, 12, 81, "Text",ExpressionUUID->"346b8170-36d1-49dc-8db4-9c4d6f8cd0b1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6292, 170, 157, 3, 41, "Subsection",ExpressionUUID->"1fa72a41-ce3e-4065-ad96-46c4228e471f"],
+Cell[6452, 175, 514, 11, 32, "Item",ExpressionUUID->"0671556d-8149-4c49-bb7f-0cafd49f2e72"]
 }, Open  ]]
 }
 ]

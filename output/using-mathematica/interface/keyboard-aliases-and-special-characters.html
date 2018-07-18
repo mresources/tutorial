@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -762,41 +818,62 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Here&apos;s a partial list of them:
 </p>
 <pre class='prettyprint'>
- <code>Pane[Column[DeleteCases[
-Table[Switch[First@i,
-&quot;ia&quot;,None,
-_,First@i<span class='special-character Rule'>&#62754;</span>DisplayForm@Last@i
-],{i,InputAliases/.Options[EvaluationNotebook[],InputAliases]}],
-None],
-ItemSize<span class='special-character Rule'>&#62754;</span>{1000,Automatic},
-Dividers<span class='special-character Rule'>&#62754;</span>Center
-],
-{250,250},
-Scrollbars<span class='special-character Rule'>&#62754;</span>{False, True}
-]</code>
+ <code>Pane[
+  Column[
+    DeleteCases[
+      Table[Switch[First@i,
+        &quot;ia&quot;,None,
+        _,First@i-&gt;DisplayForm@Last@i
+        ],{i,InputAliases/.Options[EvaluationNotebook[],InputAliases]}],
+      None
+      ],
+    ItemSize-&gt;{1000, Automatic},
+    Dividers-&gt;Center
+    ],
+  {250, 250},
+  Scrollbars-&gt;{False, True}
+  ]
+(*Out:*)</code>
 </pre>
-<p>It&#8217;s worth playing around with lots of different combinations through. For instance, here&#8217;s the alias for each keyboard character
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/123keyboardaliasesandspecialcharacters-5405623299749968708.png' alt='123keyboardaliasesandspecialcharacters-5405623299749968708' />
+<p>It&apos;s worth playing around with lots of different combinations through. For instance, here&apos;s the alias for each keyboard character
 </p>
 <pre class='prettyprint'>
- <code>Thread[Join[Alphabet[],
-Capitalize/@Alphabet[]]-&gt;{
-       &quot;<span class='special-character Alpha'>&#945;</span>&quot;,&quot;<span class='special-character Beta'>&#946;</span>&quot;,&quot;<span class='special-character Chi'>&#967;</span>&quot;,&quot;&#948;&quot;,&quot;<span class='special-character Epsilon'>&#1013;</span>&quot;,&quot;<span class='special-character Phi'>&#981;</span>&quot;,&quot;&#947;&quot;,&quot;<span class='special-character Eta'>&#951;</span>&quot;,&quot;<span class='special-character Iota'>&#953;</span>&quot;,&quot;<span class='special-character CurlyPhi'>&#966;</span>&quot;,&quot;<span class='special-character Kappa'>&#954;</span>&quot;,&quot;<span class='special-character Lambda'>&#955;</span>&quot;,&quot;<span class='special-character Mu'>&#956;</span>&quot;,&quot;&#957;&quot;,&quot;<span class='special-character Omega'>&#969;</span>&quot;,&quot;<span class='special-character Pi'>&#960;</span>&quot;,&quot;<span class='special-character Theta'>&#952;</span>&quot;,&quot;<span class='special-character Rho'>&#961;</span>&quot;,&quot;<span class='special-character Sigma'>&#963;</span>&quot;,&quot;<span class='special-character Tau'>&#964;</span>&quot;,&quot;<span class='special-character Upsilon'>&#965;</span>&quot;,
-       &quot;&#8897;&quot;,&quot;<span class='special-character Omega'>&#969;</span>&quot;,&quot;<span class='special-character Xi'>&#958;</span>&quot;,&quot;<span class='special-character Psi'>&#968;</span>&quot;,&quot;<span class='special-character Zeta'>&#950;</span>&quot;,&quot;&#913;&quot;,&quot;&#914;&quot;,&quot;&#935;&quot;,&quot;&#916;&quot;,&quot;&#917;&quot;,&quot;&#934;&quot;,&quot;&#915;&quot;,&quot;&#919;&quot;,&quot;&#921;&quot;,&quot;J&quot;,&quot;&#922;&quot;,&quot;&#923;&quot;,&quot;&#924;&quot;,&quot;&#925;&quot;,&quot;&#937;&quot;,&quot;&#928;&quot;,&quot;&#920;&quot;,
-       &quot;&#929;&quot;,&quot;&#931;&quot;,&quot;&#932;&quot;,&quot;&#933;&quot;,&quot;V&quot;,&quot;&#937;&quot;,&quot;&#926;&quot;,&quot;&#936;&quot;,&quot;&#918;&quot;
-       }]//Pane[Column[DeleteCases[
-Table[Switch[First@i,
-&quot;ia&quot;,None,
-_,First@i<span class='special-character Rule'>&#62754;</span>DisplayForm@Last@i
-],{i,#}],
-None],
-ItemSize<span class='special-character Rule'>&#62754;</span>{1000,Automatic},
-Dividers<span class='special-character Rule'>&#62754;</span>Center
-],
-{250,250},
-Scrollbars<span class='special-character Rule'>&#62754;</span>{False, True}
-]&amp;</code>
+ <code>Thread[
+  Join[
+    Alphabet[],
+    Capitalize/@Alphabet[]
+    ]-&gt;
+    {
+      &quot;<span class='special-character Alpha'>&#945;</span>&quot;,&quot;<span class='special-character Beta'>&#946;</span>&quot;,&quot;<span class='special-character Chi'>&#967;</span>&quot;,&quot;&#948;&quot;,&quot;<span class='special-character Epsilon'>&#1013;</span>&quot;,&quot;<span class='special-character Phi'>&#981;</span>&quot;,&quot;&#947;&quot;,&quot;<span class='special-character Eta'>&#951;</span>&quot;,&quot;<span class='special-character Iota'>&#953;</span>&quot;,&quot;<span class='special-character CurlyPhi'>&#966;</span>&quot;,&quot;<span class='special-character Kappa'>&#954;</span>&quot;,&quot;<span class='special-character Lambda'>&#955;</span>&quot;,&quot;<span class='special-character Mu'>&#956;</span>&quot;,&quot;&#957;&quot;,&quot;<span class='special-character Omega'>&#969;</span>&quot;,&quot;<span class='special-character Pi'>&#960;</span>&quot;,&quot;<span class='special-character Theta'>&#952;</span>&quot;,&quot;<span class='special-character Rho'>&#961;</span>&quot;,&quot;<span class='special-character Sigma'>&#963;</span>&quot;,&quot;<span class='special-character Tau'>&#964;</span>&quot;,&quot;<span class='special-character Upsilon'>&#965;</span>&quot;,
+      &quot;&#8897;&quot;,&quot;<span class='special-character Omega'>&#969;</span>&quot;,&quot;<span class='special-character Xi'>&#958;</span>&quot;,&quot;<span class='special-character Psi'>&#968;</span>&quot;,&quot;<span class='special-character Zeta'>&#950;</span>&quot;,&quot;&#913;&quot;,&quot;&#914;&quot;,&quot;&#935;&quot;,&quot;&#916;&quot;,&quot;&#917;&quot;,&quot;&#934;&quot;,&quot;&#915;&quot;,&quot;&#919;&quot;,&quot;&#921;&quot;,&quot;J&quot;,&quot;&#922;&quot;,&quot;&#923;&quot;,&quot;&#924;&quot;,&quot;&#925;&quot;,&quot;&#937;&quot;,&quot;&#928;&quot;,&quot;&#920;&quot;,
+      &quot;&#929;&quot;,&quot;&#931;&quot;,&quot;&#932;&quot;,&quot;&#933;&quot;,&quot;V&quot;,&quot;&#937;&quot;,&quot;&#926;&quot;,&quot;&#936;&quot;,&quot;&#918;&quot;
+      }
+  ]//
+  Pane[
+    Column[
+      DeleteCases[
+        Table[
+          Switch[First@i,
+            &quot;ia&quot;, 
+              None,
+            _,
+              First@i-&gt;DisplayForm@Last@i
+            ],
+          {i,#}
+          ],
+        None
+        ],
+      ItemSize-&gt;{1000,Automatic},
+      Dividers-&gt;Center
+      ],
+  {250,250},
+  Scrollbars-&gt;{False, True}
+  ]&amp;
+(*Out:*)</code>
 </pre>
-<p>On top of these alias symbols there&#8217;s another group of symbols that can be gotten via <code>\[&lt;name&gt;]</code></p>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/123keyboardaliasesandspecialcharacters-6383125132510836538.png' alt='123keyboardaliasesandspecialcharacters-6383125132510836538' />
+<p>On top of these alias symbols there&apos;s another group of symbols that can be gotten via <code>\[&lt;name&gt;]</code></p>
 <p>For example, by doing this with the name EscapeKey one gets the following: <kbd>ESC</kbd>. There are also fun things like</p>
 <ul>
  <li>HeartSuit: &#9825;</li>
@@ -804,37 +881,37 @@ Scrollbars<span class='special-character Rule'>&#62754;</span>{False, True}
  <li>CheckedBox: &#9746;</li>
 </ul>
 <p>Plus a host of others. In general, any cell that will autocomplete symbol name will also autocomplete these names.</p>
-<p>Finally, I&#8217;ve made a little cell that will start looking for names the moment you type the first character of the name. You can generate it with the following code. If you then press backspace while the cell is empty it will automatically print <code>\[</code>  for you. Hopefully this will make searching for special characters somewhat easier.
+<p>Finally, I&apos;ve made a little cell that will start looking for names the moment you type the first character of the name. You can generate it with the following code. If you then press backspace while the cell is empty it will automatically print <code>\[</code>  for you. Hopefully this will make searching for special characters somewhat easier.
 </p>
 <pre class='prettyprint'>
  <code>Cell[
- BoxData[&quot;&quot;], 
- &quot;Code&quot;,
- CellDingbat-&gt;TextData[{&quot;Search&quot;, &quot; &quot;, &quot;Cell&quot;, &quot; &quot;, &quot;<span class='special-character LeftModified'>&#63339;</span>&quot;}],
- CellEventActions-&gt;{
-  &quot;KeyDown&quot; :&gt; 
-  If[
-   MatchQ[
-    And[CurrentValue[&quot;EventKey&quot;] === &quot; &quot;, 
-     First[
-      NotebookRead[
-       EvaluationCell[]
-       ]
-      ]
-     ], 
-    BoxData[&quot;&quot;]
-    ], 
-   NotebookWrite[
-    EvaluationNotebook[], 
-    &quot;\\[ &quot;
-    ]
-   ], 
- PassEventsDown -&gt; True},
- CodeAssistOptions-&gt;{
-  &quot;AutoPopupDelay&quot;-&gt;0.,
-  &quot;MinimalSize&quot;-&gt;1,
-  &quot;StringCompleteEnable&quot;-&gt;True
-  },
+  BoxData[&quot;&quot;], 
+  &quot;Code&quot;,
+  CellDingbat-&gt;TextData[{&quot;Search&quot;, &quot; &quot;, &quot;Cell&quot;, &quot; &quot;, &quot;<span class='special-character LeftModified'>&#63339;</span>&quot;}],
+  CellEventActions-&gt;{
+    &quot;KeyDown&quot; :&gt; 
+    If[
+      MatchQ[
+        And[CurrentValue[&quot;EventKey&quot;] === &quot; &quot;, 
+          First[
+            NotebookRead[
+              EvaluationCell[]
+              ]
+            ]
+          ], 
+        BoxData[&quot;&quot;]
+        ], 
+      NotebookWrite[
+        EvaluationNotebook[], 
+        &quot;\\[ &quot;
+        ]
+      ], 
+  PassEventsDown -&gt; True},
+  CodeAssistOptions-&gt;{
+    &quot;AutoPopupDelay&quot;-&gt;0.,
+    &quot;MinimalSize&quot;-&gt;1,
+    &quot;StringCompleteEnable&quot;-&gt;True
+    },
  Evaluatable -&gt; False
  ]//CellPrint</code>
 </pre>

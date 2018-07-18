@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      5119,        133]
-NotebookOptionsPosition[      4331,        112]
-NotebookOutlinePosition[      4758,        129]
-CellTagsIndexPosition[      4715,        126]
+NotebookDataLength[      5755,        145]
+NotebookOptionsPosition[      4646,        121]
+NotebookOutlinePosition[      5073,        138]
+CellTagsIndexPosition[      5030,        135]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -21,7 +21,7 @@ Notebook[{
 Cell[BoxData[
  RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<Overview\>\""}], ",", 
+   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<GeneralUtilities\>\""}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
    "\[IndentingNewLine]", 
@@ -30,9 +30,9 @@ Cell[BoxData[
     "\"\<Reference Guides/Undocumented Contexts/\>\""}], ",", 
    "\[IndentingNewLine]", 
    RowBox[{"\"\<ID\>\"", "\[Rule]", 
-    RowBox[{"{", "\"\<4.1.1\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
+    RowBox[{"{", "\"\<4.1.6\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
    RowBox[{"\"\<Date\>\"", "\[Rule]", 
-    TemplateBox[{RowBox[{"\"Tue 17 Jul 2018 01:16:59\"", 
+    TemplateBox[{RowBox[{"\"Tue 17 Jul 2018 15:18:20\"", 
         StyleBox[
          RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
            StyleBox[
@@ -42,8 +42,8 @@ Cell[BoxData[
         RowBox[{
           RowBox[{"{", 
             
-            RowBox[{"2018", ",", "7", ",", "17", ",", "1", ",", "16", ",", 
-              "59.037302`8.523701475112768"}], "}"}], ",", "\"Instant\"", ",",
+            RowBox[{"2018", ",", "7", ",", "17", ",", "15", ",", "18", ",", 
+              "20.570366`8.065817002690153"}], "}"}], ",", "\"Instant\"", ",",
            "\"Gregorian\"", ",", 
           RowBox[{"-", "7.`"}]}], "]"}]},
      "DateObject",
@@ -61,53 +61,62 @@ Cell[BoxData[
    
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
    3.7232007883818817`*^9}, 3.723201146733818*^9, {3.723203002317672*^9, 
    3.723203008852455*^9}, {3.723203499603772*^9, 3.7232035545127563`*^9}, {
    3.723251256681574*^9, 3.723251262240631*^9}, {3.74077953306179*^9, 
-   3.7407795404796257`*^9}, {3.740804293761916*^9, 
-   3.740804334443972*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.7407795404796257`*^9}, {3.740804293761916*^9, 3.740804334443972*^9}, {
+   3.74085451574841*^9, 3.7408545174152203`*^9}, {3.7408546960194607`*^9, 
+   3.7408547055568943`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
 
-Cell["Undocumented Functions", "Subsection",
- CellChangeTimes->{{3.74080434357171*^9, 
-  3.74080434755488*^9}},ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-\
-adb5ce7e4ec7"],
+Cell["GeneralUtilities", "Subsection",
+ CellChangeTimes->{{3.74080434357171*^9, 3.74080434755488*^9}, {
+  3.7408545073682537`*^9, 
+  3.7408545098045*^9}},ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
 
 Cell[TextData[{
- "Mathematica is a sprawling system and WRI loves to brag about the number of \
-functions in it. Unfortunately it also often under-performs due to this \
-sprawl. Targeted, highly-specialized functions get buried deep in the system, \
-while the most general form of the function exists at the ",
- Cell[BoxData["\"\<System`\>\""], "InlineInput",
+ "The ",
+ Cell[BoxData["\"\<GeneralUtilities`\>\""], "InlineInput",
   FormatType->"StandardForm",ExpressionUUID->
-  "30c30753-58f9-45b6-9895-b295be822d4f"],
- " level."
+  "f73aaee2-910c-4344-818b-d3a550f8bde2"],
+ " context is new as of version 10. It provides a wide arrary of useful \
+functionality, of which I only know a small part."
 }], "Text",
- CellChangeTimes->{{3.740804348729918*^9, 
-  3.74080446158939*^9}},ExpressionUUID->"54864930-a49a-4a8b-93b4-\
+ CellChangeTimes->{{3.740804348729918*^9, 3.74080446158939*^9}, {
+  3.740854511875499*^9, 
+  3.740854578994422*^9}},ExpressionUUID->"54864930-a49a-4a8b-93b4-\
 14b375923806"],
 
-Cell["\<\
-Therefore, a lot of using Mathematica well comes from taking advantage of the \
-nominally undocumented, unsupported parts of the system. \
-\>", "Text",
- CellChangeTimes->{{3.740804470309781*^9, 
-  3.740804501956493*^9}},ExpressionUUID->"191a4abf-d677-414c-b17b-\
-0f15baffc479"],
+Cell["PrintDefinitions", "Subsubsection",
+ CellChangeTimes->{{3.740854640171813*^9, 
+  3.7408546426177797`*^9}},ExpressionUUID->"f343d53a-4dba-4b78-ad23-\
+e793e07dce8d"],
 
-Cell["\<\
-To make this easier, I\[CloseCurlyQuote]ve attempted to compile lists of \
-useful undocumented functionality, separated by context.\
-\>", "Text",
- CellChangeTimes->{{3.740804503603189*^9, 
-  3.740804548112772*^9}},ExpressionUUID->"1b3c7c1c-edec-4935-9211-\
-b4d606d17d3e"]
+Cell["PrintDefinitionsLocal", "Subsubsection",
+ CellChangeTimes->{{3.740854640171813*^9, 
+  3.740854645769556*^9}},ExpressionUUID->"ea2aeac5-f4b6-4531-a9c4-\
+db729b5a3fed"],
+
+Cell["WithMessageHandler", "Subsubsection",
+ CellChangeTimes->{{3.740854640171813*^9, 
+  3.740854663657186*^9}},ExpressionUUID->"6ed988d0-4e5f-4e53-8b04-\
+ccc399472bf4"],
+
+Cell["ThrowFailure", "Subsubsection",
+ CellChangeTimes->{{3.7408546658400517`*^9, 
+  3.740854667905155*^9}},ExpressionUUID->"72f998f6-6d3f-40c4-9198-\
+c566676578f0"],
+
+Cell["ToMessage", "Subsubsection",
+ CellChangeTimes->{{3.7408546787944393`*^9, 
+  3.740854682192856*^9}},ExpressionUUID->"a0162e49-aef2-4052-a90e-\
+76d0f03e4cd5"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -128,12 +137,15 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2391, 52, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2500, 53, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[2974, 76, 168, 3, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
-Cell[3145, 81, 596, 12, 81, "Text",ExpressionUUID->"54864930-a49a-4a8b-93b4-14b375923806"],
-Cell[3744, 95, 287, 6, 58, "Text",ExpressionUUID->"191a4abf-d677-414c-b17b-0f15baffc479"],
-Cell[4034, 103, 281, 6, 58, "Text",ExpressionUUID->"1b3c7c1c-edec-4935-9211-b4d606d17d3e"]
+Cell[3083, 77, 209, 3, 41, "Subsection",ExpressionUUID->"be5251ec-b7a7-4c3c-91dc-adb5ce7e4ec7"],
+Cell[3295, 82, 483, 11, 58, "Text",ExpressionUUID->"54864930-a49a-4a8b-93b4-14b375923806"],
+Cell[3781, 95, 169, 3, 40, "Subsubsection",ExpressionUUID->"f343d53a-4dba-4b78-ad23-e793e07dce8d"],
+Cell[3953, 100, 172, 3, 36, "Subsubsection",ExpressionUUID->"ea2aeac5-f4b6-4531-a9c4-db729b5a3fed"],
+Cell[4128, 105, 169, 3, 36, "Subsubsection",ExpressionUUID->"6ed988d0-4e5f-4e53-8b04-ccc399472bf4"],
+Cell[4300, 110, 165, 3, 36, "Subsubsection",ExpressionUUID->"72f998f6-6d3f-40c4-9198-c566676578f0"],
+Cell[4468, 115, 162, 3, 36, "Subsubsection",ExpressionUUID->"a0162e49-aef2-4052-a90e-76d0f03e4cd5"]
 }, Open  ]]
 }
 ]

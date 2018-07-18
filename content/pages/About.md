@@ -1,6 +1,6 @@
 Title: About
 Date: 2017-12-24 09:21:43
-Modified: 2018-07-17 10:42:13
+Modified: 2018-07-17 12:42:44
 Slug: about
 
 <a id="a-somewhat-quick-intro-to-mathematica" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a>
@@ -25,4 +25,12 @@ The website is built from a collection of Mathematica notebooks using the  ```Si
 
 ### Errors
 
-This tutorial was written very quickly. There are undoubtedly errors in it. Please feel free to report any to me on the tutorial GitHub repository and I'll try to correct them at my soonest convenience.
+This tutorial was written very quickly. There are undoubtedly errors in it. Please feel free to report any to me on the tutorial GitHub repository and I'll try to correct them at my soonest convenience. 
+
+<a id="see-also" style="width:0;height:0;margin:0;padding:0;">&zwnj;</a>
+
+## See Also:
+
+* [Other References](https://mathematica.stackexchange.com/questions/18/where-can-i-find-examples-of-good-mathematica-programming-practice)
+
+* [Common Pitfalls](https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users)

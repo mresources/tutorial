@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[      9040,        231]
-NotebookOptionsPosition[      7248,        196]
-NotebookOutlinePosition[      7676,        213]
-CellTagsIndexPosition[      7633,        210]
+NotebookDataLength[     12313,        313]
+NotebookOptionsPosition[      9892,        268]
+NotebookOutlinePosition[     10320,        285]
+CellTagsIndexPosition[     10277,        282]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -59,7 +59,7 @@ Cell[BoxData[
    "\[IndentingNewLine]", 
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
    3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
@@ -70,8 +70,9 @@ Cell[BoxData[
    3.740255371551134*^9, 3.740255441548623*^9}, {3.740257785728876*^9, 
    3.740257787359725*^9}, {3.740258871202475*^9, 3.740258879451874*^9}, {
    3.740259049250639*^9, 3.7402590549178123`*^9}, {3.7404995668077173`*^9, 
-   3.740499567974806*^9}, {3.740777918600309*^9, 
-   3.7407779294635363`*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+   3.740499567974806*^9}, {3.740777918600309*^9, 3.7407779294635363`*^9}, {
+   3.7408470381121492`*^9, 
+   3.740847038531369*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
@@ -169,14 +170,12 @@ e7aac7eb53a2"],
 Cell[TextData[{
  "This will then get distributed as a ZIP file with the extension .paclet and \
 name ",
- Cell[BoxData[
-  RowBox[{"MyPaclet", "-", 
-   RowBox[{"version", ".", "paclet"}]}]], "InlineText",ExpressionUUID->
-  "151abdab-baf6-4133-969d-a6f939c6dbe9"],
+ Cell["MyPaclet-version.paclet", "InlineText",ExpressionUUID->
+  "3f3ed90e-3ccd-4718-bf54-72d2e93c9df9"],
  " where ",
- Cell[BoxData["version"], "InlineInput",
-  FormatType->"StandardForm",ExpressionUUID->
-  "fba5d8f7-0f25-4c13-af2a-6c0a6d60809c"],
+ Cell[BoxData[
+ "version"], "InlineInput",ExpressionUUID->
+  "b0b43d53-954e-4357-b544-52069ee77107"],
  " is formatted for semantic versioning."
 }], "Text",
  CellChangeTimes->{{3.7404993946631517`*^9, 
@@ -191,6 +190,79 @@ some more basic usage.\
  CellChangeTimes->{{3.740499499554268*^9, 
   3.7404995611001062`*^9}},ExpressionUUID->"8914864c-4a02-4cef-bb90-\
 9a30b2e559a5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740845896181356*^9, 
+  3.7408458975647383`*^9}},ExpressionUUID->"ff213c2c-24fc-46fb-a298-\
+b61759770cee"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+131101/how-to-distribute-mathematica-packages-as-paclets",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/131101/how-to-\
+distribute-mathematica-packages-as-paclets"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/131101/how-to-distribute-\
+mathematica-packages-as-paclets"]], "Item",
+ CellChangeTimes->{{3.740846000570044*^9, 
+  3.740846003283448*^9}},ExpressionUUID->"15a650ae-2382-440f-bb18-\
+19078ad7522b"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/1660/\
+what-is-a-paclet",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/1660/what-is-a-\
+paclet"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/1660/what-is-a-paclet"]], \
+"Item",
+ CellChangeTimes->{{3.7408460102446957`*^9, 
+  3.740846013963876*^9}},ExpressionUUID->"3479bf84-55bf-4b89-8f23-\
+eaadd6099067"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+29324/creating-mathematica-packages",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/29324/creating-\
+mathematica-packages"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/29324/creating-mathematica-\
+packages"]], "Item",
+ CellChangeTimes->{{3.740845898757073*^9, 
+  3.740845903991693*^9}},ExpressionUUID->"1d61b63e-bced-41c3-b172-\
+abd970b42ce4"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+132064/pacletinfo-m-documentation-project",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/132064/pacletinfo-m-\
+documentation-project"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/132064/pacletinfo-m-\
+documentation-project"]], "Item",
+ CellChangeTimes->{{3.7408460456220512`*^9, 
+  3.740846048358017*^9}},ExpressionUUID->"ab1ac421-14e9-46d1-8021-\
+99068ebe3c99"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/q/141887/38205",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/q/141887/38205"], None},
+ ButtonNote->"https://mathematica.stackexchange.com/q/141887/38205"]], "Item",\
+
+ CellChangeTimes->{{3.740846346973485*^9, 
+  3.740846349556933*^9}},ExpressionUUID->"fb04b743-290a-4b49-b654-\
+7dd915abc6c5"]
 }, Open  ]]
 }, Open  ]]
 },
@@ -212,25 +284,35 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2643, 54, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2694, 55, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[3226, 78, 206, 4, 41, "Subsection",ExpressionUUID->"36c68aba-ef4e-4c2d-a805-3af3c2d932e3"],
-Cell[3435, 84, 361, 6, 58, "Text",ExpressionUUID->"c53e9310-77f3-401a-9796-909142cd67cc"],
-Cell[3799, 92, 190, 3, 35, "Text",ExpressionUUID->"f7ee1bf3-6192-464e-98cd-17aec247de2f"],
+Cell[3277, 79, 206, 4, 41, "Subsection",ExpressionUUID->"36c68aba-ef4e-4c2d-a805-3af3c2d932e3"],
+Cell[3486, 85, 361, 6, 58, "Text",ExpressionUUID->"c53e9310-77f3-401a-9796-909142cd67cc"],
+Cell[3850, 93, 190, 3, 35, "Text",ExpressionUUID->"f7ee1bf3-6192-464e-98cd-17aec247de2f"],
 Cell[CellGroupData[{
-Cell[4014, 99, 146, 3, 32, "Item",ExpressionUUID->"4f08cc11-c26d-4fff-bc9d-077fc10804dd"],
-Cell[4163, 104, 151, 3, 32, "Item",ExpressionUUID->"c0b5ed8e-5ff6-44a4-b98e-7d32e1e15ee3"],
-Cell[4317, 109, 154, 3, 32, "Item",ExpressionUUID->"c50502a6-56d8-46cc-9b6f-0ff59c438480"],
-Cell[4474, 114, 152, 3, 32, "Item",ExpressionUUID->"fe8199fd-8f3d-4c9f-84ba-83d697098136"],
-Cell[4629, 119, 155, 3, 32, "Item",ExpressionUUID->"b928ae52-3479-432b-8436-8c76a47d6ed2"]
+Cell[4065, 100, 146, 3, 32, "Item",ExpressionUUID->"4f08cc11-c26d-4fff-bc9d-077fc10804dd"],
+Cell[4214, 105, 151, 3, 32, "Item",ExpressionUUID->"c0b5ed8e-5ff6-44a4-b98e-7d32e1e15ee3"],
+Cell[4368, 110, 154, 3, 32, "Item",ExpressionUUID->"c50502a6-56d8-46cc-9b6f-0ff59c438480"],
+Cell[4525, 115, 152, 3, 32, "Item",ExpressionUUID->"fe8199fd-8f3d-4c9f-84ba-83d697098136"],
+Cell[4680, 120, 155, 3, 32, "Item",ExpressionUUID->"b928ae52-3479-432b-8436-8c76a47d6ed2"]
 }, Open  ]],
-Cell[4799, 125, 337, 7, 58, "Text",ExpressionUUID->"75afd277-52e1-41f4-aea1-7b333887ccee"],
+Cell[4850, 126, 337, 7, 58, "Text",ExpressionUUID->"75afd277-52e1-41f4-aea1-7b333887ccee"],
 Cell[CellGroupData[{
-Cell[5161, 136, 169, 3, 40, "Subsubsection",ExpressionUUID->"39d7227f-f5bf-465a-9310-8ccd69299827"],
-Cell[5333, 141, 539, 11, 59, "Text",ExpressionUUID->"c7b290ce-3ea4-4adf-b15a-1721fd91f6b3"],
-Cell[5875, 154, 421, 12, 113, "FencedCode",ExpressionUUID->"e1df0cbe-7f76-466b-b7f9-e7aac7eb53a2"],
-Cell[6299, 168, 585, 15, 59, "Text",ExpressionUUID->"bcfb38e6-28d3-470f-b5f9-677105ec5e3a"],
-Cell[6887, 185, 333, 7, 58, "Text",ExpressionUUID->"8914864c-4a02-4cef-bb90-9a30b2e559a5"]
+Cell[5212, 137, 169, 3, 40, "Subsubsection",ExpressionUUID->"39d7227f-f5bf-465a-9310-8ccd69299827"],
+Cell[5384, 142, 539, 11, 59, "Text",ExpressionUUID->"c7b290ce-3ea4-4adf-b15a-1721fd91f6b3"],
+Cell[5926, 155, 421, 12, 113, "FencedCode",ExpressionUUID->"e1df0cbe-7f76-466b-b7f9-e7aac7eb53a2"],
+Cell[6350, 169, 505, 13, 60, "Text",ExpressionUUID->"bcfb38e6-28d3-470f-b5f9-677105ec5e3a"],
+Cell[6858, 184, 333, 7, 58, "Text",ExpressionUUID->"8914864c-4a02-4cef-bb90-9a30b2e559a5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7240, 197, 159, 3, 41, "Subsection",ExpressionUUID->"ff213c2c-24fc-46fb-a298-b61759770cee"],
+Cell[CellGroupData[{
+Cell[7424, 204, 560, 11, 53, "Item",ExpressionUUID->"15a650ae-2382-440f-bb18-19078ad7522b"],
+Cell[7987, 217, 457, 11, 32, "Item",ExpressionUUID->"3479bf84-55bf-4b89-8f23-eaadd6099067"],
+Cell[8447, 230, 497, 11, 32, "Item",ExpressionUUID->"1d61b63e-bced-41c3-b172-abd970b42ce4"],
+Cell[8947, 243, 517, 11, 32, "Item",ExpressionUUID->"ab1ac421-14e9-46d1-8021-99068ebe3c99"],
+Cell[9467, 256, 397, 8, 32, "Item",ExpressionUUID->"fb04b743-290a-4b49-b654-7dd915abc6c5"]
 }, Open  ]]
 }, Open  ]]
 }

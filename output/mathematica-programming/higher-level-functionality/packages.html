@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -758,37 +814,44 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='packages' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Packages</h2>
-<p>Packages are a convenient way to partition code into chunks that don&#8217;t interact with each other needlessly, allowing for simpler programming. Mathematica even has a special package file type, the .m file, which is closer to plain-text than a .nb file.</p>
+<p>Packages are a convenient way to partition code into chunks that don&apos;t interact with each other needlessly, allowing for simpler programming. Mathematica even has a special package file type, the .m file, which is closer to plain-text than a .nb file.</p>
 <p>A package is really just a collection of symbols in a given context, defined so as to interact with only the <code>System</code>  context and whichever contexts the user loads, which protects from name overlaps and things.
 </p>
 <h3> Definition</h3>
-<p>A package may be defined anywhere, using <code>BeginPackage</code>  and <code>EndPackage</code> . Usually one inserts a Private context into the package, however, to make definitions cleaner, and only exposes a certain subset of functions, which are given usage messages. For example let&#8217;s define a simple package:
+<p>A package may be defined anywhere, using <code>BeginPackage</code>  and <code>EndPackage</code> . Usually one inserts a Private context into the package, however, to make definitions cleaner, and only exposes a certain subset of functions, which are given usage messages. For example let&apos;s define a simple package:
 </p>
 <pre class='prettyprint'>
  <code>BeginPackage[&quot;BabysFirstPackage`&quot;];
-function1::usage = &quot;an exposed function&quot;;
-function2::usage = &quot;another one!&quot;
-$constant::usage = &quot;a package constant&quot;;
+function1::usage=&quot;an exposed function&quot;;
+function2::usage=&quot;another one!&quot;
+$constant::usage=&quot;a package constant&quot;;
 Begin[&quot;`Private`&quot;];
-function1[x_] := function2[1, x];
-function2[x_, y_] := ($constant = RandomReal[]*x*y);
+function1[x_]:=function2[1,x];
+function2[x_,y_]:=($constant=RandomReal[]*x*y);
 End[];
 EndPackage[];</code>
 </pre>
 <p>Note that the symbols must be used before they are given private definitions or else the definitions will be on private symbols.
 </p>
 <h3> Get and Needs</h3>
-<p>Once the package is defined, it&#8217;s later imported using <code>Get</code>  or <code>Needs</code> , the difference between which can be found in the documentation (there are no subtleties to be warned about, here).</p>
+<p>Once the package is defined, it&apos;s later imported using <code>Get</code>  or <code>Needs</code> , the difference between which can be found in the documentation (there are no subtleties to be warned about, here).</p>
 <p>Note that both <code>Get</code>  and <code>Needs</code>  only work on these very plain .m and .wl files. One cannot run <code>Get</code>  on a notebook file and evaluate the expressions contained within so simply.
 </p>
 <h3> AutoGeneratedPackage and InitializationGroups</h3>
 <p>Happily there is a way to define packages within notebooks, using the <code>AutoGeneratePackage</code>  option for the notebook. When this is set to <code>Automatic</code> , every time the notebook is saved it saves all of the initialization cells within to a package file with the same file name.</p>
-<p>If this were all, that wouldn&#8217;t be too useful, as having to specify all of the initialization cells is a pain. Happily we evade that problem by using an <code>InitializationGroup</code> , which is simply a cell group where all of the evaluatable cells are automatically initialization cells.</p>
+<p>If this were all, that wouldn&apos;t be too useful, as having to specify all of the initialization cells is a pain. Happily we evade that problem by using an <code>InitializationGroup</code> , which is simply a cell group where all of the evaluatable cells are automatically initialization cells.</p>
 <p>The way I often go about using this is creating two cell groups:</p>
 <p>I put all of my package code here.</p>
 <p>And run all of my tests here.</p>
 <p>Then I make the Package cell an <code>InitializationGroup</code> . This way I can simply add and subtract from the package at will, but still get all the benefits of a notebook for testing and formatting.</p>
 <p>Packages are also a great way to store useful tricks and things you develop for doing problem sets or similar projects. Just toss all of your tricks in one package and you can get them all at once.</p>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/29324/creating-mathematica-packages/29325#29325'>https://mathematica.stackexchange.com/questions/29324/creating-mathematica-packages/29325#29325</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

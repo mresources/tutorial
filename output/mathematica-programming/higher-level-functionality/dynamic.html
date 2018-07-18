@@ -702,6 +702,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
          >
         Multipackage Paclets
       </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        New-Style Packages
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/special-paclets.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Special Paclets
+      </a>
         <h4 class="w3-bar-item index-section">
           Reference Guides
         </h4>
@@ -717,12 +733,52 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        System`*`
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/language.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Language
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/generalutilities.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        GeneralUtilities
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Package
       </a>
     </ul>
   </div>
@@ -758,130 +814,133 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='dynamic' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Dynamic</h2>
-<p>Everything done up to here has involved static content. Often, though, dynamic content is what you need. I don&#8217;t have the time to explain all of <code>Dynamic</code>  here, given how many things one can do with <code>Dynamic</code> , but it&#8217;s worth going over a few critical things.
+<p>Everything done up to here has involved static content. Often, though, dynamic content is what you need. I don&apos;t have the time to explain all of <code>Dynamic</code>  here, given how many things one can do with <code>Dynamic</code> , but it&apos;s worth going over a few critical things.
 </p>
 <h3> Dynamic as formatting head</h3>
-<p><code>Dynamic</code>  only ever updates while it&#8217;s on screen. This is one of it&#8217;s key features, as otherwise things could get out of hand. How this works is that <code>Dynamic</code>  is just something that the Mathematica front end sees and creates listeners to update.</p>
-<p>This means, though, that if your content will never display it won&#8217;t update. If you need an invisible updater, use <code>DynamicWrapper</code> .
+<p><code>Dynamic</code>  only ever updates while it&apos;s on screen. This is one of it&apos;s key features, as otherwise things could get out of hand. How this works is that <code>Dynamic</code>  is just something that the Mathematica front end sees and creates listeners to update.</p>
+<p>This means, though, that if your content will never display it won&apos;t update. If you need an invisible updater, use <code>DynamicWrapper</code> .
 </p>
-<h3> Dynamic&#8217;s second argument</h3>
+<h3> Dynamic&apos;s second argument</h3>
 <p><code>Dynamic</code>  takes a function as a second argument that it calls whenever it tries to update, passing the update value as the first argument. We can use this to do fancy things like the following:
 </p>
 <pre class='prettyprint'>
- <code>Slider@Dynamic[x, (x = RandomReal[]) &amp;]
+ <code>Slider@Dynamic[x, (x=RandomReal[])&amp;]
 (*Out:*)</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-524780254544371368.png' alt='22-524780254544371368' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-8464373383437301006.png' alt='222dynamic-8464373383437301006' />
 <p>The variable takes a random value every time we try to update it.</p>
 <p>This could also be used to record responses:
 </p>
 <pre class='prettyprint'>
- <code>$responseCache = {};
+ <code>$responseCache={};
 Grid[
   {
     {
       SetterBar[
-        Dynamic[Last@Replace[$responseCache, {} :&gt; {None}],
-          AppendTo[$responseCache, #] &amp;
+        Dynamic[Last@Replace[$responseCache,{}:&gt;{None}],
+          AppendTo[$responseCache,#]&amp;
           ],
         Range[10]
         ],
       Dynamic@Column@$responseCache
       }
     },
-  Alignment -&gt; Top
+  Alignment-&gt;Top
   ]
 (*Out:*)</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-7244818211856538291.png' alt='22-7244818211856538291' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-8291210888907479400.png' alt='222dynamic-8291210888907479400' />
 <p>Each click adds to the response cache.
 </p>
 <h3> TrackedSymbols</h3>
-<p><code>Dynamic</code>  usually decides in a semi-opaque manner which symbols to track changes in, but we can force it to follow symbol updates. Let&#8217;s make a <code>Dynamic</code>  thing that passes colors back and forth. We&#8217;ll write it using <code>Mouseover</code>  so the passing only occurs when we&#8217;re hovering
+<p><code>Dynamic</code>  usually decides in a semi-opaque manner which symbols to track changes in, but we can force it to follow symbol updates. Let&apos;s make a <code>Dynamic</code>  thing that passes colors back and forth. We&apos;ll write it using <code>Mouseover</code>  so the passing only occurs when we&apos;re hovering
 </p>
 <pre class='prettyprint'>
- <code>c1 = Gray; c2 = Green; counter = 1;
+ <code>c1=Gray;c2=Green;counter=1;
 Mouseover[
-  Row@{Dynamic@Graphics[{c1, Disk[]}], Dynamic@Graphics[{c2, Disk[]}]},
+  Row@{Dynamic@Graphics[{c1,Disk[]}],Dynamic@Graphics[{c2,Disk[]}]},
   Row@{
-     Dynamic[Graphics[{
-          c1 = If[counter &lt; 5,
-             counter++; Pause[.1]; c1,
-             counter = 1; c2],
-          Disk[]}],
-      TrackedSymbols :&gt; {c1, c2, counter}],
     Dynamic[Graphics[{
-         c2 = If[c1 === c2, RandomColor[], c2],
-         Disk[]}], TrackedSymbols :&gt; {c1, c2, counter}]
-    }
- ]
+        c1=If[counter&lt;5,
+          counter++;Pause[.1];c1,
+          counter=1;c2],
+        Disk[]}],
+    TrackedSymbols:&gt;{c1,c2,counter}],
+  Dynamic[Graphics[{
+      c2=If[c1===c2,RandomColor[],c2],
+      Disk[]}],TrackedSymbols:&gt;{c1,c2,counter}]
+  }
+]
 (*Out:*)</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-7899734745879872875.png' alt='22-7899734745879872875' />
-<p>You&#8217;ll notice this works exactly as expected. </p>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-3600955783346224363.png' alt='222dynamic-3600955783346224363' />
+<p>You&apos;ll notice this works exactly as expected. </p>
 <p>Often, however, one runs into issues with <code>TrackedSymbols</code> . This is because of an interesting implementation choice. To track a symbol, it needs to appear in the display expression and not too deep. Usually I simply put the symbol in as part of a <code>CompoundExpression</code>  so it does nothing, but <code>Dynamic</code>  knows to track it. The following is probably the safer way to write this, to ensure tracking:
 </p>
 <pre class='prettyprint'>
- <code>c1 = Gray; c2 = Green; counter = 1;
+ <code>c1=Gray;c2=Green;counter=1;
 Mouseover[
-  Row@{Dynamic@Graphics[{c1, Disk[]}], Dynamic@Graphics[{c2, Disk[]}]},
+  Row@{Dynamic@Graphics[{c1,Disk[]}],Dynamic@Graphics[{c2,Disk[]}]},
   Row@{
-     Dynamic[counter; c1; c2; Graphics[{
-          c1 = If[counter &lt; 5,
-             counter++; Pause[.1]; c1,
-             counter = 1; c2],
-          Disk[]}],
-      TrackedSymbols :&gt; {c1, c2, counter}],
-    Dynamic[c1; c2; Graphics[{
-         c2 = If[c1 === c2, RandomColor[], c2],
-         Disk[]}], TrackedSymbols :&gt; {c1, c2, counter}]
-    }
- ]
+    Dynamic[counter;c1;c2;Graphics[{
+        c1=If[counter&lt;5,
+          counter++;Pause[.1];c1,
+          counter=1;c2],
+        Disk[]}],
+    TrackedSymbols:&gt;{c1,c2,counter}],
+  Dynamic[c1;c2;Graphics[{
+      c2=If[c1===c2,RandomColor[],c2],
+      Disk[]}],TrackedSymbols:&gt;{c1,c2,counter}]
+  }
+]
 (*Out:*)</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-4331124232957805111.png' alt='22-4331124232957805111' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-2381226532866321571.png' alt='222dynamic-2381226532866321571' />
 <h3> UpdateInterval</h3>
-<p><code>Dynamic</code>  can also be scheduled to simply update on a given time frame, which is usually a fall back for when there&#8217;s no other way to get symbol tracking to work right or there are no symbols to track. In this case it&#8217;s very important the <code>TrackedSymbols</code>  be passed an empty list.</p>
-<p>Here&#8217;s a classic stop watch example:
+<p><code>Dynamic</code>  can also be scheduled to simply update on a given time frame, which is usually a fall back for when there&apos;s no other way to get symbol tracking to work right or there are no symbols to track. In this case it&apos;s very important the <code>TrackedSymbols</code>  be passed an empty list.</p>
+<p>Here&apos;s a classic stop watch example:
 </p>
 <pre class='prettyprint'>
- <code>startTime = None; updateInterval = &#8734;;
+ <code>startTime=None;updateInterval=&#8734;;
 Panel@Grid[{
-     {Button[&quot;Start&quot;,
-         startTime = TimeObject[];
-         updateInterval = .1],
-       Button[&quot;Stop&quot;, updateInterval = &#8734;],
-       Button[&quot;Reset&quot;, 
-     startTime = 
-      If[updateInterval === &#8734;, None, TimeObject[]]]
-       },
-     {Panel@Panel[
+    {Button[&quot;Start&quot;,
+        startTime=TimeObject[];
+        updateInterval=.1],
+      Button[&quot;Stop&quot;,updateInterval=&#8734;],
+      Button[&quot;Reset&quot;,startTime=If[updateInterval===&#8734;,None,TimeObject[]]]
+      },
+    {Panel@Panel[
+        Dynamic[
+          updateInterval;
+          startTime;
           Dynamic[
-            updateInterval;
-            startTime;
-            Dynamic[
-              TemplateApply[&quot;``:``:``&quot;,
-                If[MatchQ[#, _Integer],
-                    StringPadLeft[ToString[#], 2, &quot;0&quot;],
-                    ToString@#] &amp; /@ First@TimeObject@(
-                     If[
-                       startTime === None,
-                       {0, 0, 0},
-                       {0, 0, 
-               Round[TimeObject[] - startTime // 
-                 QuantityMagnitude, .01]}])
-                ],
-              TrackedSymbols :&gt; {},
-              UpdateInterval -&gt; updateInterval],
-            TrackedSymbols :&gt; {updateInterval, startTime}],
-          ImageSize -&gt; 200,
-          Alignment -&gt; Center,
-          Background -&gt; White],
-       SpanFromLeft}
-     }]
+            TemplateApply[&quot;``:``:``&quot;,
+              If[MatchQ[#,_Integer],
+                StringPadLeft[ToString[#],2,&quot;0&quot;],
+                ToString@#]&amp;/@First@TimeObject@(
+                If[
+                  startTime===None,
+                  {0,0,0},
+                  {0,0,Round[TimeObject[]-startTime//QuantityMagnitude,.01]}])
+              ],
+            TrackedSymbols:&gt;{},
+            UpdateInterval-&gt;updateInterval],
+          TrackedSymbols:&gt;{updateInterval,startTime}],
+        ImageSize-&gt;200,
+        Alignment-&gt;Center,
+        Background-&gt;White],
+      SpanFromLeft}
+    }]
 (*Out:*)</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-7554777481255894278.png' alt='22-7554777481255894278' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-3801747813210570362.png' alt='222dynamic-3801747813210570362' />
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users/85491#85491'>https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users/85491#85491</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>
