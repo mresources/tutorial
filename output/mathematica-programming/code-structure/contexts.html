@@ -850,54 +850,49 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <pre class='mma-output prettyprint'>
  <code>{&quot;CloudObjectLoader`&quot;,&quot;StreamingLoader`&quot;,&quot;SymbolicMachineLearningLoader`&quot;,&quot;IconizeLoader`&quot;,&quot;HTTPHandlingLoader`&quot;,&quot;PacletManager`&quot;,&quot;System`&quot;,&quot;Global`&quot;}</code>
 </pre>
-<p>We can define our own contexts via <code>Begin</code>  and <code>BeginPackage</code>  and the context is exited via <code>End</code>  and <code>EndPackage</code>  respectively. The only difference between these is that <code>BeginPackage</code>  restricts the value of <code>$ContextPath</code>  while <code>Begin</code>  does not:
+<p>We can define our own contexts via <code>Begin</code> and <code>BeginPackage</code> and the context is exited via <code>End</code> and <code>EndPackage</code> respectively. The only difference between these is that <code>BeginPackage</code> restricts the value of <code>$ContextPath</code> while <code>Begin</code> does not:
 </p>
 <pre class='mma-input prettyprint'>
  <code>BeginPackage[&quot;NameTools`&quot;];
-
 thisIsTheLocalContextPath=$ContextPath;
-
 EndPackage[]
-
-thisIsTheLocalContextPath//Context</code>
+thisIsTheLocalContextPath//Context
+thisIsTheLocalContextPath</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>&quot;NameTools`&quot;
-
-thisIsTheLocalContextPath</code>
+ <code>&quot;NameTools`&quot;</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{&quot;NameTools`&quot;,&quot;System`&quot;}</code>
 </pre>
-<p>This protects symbols from being affected by things in the <code>Global` </code>  context or any other context. <code>Begin</code>  does not do this:
+<p>This protects symbols from being affected by things in the <code>Global` </code> context or any other context. <code>Begin</code> does not do this:
 </p>
 <pre class='mma-input prettyprint'>
  <code>Begin[&quot;NameTools`&quot;];
-
 thisIsTheLocalContextPath=$ContextPath;
-
 End[];
-
 thisIsTheLocalContextPath</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{&quot;NameTools`&quot;,&quot;CloudObjectLoader`&quot;,&quot;StreamingLoader`&quot;,&quot;SymbolicMachineLearningLoader`&quot;,&quot;IconizeLoader`&quot;,&quot;HTTPHandlingLoader`&quot;,&quot;PacletManager`&quot;,&quot;System`&quot;,&quot;Global`&quot;}</code>
 </pre>
-<p>Note that <code>BeginPackage</code>  also prepended the context defined to the <code>$ContextPath</code> .</p>
-<p>Anything not in <code>NameTools` </code>  exactly won&apos;t be found, however:
+<p>Note that <code>BeginPackage</code> also prepended the context defined to the <code>$ContextPath</code> .</p>
+<p>Anything not in <code>NameTools` </code> exactly won&apos;t be found, however. We can see this by definining something in a subcontext:
 </p>
 <pre class='mma-input prettyprint'>
  <code>NameTools`hidden`a=100</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>100
-
-a</code>
+ <code>100</code>
+</pre>
+<p>And noting that it doesn&apos;t get exposed via context in the <code>$ContextPath</code> :
+</p>
+<pre class='mma-input prettyprint'>
+ <code>a
+a//Context</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>a
-
-a//Context</code>
+ <code>a</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>&quot;Global`&quot;</code>

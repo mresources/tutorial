@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     95773,       2356]
+NotebookDataLength[     95688,       2354]
 NotebookOptionsPosition[     84936,       2189]
-NotebookOutlinePosition[     85685,       2214]
-CellTagsIndexPosition[     85642,       2211]
+NotebookOutlinePosition[     85600,       2212]
+CellTagsIndexPosition[     85557,       2209]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2196,9 +2196,7 @@ StyleDefinitions->Notebook[{
     StyleData[
     StyleDefinitions -> 
      FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", CharacterEncoding -> 
-       "UTF-8"]]]}, WindowSize -> {808, 755}, 
-  WindowMargins -> {{20, Automatic}, {36, Automatic}}, Visible -> False, 
-  FrontEndVersion -> 
+       "UTF-8"]]]}, Visible -> False, FrontEndVersion -> 
   "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
   StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
 ]

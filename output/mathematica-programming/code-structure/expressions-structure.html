@@ -827,141 +827,195 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a shape='rect' id='expressions-structure' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Expressions Structure</h2>
 <h3> Heads</h3>
-<p>For any expression the part before the square brackets is known as the <code>Head</code>  of the expression and happily there is the conveniently named <a href='https://reference.wolfram.com/language/ref/Head.html'><code>Head</code></a>  function extract it!
+<p>For any expression the part before the square brackets is known as the <code>Head</code> of the expression and happily there is the conveniently named <a href='https://reference.wolfram.com/language/ref/Head.html'><code>Head</code></a> function extract it!
 </p>
 <pre class='mma-input prettyprint'>
- <code>Head@&lt;|1 -&gt; 2, 3 -&gt; 4, 5 -&gt; 6|&gt;</code>
+ <code>Head@&lt;|1-&gt;2, 3-&gt;4, 5-&gt;6|&gt;</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>Association</code>
 </pre>
-<p>The <code>Head</code>  of an expression can be anything:
+<p>The <code>Head</code> of an expression can be anything. It can be a string:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Head@(f[1][&lt;|a -&gt; b|&gt;][3])</code>
+ <code>Head@&quot;a&quot;[b]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>f[1][&lt;|a -&gt; b|&gt;]
-
-Head@&quot;a&quot;[b]</code>
+ <code>&quot;a&quot;</code>
 </pre>
-<pre class='mma-output prettyprint'>
- <code>&quot;a&quot;
-
-Head@( (12 s^2)[2])</code>
+<p>A compound expression:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Head@((12 s^2)[2])</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>12 s^2</code>
 </pre>
-<h3> Parts</h3>
-<p>Everything following the <code>Head</code>  in the expression is simply a part of the expression and can be extracted with the <code>Part</code>  function:
+<p>Or a deeply-nested chain of expressions:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Part[((12 s^2)[2]), 1]</code>
+ <code>Head@(f[1][&lt;|a-&gt;b|&gt;][3])</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>2
-
-Part[{1, 2, 3}, 2]</code>
+ <code>f[1][&lt;|a-&gt;b|&gt;]</code>
 </pre>
-<pre class='mma-output prettyprint'>
- <code>2</code>
-</pre>
-<p><code>Part</code>  also has an alias <code>[[ ]]</code></p>
+<h3> Parts</h3>
+<p>Everything following the <code>Head</code> in the expression is simply a part of the expression and can be extracted with the <code>Part</code> function.</p>
+<p>Here the part <code>1</code> is the part within the brackets:
+</p>
 <pre class='mma-input prettyprint'>
- <code>{1, 2, 3}[[2]]</code>
+ <code>Part[((12s^2)[2]), 1]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>2</code>
 </pre>
-<p>Because so often one needs the first or last components of an expression there are two dedicated functions to getting these parts:
+<p>And here part <code>2</code> second bit in the curly bracesL
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Part[{1,2,3}, 2]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>2</code>
+</pre>
+<p>But if we look at the <code>FullForm</code> of that:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>{1,2,3}//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>List[1,2,3]</code>
+</pre>
+<p>We see that it&apos;s really no different than the first example</p>
+<p><code>Part</code> also has an alias <code>[[ ]]</code></p>
+<pre class='mma-input prettyprint'>
+ <code>{1,2,3}[[2]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>2</code>
+</pre>
+<p>It can also take runs of elements using <code>Span</code> syntax:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Range[10][[2;;8;;3]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{2,5,8}</code>
+</pre>
+<p>Or it can take a list of elements:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Range[100, 1, -1][[Array[Fibonacci, 10]]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{100,100,99,98,96,93,88,80,67,46}</code>
+</pre>
+<p>Because so often one needs the first or last components of an expression there are two dedicated functions to getting these parts. </p>
+<p><code>First</code> is functionally equivalent to <code>[[1]]</code> :
 </p>
 <pre class='mma-input prettyprint'>
  <code>First@Range[10]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>1
-
-Last@Range[10]</code>
+ <code>1</code>
+</pre>
+<p>And <code>Last</code> is functionally equivalent to <code>[[-1]]</code> :
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Last@Range[10]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>10</code>
 </pre>
-<p>There is also the function <code>Rest</code>  which will take the second through last parts of an expression:
+<p>There is also the function <code>Rest</code> which will take the second through last parts of an expression:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Rest@(A @@ Range[10])</code>
+ <code>Rest@A[1, 2, 3, 4, 5]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>A[2, 3, 4, 5, 6, 7, 8, 9, 10]</code>
+ <code>A[2,3,4,5]</code>
 </pre>
-<p>There is also the function <code>Take</code>  which takes spans from an expression
+<p>And <code>Most</code> which will that the first through second to last parts:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Take[B @@ Range[10], {3, 5}]</code>
+ <code>Most@A[1, 2, 3, 4, 5]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>B[3, 4, 5]</code>
+ <code>A[1,2,3,4]</code>
 </pre>
+<p>There is also the function <code>Take</code> which takes spans from an expression:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Take[B@@Range[10],{3,5}]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>B[3,4,5]</code>
+</pre>
+<p><code>Take</code> also accepts <code>Span</code> syntax</p>
+<p>There is also <code>Extract</code> which is much like <code>Part</code> but provides a few features that can make it much more efficient in some cases (and less efficient in others). If you&apos;re going to do a lot of numeric manipulation or manipulation of memory-hungry objects it&apos;s worth being comfortable with both.
+</p>
 <h3> Manipulating Expressions</h3>
 <p>Mathematica also supports the manipulation of expressions through a wide series of functions, a few of which will be explained here and more which will be explained later:</p>
-<p><code>Insert</code>  takes an expression and inserts another expression in the index specified as its third argument
+<p><code>Insert</code> takes an expression and inserts another expression in the index specified as its third argument
 </p>
 <pre class='mma-input prettyprint'>
- <code>Insert[{1, 2, 4}, &quot;Hi&quot;, -1]</code>
+ <code>Insert[{1,2,4}, &quot;Hi&quot;, -1]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>{1, 2, 4, &quot;Hi&quot;}
-
-Insert[A[1, 2, 4], &quot;Hi&quot;, -2]</code>
+ <code>{1,2,4,&quot;Hi&quot;}</code>
 </pre>
-<pre class='mma-output prettyprint'>
- <code>A[1, 2, &quot;Hi&quot;, 4]
-
-Insert[Graphics3D[{Sphere[]}, ImageSize -&gt; Small], 
- Sphere[{2, 2, 2}, .5], {1, -1}]</code>
-</pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-3675499559684164904.png' alt='21-3675499559684164904' />
-<p><code>Append</code>  and <code>Prepend</code>  take an expression and add an element at the end and beginning respectively
+<p>As expected, it can insert into an arbitrary expression:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Append[Graphics3D[Sphere[], ImageSize -&gt; Small], 
- Lighting -&gt; &quot;Neutral&quot;]</code>
-</pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-6663125985827735989.png' alt='21-6663125985827735989' />
-<p><code>Delete</code>  and <code>Drop</code>  both remove parts from an expression. <code>Delete</code>  drops a single part:
-</p>
-<pre class='mma-input prettyprint'>
- <code>Delete[A[1, 2, 3, 4, 5], 4]</code>
+ <code>Insert[A[1,2,4], &quot;Hi&quot;, -2]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>A[1, 2, 3, 5]</code>
+ <code>A[1,2,&quot;Hi&quot;,4]</code>
 </pre>
-<p><code>Drop</code>  removes a span of parts
+<p>We can use this to, for example, insert another <code>Sphere</code> into a <code>Graphics3D</code> expression: 
 </p>
 <pre class='mma-input prettyprint'>
- <code>Drop[A[1, 2, 3, 4, 5], -2]</code>
+ <code>Graphics3D[{Sphere[]},ImageSize-&gt;Small]//Insert[#, Sphere[{2,2,2}, .5], {1,-1}]&amp;</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/212expressionsstructure-8617515708092443925.png' alt='212expressionsstructure-8617515708092443925' />
+<p><code>Append</code> and <code>Prepend</code> take an expression and add an element at the end and beginning respectively
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Append[Graphics3D[Sphere[],ImageSize-&gt;Small], Lighting-&gt;&quot;Neutral&quot;]</code>
+</pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/212expressionsstructure-3292976767487415699.png' alt='212expressionsstructure-3292976767487415699' />
+<p><code>Delete</code> and <code>Drop</code> both remove parts from an expression. <code>Delete</code> drops a single part:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Delete[A[1,2,3,4,5],4]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>A[1, 2, 3]</code>
+ <code>A[1,2,3,5]</code>
+</pre>
+<p><code>Drop</code> removes a span of parts
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Drop[A[1,2,3,4,5],-2]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[1,2,3]</code>
 </pre>
 <h3> Sequence</h3>
 <p>Often one wants to do something like stick the arguments of one expression inside another one. For this purpose there is a special <code>Head</code><code>Sequence</code></p>
 <pre class='mma-input prettyprint'>
- <code>A[1, 2, 3, Sequence[1, 2, 3]]</code>
+ <code>A[1,2,3,Sequence[1,2,3]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>A[1, 2, 3, 1, 2, 3]</code>
+ <code>A[1,2,3,1,2,3]</code>
 </pre>
 <p>Or demonstrating how to put a list inside the expression:
 </p>
 <pre class='mma-input prettyprint'>
- <code>A[1, 2, 3, Sequence @@ {1, 2, 3}]</code>
+ <code>A[1,2,3,Sequence@@{1,2,3}]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>A[1, 2, 3, 1, 2, 3]</code>
+ <code>A[1,2,3,1,2,3]</code>
 </pre>
-<p><code>Sequence</code>  generally represents a sequence of arguments which will be used without a <code>Head</code> . It is used most often in pattern matching and function definitions, but has many uses.</p>
+<p><code>Sequence</code> generally represents a sequence of arguments which will be used without a <code>Head</code> . It is used most often in pattern matching and function definitions, but, being such a flexible construct, it has many uses.</p>
     </div>
   </article>
   <br>

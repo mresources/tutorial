@@ -827,14 +827,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a shape='rect' id='ownvalues-set-and-setdelayed' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> OwnValues, Set, and SetDelayed</h2>
 <h3> Set and SetDelayed</h3>
-<p>Both <code>Set</code>  and <code>SetDelayed</code>  work by setting definitions on a symbol. What this means in practice is that <code>Set</code>  and <code>SetDelayed</code>  add replacement patterns to one of the <code>&#8902;Values</code>  lists of the symbol. The lists can be <code>OwnValues</code> , <code>DownValues</code> , <code>UpValues</code>  or <code>SubValues</code> . There are also <code>NValues</code>  and <code>FormatValues</code> , but these are assigned via alternate interfaces and do not have much effect on real programming.
+<p>Both <code>Set</code> and <code>SetDelayed</code> work by setting definitions on a symbol. What this means in practice is that <code>Set</code> and <code>SetDelayed</code> add replacement patterns to one of the <code>&#8902;Values</code> lists of the symbol. The lists can be <code>OwnValues</code> , <code>DownValues</code> , <code>UpValues</code> or <code>SubValues</code> . There are also <code>NValues</code> and <code>FormatValues</code> , but these are assigned via alternate interfaces and do not have much effect on real programming.
 </p>
 <h3> OwnValues</h3>
-<p><code>OwnValues</code>  are the most fundamental type of <code>&#8902;Values</code> . These represent things like the following:
+<p><code>OwnValues</code> are the most fundamental type of <code>&#8902;Values</code> . These represent things like the following:
 </p>
 <pre class='mma-input prettyprint'>
  <code>a=10;
-
 a:=20;</code>
 </pre>
 <p>We can then query the <code>OwnValues</code></p>
@@ -844,7 +843,7 @@ a:=20;</code>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[a]:&gt;20}</code>
 </pre>
-<p>We can even edit the <code>OwnValues</code>  manually if we know what we&apos;re doing:
+<p>We can even edit the <code>OwnValues</code> manually if we know what we&apos;re doing:
 </p>
 <pre class='mma-input prettyprint'>
  <code>OwnValues[a]=Prepend[OwnValues[a], HoldPattern[a]:&gt;50]</code>
@@ -861,14 +860,12 @@ a</code>
 </p>
 <pre class='mma-input prettyprint'>
  <code>a:=100
-
 OwnValues@a</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[a]:&gt;100,HoldPattern[a]:&gt;20}
 
 a:=32
-
 OwnValues@a</code>
 </pre>
 <pre class='mma-output prettyprint'>
@@ -880,53 +877,59 @@ OwnValues@a</code>
  <code>setValue[s_Symbol,v_]:=(OwnValues[s]=Prepend[OwnValues[s],HoldPattern[s]:&gt;v]);
 resetValue[s_Symbol]:=(OwnValues[s]=Rest@OwnValues[s]);
 SetAttributes[setValue,HoldFirst];
-SetAttributes[resetValue,HoldFirst]
-
-setValue[a,10];
-a</code>
+SetAttributes[resetValue,HoldFirst]</code>
 </pre>
-<pre class='mma-output prettyprint'>
- <code>10
-
-setValue[a,20];
-a</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>20
-
-resetValue[a];
+<p>We set the value once:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>setValue[a,10];
 a</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>10</code>
 </pre>
-<p>Notice that using a plain <code>Set</code>  erases these changes:
+<p>Then set it to a new value:
 </p>
 <pre class='mma-input prettyprint'>
- <code>a=10</code>
+ <code>setValue[a,20];
+a</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>10
-
+ <code>20</code>
+</pre>
+<p>But can restore the cached value:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>resetValue[a];
+a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10</code>
+</pre>
+<p>Notice that using a plain <code>Set</code> erases these changes:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>a=10
 OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[a]:&gt;10}</code>
 </pre>
-<p>Even if now we add more values <code>Set</code>  will erase them all:
+<p>Even if now we add more values <code>Set</code> will erase them all:
 </p>
 <pre class='mma-input prettyprint'>
- <code>OwnValues[a]=Join[ConstantArray[HoldPattern[a]:&gt;25,10],OwnValues@a]</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;10}
-
-a=10</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>10
-
+ <code>OwnValues[a]=Join[ConstantArray[HoldPattern[a]:&gt;25,10],OwnValues@a]
+a=10
 OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;10}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[a]:&gt;10}</code>

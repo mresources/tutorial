@@ -827,29 +827,28 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a shape='rect' id='function-starvalues-and-definition-clearing' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Function &#8902;Values and Definition Clearing</h2>
 <h3> DownValues</h3>
-<p>If <code>OwnValues</code>  are standard value bindings, <code>DownValues</code>  are your basic function bindings:
+<p>If <code>OwnValues</code> are standard value bindings, <code>DownValues</code> are your basic function bindings:
 </p>
 <pre class='mma-input prettyprint'>
  <code>f[x_]:=x
-
 DownValues@f</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[f[x_]]:&gt;x}</code>
 </pre>
-<p>This is also why we can define functions as patterns. All that happens is a series of replacement rules are tried, based on the <code>DownValues</code>  of the expression. Really, one can imagine that all Mathematica does to execute an expression is apply <code>ReplaceRepeated</code>  on the <code>&#8902;Values</code> .</p>
-<p>Obviously the system is more complex, because of <code>Attributes</code>  and the coming discussion of evaluation order and things, and also more optimized, but it&apos;s a good concept to keep in mind.</p>
-<p>Just like with <code>OwnValues</code>  we can manipulate the <code>DownValues</code>  via</p>
+<p>This is also why we can define functions as patterns. All that happens is a series of replacement rules are tried, based on the <code>DownValues</code> of the expression. Really, one can imagine that all Mathematica does to execute an expression is apply <code>ReplaceRepeated</code> on the <code>&#8902;Values</code> .</p>
+<p>Obviously the system is more complex, because of <code>Attributes</code> and the coming discussion of evaluation order and things, and also more optimized, but it&apos;s a good concept to keep in mind.</p>
+<p>Just like with <code>OwnValues</code> we can manipulate the <code>DownValues</code> via</p>
 <p>One final thing. On the name <code>DownValues</code> : one can imagine that the system is looking &quot;down-stream&quot; in the expression to see if the arguments match the defined replacement pattern.
 </p>
 <h3> UpValues</h3>
-<p><code>UpValues</code>  are a highly useful, if not necessarily intuitive feature of the expression structure. While <code>DownValues</code>  look &quot;down-stream&quot;, <code>UpValues</code>  look &quot;up-stream&quot;. What this means in practice is they are patterns applied on an expression by the arguments of the expression which are, in a way, looking &quot;up-stream&quot;. This is probably clearest via example, but first we need to know how <code>UpValues</code>  are set.</p>
-<p>First off, there is a function <code>UpSet</code>  (<code>^=</code> ) and it&apos;s partner <code>UpSetDelayed</code>  (<code>^:=</code> ) which will do this
+<p><code>UpValues</code> are a highly useful, if not necessarily intuitive feature of the expression structure. While <code>DownValues</code> look &quot;down-stream&quot;, <code>UpValues</code> look &quot;up-stream&quot;. What this means in practice is they are patterns applied on an expression by the arguments of the expression which are, in a way, looking &quot;up-stream&quot;. This is probably clearest via example, but first we need to know how <code>UpValues</code> are set.</p>
+<p>First off, there is a function <code>UpSet</code> (<code>^=</code> ) and it&apos;s partner <code>UpSetDelayed</code> (<code>^:=</code> ) which will do this
 </p>
 <pre class='mma-input prettyprint'>
  <code>h[b[c___]]^:=b[h,c]</code>
 </pre>
-<p>This has set <code>UpValues</code>  on <code>b</code> :
+<p>This has set <code>UpValues</code> on <code>b</code> :
 </p>
 <pre class='mma-input prettyprint'>
  <code>UpValues@b</code>
@@ -866,16 +865,16 @@ DownValues@f</code>
  <code>b[h,1,3,4,2,1]</code>
 </pre>
 <p>The most useful aspect of this behavior is that it requires only that we give definitions to the down-stream symbol, not the head, so we can use this to &quot;overload&quot; the basic functionality of a built-in function, which is more efficient and also cleaner and safer.</p>
-<p>Moreover, this means we can apply definitions to functions which we otherwise couldn&apos;t. We&apos;ll demonstrate this with the <code>MessageName</code>  function. Aliased with <code>::</code></p>
-<p>I&apos;ll also demonstrate the better way to set these definitions, using <code>TagSet</code>  (<code>/:</code> )
+<p>Moreover, this means we can apply definitions to functions which we otherwise couldn&apos;t. We&apos;ll demonstrate this with the <code>MessageName</code> function. Aliased with <code>::</code></p>
+<p>I&apos;ll also demonstrate the better way to set these definitions, using <code>TagSet</code> (<code>/:</code> )
 </p>
 <pre class='mma-input prettyprint'>
  <code>AssociationInterface/:HoldPattern[
 MessageName[AssociationInterface[a_Association],key_]
 ]:=a[key];</code>
 </pre>
-<p><code>TagSet</code>  only sets the definition on the symbol to the left, unlike <code>UpSet</code>  which sets the definition on every argument.</p>
-<p>The <code>HoldPattern</code>  is necessary to make sure the expression doesn&apos;t evaluate while we set the <code>UpValue</code> , which will make more sense when we get to discussions of evaluation order.</p>
+<p><code>TagSet</code> only sets the definition on the symbol to the left, unlike <code>UpSet</code> which sets the definition on every argument.</p>
+<p>The <code>HoldPattern</code> is necessary to make sure the expression doesn&apos;t evaluate while we set the <code>UpValue</code> , which will make more sense when we get to discussions of evaluation order.</p>
 <p>Now we can see how our definition works:
 </p>
 <pre class='mma-input prettyprint'>
@@ -888,21 +887,20 @@ MessageName[AssociationInterface[a_Association],key_]
 <pre class='mma-output prettyprint'>
  <code>b</code>
 </pre>
-<p><code>MessageName</code>  automatically converts its second argument to a <code>String</code> , so the keys of our <code>Association</code>  need to be strings, but we can see the definition works.</p>
-<p>One thing that should be mentioned before moving on is that the <code>UpValues</code>  of the arguments of a symbol are applied before the <code>DownValues</code>  of the enclosing head, although the <code>DownValues</code>  of the argument itself are applied before its <code>UpValues</code></p>
+<p><code>MessageName</code> automatically converts its second argument to a <code>String</code> , so the keys of our <code>Association</code> need to be strings, but we can see the definition works.</p>
+<p>One thing that should be mentioned before moving on is that the <code>UpValues</code> of the arguments of a symbol are applied before the <code>DownValues</code> of the enclosing head, although the <code>DownValues</code> of the argument itself are applied before its <code>UpValues</code></p>
 <h3> SubValues</h3>
-<p><code>SubValues</code>  are the final type of values we need to deal with here. They provide an extension of <code>DownValues</code>  to multiple sets of arguments as follows:
+<p><code>SubValues</code> are the final type of values we need to deal with here. They provide an extension of <code>DownValues</code> to multiple sets of arguments as follows:
 </p>
 <pre class='mma-input prettyprint'>
  <code>s[arg_][arg2_]:=arg+arg2;
-
 SubValues@s</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[s[arg_][arg2_]]:&gt;arg+arg2}</code>
 </pre>
 <h3> Clear and ClearAll</h3>
-<p>With <code>&#8902;Values</code>  discussed it&apos;s possible to understand the operations of of the functions <code>Clear</code>  and <code>ClearAll</code> . Consider some symbol we&apos;ve set a lot of definitions on:
+<p>With <code>&#8902;Values</code> discussed it&apos;s possible to understand the operations of of the functions <code>Clear</code> and <code>ClearAll</code> . Consider some symbol we&apos;ve set a lot of definitions on:
 </p>
 <pre class='mma-input prettyprint'>
  <code>m[1]=1;
@@ -913,58 +911,51 @@ m[s_String]:=&quot;soup&quot;;
 HoldPattern[Print[m[x_]]]^:=x+&quot;Print&quot;;
 m:=35
 
-OwnValues@m</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{HoldPattern[m]:&gt;35}
-
-DownValues@m</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{HoldPattern[m[1]]:&gt;1,HoldPattern[m[2]]:&gt;10,HoldPattern[m[5]]:&gt;100,HoldPattern[m[s_String]]:&gt;&quot;soup&quot;}
-
-UpValues@m</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{HoldPattern[HoldPattern[Print[m[x_]]]]:&gt;x+&quot;Print&quot;}
-
+OwnValues@m
+DownValues@m
+UpValues@m
 SubValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[m]:&gt;35}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[m[1]]:&gt;1,HoldPattern[m[2]]:&gt;10,HoldPattern[m[5]]:&gt;100,HoldPattern[m[s_String]]:&gt;&quot;soup&quot;}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[HoldPattern[Print[m[x_]]]]:&gt;x+&quot;Print&quot;}</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{HoldPattern[HoldPattern[m[1][3]]]:&gt;20}</code>
 </pre>
-<p>All <code>Clear</code>  does is remove the <code>&#8902;Values</code> :
+<p>All <code>Clear</code> does is remove the <code>&#8902;Values</code> :
 </p>
 <pre class='mma-input prettyprint'>
  <code>Clear@m
-
-OwnValues@m</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{}
-
-DownValues@m</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{}
-
-UpValues@m</code>
-</pre>
-<pre class='mma-output prettyprint'>
- <code>{}
-
+OwnValues@m
+DownValues@m
+UpValues@m
 SubValues@m</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>{}</code>
 </pre>
-<p><code>ClearAll</code>  on the other hand can also remove <code>Options</code>  and <code>Attributes</code></p>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
+</pre>
+<p><code>ClearAll</code> on the other hand can also remove <code>Options</code> and <code>Attributes</code> .</p>
+<p>We see that <code>Clear</code> doesn&apos;t remove these:
+</p>
 <pre class='mma-input prettyprint'>
  <code>SetAttributes[m,Listable];
 Options[m]={&quot;why&quot;-&gt;&quot;me?&quot;};
-
 Clear@m
-
 Options@m
 Attributes@m</code>
 </pre>
@@ -972,10 +963,12 @@ Attributes@m</code>
  <code>{&quot;why&quot;-&gt;&quot;me?&quot;}</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>{Listable}
-
-ClearAll@m
-
+ <code>{Listable}</code>
+</pre>
+<p>But <code>ClearAll</code> does:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>ClearAll@m
 Options@m
 Attributes@m</code>
 </pre>

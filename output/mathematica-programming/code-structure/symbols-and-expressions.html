@@ -828,7 +828,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h2> Symbols and Expressions</h2>
 <h3> Symbols</h3>
 <p>Mathematica has one more basic type than those mentioned before: <code>Symbol</code></p>
-<p>In reality, every variable we&#8217;ve used and function we&#8217;ve defined (excluding pure functions) has been a symbol.</p>
+<p>In reality, every variable we&apos;ve used and function we&apos;ve defined (excluding pure functions) has been a symbol.</p>
 <p>One thing to keep in mind is that the only things that can have properties or values in Mathematica are symbols, although a symbol need not have any.</p>
 <p>All of the following are symbols:
 </p>
@@ -871,12 +871,13 @@ SetDelayed</code>
 <p>This even applies to things like graphics. Consider the following graphic:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Graphics3D[Sphere[],Boxed<span class='special-character Rule'>&#62754;</span>False,Lighting<span class='special-character Rule'>&#62754;</span>&quot;Neutral&quot;,ImageSize<span class='special-character Rule'>&#62754;</span>Small]</code>
+ <code>Graphics3D[Sphere[],Boxed-&gt;False,Lighting-&gt;&quot;Neutral&quot;,ImageSize-&gt;Small]</code>
 </pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/211symbolsandexpressions-7059428318388094490.png' alt='211symbolsandexpressions-7059428318388094490' />
 <p>It is, however, still just an expression:
 </p>
 <pre class='mma-input prettyprint'>
- <code>Graphics3D[Sphere[], Boxed<span class='special-character Rule'>&#62754;</span>False, Lighting<span class='special-character Rule'>&#62754;</span>&quot;Neutral&quot;, ImageSize<span class='special-character Rule'>&#62754;</span>Small ]//FullForm</code>
+ <code>Graphics3D[Sphere[], Boxed-&gt;False, Lighting-&gt;&quot;Neutral&quot;, ImageSize-&gt;Small ]//FullForm</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>Graphics3D[Sphere[List[0,0,0]],Rule[Boxed,False],Rule[Lighting,&quot;Neutral&quot;],Rule[ImageSize,Small]]</code>

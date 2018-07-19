@@ -860,14 +860,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  <code>MatchQ[a,_]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[a,p_]</code>
+ <code>True</code>
+</pre>
+<p>As will the following where we simply named one of the parameters:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a, p_]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>True</code>
 </pre>
-<p>Patterns can also have a <code>Head</code> that must match, which is specified after the underscore. 
+<p>Patterns of this type can also have a <code>Head</code> that must match, which is specified after the underscore. 
 </p>
 <pre class='mma-input prettyprint'>
  <code>_a//FullForm</code>
@@ -875,20 +878,26 @@ MatchQ[a,p_]</code>
 <pre class='mma-output prettyprint'>
  <code>Blank[a]</code>
 </pre>
-<p>With a head all the following match:
+<p>Any expression with <code>a</code> as its <code>Head</code> will match this pattern. For instance an empty invocation:
 </p>
 <pre class='mma-input prettyprint'>
- <code>MatchQ[a[],_a]</code>
+ <code>MatchQ[a[], _a]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[a[1,2,3],_a]</code>
+ <code>True</code>
+</pre>
+<p>With arguments
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[1,2,3], _a]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[a[a[a[a[a[a[]]]]]],_a]</code>
+ <code>True</code>
+</pre>
+<p>Or incredibly deeply nested:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[a[a[a[a[a[]]]]]], _a]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>True</code>
@@ -917,15 +926,18 @@ MatchQ[a[a[a[a[a[a[]]]]]],_a]</code>
 <pre class='mma-output prettyprint'>
  <code>True</code>
 </pre>
-<p>But the other cases will not:
+<p>But the other cases will not. Here we clearly have too few arguments:
 </p>
 <pre class='mma-input prettyprint'>
- <code>MatchQ[a[],_a?(Length@#&gt;1&amp;)]</code>
+ <code>MatchQ[a[], _a?(Length@#&gt;1&amp;)]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>False
-
-MatchQ[a[a[a[a[a[a[]]]]]],_a?(Length@#&gt;1&amp;)]</code>
+ <code>False</code>
+</pre>
+<p>Here it&apos;s hard to see, but the outer-most structure has only one argument, so it also won&apos;t match:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[a[a[a[a[a[]]]]]],_a?(Length@#&gt;1&amp;)]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>False</code>
@@ -944,14 +956,20 @@ MatchQ[a[a[a[a[a[a[]]]]]],_a?(Length@#&gt;1&amp;)]</code>
  <code>__//FullForm</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>BlankSequence[]
-
-MatchQ[a[1,2,3],a[__]]</code>
+ <code>BlankSequence[]</code>
+</pre>
+<p>Since we have arguments this matches:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[1,2,3], a[__]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[a[],a[__]]</code>
+ <code>True</code>
+</pre>
+<p>But this does not:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[], a[__]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>False</code>
@@ -962,14 +980,20 @@ MatchQ[a[],a[__]]</code>
  <code>___//FullForm</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>BlankNullSequence[]
-
-MatchQ[a[1,2,3],a[___Integer]]</code>
+ <code>BlankNullSequence[]</code>
+</pre>
+<p>This will match since all of these arguments have head <code>Integer</code> :
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[1,2,3], a[___Integer]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[a[],a[___]]</code>
+ <code>True</code>
+</pre>
+<p>And this will match since there aren&apos;t any arguments anyway:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[],a[___]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>True</code>
@@ -978,18 +1002,26 @@ MatchQ[a[],a[___]]</code>
 </p>
 <h3> Complex Patterns</h3>
 <p>Often it&apos;s useful to be able to match more than one type. For this, there&apos;s a built-in head <code>Alternatives</code> , which is represented by a vertical bar <code>|</code></p>
+<p>An <code>Integer</code> matches this pattern:
+</p>
 <pre class='mma-input prettyprint'>
- <code>MatchQ[10,_Integer|_String]</code>
+ <code>MatchQ[10, _Integer|_String]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[&quot;10&quot;,_Integer|_String]</code>
+ <code>True</code>
+</pre>
+<p>As does a <code>String</code> :
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[&quot;10&quot;, _Integer|_String]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[<span class='special-character Pi'>&#960;</span>,_Integer|_String]</code>
+ <code>True</code>
+</pre>
+<p>But a <code>Symbol</code> does not:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[<span class='special-character Pi'>&#960;</span>, _Integer|_String]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>False</code>
@@ -1011,11 +1043,17 @@ MatchQ[<span class='special-character Pi'>&#960;</span>,_Integer|_String]</code>
 <p>It is impossible to know ahead of time what the head will be or how many arguments there will be or whether they&apos;ll be strings or integers, but that doesn&apos;t matter. We can still represent this pattern in under one line. Yet the pattern is robust enough that by doing something like appending in a symbol, our pattern catches that:
 </p>
 <pre class='mma-input prettyprint'>
- <code>MatchQ[Append[RandomChoice[{A,B,C}]@(Sequence@@(
-  If[RandomInteger[]==0,ToString@#,#]&amp;/@RandomInteger[10,RandomInteger[10]]
-  )),RandomChoice[{A,B,C}]],
+ <code>MatchQ[
+  Append[
+    RandomChoice[{A,B,C}]@(
+      Sequence@@(
+        If[RandomInteger[]==0,ToString@#,#]&amp;/@RandomInteger[10,RandomInteger[10]]
+        )
+      ),
+    RandomChoice[{A,B,C}]
+    ],
   (A|B|C)[(_String|_Integer)...]
-]</code>
+  ]</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>False</code>
@@ -1023,7 +1061,8 @@ MatchQ[<span class='special-character Pi'>&#960;</span>,_Integer|_String]</code>
 <p>There is one further useful addition to this current redux on patterns. Sometime you know you&apos;ll, say, see pairs of a patterns, and so a simple <code>..</code> or <code>__</code> isn&apos;t precise enough. For this case there is the head <code>PatternSequence</code> which can capture this:
 </p>
 <pre class='mma-input prettyprint'>
- <code>MatchQ[A@@(If[OddQ@#,ToString@#,#]&amp;/@Range[10]),
+ <code>MatchQ[
+  A@@(If[OddQ@#,ToString@#,#]&amp;/@Range[10]),
   A[PatternSequence[_String,_Integer]..]
   ]</code>
 </pre>
@@ -1037,23 +1076,25 @@ MatchQ[<span class='special-character Pi'>&#960;</span>,_Integer|_String]</code>
  <code>MatchQ[1,Except[_String]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[&lt;|a-&gt;b|&gt;,Except[_String]]</code>
+ <code>True</code>
+</pre>
+<p>These examples show a basic usage:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[&lt;|a-&gt;b|&gt;, Except[_String]]
+MatchQ[Graphics@Disk[], Except[_String]]
+MatchQ[&quot;asdasd&quot;, Except[_String]]</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[Graphics@Disk[],Except[_String]]</code>
+ <code>True</code>
 </pre>
 <pre class='mma-output prettyprint'>
- <code>True
-
-MatchQ[&quot;asdasd&quot;,Except[_String]]</code>
+ <code>True</code>
 </pre>
 <pre class='mma-output prettyprint'>
  <code>False</code>
 </pre>
+<p>One interesting case is the two argument form of <code>Except</code> , where the second argument is a pattern that  <em>should</em> match and the first argument is a list of exceptions to that pattern.</p>
     </div>
   </article>
   <br>
