@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,84 +829,219 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Mathematica provides access to a lot of data, most useful for chemistry is the built-in chemical, element, and isotope data and the physical constants it knows about
 </p>
 <h3> ElementData</h3>
-<p>ElementData  is a function that gets data on an element from Mathematica&#8217;s built in servers. For example:
+<p><code>ElementData</code> is a function that gets data on an element from Mathematica&apos;s built in servers. Here&apos;s a way to get the atomic number of an element:
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Quantity[1.00794, &quot;AtomicMassUnit&quot;]
-(*Out:*)
-74</code>
+<pre class='mma-input prettyprint'>
+ <code>ElementData[&quot;W&quot;, &quot;AtomicNumber&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>74</code>
+</pre>
+<p>We can also get things with units attached as a <code>Quantity</code> object:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>ElementData[&quot;H&quot;, &quot;AtomicMass&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1.00794u</code>
 </pre>
 <p>Here is the full list of properties to query for each element:
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Pane[Column@ElementData[&quot;Properties&quot;],
+  ImageSize-&gt;{Automatic,{150,250}},
+  Scrollbars-&gt;{False, True},
+  AppearanceElements-&gt;None
+  ]//Framed[#,Background-&gt;White]&amp;</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-3735483042630984156.png' alt='13-3735483042630984156' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/134builtindataandunits-3735483042630984156.png' alt='134builtindataandunits-3735483042630984156' />
 <p>And here is a function to apply that to a given element
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>elementProperties[el_]:=
+  Pane[Column@Table[With[{p=p},
+    Button[Mouseover[p,Style[p,Orange]],
+      With[{next=NextCell[EvaluationCell[]],cell=Cell[BoxData@ToBoxes@(p-&gt;ElementData[el,p]),&quot;Output&quot;,
+          CellFrame-&gt;{{0,0},{1,5}},
+          CellMargins-&gt;With[{m=CellMargins/.Options[EvaluationCell[],CellMargins]},
+            ReplacePart[m,{2,2}-&gt;0]
+            ],
+          &quot;CellFrameStyle&quot;-&gt;{{None,None},{Black,GrayLevel[.8]}}]},
+      If[next=!=None&amp;&amp;GeneratedCell/.Options[next,GeneratedCell]//TrueQ,
+        NotebookWrite[next,cell],
+        CellPrint@cell
+        ]],
+      Appearance-&gt;&quot;Frameless&quot;,
+      Method-&gt;&quot;Queued&quot;,
+      BaseStyle-&gt;&quot;Hyperlink&quot;]
+    ],
+  {p,ElementData@&quot;Properties&quot;}],
+  ImageSize-&gt;{Full,{150,250}},
+  Scrollbars-&gt;{False, True},
+  AppearanceElements-&gt;None
+  ]//Framed[#,Background-&gt;White]&amp;
+
+elementProperties[&quot;H&quot;]</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-7593402898594521775.png' alt='13-7593402898594521775' />
-<p>A list of all the elements can be generated via  ElementData[]  and I used that to generate a template for a periodic table. So finally here is a function that uses this template and the previously defined function to get all the possible information from  ElementData.</p>
-<p>Since this function calls  elementProperties  be sure to evaluate the definition for  elementProperties  before evaluating the following.
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/134builtindataandunits-7593402898594521775.png' alt='134builtindataandunits-7593402898594521775' />
+<p>A list of all the elements can be generated via <code>ElementData[]</code> and I used that to generate a template for a periodic table. So finally here is a function that uses this template and the previously defined function to get all the possible information from <code>ElementData.</code></p>
+<pre class='mma-input prettyprint'>
+ <code>periodicTable[]:=
+  With[{dlen=10,slen=2,plen=6},
+    {
+      {&quot;H&quot;}~Join~ConstantArray[Null,dlen+plen]~Join~{&quot;He&quot;},
+      {&quot;Li&quot;,&quot;Be&quot;}~Join~ConstantArray[Null,dlen]~Join~{&quot;B&quot;,&quot;C&quot;,&quot;N&quot;,&quot;O&quot;,&quot;F&quot;,&quot;Ne&quot;},
+      {&quot;Na&quot;,&quot;Mg&quot;}~Join~ConstantArray[Null,dlen]~Join~{&quot;Al&quot;,&quot;Si&quot;,&quot;P&quot;,&quot;S&quot;,&quot;Cl&quot;,&quot;Ar&quot;},
+      {&quot;K&quot;,&quot;Ca&quot;,&quot;Sc&quot;,&quot;Ti&quot;,&quot;V&quot;,&quot;Cr&quot;,&quot;Mn&quot;,&quot;Fe&quot;,&quot;Co&quot;,&quot;Ni&quot;,&quot;Cu&quot;,&quot;Zn&quot;,&quot;Ga&quot;,&quot;Ge&quot;,&quot;As&quot;,&quot;Se&quot;,&quot;Br&quot;,&quot;Kr&quot;},
+      {&quot;Rb&quot;,&quot;Sr&quot;,&quot;Y&quot;,&quot;Zr&quot;,&quot;Nb&quot;,&quot;Mo&quot;,&quot;Tc&quot;,&quot;Ru&quot;,&quot;Rh&quot;,&quot;Pd&quot;,&quot;Ag&quot;,&quot;Cd&quot;,&quot;In&quot;,&quot;Sn&quot;,&quot;Sb&quot;,&quot;Te&quot;,&quot;I&quot;,&quot;Xe&quot;},
+      {&quot;Cs&quot;,&quot;Ba&quot;,&quot;Lu&quot;,&quot;Hf&quot;,&quot;Ta&quot;,&quot;W&quot;,&quot;Re&quot;,&quot;Os&quot;,&quot;Ir&quot;,&quot;Pt&quot;,&quot;Au&quot;,&quot;Hg&quot;,&quot;Tl&quot;,&quot;Pb&quot;,&quot;Bi&quot;,&quot;Po&quot;,&quot;At&quot;,&quot;Rn&quot;},
+      {&quot;Fr&quot;,&quot;Ra&quot;,&quot;Lr&quot;,&quot;Rf&quot;,&quot;Db&quot;,&quot;Sg&quot;,&quot;Bh&quot;,&quot;Hs&quot;,&quot;Mt&quot;,&quot;Ds&quot;,&quot;Rg&quot;,&quot;Cn&quot;,&quot;Uut&quot;,&quot;Fl&quot;,&quot;Uup&quot;,&quot;Lv&quot;,&quot;Uus&quot;,&quot;Uuo&quot;},
+      ConstantArray[Null,slen]~Join~{&quot;La&quot;,&quot;Ce&quot;,&quot;Pr&quot;,&quot;Nd&quot;,&quot;Pm&quot;,&quot;Sm&quot;,&quot;Eu&quot;,&quot;Gd&quot;,&quot;Tb&quot;,&quot;Dy&quot;,&quot;Ho&quot;,&quot;Er&quot;,&quot;Tm&quot;,&quot;Yb&quot;},
+      ConstantArray[Null,slen]~Join~{&quot;Ac&quot;,&quot;Th&quot;,&quot;Pa&quot;,&quot;U&quot;,&quot;Np&quot;,&quot;Pu&quot;,&quot;Am&quot;,&quot;Cm&quot;,&quot;Bk&quot;,&quot;Cf&quot;,&quot;Es&quot;,&quot;Fm&quot;,&quot;Md&quot;,&quot;No&quot;}
+      }
+    ]//Grid[#,Alignment-&gt;Center]&amp;//ReplaceAll[#,{
+      e_String:&gt;With[{color=Replace[
+          ColorData[&quot;Atoms&quot;][e],
+          Except[_RGBColor]-&gt;Gray]},
+      Item[
+        Button[
+          Mouseover[Style[e,If[ColorDistance[Black,color]&lt;.9//TrueQ,
+            White,
+            Black]],
+          Style[e,Orange]],CreateDocument[{Cell[BoxData@ToBoxes@elementProperties@e,&quot;Output&quot;],
+            Cell[&quot;&quot;,GeneratedCell-&gt;True]},
+          Background-&gt;color,
+          WindowTitle-&gt;Capitalize@ElementData[e,&quot;Name&quot;],
+          WindowSize-&gt;{400,365},
+          StyleDefinitions-&gt;Notebook@{
+            Cell[StyleData[StyleDefinitions-&gt;&quot;Default.nb&quot;]],
+            Cell[StyleData@&quot;Output&quot;,
+              Background-&gt;White,
+              CellMargins-&gt;{{10, 0}, {0, 10}}]
+            },
+          WindowElements-&gt;{},
+          WindowFrameElements-&gt;{&quot;CloseBox&quot;,&quot;ZoomBox&quot;,&quot;MinimizeBox&quot;},
+          Saveable-&gt;False,
+          ScrollingOptions-&gt;{&quot;VerticalScrollRange&quot;-&gt;FitAll}],
+        Appearance-&gt;&quot;Frameless&quot;
+        ],
+      Background-&gt;color,
+      Frame-&gt;True
+      ]
+    ]
+  }]&amp;//Deploy</code>
+</pre>
+<p>Since this function calls <code>elementProperties</code> be sure to evaluate the definition for <code>elementProperties</code> before evaluating the following.
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)
-periodicTable[]</code>
+<pre class='mma-input prettyprint'>
+ <code>periodicTable[]</code>
 </pre>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/134builtindataandunits-1623103641045896793.png' alt='134builtindataandunits-1623103641045896793' />
 <h3> IsotopeData</h3>
-<p>IsotopeData  is similar to  ElementData  except one supplies an isotope instead. Known isotopes for a given element can be gotten via the following function
+<p><code>IsotopeData</code> is similar to <code>ElementData</code> except one supplies an isotope instead. Known isotopes for a given element can be gotten via the following function
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)
-{&quot;H1&quot;, &quot;H2&quot;, &quot;H3&quot;, &quot;H4&quot;, &quot;H5&quot;, &quot;H6&quot;, &quot;H7&quot;}</code>
+<pre class='mma-input prettyprint'>
+ <code>knownIsotopes[element_]:=
+  Table[element&lt;&gt;ToString@i,{i,ElementData[element,&quot;KnownIsotopes&quot;]}]
+
+knownIsotopes@&quot;H&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;H1&quot;,&quot;H2&quot;,&quot;H3&quot;,&quot;H4&quot;,&quot;H5&quot;,&quot;H6&quot;,&quot;H7&quot;}</code>
 </pre>
 <p>We can similarly get all the properties for an isotope in the same way as for an element:
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>isotopeProperties[iso_]:=
+Pane[Column@Table[With[{p=p},
+  Button[Mouseover[p,Style[p,Orange]],
+    With[{next=NextCell[EvaluationCell[]],cell=Cell[BoxData@ToBoxes@(p-&gt;IsotopeData[iso,p]),&quot;Output&quot;,
+        CellFrame-&gt;{{0,0},{1,5}},
+        CellMargins-&gt;With[{m=CellMargins/.Options[EvaluationCell[],CellMargins]},
+          ReplacePart[m,{2,2}-&gt;0]
+          ],
+        &quot;CellFrameStyle&quot;-&gt;{{None,None},{Black,GrayLevel[.8]}}]},
+    If[next=!=None&amp;&amp;GeneratedCell/.Options[next,GeneratedCell]//TrueQ,
+      NotebookWrite[next,cell],
+      CellPrint@cell
+      ]],
+    Appearance-&gt;&quot;Frameless&quot;,
+    Method-&gt;&quot;Queued&quot;,
+    BaseStyle-&gt;&quot;Hyperlink&quot;]
+  ],
+{p,IsotopeData@&quot;Properties&quot;}],
+ImageSize-&gt;{Full,{150,250}},
+Scrollbars-&gt;{False, True},
+AppearanceElements-&gt;None
+]//Framed[#,Background-&gt;White]&amp;
+
+isotopeProperties[&quot;H2&quot;]</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-5464850248744285665.png' alt='13-5464850248744285665' />
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/134builtindataandunits-5464850248744285665.png' alt='134builtindataandunits-5464850248744285665' />
 <h3> ChemicalData</h3>
-<p>The final useful data set is the built in  ChemicalData  which can return properties of chemicals generally. At this point it should be clear how it works, but it&#8217;s worth pointing out that the list of all the known chemicals can take a long time to load so only call  ChemicalData  without any arguments if you&#8217;re sure your internet connection is good and your computer can handle the load.
+<p>The final useful data set is the built in <code>ChemicalData</code> which can return properties of chemicals generally. At this point it should be clear how it works, but it&apos;s worth pointing out that the list of all the known chemicals can take a long time to load so only call <code>ChemicalData</code> without any arguments if you&apos;re sure your internet connection is good and your computer can handle the load.
 </p>
 <h3> Quantity</h3>
-<p>The interface to the units Mathematica knows about is called  Quantity</p>
+<p>The interface to the units Mathematica knows about is called <code>Quantity</code></p>
 <p>This was used previously to get the value of the molar gas constant, but there is a host of useful units built in.
-For example let&#8217;s convert between a wavelength and a frequency for electromagnetic radiation:</p>
-<p>Let&#8217;s start out with green light. Let&#8217;s find a frequency that works using Mathematica&#8217;s built-in  ColorData , which knows the frequencies of the visible spectrum.</p>
-<p>Unfortunately this can only convert from a wavelength to a color, but we can write a function to get close to the appropriate wavelength, knowing that in Mathematica a color is just  RGBColor[redPercentage,greenPercentage,bluePercentage] .</p>
-<p>First we write a distance function:</p>
+For example let&apos;s convert between a wavelength and a frequency for electromagnetic radiation:</p>
+<p>Let&apos;s start out with green light. Let&apos;s find a frequency that works using Mathematica&apos;s built-in <code>ColorData</code> , which knows the frequencies of the visible spectrum.</p>
+<p>Unfortunately this can only convert from a wavelength to a color, but we can write a function to get close to the appropriate wavelength, knowing that in Mathematica a color is just <code>RGBColor[redPercentage,greenPercentage,bluePercentage]</code> .</p>
+<p>First we write a distance function:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>rgbDistance[color1_,color2_]:=(color1-color2)/.RGBColor-&gt;List//Norm;</code>
+</pre>
 <p>Then we get the minimum distance to our given color of all the wavelengths in the visible spectrum:
 (for convenience I use a more complicated function declaration syntax, which is explained later)
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Quantity[541, &quot;Nanometers&quot;]</code>
+<pre class='mma-input prettyprint'>
+ <code>closestWavelength[
+  color_,
+  range:_List:ColorData[&quot;VisibleSpectrum&quot;][[3]],
+  step:_?NumericQ:1
+  ]:=Quantity[
+  First@MinimalBy[
+    Range@@Append[range,step],
+    rgbDistance[color,ColorData[&quot;VisibleSpectrum&quot;][#]]&amp;],
+  &quot;Nanometers&quot;]
+<span class='special-character Lambda'>&#955;</span>=closestWavelength[Green]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>541nm</code>
 </pre>
 <p>We can check that this is in fact a wavelength that corresponds to green light:
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Plot[Sin[4x],{x,-<span class='special-character Pi'>&#960;</span>,<span class='special-character Pi'>&#960;</span>},
+  Axes-&gt;False,
+  PlotStyle-&gt;ColorData[&quot;VisibleSpectrum&quot;][QuantityMagnitude@<span class='special-character Lambda'>&#955;</span>],
+  ImageSize-&gt;Small
+  ]</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-864668289591505269.png' alt='13-864668289591505269' />
-<p>Then we&#8217;ll convert this to a frequency by recalling  c=<span class='special-character Lambda'>&#955;</span>&#957;
-</p>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Quantity[5.54145*10^14, &quot;Hertz&quot;]</code>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/134builtindataandunits-864668289591505269.png' alt='134builtindataandunits-864668289591505269' />
+<p>Then we&apos;ll convert this to a frequency by recalling <code>c=<span class='special-character Lambda'>&#955;</span>&#957;</code></p>
+<pre class='mma-input prettyprint'>
+ <code>&#957;=UnitConvert[Quantity[1.,&quot;SpeedOfLight&quot;]/<span class='special-character Lambda'>&#955;</span>,&quot;Hz&quot;]</code>
 </pre>
-<p>Another place this is incredibly useful is for simple unit conversion problems, such as a classic  PV=nRT application. Here&#8217;s a sample problem I found online:</p>
-<ul>
- <li>Determine the volume of occupied by 2.34 grams of carbon dioxide gas at STP.</li>
-</ul>
-<p>We can solve this trivially using this built-in data:
+<pre class='mma-output prettyprint'>
+ <code>5.54145*10^14Hz</code>
+</pre>
+<p>Another place this is incredibly useful is for simple unit conversion problems, such as a classic <code>PV=nRT</code> application. Here&apos;s a sample problem I found online:</p>
+<blockquote> Determine the volume of occupied by 2.34 grams of carbon dioxide gas at STP.
+</blockquote>
+<p>
+We can solve this trivially using this built-in data:
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Quantity[1.1911, &quot;Liters&quot;]</code>
+<pre class='mma-input prettyprint'>
+ <code>n = Quantity[2.34, &quot;Grams&quot;]/ChemicalData[&quot;CarbonDioxide&quot;, &quot;MolarMass&quot;];
+P = Quantity[1, &quot;Atmospheres&quot;];
+T = Quantity[273, &quot;Kelvins&quot;];
+R = Quantity[&quot;MolarGasConstant&quot;];
+V = UnitConvert[n*R*T/P, &quot;Liters&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1.1911L</code>
 </pre>
 <p>It performs all the tedious conversions and has all the data. All we need to do is supply the formula.</p>
     </div>

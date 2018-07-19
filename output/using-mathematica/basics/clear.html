@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -815,109 +827,134 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a shape='rect' id='clear' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Clear</h2>
 <p>Before we can really begin working with Mathematica we also need to discuss the function <code>Clear</code> , which can be a life-saver.</p>
-<p>It just removes any definitions we&#8217;ve given to a symbol, which can be a bigger deal than one might think. Consider the following case: 
+<p>It just removes any definitions we&apos;ve given to a symbol, which can be a bigger deal than one might think. Consider the following case: 
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>aVariableIUsedBefore=1000;
+
 aVariableIUsedBefore[x_]:=x*10;</code>
 </pre>
-<div class='mma-message'>
-    <span class='mma-message-name'>SetDelayed::write:</span>
-    <span class='mma-message-text'>Tag Integer in 1000[x_] is Protected.</span>
+<div style='font-size: 12px; font-family: monospace;'>
+ <div class='mma-message'>
+  <span style='color: #dd0000'>
+   <span class='mma-message-name'>SetDelayed::write:</span>
+  </span>
+  <span style='color: gray'>
+   <span class='mma-message-text'>Tag Integer in 1000[x_] is Protected.</span>
+  </span>
+ </div>
 </div>
-<p>Notice we get an error because the way Mathematica reads this, we&#8217;re trying to assign a function to the number 1000.</p>
-<p>Here, though, all we need to do is use <code>Clear</code>  and we&#8217;re good to go.
+<p>Notice we get an error because the way Mathematica reads this, we&apos;re trying to assign a function to the number 1000.</p>
+<p>Here, though, all we need to do is use <code>Clear</code>  and we&apos;re good to go.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Clear[aVariableIUsedBefore]</code>
 </pre>
-<p>Sometimes we&#8217;ve made a lot of definitions and we want to <code>Clear</code>  them all, just to prevent hard to find errors from cropping up. In this case we can do the following:
+<p>Sometimes we&apos;ve made a lot of definitions and we want to <code>Clear</code>  them all, just to prevent hard to find errors from cropping up. In this case we can do the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Clear[&quot;Global`*&quot;]</code>
 </pre>
-<p>What this does is removes all the definitions for any symbol that looks like <code>Global`symbolName</code>  which is usually every symbol we&#8217;ve defined.</p>
-<p>Sometimes we want to protect some symbols, like fundamental constants, from being erased. In this case we just need to make a symbol that doesn&#8217;t look like <code>Global`symbolName</code> . A useful way to do this is to put the type of thing it is before it:</p>
+<p>What this does is removes all the definitions for any symbol that looks like <code>Global`symbolName</code>  which is usually every symbol we&apos;ve defined.</p>
+<p>Sometimes we want to protect some symbols, like fundamental constants, from being erased. In this case we just need to make a symbol that doesn&apos;t look like <code>Global`symbolName</code> . A useful way to do this is to put the type of thing it is before it:</p>
 <pre>
 <code>
-Constant`PlanckConstant = 6.626*10<sup>-34</sup> (*J&#215;s*);
+Constant`PlanckConstant = 6.626*10<sup>-34</sup> (*J*s*);
 </code>
 </pre>
-<p>This sort of thing is discussed more at length in the Contexts section, but first let&#8217;s just see that this does what we want it to. First let&#8217;s define a bunch of things:
+<p>This sort of thing is discussed more at length in the Contexts section, but first let&apos;s just see that this does what we want it to. First let&apos;s define a bunch of things:
 </p>
-<pre class='prettyprint'>
- <code>a = 100;
-b = 2.50;
-c[x_] = RandomReal[]*x;
-x[x_] := x[x];
+<pre class='mma-input prettyprint'>
+ <code>a=100;
+b=2.50;
+c[x_]=RandomReal[]*x;
+x[x_]:=x[x];
+
 a
 b
 c[10]
-x[10]
-(*Out:*)
-100
-(*Out:*)
-2.5`
-(*Out:*)
-9.548010769916973`
-(*Out:*)
-10[10]</code>
-</pre>
-<p>And now we&#8217;ll clear them:
-</p>
-<pre class='prettyprint'>
- <code>Clear[&quot;Global`*&quot;]
-a
-b
-c[10]
-x[10]
-(*Out:*)
-a
-(*Out:*)
-b
-(*Out:*)
-c[10]
-(*Out:*)
 x[10]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>100</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>2.5`</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>9.548010769916973`</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10[10]</code>
+</pre>
+<p>And now we&apos;ll clear them:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Clear[&quot;Global`*&quot;]
+
+a
+b
+c[10]
+x[10]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>b</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>c[10]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>x[10]</code>
 </pre>
 <p>But our constant is fine:
 </p>
-<pre class='prettyprint'>
- <code>Constant`PlanckConstant
-(*Out:*)
-6.6260000000000015`*^-34</code>
+<pre class='mma-input prettyprint'>
+ <code>Constant`PlanckConstant</code>
 </pre>
-<p>And for those who don&#8217;t want to type out a long name every time they use this constant in a problem, here&#8217;s a trick: use some variable just for the problem to which you assign the value of the constant. e.g:</p>
+<pre class='mma-output prettyprint'>
+ <code>6.6260000000000015`*^-34</code>
+</pre>
+<p>And for those who don&apos;t want to type out a long name every time they use this constant in a problem, here&apos;s a trick: use some variable just for the problem to which you assign the value of the constant. e.g:</p>
 <pre>
 <code>
 Constant`SpeedOfLight=3*10<sup>8</sup>(*m/s*);
 </code>
 </pre>
-<pre class='prettyprint'>
- <code>h = Constant`PlanckConstant;
-c = Constant`SpeedOfLight;
-<span class='special-character Lambda'>&#955;</span> = 1*10^-3 (*m*);
-h*c/<span class='special-character Lambda'>&#955;</span> (*J*)
-(*Out:*)
-1.9878000000000004`*^-22</code>
+<pre class='mma-input prettyprint'>
+ <code>h=Constant`PlanckConstant;
+c=Constant`SpeedOfLight;
+<span class='special-character Lambda'>&#955;</span>=1*10^-3 (*m*);
+
+h*c/<span class='special-character Lambda'>&#955;</span> (*J*)</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1.9878000000000004`*^-22</code>
 </pre>
 <p>Then just clear all of this before starting the next problem:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Clear[&quot;Global`*&quot;]</code>
 </pre>
 <p>And now none of that can leak into the next problem:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>h
 c
-<span class='special-character Lambda'>&#955;</span>
-(*Out:*)
-h
-(*Out:*)
-c
-(*Out:*)
 <span class='special-character Lambda'>&#955;</span></code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>h</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>c</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>
+  <span class='special-character Lambda'>&#955;</span>
+ </code>
 </pre>
     </div>
   </article>

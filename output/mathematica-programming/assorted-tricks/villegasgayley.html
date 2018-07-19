@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -814,56 +826,64 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='villegasgayley-internal-function-overloads' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Villegas-Gayley (internal function overloads)</h2>
-<p>This is a way we can assign definitions to built-in functions cleanly. This takes advantage of a two main things, a conditional definition and the power of <code>Block</code> . We&apos;ll use it to overload how <code>MessageName</code>  works.
+<p>This is a way we can assign definitions to built-in functions cleanly. This takes advantage of a two main things, a conditional definition and the power of <code>Block</code> . We&apos;ll use it to overload how <code>MessageName</code> works.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Unprotect@MessageName;
 (MessageName[o_,a:Except[&quot;usage&quot;]]/;!TrueQ@$recursionBreakingVariable):=
-If[
-MatchQ[o,object[_Association]],
-First[o][a],
-Block[{$recursionBreakingVariable=True},
-MessageName[o,a]
-]
-];
+  If[
+    MatchQ[o,object[_Association]],
+    First[o][a],
+    Block[{$recursionBreakingVariable=True},
+      MessageName[o,a]
+      ]
+    ];
 Protect@MessageName;</code>
 </pre>
-<p>Now we can do fun things with the <code>MessageName</code>  operator, <code>::</code></p>
-<pre class='prettyprint'>
- <code>object[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;]::a
-(*Out:*)
-b</code>
+<p>Now we can do fun things with the <code>MessageName</code> operator, <code>::</code></p>
+<pre class='mma-input prettyprint'>
+ <code>object[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;]::a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>b</code>
 </pre>
 <p>Usually that would have thrown an error:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>abject[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;]::a</code>
 </pre>
-<div class='mma-message'>
- <span class='mma-message-name'>Message::name:</span>
- <span class='mma-message-text'>Message name MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;] is not of the form symbol::name or symbol::name::language.</span>
+<div style='font-size: 12px; font-family: monospace;'>
+ <div class='mma-message'>
+  <span style='color: #dd0000'>
+   <span class='mma-message-name'>Message::name:</span>
+  </span>
+  <span style='color: gray'>
+   <span class='mma-message-text'>Message name MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;] is not of the form symbol::name or symbol::name::language.</span>
+  </span>
+ </div>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)
-MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;]</code>
+<pre class='mma-output prettyprint'>
+ <code>MessageName[abject[Association[&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f]],&quot;a&quot;]</code>
 </pre>
-<p>And the reason we did this the way we did is because if we assigned some object to a variable, <code>variable::a</code>  would give us something meaningless. See:
+<p>And the reason we did this the way we did is because if we assigned some object to a variable, <code>variable::a</code> would give us something meaningless. See:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>variable=abject[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;];
-variable::a
-(*Out:*)
 variable::a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>variable::a</code>
 </pre>
 <p>But if it&apos;s an object it will be treated differently:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>variable=object[&lt;|&quot;a&quot;-&gt;b,&quot;c&quot;-&gt;d,&quot;e&quot;-&gt;f|&gt;];
-variable::a
-(*Out:*)
-b</code>
+variable::a</code>
 </pre>
-<p>And because of the structure of the overload, <code>MessageName</code>  still works normally in every other case.</p>
+<pre class='mma-output prettyprint'>
+ <code>b</code>
+</pre>
+<p>And because of the structure of the overload, <code>MessageName</code> still works normally in every other case.</p>
 <a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> See Also:</h2>
 <ul>

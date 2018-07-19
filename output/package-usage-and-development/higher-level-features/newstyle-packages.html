@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -815,6 +827,78 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a shape='rect' id='newstyle-packages' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> New-Style Packages</h2>
 <p>As of version 10 or so there is a new package format that may be used to more easily handle complicated package setups. It involves a set of static tokens that one uses to tell the system how to distribute definitions and expose contexts and things. These are:</p>
+<ul>
+ <li><code>Package</code>  <span class='special-character LongDash'>&#8212;</span> must be at the top of a package file, tells the system it&apos;s a package and the package name</li>
+ <li><code>PackageExport</code>  <span class='special-character LongDash'>&#8212;</span> tells the system that a given symbol will be exposed at top level</li>
+ <li><code>PackageScope</code>  <span class='special-character LongDash'>&#8212;</span> tells the system that a given symbol should be exposed at the package level</li>
+ <li><code>PackageImport</code>  <span class='special-character LongDash'>&#8212;</span> tells the system to import a given context and expose it within that file</li>
+</ul>
+<p>Any symbol not tagged with <code>PackageExport</code>  or <code>PackageScope</code>  gets a context that is private to that file. </p>
+<p>A sample paclet structure might look like:</p>
+<pre class='mma-input prettyprint'>
+ <code class='language-none'>
+ MyPaclet 
+  + PacletInfo.m 
+  Kernel 
+   + init.m 
+  MyPaclet.m 
+  Component1.m 
+  Component2.m 
+  ...
+</code>
+</pre>
+<p>Each component would look like:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Package[&quot;MyPaclet`&quot;]
+
+PackageImport[&quot;Dependency1`&quot;]
+PackageImport[&quot;Dependency2`&quot;]
+...
+
+PackageExport[&quot;Symbol1&quot;]
+PackageExport[&quot;Symbol2&quot;]
+...
+
+PackageScope[&quot;PkgSym1&quot;]
+PackageScope[&quot;PkgSym2&quot;]
+...
+
+sym1[]:=...
+Symbol1[]:=... 
+
+...</code>
+</pre>
+<p>Note a few interesting features:</p>
+<ul>
+ <li>There is no <code>Begin</code>  or <code>BeginPackage</code>  or anything like that</li>
+ <li>The tokens must be declared standalone, without even a <code>;</code>  at the end</li>
+ <li>We don&apos;t explicitly tell the system to load all the components<span class='special-character LongDash'>&#8212;</span>it does this automatically</li>
+</ul>
+<p>This allows for much simpler package construction and is a good clean strategy for developing packages
+</p>
+<h3> Package` Context</h3>
+<p>Even better, there are tools at hand for analyzing/working with these packages. These are the functions in the <code>&quot;Package`&quot;</code>  context. There&apos;ll be a little reference guide on them, but for now here&apos;s a quick rundown of how they work:</p>
+<ul>
+ <li><code>PackageInformation</code>  <span class='special-character LongDash'>&#8212;</span> extracts info for new style packages</li>
+ <li><code>LoadPackage</code>  <span class='special-character LongDash'>&#8212;</span> loads a new style package</li>
+ <li><code>DeclareLoad</code>  <span class='special-character LongDash'>&#8212;</span> sets up autoloading for a package</li>
+ <li><code>ActivateLoad</code>  <span class='special-character LongDash'>&#8212;</span> set by <code>DeclareLoad</code>  to delegate to <code>LoadPackage</code></li>
+ <li><code>CreatePackageCache</code>  <span class='special-character LongDash'>&#8212;</span> generates a .mx redux of a package for optimized loading</li>
+</ul>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/114956/what-are-package-context-symbols-for'>https://mathematica.stackexchange.com/questions/114956/what-are-package-context-symbols-for</a>
+ </li>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/176434/declaring-package-with-dependencies-in-multiples-files/176489#176489'>https://mathematica.stackexchange.com/questions/176434/declaring-package-with-dependencies-in-multiples-files/176489#176489</a>
+ </li>
+ <li>
+  <a href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/package.html'>Package context reference</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>
@@ -823,10 +907,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <li class="page-item">
       <a
         class="page-link"
-        href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/multipackage-paclets.html"
+        href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html"
         >
         <span aria-hidden="true">
-            &laquo; Multipackage Paclets
+            &laquo; Function Preparation
           </span>
         <span class="sr-only">Previous</span>
       </a>

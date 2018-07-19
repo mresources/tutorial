@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -814,69 +826,93 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='import-and-readlist' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Import and ReadList</h2>
-<p><code>Import</code>  has a peculiar feature. It requires vastly more memory than the size of the file being imported, which can lead to nasty behavior, sometimes. To get around this one would think of importing line-by-line as one does in python or C++ and the <code>ReadLine</code>  function seems perfect for the job.</p>
-<p>Unfortunately <code>ReadLine</code>  is horrendously slow. So the better thing to do is to use <code>ReadList</code> , line, by line on an <code>InputStream</code>  object.</p>
-<p>For example, let&#8217;s make an input stream from the following URL:
+<p><code>Import</code> has a peculiar feature. It requires vastly more memory than the size of the file being imported, which can lead to nasty behavior, sometimes. To get around this one would think of importing line-by-line as one does in python or C++ and the <code>ReadLine</code> function seems perfect for the job.</p>
+<p>Unfortunately <code>ReadLine</code> is horrendously slow. So the better thing to do is to use <code>ReadList</code> , line, by line on an <code>InputStream</code> object.</p>
+<p>For example, let&apos;s make an input stream from the following URL:
 </p>
-<pre class='prettyprint'>
- <code>textFile=URLDownload[
-&quot;https://www.w3.org/TR/PNG/iso_8859-1.txt&quot;,
-FileNameJoin@{$TemporaryDirectory,&quot;read_list_example.txt&quot;}
-];
-textStream=OpenRead@textFile
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>textFile=
+  URLDownload[
+    &quot;https://www.w3.org/TR/PNG/iso_8859-1.txt&quot;,
+    FileNameJoin@{$TemporaryDirectory,&quot;read_list_example.txt&quot;}
+    ];
+textStream=OpenRead@textFile</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-2584241647775519822.png' alt='23-2584241647775519822' />
-<p>Now let&#8217;s read some lines using <code>ReadLine</code>  and do the same with <code>ReadList</code>  and compare the performance:
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/233importandreadlist-2584241647775519822.png' alt='233importandreadlist-2584241647775519822' />
+<p>Now let&apos;s read some lines using <code>ReadLine</code> and do the same with <code>ReadList</code> and compare the performance. First iterated <code>ReadLine</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>AbsoluteTiming@
-Table[
-ReadLine@textStream,
-25]
-    (*Out:*)
-    {0.001708`,{&quot;The following are the graphical (non-control) characters defined by&quot;,&quot;ISO 8859-1 (1987).  Descriptions in words aren&apos;t all that helpful,&quot;,&quot;but they&apos;re the best we can do in text.  A graphics file illustrating&quot;,&quot;the character set should be available from the same archive as this&quot;,&quot;file.&quot;,&quot;Hex Description                 Hex Description&quot;,&quot;20  SPACE&quot;,&quot;21  EXCLAMATION MARK            A1  INVERTED EXCLAMATION MARK&quot;,&quot;22  QUOTATION MARK              A2  CENT SIGN&quot;,&quot;23  NUMBER SIGN                 A3  POUND SIGN&quot;,&quot;24  DOLLAR SIGN                 A4  CURRENCY SIGN&quot;,&quot;25  PERCENT SIGN                A5  YEN SIGN&quot;,&quot;26  AMPERSAND                   A6  BROKEN BAR&quot;,&quot;27  APOSTROPHE                  A7  SECTION SIGN&quot;,&quot;28  LEFT PARENTHESIS            A8  DIAERESIS&quot;,&quot;29  RIGHT PARENTHESIS           A9  COPYRIGHT SIGN&quot;,&quot;2A  ASTERISK                    AA  FEMININE ORDINAL INDICATOR&quot;,&quot;2B  PLUS SIGN                   AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK&quot;,&quot;2C  COMMA                       AC  NOT SIGN&quot;,&quot;2D  HYPHEN-MINUS                AD  SOFT HYPHEN&quot;,&quot;2E  FULL STOP                   AE  REGISTERED SIGN&quot;,&quot;2F  SOLIDUS                     AF  OVERLINE&quot;,&quot;30  DIGIT ZERO                  B0  DEGREE SIGN&quot;,&quot;31  DIGIT ONE                   B1  PLUS-MINUS SIGN&quot;,&quot;32  DIGIT TWO                   B2  SUPERSCRIPT TWO&quot;}}
-    AbsoluteTiming@
-Table[
-ReadList[textStream,String,1],
-25]
-    {0.00014`,{ {&quot;33  DIGIT THREE                 B3  SUPERSCRIPT THREE&quot;},{&quot;34  DIGIT FOUR                  B4  ACUTE ACCENT&quot;},{&quot;35  DIGIT FIVE                  B5  MICRO SIGN&quot;},{&quot;36  DIGIT SIX                   B6  PILCROW SIGN&quot;},{&quot;37  DIGIT SEVEN                 B7  MIDDLE DOT&quot;},{&quot;38  DIGIT EIGHT                 B8  CEDILLA&quot;},{&quot;39  DIGIT NINE                  B9  SUPERSCRIPT ONE&quot;},{&quot;3A  COLON                       BA  MASCULINE ORDINAL INDICATOR&quot;},{&quot;3B  SEMICOLON                   BB  RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK&quot;},{&quot;3C  LESS-THAN SIGN              BC  VULGAR FRACTION ONE QUARTER&quot;},{&quot;3D  EQUALS SIGN                 BD  VULGAR FRACTION ONE HALF&quot;},{&quot;3E  GREATER-THAN SIGN           BE  VULGAR FRACTION THREE QUARTERS&quot;},{&quot;3F  QUESTION MARK               BF  INVERTED QUESTION MARK&quot;},{&quot;40  COMMERCIAL AT               C0  CAPITAL LETTER A WITH GRAVE&quot;},{&quot;41  CAPITAL LETTER A            C1  CAPITAL LETTER A WITH ACUTE&quot;},{&quot;42  CAPITAL LETTER B            C2  CAPITAL LETTER A WITH CIRCUMFLEX&quot;},{&quot;43  CAPITAL LETTER C            C3  CAPITAL LETTER A WITH TILDE&quot;},{&quot;44  CAPITAL LETTER D            C4  CAPITAL LETTER A WITH DIAERESIS&quot;},{&quot;45  CAPITAL LETTER E            C5  CAPITAL LETTER A WITH RING ABOVE&quot;},{&quot;46  CAPITAL LETTER F            C6  CAPITAL LETTER AE&quot;},{&quot;47  CAPITAL LETTER G            C7  CAPITAL LETTER C WITH CEDILLA&quot;},{&quot;48  CAPITAL LETTER H            C8  CAPITAL LETTER E WITH GRAVE&quot;},{&quot;49  CAPITAL LETTER I            C9  CAPITAL LETTER E WITH ACUTE&quot;},{&quot;4A  CAPITAL LETTER J            CA  CAPITAL LETTER E WITH CIRCUMFLEX&quot;},{&quot;4B  CAPITAL LETTER K            CB  CAPITAL LETTER E WITH DIAERESIS&quot;}}}</code>
+  Table[
+    ReadLine@textStream,
+    25
+    ]</code>
 </pre>
-<p>You&#8217;ll notice the performance is drastically different. Even getting the proper text has no discernible effect.
+<pre class='program mma-output prettyprint'>
+ <code style='width: 100%; white-space: pre-wrap;'>{0.001708,
+{The following are the graphical (non-control) characters defined by,ISO 8859-1 (1987).  Descriptions in words aren&apos;t all that helpful,,but they&apos;re the best we can do in text.  A graphics file illustrating,the character set should be available from the same archive as this,file.,Hex Description                 Hex Description,20  SPACE,21  EXCLAMATION MARK            A1  INVERTED EXCLAMATION MARK,22  QUOTATION MARK              A2  CENT SIGN,23  NUMBER SIGN                 A3  POUND SIGN,24  DOLLAR SIGN                 A4  CURRENCY SIGN,25  PERCENT SIGN                A5  YEN SIGN,26  AMPERSAND                   A6  BROKEN BAR,27  APOSTROPHE                  A7  SECTION SIGN,28  LEFT PARENTHESIS            A8  DIAERESIS,29  RIGHT PARENTHESIS           A9  COPYRIGHT SIGN,2A  ASTERISK                    AA  FEMININE ORDINAL INDICATOR,2B  PLUS SIGN                   AB  LEFT-POINTING DOUBLE ANGLE QUOTATION MARK,2C  COMMA                       AC  NOT SIGN,2D  HYPHEN-MINUS                AD  SOFT HYPHEN,2E  FULL STOP                   AE  REGISTERED SIGN,2F  SOLIDUS                     AF  OVERLINE,30  DIGIT ZERO                  B0  DEGREE SIGN,31  DIGIT ONE                   B1  PLUS-MINUS SIGN,32  DIGIT TWO                   B2  SUPERSCRIPT TWO
+}
+}</code>
+</pre>
+<p>Then iterated <code>ReadList</code> (although of course in general we will want to do this in batches):
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
+ <code>AbsoluteTiming@
+  Table[
+    ReadList[textStream, String, 1],
+    25]</code>
+</pre>
+<pre class='program mma-output prettyprint'>
+ <code style='width: 100%; white-space: pre-wrap;'>{0.00014,
+{ {33  DIGIT THREE                 B3  SUPERSCRIPT THREE},{34  DIGIT FOUR                  B4  ACUTE ACCENT},{35  DIGIT FIVE                  B5  MICRO SIGN},{36  DIGIT SIX                   B6  PILCROW SIGN},{37  DIGIT SEVEN                 B7  MIDDLE DOT},{38  DIGIT EIGHT                 B8  CEDILLA},{39  DIGIT NINE                  B9  SUPERSCRIPT ONE},{3A  COLON                       BA  MASCULINE ORDINAL INDICATOR},{3B  SEMICOLON                   BB  RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK},{3C  LESS-THAN SIGN              BC  VULGAR FRACTION ONE QUARTER},{3D  EQUALS SIGN                 BD  VULGAR FRACTION ONE HALF},{3E  GREATER-THAN SIGN           BE  VULGAR FRACTION THREE QUARTERS},{3F  QUESTION MARK               BF  INVERTED QUESTION MARK},{40  COMMERCIAL AT               C0  CAPITAL LETTER A WITH GRAVE},{41  CAPITAL LETTER A            C1  CAPITAL LETTER A WITH ACUTE},{42  CAPITAL LETTER B            C2  CAPITAL LETTER A WITH CIRCUMFLEX},{43  CAPITAL LETTER C            C3  CAPITAL LETTER A WITH TILDE},{44  CAPITAL LETTER D            C4  CAPITAL LETTER A WITH DIAERESIS},{45  CAPITAL LETTER E            C5  CAPITAL LETTER A WITH RING ABOVE},{46  CAPITAL LETTER F            C6  CAPITAL LETTER AE},{47  CAPITAL LETTER G            C7  CAPITAL LETTER C WITH CEDILLA},{48  CAPITAL LETTER H            C8  CAPITAL LETTER E WITH GRAVE},{49  CAPITAL LETTER I            C9  CAPITAL LETTER E WITH ACUTE},{4A  CAPITAL LETTER J            CA  CAPITAL LETTER E WITH CIRCUMFLEX},{4B  CAPITAL LETTER K            CB  CAPITAL LETTER E WITH DIAERESIS}}}</code>
+</pre>
+<p>You&apos;ll notice the performance is drastically different. Even getting the proper text as opposed to the list structure has no discernible effect.
+</p>
+<pre class='mma-input prettyprint'>
  <code>AbsoluteTiming@
 Table[
 First@ReadList[textStream,String,1],
-25]
-    (*Out:*)
-    {0.000126`,{&quot;4C  CAPITAL LETTER L            CC  CAPITAL LETTER I WITH GRAVE&quot;,&quot;4D  CAPITAL LETTER M            CD  CAPITAL LETTER I WITH ACUTE&quot;,&quot;4E  CAPITAL LETTER N            CE  CAPITAL LETTER I WITH CIRCUMFLEX&quot;,&quot;4F  CAPITAL LETTER O            CF  CAPITAL LETTER I WITH DIAERESIS&quot;,&quot;50  CAPITAL LETTER P            D0  CAPITAL LETTER ETH (Icelandic)&quot;,&quot;51  CAPITAL LETTER Q            D1  CAPITAL LETTER N WITH TILDE&quot;,&quot;52  CAPITAL LETTER R            D2  CAPITAL LETTER O WITH GRAVE&quot;,&quot;53  CAPITAL LETTER S            D3  CAPITAL LETTER O WITH ACUTE&quot;,&quot;54  CAPITAL LETTER T            D4  CAPITAL LETTER O WITH CIRCUMFLEX&quot;,&quot;55  CAPITAL LETTER U            D5  CAPITAL LETTER O WITH TILDE&quot;,&quot;56  CAPITAL LETTER V            D6  CAPITAL LETTER O WITH DIAERESIS&quot;,&quot;57  CAPITAL LETTER W            D7  MULTIPLICATION SIGN&quot;,&quot;58  CAPITAL LETTER X            D8  CAPITAL LETTER O WITH STROKE&quot;,&quot;59  CAPITAL LETTER Y            D9  CAPITAL LETTER U WITH GRAVE&quot;,&quot;5A  CAPITAL LETTER Z            DA  CAPITAL LETTER U WITH ACUTE&quot;,&quot;5B  LEFT SQUARE BRACKET         DB  CAPITAL LETTER U WITH CIRCUMFLEX&quot;,&quot;5C  REVERSE SOLIDUS             DC  CAPITAL LETTER U WITH DIAERESIS&quot;,&quot;5D  RIGHT SQUARE BRACKET        DD  CAPITAL LETTER Y WITH ACUTE&quot;,&quot;5E  CIRCUMFLEX ACCENT           DE  CAPITAL LETTER THORN (Icelandic)&quot;,&quot;5F  LOW LINE                    DF  SMALL LETTER SHARP S (German)&quot;,&quot;60  GRAVE ACCENT                E0  SMALL LETTER A WITH GRAVE&quot;,&quot;61  SMALL LETTER A              E1  SMALL LETTER A WITH ACUTE&quot;,&quot;62  SMALL LETTER B              E2  SMALL LETTER A WITH CIRCUMFLEX&quot;,&quot;63  SMALL LETTER C              E3  SMALL LETTER A WITH TILDE&quot;,&quot;64  SMALL LETTER D              E4  SMALL LETTER A WITH DIAERESIS&quot;}}</code>
+25]</code>
 </pre>
-<p>Now this file is a text file that contains hex integer-description pairs, so let&#8217;s pull these out as rules. We&#8217;ll do this using patterns, <code>Reap</code>  and <code>Sow</code> . Note that the relevant data looks like &#8220;&lt;key&gt;  description&#8221; so we&#8217;ll use <code>StringReplace</code>  on that pattern.
+<pre class='program mma-output prettyprint'>
+ <code style='width: 100%; white-space: pre-wrap;'>{0.000126,
+{4C  CAPITAL LETTER L            CC  CAPITAL LETTER I WITH GRAVE,4D  CAPITAL LETTER M            CD  CAPITAL LETTER I WITH ACUTE,4E  CAPITAL LETTER N            CE  CAPITAL LETTER I WITH CIRCUMFLEX,4F  CAPITAL LETTER O            CF  CAPITAL LETTER I WITH DIAERESIS,50  CAPITAL LETTER P            D0  CAPITAL LETTER ETH (Icelandic),51  CAPITAL LETTER Q            D1  CAPITAL LETTER N WITH TILDE,52  CAPITAL LETTER R            D2  CAPITAL LETTER O WITH GRAVE,53  CAPITAL LETTER S            D3  CAPITAL LETTER O WITH ACUTE,54  CAPITAL LETTER T            D4  CAPITAL LETTER O WITH CIRCUMFLEX,55  CAPITAL LETTER U            D5  CAPITAL LETTER O WITH TILDE,56  CAPITAL LETTER V            D6  CAPITAL LETTER O WITH DIAERESIS,57  CAPITAL LETTER W            D7  MULTIPLICATION SIGN,58  CAPITAL LETTER X            D8  CAPITAL LETTER O WITH STROKE,59  CAPITAL LETTER Y            D9  CAPITAL LETTER U WITH GRAVE,5A  CAPITAL LETTER Z            DA  CAPITAL LETTER U WITH ACUTE,5B  LEFT SQUARE BRACKET         DB  CAPITAL LETTER U WITH CIRCUMFLEX,5C  REVERSE SOLIDUS             DC  CAPITAL LETTER U WITH DIAERESIS,5D  RIGHT SQUARE BRACKET        DD  CAPITAL LETTER Y WITH ACUTE,5E  CIRCUMFLEX ACCENT           DE  CAPITAL LETTER THORN (Icelandic),5F  LOW LINE                    DF  SMALL LETTER SHARP S (German),60  GRAVE ACCENT                E0  SMALL LETTER A WITH GRAVE,61  SMALL LETTER A              E1  SMALL LETTER A WITH ACUTE,62  SMALL LETTER B              E2  SMALL LETTER A WITH CIRCUMFLEX,63  SMALL LETTER C              E3  SMALL LETTER A WITH TILDE,64  SMALL LETTER D              E4  SMALL LETTER A WITH DIAERESIS}}</code>
+</pre>
+<p>Now this file is a text file that contains hex integer-description pairs, so let&apos;s pull these out as rules. We&apos;ll do this using patterns, <code>Reap</code> and <code>Sow</code> . Note that the relevant data looks like &quot;&lt;key&gt;  description&quot; so we&apos;ll use <code>StringReplace</code> on that pattern.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Replace[
-Reap@Do[
-With[{f=ReadList[textStream,String,1]},
-If[MatchQ[f,{}],
-Replace[
-ReadLine@textStream,{
-EndOfFile:&gt;Return[],
-s_String<span class='special-character RuleDelayed'>&#10740;</span>
-StringReplace[s,
-key__~~&quot;  &quot;~~desc__~~(&quot;  &quot;|EndOfString)<span class='special-character RuleDelayed'>&#10740;</span>Sow@{key,desc}]
-}],
-StringReplace[First@f,
-key:(Except[&quot; &quot;]..)~~&quot;  &quot;~~desc:Shortest[__]~~(&quot;  &quot;|EndOfString)<span class='special-character RuleDelayed'>&#10740;</span>Sow@{key,desc}]
-]],
-&#8734;
-],
-{_,{data_}}<span class='special-character RuleDelayed'>&#10740;</span>data
-]
-    { {&quot;65&quot;,&quot;SMALL LETTER E&quot;},{&quot;E5&quot;,&quot;SMALL LETTER A WITH RING ABOVE&quot;},{&quot;66&quot;,&quot;SMALL LETTER F&quot;},{&quot;E6&quot;,&quot;SMALL LETTER AE&quot;},{&quot;67&quot;,&quot;SMALL LETTER G&quot;},{&quot;E7&quot;,&quot;SMALL LETTER C WITH CEDILLA&quot;},{&quot;68&quot;,&quot;SMALL LETTER H&quot;},{&quot;E8&quot;,&quot;SMALL LETTER E WITH GRAVE&quot;},{&quot;69&quot;,&quot;SMALL LETTER I&quot;},{&quot;E9&quot;,&quot;SMALL LETTER E WITH ACUTE&quot;},{&quot;6A&quot;,&quot;SMALL LETTER J&quot;},{&quot;EA&quot;,&quot;SMALL LETTER E WITH CIRCUMFLEX&quot;},{&quot;6B&quot;,&quot;SMALL LETTER K&quot;},{&quot;EB&quot;,&quot;SMALL LETTER E WITH DIAERESIS&quot;},{&quot;6C&quot;,&quot;SMALL LETTER L&quot;},{&quot;EC&quot;,&quot;SMALL LETTER I WITH GRAVE&quot;},{&quot;6D&quot;,&quot;SMALL LETTER M&quot;},{&quot;ED&quot;,&quot;SMALL LETTER I WITH ACUTE&quot;},{&quot;6E&quot;,&quot;SMALL LETTER N&quot;},{&quot;EE&quot;,&quot;SMALL LETTER I WITH CIRCUMFLEX&quot;},{&quot;6F&quot;,&quot;SMALL LETTER O&quot;},{&quot;EF&quot;,&quot;SMALL LETTER I WITH DIAERESIS&quot;},{&quot;70&quot;,&quot;SMALL LETTER P&quot;},{&quot;F0&quot;,&quot;SMALL LETTER ETH (Icelandic)&quot;},{&quot;71&quot;,&quot;SMALL LETTER Q&quot;},{&quot;F1&quot;,&quot;SMALL LETTER N WITH TILDE&quot;},{&quot;72&quot;,&quot;SMALL LETTER R&quot;},{&quot;F2&quot;,&quot;SMALL LETTER O WITH GRAVE&quot;},{&quot;73&quot;,&quot;SMALL LETTER S&quot;},{&quot;F3&quot;,&quot;SMALL LETTER O WITH ACUTE&quot;},{&quot;74&quot;,&quot;SMALL LETTER T&quot;},{&quot;F4&quot;,&quot;SMALL LETTER O WITH CIRCUMFLEX&quot;},{&quot;75&quot;,&quot;SMALL LETTER U&quot;},{&quot;F5&quot;,&quot;SMALL LETTER O WITH TILDE&quot;},{&quot;76&quot;,&quot;SMALL LETTER V&quot;},{&quot;F6&quot;,&quot;SMALL LETTER O WITH DIAERESIS&quot;},{&quot;77&quot;,&quot;SMALL LETTER W&quot;},{&quot;F7&quot;,&quot;DIVISION SIGN&quot;},{&quot;78&quot;,&quot;SMALL LETTER X&quot;},{&quot;F8&quot;,&quot;SMALL LETTER O WITH STROKE&quot;},{&quot;79&quot;,&quot;SMALL LETTER Y&quot;},{&quot;F9&quot;,&quot;SMALL LETTER U WITH GRAVE&quot;},{&quot;7A&quot;,&quot;SMALL LETTER Z&quot;},{&quot;FA&quot;,&quot;SMALL LETTER U WITH ACUTE&quot;},{&quot;7B&quot;,&quot;LEFT CURLY BRACKET&quot;},{&quot;FB&quot;,&quot;SMALL LETTER U WITH CIRCUMFLEX&quot;},{&quot;7C&quot;,&quot;VERTICAL LINE&quot;},{&quot;FC&quot;,&quot;SMALL LETTER U WITH DIAERESIS&quot;},{&quot;7D&quot;,&quot;RIGHT CURLY BRACKET&quot;},{&quot;FD&quot;,&quot;SMALL LETTER Y WITH ACUTE&quot;},{&quot;7E&quot;,&quot;TILDE&quot;},{&quot;FE&quot;,&quot;SMALL LETTER THORN (Icelandic)&quot;},{&quot;FF&quot;,&quot;SMALL LETTER Y WITH DIAERESIS&quot;}}</code>
+  Reap@Do[
+    With[{f=ReadList[textStream,String,1]},
+      If[MatchQ[f,{}],
+        Replace[
+          ReadLine@textStream,{
+            EndOfFile:&gt;Return[],
+            s_String:&gt;
+            StringReplace[s,
+              key__~~&quot;  &quot;~~desc__~~(&quot;  &quot;|EndOfString):&gt;Sow@{key,desc}]
+            }],
+        StringReplace[First@f,
+          key:(Except[&quot; &quot;]..)~~&quot;  &quot;~~desc:Shortest[__]~~(&quot;  &quot;|EndOfString):&gt;Sow@{key,desc}]
+        ]
+      ],
+      &#8734;
+      ],
+    {_,{data_}}:&gt;data
+    ]</code>
 </pre>
-<p>There&#8217;s a lot of boiler plate here, but I&#8217;ll leave it up to you to make a macro that will deal with all of that for any future imports.</p>
-<p>Just remember, when one has to process a large file or needs a special import mechanism, this is often the best way to do it, otherwise a simple <code>Import</code>  is likely fastest--although there are cases where this does not hold, and if a file takes particularly long to load, using a <code>ReadList</code>  can be faster.</p>
+<pre class='program mma-output prettyprint'>
+ <code style='width: 100%; white-space: pre-wrap;'>{ {65,SMALL LETTER E},{E5,SMALL LETTER A WITH RING ABOVE},{66,SMALL LETTER F},{E6,SMALL LETTER AE},{67,SMALL LETTER G},{E7,SMALL LETTER C WITH CEDILLA},{68,SMALL LETTER H},{E8,SMALL LETTER E WITH GRAVE},{69,SMALL LETTER I},{E9,SMALL LETTER E WITH ACUTE},{6A,SMALL LETTER J},{EA,SMALL LETTER E WITH CIRCUMFLEX},{6B,SMALL LETTER K},{EB,SMALL LETTER E WITH DIAERESIS},{6C,SMALL LETTER L},{EC,SMALL LETTER I WITH GRAVE},{6D,SMALL LETTER M},{ED,SMALL LETTER I WITH ACUTE},{6E,SMALL LETTER N},{EE,SMALL LETTER I WITH CIRCUMFLEX},{6F,SMALL LETTER O},{EF,SMALL LETTER I WITH DIAERESIS},{70,SMALL LETTER P},{F0,SMALL LETTER ETH (Icelandic)},{71,SMALL LETTER Q},{F1,SMALL LETTER N WITH TILDE},{72,SMALL LETTER R},{F2,SMALL LETTER O WITH GRAVE},{73,SMALL LETTER S},{F3,SMALL LETTER O WITH ACUTE},{74,SMALL LETTER T},{F4,SMALL LETTER O WITH CIRCUMFLEX},{75,SMALL LETTER U},{F5,SMALL LETTER O WITH TILDE},{76,SMALL LETTER V},{F6,SMALL LETTER O WITH DIAERESIS},{77,SMALL LETTER W},{F7,DIVISION SIGN},{78,SMALL LETTER X},{F8,SMALL LETTER O WITH STROKE},{79,SMALL LETTER Y},{F9,SMALL LETTER U WITH GRAVE},{7A,SMALL LETTER Z},{FA,SMALL LETTER U WITH ACUTE},{7B,LEFT CURLY BRACKET},{FB,SMALL LETTER U WITH CIRCUMFLEX},{7C,VERTICAL LINE},{FC,SMALL LETTER U WITH DIAERESIS},{7D,RIGHT CURLY BRACKET},{FD,SMALL LETTER Y WITH ACUTE},{7E,TILDE},{FE,SMALL LETTER THORN (Icelandic)},{FF,SMALL LETTER Y WITH DIAERESIS}}</code>
+</pre>
+<p>There&apos;s a lot of boiler plate here, but I&apos;ll leave it up to you to make a macro that will deal with all of that for any future imports.</p>
+<p>Just remember, when one has to process a large file or needs a special import mechanism, this is often the best way to do it, otherwise a simple <code>Import</code> is likely fastest<span class='special-character LongDash'>&#8212;</span>although there are cases where this does not hold, and if a file takes particularly long to load, using <code>ReadList</code> can be faster.</p>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/35371/speeding-up-import-and-export-in-csv-format'>https://mathematica.stackexchange.com/questions/35371/speeding-up-import-and-export-in-csv-format</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

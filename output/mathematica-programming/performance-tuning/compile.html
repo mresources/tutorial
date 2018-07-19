@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -819,15 +831,14 @@ Mathematica is what is often called a high-level programming language, because w
 <p>To get around this Mathematica provides the function <a href='https://reference.wolfram.com/language/ref/Compile.html'><code>Compile</code></a>  which will generate a low-level function that we can then apply with fantastic results. For example, in the section on <code>Nest</code>  I provided a random vector generator:</p>
 <p>This creates a compiled function that will perform the task at hand, in this case taking a vector of <code>Real</code>  numbers and returning a vector. Just so we can see the difference let&apos;s create the same function, uncompiled and compare the two:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>randomVector=
   Compile[{{mag,_Real}},
     mag*(#/Norm[#])&amp;@RandomReal[{-1,1},3]
-    ]
-(*Out:*)</code>
+    ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/251compile-6656821290333338907.png' alt='251compile-6656821290333338907' />
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>randomVectorU=
   Function[mag,
     mag*Normalize@RandomReal[{-1,1},3]
@@ -835,44 +846,48 @@ Mathematica is what is often called a high-level programming language, because w
 </pre>
 <p>Then we&apos;ll compare them using a little timing function:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>compareTiming[f1_,f2_,its_:1]:=
   With[{
       tf1=First@AbsoluteTiming[Do[f1,its]],tf2=First@AbsoluteTiming[Do[f2,its]]},
     (tf2-tf1)/Max@{tf1,tf2}
     ];
 compareTiming~SetAttributes~HoldAll;
+
 compareTiming[
   randomVector[1],
   randomVectorU[1],
   10^6
-  ]
-(*Out:*)
-0.5244177474084153`</code>
+  ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.5244177474084153`</code>
 </pre>
 <p>So we get a 52% speed boost from essentially just changing <code>Function</code>  to <code>Compile</code>  on the simplest function imaginable. If we had a more involved function the speed boost would likely be even larger. But since it&apos;s so simple we can easily dissect what is giving the speed boost:
 </p>
 <h3> Analyzing Compile</h3>
 <p>We&apos;ll build from the bottom up:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>randomReal3=Compile[{},RandomReal[{-1,1},3]];
 randomReal3U=Function[RandomReal[{-1,1},3]];
-compareTiming[randomReal3[], randomReal3U[],10^6]
-(*Out:*)
-0.4059389866935647`</code>
+compareTiming[randomReal3[], randomReal3U[],10^6]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.4059389866935647`</code>
 </pre>
 <p>This alone is 40% faster! Of course when we know how many vectors we&apos;ll need ahead of time the fastest thing is to use the syntax <code>RandomReal[range,{count,3}]</code>  which can, for example, generate  10<sup>8</sup>  random  vectors in a fraction of a second, which is much, much faster than our compiled form:
 </p>
-<pre class='prettyprint'>
- <code>compareTiming[Do[randomReal3[], 10^7], RandomReal[{-1, 1}, {3, 10^7}]]
-(*Out:*)
--0.9477078222470973`</code>
+<pre class='mma-input prettyprint'>
+ <code>compareTiming[Do[randomReal3[], 10^7], RandomReal[{-1, 1}, {3, 10^7}]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>-0.9477078222470973`</code>
 </pre>
 <p>Ignoring the correct way to do this, though, and considering out surprising result, this is likely an artifact of type-checking in the compiled function that has to be performed at each call in the uncompiled one.</p>
 <p>When we add our normalization now:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>randomVectorNoMag=
   Compile[{},
     (#/Norm[#]&amp;)@RandomReal[{-1,1},3]
@@ -881,22 +896,23 @@ randomVectorNoMagU=
   Function[
     Normalize@RandomReal[{-1,1},3]
     ];
-compareTiming[randomVectorNoMag[], randomVectorNoMagU[], 10^6]
-(*Out:*)
-0.4923576135986387`</code>
+compareTiming[randomVectorNoMag[], randomVectorNoMagU[], 10^6]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.4923576135986387`</code>
 </pre>
 <p>Now we&apos;re a full 50% faster than we were (that this is greater than our original 40 is likely just a lack of consistency between runs).</p>
 <p>Note that I&apos;m in the <code>CompiledFunction</code>  I&apos;m not using <code>Normalize</code> . This is because <code>Normalize</code>  cannot be directly compiled.</p>
 <p>We can see this by looking at the intermediate representation generated when we use it:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>&lt;&lt;CompiledFunctionTools`
 CompilePrint@
   Compile[{},
     Normalize@RandomReal[{-1,1}, 3]
     ]//Snippet[#, -5]&amp;</code>
 </pre>
-<pre class='programprettyprint'>
+<pre class='program mma-input prettyprint'>
  <code style='width: 100%; white-space: pre-wrap;'>-----------Out-----------
 1 R0 = I1
 2 R1 = I2
@@ -909,7 +925,7 @@ CompilePrint@
 <h3> Drastic Examples</h3>
 <p>The previous case was simple so that it could easily be analyzed, but for more complicated cases we can much bigger gains. Consider the primary gradient function we used in the section on <code>FixedPoint</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>gradient=
   Compile[{{pos,_Real,1}},
     {
@@ -934,7 +950,7 @@ CompilePrint@
 </pre>
 <p>And then consider its uncompiled cousin:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>gradientU=
   Function[pos,
     {
@@ -956,19 +972,21 @@ CompilePrint@
           },#]&amp;@pos[[3]]
       }
     ];
+
 With[{grid=RandomReal[{-5,5},{10^5,3}]},
   compareTiming[
     gradient@g,
     gradientU@g,
     {g,grid}]
-  ]
-(*Out:*)
-0.8961919038258733`</code>
+  ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.8961919038258733`</code>
 </pre>
 <p>So the simple application of <code>Compile</code>  provides a 90% speed boost.</p>
 <p>As another example, one can implement numerical integration of a volume over a surface via:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>compDotCross=
   Compile[{{coords, _Real, 2}, {abc,_Integer,1}},
     coords[[ abc[[1]] ]].
@@ -983,7 +1001,7 @@ vol[s_?RegionQ]:=
 </pre>
 <p>then get an interesting surface:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>surf=
   RegionUnion@@
     With[
@@ -1000,25 +1018,27 @@ vol[s_?RegionQ]:=
         graphics[[2]],
         Sphere[s_, r_]:&gt;Ball[graphics[[1, s]], r]
         ]
-      ]//BoundaryDiscretizeRegion[#, MaxCellMeasure-&gt;{1-&gt;20}]&amp;
-(*Out:*)</code>
+      ]//BoundaryDiscretizeRegion[#, MaxCellMeasure-&gt;{1-&gt;20}]&amp;</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/251compile-1541471245257336081.png' alt='251compile-1541471245257336081' />
 <p>And compute its volume:
 </p>
-<pre class='prettyprint'>
- <code>vol@surf//RepeatedTiming
-(*Out:*)
-{0.0989207000000000003`2.,1.6728430521905467`*^8}
-Volume@surf//RepeatedTiming
-(*Out:*)
-{0.0010948070175438598`2.,1.6728430521905503`*^8}</code>
+<pre class='mma-input prettyprint'>
+ <code>vol@surf//RepeatedTiming</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{0.0989207000000000003`2.,1.6728430521905467`*^8}
+
+Volume@surf//RepeatedTiming</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{0.0010948070175438598`2.,1.6728430521905503`*^8}</code>
 </pre>
 <p>Our little compiled implementation is much slower than the built-in implementation, of course, but it&apos;s still incredibly fast for the level of mesh refinement.</p>
 <p>Personally, I this it for computing atomic orbital volumes derived from orbital contour plots.</p>
 <p>Lets then to a version without the compiled dot-cross:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>uncompDotCross=
   Function[{coords, abc},
     coords[[ abc[[1]] ]].
@@ -1030,13 +1050,15 @@ volU[s_?RegionQ]:=
     (MeshCells[s, 2]/.Polygon[g_List] :&gt; uncompDotCross[coords, g])
     //Total
     ]/6
-compareTiming[vol@surf, volU@surf]
-(*Out:*)
-0.9539375762845481`</code>
+
+compareTiming[vol@surf, volU@surf]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.9539375762845481`</code>
 </pre>
 <p>Ours is a whopping 95% faster. As the surface refinement increases this can be the difference between a function being nearly instantaneous versus a major speed bump in the research process.</p>
 <p>We can also compare the version where we compile to C (i.e. we use <code>CompilationTarget-&gt;&quot;C&quot;</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>compDotCross=
   Compile[{{coords, _Real, 2}, {abc,_Integer,1}},
     coords[[ abc[[1]] ]].
@@ -1051,38 +1073,43 @@ volC[s_?RegionQ]:=
       //Total
       ]/6
     ]
-compareTiming[volC@surf, vol@surf]
-(*Out:*)
-0.13463908089141324`</code>
+
+compareTiming[volC@surf, vol@surf]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.13463908089141324`</code>
 </pre>
 <p>And simply compiling to C made the function 13% faster. More performance can be eked but by using the difference <a href='https://reference.wolfram.com/language/ref/RuntimeOptions.html'><code>RuntimeOptions</code></a>  and things.
 </p>
 <h3> Using Compile</h3>
 <p>It&apos;s often unclear whether a given function can be compiled or not, but happily Mathematica provides all of the possible compilable functions in <code>Compile`CompilerFunctions</code> . We can use this to make a <code>compileableQ</code>  type function:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>compilableQ[f_]:=
 MemberQ[Compile`CompilerFunctions[], f]</code>
 </pre>
 <p>For example, we can see that, say, <code>RandomVariate</code>  is compilable:
 </p>
-<pre class='prettyprint'>
- <code>compilableQ@RandomVariate
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>compilableQ@RandomVariate</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>Alternatively we can figure out which <code>Random&#8902;</code>  functions are compilable:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>compilableSelect[p_]:=
 Select[Compile`CompilerFunctions[], StringMatchQ[ToString@#,p]&amp;]
-compilableSelect@&quot;Random*&quot;
-(*Out:*)
-{RandomChoice,RandomSample,RandomInteger,RandomVariate,RandomComplex,RandomReal,Random}</code>
+
+compilableSelect@&quot;Random*&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{RandomChoice,RandomSample,RandomInteger,RandomVariate,RandomComplex,RandomReal,Random}</code>
 </pre>
 <p>Once we have that, <code>Compile</code>  has a very simple call structure that is similar to <code>Module</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Compile[
   {
     {var1,type1,arraySize1},

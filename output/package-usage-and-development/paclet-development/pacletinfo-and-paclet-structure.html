@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -820,7 +832,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> PacletInfo.m</h3>
 <p>The <code>PacletInfo.m</code>  file supplies a <code>Paclet</code>  expression that encodes metadata in rules. The absolute simplest example might be:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name-&gt;&quot;MyPaclet&quot;,
   Version-&gt;&quot;1.0.0&quot;
@@ -858,7 +870,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Extensions</h3>
 <p>The <code>Paclet</code>  expression can also supply an <code>&quot;Extensions&quot;</code>  parameter that tells the manager what kinds of things may be done with it. A paclet with extensions will look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name-&gt;&quot;MyPaclet&quot;,
   Version-&gt;&quot;1.0.0&quot;,
@@ -925,7 +937,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </ul>
 <p>Anytime we want front-end resources we provide to be used we should add the extension:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>{
   &quot;FrontEnd&quot;,
   Prepend-&gt;True
@@ -941,7 +953,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </ul>
 <p>If we want to add English-language documentation to our paclet we&apos;d set up the paclet like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>MyPaclet
  + PacletInfo.m
  Documentation
@@ -962,7 +974,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>Then our extension would look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>{
   &quot;Documentation&quot;,
   &quot;Language&quot;-&gt;&quot;English&quot;,
@@ -981,7 +993,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Each elements in the <code>&quot;Resources&quot;</code>  should either be the relative path or a list <code>{name, path}</code>  where <code>name</code>  is a nickname for the resource.</p>
 <p>As an example, if we wanted to supply a set of resources we could have our paclet setup like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>MyPaclet
  + PacletInfo.m
  Resources
@@ -991,7 +1003,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And then the extension would look like
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>{
   &quot;Resource&quot;,
   &quot;Root&quot;-&gt;&quot;Resources&quot;,

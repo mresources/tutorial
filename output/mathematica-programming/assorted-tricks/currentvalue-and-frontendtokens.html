@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -814,22 +826,22 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='currentvalue-and-frontendtokens' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> CurrentValue and FrontEndTokens</h2>
-<p>As mentioned briefly under <code>Highly Useful Functionality &#9656; Kernels and Remote Computations</code>  Mathematica has a device called a <code>FrontEndToken</code>  for accessing front end methods and information.
+<p>As mentioned briefly under <code>Highly Useful Functionality <span>&#9654;</span> Kernels and Remote Computations</code>  Mathematica has a device called a <code>FrontEndToken</code>  for accessing front end methods and information.
 </p>
 <h3> FrontEndToken</h3>
 <p>In general, how this is structured is the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FrontEndToken[token_String]</code>
 </pre>
 <p>or
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FrontEndToken[feobject_,token_String]</code>
 </pre>
 <p>And then the front end is actually accessed via <code>FrontEndExecute</code> . We can use this to, say, copy the previous cell as plaintext and paste it:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SelectionMove[PreviousCell@PreviousCell[],All,Cell];
 FrontEndTokenExecute[&quot;CopySpecial&quot;,&quot;Text&quot;];
 SelectionMove[EvaluationCell[],After,Cell];
@@ -837,28 +849,25 @@ FrontEndTokenExecute[&quot;Paste&quot;];</code>
 </pre>
 <p>Via front end tokens, it&#8217;s possible to do pretty much everything the front end can. A somewhat exhaustive list of them is presented below:
 </p>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-1539613407351655567.png' alt='23-1539613407351655567' />
 <p>Each button in that list executes <code>FrontEndTokenExecute[token]</code>  so test them out for yourself. Beware that many might be dangerous.</p>
 <p>You may know or recall that there are a series of event specifications that can be passed to <code>EventHandler</code> , <code>CellEventActions</code> , <code>NotebookEventActions</code> , and <code>FrontEndEventActions</code> . There are a number of documented event specifications, but there is one critical class of these that is missing. It looks like this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>{&quot;MenuCommand&quot;,token_}</code>
 </pre>
 <p>This catches the front end event called by <code>FrontEndTokenExecute[token]</code> . Among the many uses of this, it can be used for changing the way an <code>InputField</code>  evaluates using the <code>&quot;HandleShiftReturn&quot;</code>  token:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>validationFunction[variable_]:=
  (variable=StringReplace[variable,Except[DigitCharacter]-&gt;&quot;&quot;]);
 validationFunction~SetAttributes~HoldFirst;
 InputField[Dynamic[var],String]~EventHandler~{ {&quot;MenuCommand&quot;,&quot;HandleShiftReturn&quot;}:&gt;validationFunction[var]}</code>
 </pre>
-<p>Now whenever you press <code><kbd>SHIFT</kbd>+<kbd>ENTER</kbd></code> , <code>validationFunction</code>  is applied. This is useful if you don&#8217;t want to put your side-effects as the second argument to <code>Dynamic</code> .</p>
+<p>Now whenever you press <code><span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>SHIFT</kbd></span>+<span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>ENTER</kbd></span></code> , <code>validationFunction</code>  is applied. This is useful if you don&#8217;t want to put your side-effects as the second argument to <code>Dynamic</code> .</p>
 <p>This can also be used to make notebooks with custom actions, for, say, a save event:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>CreateDocument[{
   Cell[&quot;&quot;,&quot;TopBarCell&quot;],
   Cell[&quot;Try saving this notebook&quot;,&quot;Text&quot;]},
@@ -898,28 +907,28 @@ InputField[Dynamic[var],String]~EventHandler~{ {&quot;MenuCommand&quot;,&quot;Ha
 <p>In many ways, <code>CurrentValue</code>  is just a wrapper to <code>Options</code> , <code>SetOptions</code> , and <code>FrontEndToken</code>  but this makes it powerful.</p>
 <p>For instance, we can use it to query style options:
 </p>
-<pre class='prettyprint'>
- <code>CurrentValue@{&quot;StyleDefinitions&quot;,&quot;Section&quot;,&quot;Background&quot;}
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>CurrentValue@{&quot;StyleDefinitions&quot;,&quot;Section&quot;,&quot;Background&quot;}</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-1822040011122505851.png' alt='23-1822040011122505851' />
 <p>Figure out what the current selection in a notebook is (restricted to content):
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SelectionMove[EvaluationCell[],All,CellContents];
-    CurrentValue@&quot;SelectionData&quot;
-    (*Out:*)
-    RowBox[{RowBox[{RowBox[{&quot;SelectionMove&quot;,&quot;[&quot;,RowBox[{RowBox[{&quot;EvaluationCell&quot;,&quot;[&quot;,&quot;]&quot;}],&quot;,&quot;,&quot;All&quot;,&quot;,&quot;,&quot;CellContents&quot;}],&quot;]&quot;}],&quot;;&quot;}],&quot;
+    CurrentValue@&quot;SelectionData&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>RowBox[{RowBox[{RowBox[{&quot;SelectionMove&quot;,&quot;[&quot;,RowBox[{RowBox[{&quot;EvaluationCell&quot;,&quot;[&quot;,&quot;]&quot;}],&quot;,&quot;,&quot;All&quot;,&quot;,&quot;,&quot;CellContents&quot;}],&quot;]&quot;}],&quot;;&quot;}],&quot;
 &quot;,RowBox[{&quot;CurrentValue&quot;,&quot;@&quot;,&quot;\&quot;SelectionData\&quot;&quot;}]}]</code>
 </pre>
 <p>And determine whether a modifier key is pressed or not:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Dynamic@CurrentValue[&quot;ShiftKey&quot;]</code>
 </pre>
 <p>It can also be used to set options:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>CurrentValue[EvaluationCell[],&quot;Background&quot;]=RandomColor[];
 Pause[.5];
 CurrentValue[EvaluationCell[],&quot;Background&quot;]=None;</code>

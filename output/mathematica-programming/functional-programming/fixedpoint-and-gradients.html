@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -821,7 +833,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> FixedPoint and Gradients</h3>
 <p>Just as a side note there is a function called <code>FixedPoint</code>  that is essentially <code>Nest</code>  until the result doesn&#8217;t change. This is great for following gradients to minima. We can use its corresponding <code>FixedPointList</code>  to trace an arbitrary gradient. For now we&#8217;ll use a gradient with a predictable result:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>gradient=
 Compile[{ {pos,_Real,1}},
  {
@@ -843,43 +855,42 @@ Compile[{ {pos,_Real,1}},
     },#]&amp;@pos[[3]]
   }
  ];
-Plot[First@gradient@{x,x,x},{x,-5,5}]
-(*Out:*)</code>
+
+Plot[First@gradient@{x,x,x},{x,-5,5}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-6592286703145291220.png' alt='24-6592286703145291220' />
-<pre class='prettyprint'>
- <code>Plot[Last@gradient@{x,x,x},{x,-5,5}]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Plot[Last@gradient@{x,x,x},{x,-5,5}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-7298600359178422764.png' alt='24-7298600359178422764' />
 <p>Essentially our system should be pushed to either <code>{2,0,0}</code>  or <code>{-2,0,0}</code></p>
 <p>Then we&#8217;ll calculate the path a point travels along (we&#8217;ll apply a much rougher sameness test that <code>FixedPoint</code>  usually takes):
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>(path=
  FixedPointList[
   gradient@#+#&amp;,
    {5,2,2},
-  SameTest<span class='special-character Rule'>&#62754;</span>(Norm@Abs[#-#2]&lt;.0001&amp;)])//AbsoluteTiming//First
-(*Out:*)
-0.001503`</code>
+  SameTest<span class='special-character Rule'>&#62754;</span>(Norm@Abs[#-#2]&lt;.0001&amp;)])//AbsoluteTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.001503`</code>
 </pre>
 <p>And we can plot this:
 </p>
-<pre class='prettyprint'>
- <code>Graphics3D[Arrow@Tube[path],Axes<span class='special-character Rule'>&#62754;</span>True,ImageSize<span class='special-character Rule'>&#62754;</span>Small]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Graphics3D[Arrow@Tube[path],Axes<span class='special-character Rule'>&#62754;</span>True,ImageSize<span class='special-character Rule'>&#62754;</span>Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-6486010287479323106.png' alt='24-6486010287479323106' />
 <p>Then we can do this for many paths. First we&#8217;ll calculate a grid across the cube <code>{ {-5,-5,-5},{5,5,5}}</code>  with 20 divisions on per direction:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>gridPoints=
 Tuples[Subdivide[-5,5,20],3];</code>
 </pre>
 <p>Then we&#8217;ll compute the paths traveled (note how quickly this can be computed using <code>FixedPoint</code> ):
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>(paths= 
  Table[
   FixedPointList[
@@ -888,32 +899,32 @@ Tuples[Subdivide[-5,5,20],3];</code>
    SameTest<span class='special-character Rule'>&#62754;</span>(Norm@Abs[#-#2]&lt;.1&amp;)
    ][[2;;]],
   {p,gridPoints}
-  ])//AbsoluteTiming//First
-(*Out:*)
-0.213083`</code>
+  ])//AbsoluteTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.213083`</code>
 </pre>
 <p>We&#8217;ll plot the paths followed:
 </p>
-<pre class='prettyprint'>
- <code>Graphics3D[Line/@paths,Axes<span class='special-character Rule'>&#62754;</span>True,ImageSize<span class='special-character Rule'>&#62754;</span>Small]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Graphics3D[Line/@paths,Axes<span class='special-character Rule'>&#62754;</span>True,ImageSize<span class='special-character Rule'>&#62754;</span>Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-5410312031510072809.png' alt='24-5410312031510072809' />
 <p>Note the central gap where the gradient sampled out the points immediately. We can visualize this by simply showing the first step for a central cube:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Arrow@{#,#+gradient@#}&amp;/@Tuples[Subdivide[-1,1,3],3]//Graphics3D[#,
  ImageSize<span class='special-character Rule'>&#62754;</span>Small,
  PlotRange<span class='special-character Rule'>&#62754;</span>{Automatic,{-2,2},{-2,2}},
  Axes<span class='special-character Rule'>&#62754;</span>True,
- AxesOrigin<span class='special-character Rule'>&#62754;</span>{0,0,0}]&amp;
-(*Out:*)</code>
+ AxesOrigin<span class='special-character Rule'>&#62754;</span>{0,0,0}]&amp;</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-6708879871255587013.png' alt='24-6708879871255587013' />
 <p>Then we&#8217;ll create a density map for these points based on the norm of the gradient at a each point along the paths:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>pds=Append[#,Norm@*gradient@#]&amp;/@DeleteDuplicates@Flatten[paths,1];
+
 densityData=
 With[{r=Last/@pds//MinMax},
  ReplacePart[#,4-&gt;Rescale[Last@#,r]]&amp;/@pds
@@ -921,31 +932,31 @@ With[{r=Last/@pds//MinMax},
 </pre>
 <p>then use the magical <code>ListDensityPlot3D</code>  to get a density plot of this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>ListDensityPlot3D[densityData,
  OpacityFunction<span class='special-character Rule'>&#62754;</span>(If[#&lt;.25,1-#,0]&amp;),
- ImageSize<span class='special-character Rule'>&#62754;</span>Small]
-(*Out:*)</code>
+ ImageSize<span class='special-character Rule'>&#62754;</span>Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-4711230888145092901.png' alt='24-4711230888145092901' />
 <p>Note that we don&#8217;t see two wells because Mathematica interpolates between the two well pieces. We can change this by simply adding our grid points back in:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>pdsNew=Join[pds,Append[#,Norm@gradient@#]&amp;/@gridPoints,1];
+
 densityDataNew=
 With[{r=Last/@pdsNew//MinMax},
  ReplacePart[#,4-&gt;Rescale[Last@#,r]]&amp;/@pdsNew
  ];
+
 ListDensityPlot3D[densityDataNew,
  OpacityFunction<span class='special-character Rule'>&#62754;</span>(If[#&lt;.2,1-#,0]&amp;)
- ]
-(*Out:*)</code>
+ ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-7188863773697757790.png' alt='24-7188863773697757790' />
 <p>Note the application of <code>OpacityFunction</code>  to drop those bits of data with norms above the 20% mark. The rings are, of course, just coming from our grid points.</p>
 <p>And of course we can functionalize this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Options[gradientDensityPlot]=Options@ListDensityPlot3D;
 gradientDensityPlot[grad_,
  startPoints:{ {_?NumericQ,_?NumericQ,_?NumericQ},__List},
@@ -986,20 +997,18 @@ With[{
 </pre>
 <p>By judicious use of <code>RegionFunction</code>  and a density cutoff we can focus in on the places we are interested in:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>gradientDensityPlot[gradient,gridPoints,
  .05,
  SameTest-&gt;(Norm@Abs[#1 - #2 ]&lt;.01 &amp;)
- ]
-(*Out:*)</code>
+ ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-902733499638966594.png' alt='24-902733499638966594' />
 <p>Now let&#8217;s try it on another gradient!</p>
 <p>We&#8217;ll just use a linear gradient, pushing everything into zero:
 </p>
-<pre class='prettyprint'>
- <code>gradientDensityPlot[-#/2&amp;,N@gridPoints]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>gradientDensityPlot[-#/2&amp;,N@gridPoints]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/24-3790712868165053827.png' alt='24-3790712868165053827' />
     </div>

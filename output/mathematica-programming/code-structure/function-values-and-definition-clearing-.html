@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,11 +829,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> DownValues</h3>
 <p>If <code>OwnValues</code>  are standard value bindings, <code>DownValues</code>  are your basic function bindings:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>f[x_]:=x
-DownValues@f
-(*Out:*)
-{HoldPattern[f[x_]]:&gt;x}</code>
+
+DownValues@f</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[f[x_]]:&gt;x}</code>
 </pre>
 <p>This is also why we can define functions as patterns. All that happens is a series of replacement rules are tried, based on the <code>DownValues</code>  of the expression. Really, one can imagine that all Mathematica does to execute an expression is apply <code>ReplaceRepeated</code>  on the <code>&#8902;Values</code> .</p>
 <p>Obviously the system is more complex, because of <code>Attributes</code>  and the coming discussion of evaluation order and things, and also more optimized, but it&apos;s a good concept to keep in mind.</p>
@@ -832,28 +846,30 @@ DownValues@f
 <p><code>UpValues</code>  are a highly useful, if not necessarily intuitive feature of the expression structure. While <code>DownValues</code>  look &quot;down-stream&quot;, <code>UpValues</code>  look &quot;up-stream&quot;. What this means in practice is they are patterns applied on an expression by the arguments of the expression which are, in a way, looking &quot;up-stream&quot;. This is probably clearest via example, but first we need to know how <code>UpValues</code>  are set.</p>
 <p>First off, there is a function <code>UpSet</code>  (<code>^=</code> ) and it&apos;s partner <code>UpSetDelayed</code>  (<code>^:=</code> ) which will do this
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>h[b[c___]]^:=b[h,c]</code>
 </pre>
 <p>This has set <code>UpValues</code>  on <code>b</code> :
 </p>
-<pre class='prettyprint'>
- <code>UpValues@b
-(*Out:*)
-{HoldPattern[h[b[c___]]]:&gt;b[h,c]}</code>
+<pre class='mma-input prettyprint'>
+ <code>UpValues@b</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[h[b[c___]]]:&gt;b[h,c]}</code>
 </pre>
 <p>Then let&apos;s test this:
 </p>
-<pre class='prettyprint'>
- <code>h[b[1,3,4,2,1]]
-(*Out:*)
-b[h,1,3,4,2,1]</code>
+<pre class='mma-input prettyprint'>
+ <code>h[b[1,3,4,2,1]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>b[h,1,3,4,2,1]</code>
 </pre>
 <p>The most useful aspect of this behavior is that it requires only that we give definitions to the down-stream symbol, not the head, so we can use this to &quot;overload&quot; the basic functionality of a built-in function, which is more efficient and also cleaner and safer.</p>
 <p>Moreover, this means we can apply definitions to functions which we otherwise couldn&apos;t. We&apos;ll demonstrate this with the <code>MessageName</code>  function. Aliased with <code>::</code></p>
 <p>I&apos;ll also demonstrate the better way to set these definitions, using <code>TagSet</code>  (<code>/:</code> )
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>AssociationInterface/:HoldPattern[
 MessageName[AssociationInterface[a_Association],key_]
 ]:=a[key];</code>
@@ -862,30 +878,33 @@ MessageName[AssociationInterface[a_Association],key_]
 <p>The <code>HoldPattern</code>  is necessary to make sure the expression doesn&apos;t evaluate while we set the <code>UpValue</code> , which will make more sense when we get to discussions of evaluation order.</p>
 <p>Now we can see how our definition works:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>AssociationInterface[&lt;|
 &quot;a&quot;-&gt;b,
 &quot;b&quot;-&gt;d,
 &quot;e&quot;-&gt;f
-|&gt;]::a
-    (*Out:*)
-    b</code>
+|&gt;]::a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>b</code>
 </pre>
 <p><code>MessageName</code>  automatically converts its second argument to a <code>String</code> , so the keys of our <code>Association</code>  need to be strings, but we can see the definition works.</p>
 <p>One thing that should be mentioned before moving on is that the <code>UpValues</code>  of the arguments of a symbol are applied before the <code>DownValues</code>  of the enclosing head, although the <code>DownValues</code>  of the argument itself are applied before its <code>UpValues</code></p>
 <h3> SubValues</h3>
 <p><code>SubValues</code>  are the final type of values we need to deal with here. They provide an extension of <code>DownValues</code>  to multiple sets of arguments as follows:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>s[arg_][arg2_]:=arg+arg2;
-SubValues@s
-(*Out:*)
-{HoldPattern[s[arg_][arg2_]]:&gt;arg+arg2}</code>
+
+SubValues@s</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[s[arg_][arg2_]]:&gt;arg+arg2}</code>
 </pre>
 <h3> Clear and ClearAll</h3>
 <p>With <code>&#8902;Values</code>  discussed it&apos;s possible to understand the operations of of the functions <code>Clear</code>  and <code>ClearAll</code> . Consider some symbol we&apos;ve set a lot of definitions on:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>m[1]=1;
 m[2]=10;
 m[5]=100;
@@ -893,54 +912,78 @@ HoldPattern[m[1][3]]=20;
 m[s_String]:=&quot;soup&quot;;
 HoldPattern[Print[m[x_]]]^:=x+&quot;Print&quot;;
 m:=35
-OwnValues@m
-(*Out:*)
-{HoldPattern[m]:&gt;35}
-DownValues@m
-(*Out:*)
-{HoldPattern[m[1]]:&gt;1,HoldPattern[m[2]]:&gt;10,HoldPattern[m[5]]:&gt;100,HoldPattern[m[s_String]]:&gt;&quot;soup&quot;}
-UpValues@m
-(*Out:*)
-{HoldPattern[HoldPattern[Print[m[x_]]]]:&gt;x+&quot;Print&quot;}
-SubValues@m
-(*Out:*)
-{HoldPattern[HoldPattern[m[1][3]]]:&gt;20}</code>
+
+OwnValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[m]:&gt;35}
+
+DownValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[m[1]]:&gt;1,HoldPattern[m[2]]:&gt;10,HoldPattern[m[5]]:&gt;100,HoldPattern[m[s_String]]:&gt;&quot;soup&quot;}
+
+UpValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[HoldPattern[Print[m[x_]]]]:&gt;x+&quot;Print&quot;}
+
+SubValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[HoldPattern[m[1][3]]]:&gt;20}</code>
 </pre>
 <p>All <code>Clear</code>  does is remove the <code>&#8902;Values</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Clear@m
-OwnValues@m
-(*Out:*)
-{}
-DownValues@m
-(*Out:*)
-{}
-UpValues@m
-(*Out:*)
-{}
-SubValues@m
-(*Out:*)
-{}</code>
+
+OwnValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}
+
+DownValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}
+
+UpValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}
+
+SubValues@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
 </pre>
 <p><code>ClearAll</code>  on the other hand can also remove <code>Options</code>  and <code>Attributes</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SetAttributes[m,Listable];
 Options[m]={&quot;why&quot;-&gt;&quot;me?&quot;};
+
 Clear@m
+
 Options@m
-Attributes@m
-(*Out:*)
-{&quot;why&quot;-&gt;&quot;me?&quot;}
-(*Out:*)
-{Listable}
+Attributes@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;why&quot;-&gt;&quot;me?&quot;}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{Listable}
+
 ClearAll@m
+
 Options@m
-Attributes@m
-(*Out:*)
-{}
-(*Out:*)
-{}</code>
+Attributes@m</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
 </pre>
 <a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> See Also:</h2>

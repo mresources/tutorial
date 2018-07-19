@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -819,184 +831,228 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>At some level, due to its expression-centered structure, Mathematica is just a huge pattern matching machine</p>
 <p>The most basic pattern is just an underscore, but of course it has an expression structure:
 </p>
-<pre class='prettyprint'>
- <code>_ // FullForm
-(*Out:*)
-Blank[]</code>
+<pre class='mma-input prettyprint'>
+ <code>_ // FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Blank[]</code>
 </pre>
 <p>We can also provide a name for our pattern which has in various function
 </p>
-<pre class='prettyprint'>
- <code>p_//FullForm
-(*Out:*)
-Pattern[p,Blank[]]</code>
+<pre class='mma-input prettyprint'>
+ <code>p_//FullForm</code>
 </pre>
-<p>You&apos;ll notice the <code>Blank[]</code>  remains. <code>Blank[]</code>  matches any single expression. For pattern matching there&apos;s the function <code>MatchQ</code> . It will return whether the expression as in its first argument matches the pattern in its second.</p>
+<pre class='mma-output prettyprint'>
+ <code>Pattern[p,Blank[]]</code>
+</pre>
+<p>You&apos;ll notice the <code>Blank[]</code> remains. <code>Blank[]</code> matches any single expression. For pattern matching there&apos;s the function <code>MatchQ</code> . It will return whether the expression as in its first argument matches the pattern in its second.</p>
 <p>It doesn&apos;t have to have a pattern as its second argument though:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a,a]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a,a]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>But the following will also match:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a,_]
-(*Out:*)
-True
-MatchQ[a,p_]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a,_]</code>
 </pre>
-<p>Patterns can also have a <code>Head</code>  that must match, which is specified after the underscore. 
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[a,p_]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
+</pre>
+<p>Patterns can also have a <code>Head</code> that must match, which is specified after the underscore. 
 </p>
-<pre class='prettyprint'>
- <code>_a//FullForm
-(*Out:*)
-Blank[a]</code>
+<pre class='mma-input prettyprint'>
+ <code>_a//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Blank[a]</code>
 </pre>
 <p>With a head all the following match:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a[],_a]
-(*Out:*)
-True
-MatchQ[a[1,2,3],_a]
-(*Out:*)
-True
-MatchQ[a[a[a[a[a[a[]]]]]],_a]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[],_a]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[a[1,2,3],_a]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[a[a[a[a[a[a[]]]]]],_a]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>But the following won&apos;t:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a,_a]
-(*Out:*)
-False</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a, _a]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
 </pre>
 <p>Along with a head one can also specify a test condition which will be applied to the thing that&apos;s being matched against
 </p>
-<pre class='prettyprint'>
- <code>_a?test//FullForm
-(*Out:*)
-PatternTest[Blank[a],test]</code>
+<pre class='mma-input prettyprint'>
+ <code>_a?test//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>PatternTest[Blank[a],test]</code>
 </pre>
 <p>Which means the following will match:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a[1,2,3],_a?(Length@#&gt;1&amp;)]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[1,2,3],_a?(Length@#&gt;1&amp;)]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>But the other cases will not:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a[],_a?(Length@#&gt;1&amp;)]
-(*Out:*)
-False
-MatchQ[a[a[a[a[a[a[]]]]]],_a?(Length@#&gt;1&amp;)]
-(*Out:*)
-False</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[],_a?(Length@#&gt;1&amp;)]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False
+
+MatchQ[a[a[a[a[a[a[]]]]]],_a?(Length@#&gt;1&amp;)]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
 </pre>
 <p>Patterns can also be specified as parts of an expression:
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[a[1,2,3],a[_,_,_]]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[a[1,2,3],a[_,_,_]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>Patterns can also be specified as matching 1 or more elements with a double underscore:
 </p>
-<pre class='prettyprint'>
- <code>__//FullForm
-(*Out:*)
-BlankSequence[]
-MatchQ[a[1,2,3],a[__]]
-(*Out:*)
-True
-MatchQ[a[],a[__]]
-(*Out:*)
-False</code>
+<pre class='mma-input prettyprint'>
+ <code>__//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>BlankSequence[]
+
+MatchQ[a[1,2,3],a[__]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[a[],a[__]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
 </pre>
 <p>or 0 or more elements via a triple underscore:
 </p>
-<pre class='prettyprint'>
- <code>___//FullForm
-(*Out:*)
-BlankNullSequence[]
-MatchQ[a[1,2,3],a[___Integer]]
-(*Out:*)
-True
-MatchQ[a[],a[___]]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>___//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>BlankNullSequence[]
+
+MatchQ[a[1,2,3],a[___Integer]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[a[],a[___]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>Everything that applies to single element patterns applies as well to these multi-element patterns.
 </p>
 <h3> Complex Patterns</h3>
 <p>Often it&apos;s useful to be able to match more than one type. For this, there&apos;s a built-in head <code>Alternatives</code> , which is represented by a vertical bar <code>|</code></p>
-<pre class='prettyprint'>
- <code>MatchQ[10,_Integer|_String]
-(*Out:*)
-True
-MatchQ[&quot;10&quot;,_Integer|_String]
-(*Out:*)
-True
-MatchQ[<span class='special-character Pi'>&#960;</span>,_Integer|_String]
-(*Out:*)
-False</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[10,_Integer|_String]</code>
 </pre>
-<p><code>Alternatives</code>  can be used with any pattern and simplifies life tremendously in describing complicated structures concisely</p>
-<p>One issue, however, is that a set of alternatives can&apos;t be matched multiple times with the double or triple underscores. To fix this issue there is <code>Repeated</code> (<code>..</code> ) and <code>RepeatedNull</code>  (<code>...</code> ) which have the same meanings as  ```<strong><code>  and  </code></strong>_```  respectively.</p>
-<p>Here&apos;s an example of matching complex structure:
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[&quot;10&quot;,_Integer|_String]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[<span class='special-character Pi'>&#960;</span>,_Integer|_String]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
+</pre>
+<p><code>Alternatives</code> can be used with any pattern and simplifies life tremendously in describing complicated structures concisely</p>
+<p>One issue, however, is that a set of alternatives can&apos;t be matched multiple times with the double or triple underscores. To fix this issue there is <code>Repeated</code> (<code>..</code> ) and <code>RepeatedNull</code> (<code>...</code> ) which have the same meanings as <code>__</code> and <code>___</code> respectively.</p>
+<p>Here&apos;s an example of matching a complex structure:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>MatchQ[RandomChoice[{A,B,C}]@(Sequence@@(
   If[RandomInteger[]==0,ToString@#,#]&amp;/@RandomInteger[10,RandomInteger[10]]
   )),
   (A|B|C)[(_String|_Integer)...]
-]
-(*Out:*)
-True</code>
+]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>It is impossible to know ahead of time what the head will be or how many arguments there will be or whether they&apos;ll be strings or integers, but that doesn&apos;t matter. We can still represent this pattern in under one line. Yet the pattern is robust enough that by doing something like appending in a symbol, our pattern catches that:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>MatchQ[Append[RandomChoice[{A,B,C}]@(Sequence@@(
   If[RandomInteger[]==0,ToString@#,#]&amp;/@RandomInteger[10,RandomInteger[10]]
   )),RandomChoice[{A,B,C}]],
   (A|B|C)[(_String|_Integer)...]
-]
-(*Out:*)
-False</code>
+]</code>
 </pre>
-<p>There is one further useful addition to this current redux on patterns. Sometime you know you&apos;ll, say, see pairs of a patterns, and so a simple <code>..</code>  or <code>__</code>  isn&apos;t precise enough. For this case there is the head <code>PatternSequence</code>  which can capture this:
+<pre class='mma-output prettyprint'>
+ <code>False</code>
+</pre>
+<p>There is one further useful addition to this current redux on patterns. Sometime you know you&apos;ll, say, see pairs of a patterns, and so a simple <code>..</code> or <code>__</code> isn&apos;t precise enough. For this case there is the head <code>PatternSequence</code> which can capture this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>MatchQ[A@@(If[OddQ@#,ToString@#,#]&amp;/@Range[10]),
   A[PatternSequence[_String,_Integer]..]
-  ]
-(*Out:*)
-True</code>
+  ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <h3> Except</h3>
-<p>The final piece of patterns is the head <code>Except</code> . It specifies that anything <code>Except</code>  the pattern inside should match. It is a negation pattern, in essence.
+<p>The final piece of patterns is the head <code>Except</code> . It specifies that anything <code>Except</code> the pattern inside should match. It is a negation pattern, in essence.
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[1,Except[_String]]
-(*Out:*)
-True
-MatchQ[&lt;|a-&gt;b|&gt;,Except[_String]]
-(*Out:*)
-True
-MatchQ[Graphics@Disk[],Except[_String]]
-(*Out:*)
-True
-MatchQ[&quot;asdasd&quot;,Except[_String]]
-(*Out:*)
-False</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[1,Except[_String]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[&lt;|a-&gt;b|&gt;,Except[_String]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[Graphics@Disk[],Except[_String]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True
+
+MatchQ[&quot;asdasd&quot;,Except[_String]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
 </pre>
     </div>
   </article>

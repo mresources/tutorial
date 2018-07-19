@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,156 +829,149 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>As is explained more fully in the Mathematica Programming section, the language Mathematica is built around is almost 100% symbolic, which makes it perfect for algebraic manipulations.</p>
 <p>One of the simplest examples of things one can do in Mathematica is generate and combine polynomials:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>simplePolynomial[var_,order_]:=
-  Total@Table[RandomInteger[10]*Power[var,n],{n,order}];
-pX1=simplePolynomial[x,2]</code>
+  Total@Table[RandomInteger[10]*Power[var,n],{n,order}];</code>
 </pre>
-<pre>
-<code>
-4 x+6 x<sup>2</sup>
-</code>
+<p>We&apos;ll make a few of these polynomials and add them:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>pX1=simplePolynomial[x,2]
+pX2=simplePolynomial[x,2]
+pX1+pX2</code>
 </pre>
-<pre class='prettyprint'>
- <code>pX2=simplePolynomial[x,2]</code>
+<pre class='mma-output prettyprint'>
+ <code>6 x+6 x^2</code>
 </pre>
-<pre>
-<code>
-10 x+10 x<sup>2</sup>
-</code>
+<pre class='mma-output prettyprint'>
+ <code>8 x+9 x^2</code>
 </pre>
-<pre class='prettyprint'>
- <code>pX1+pX2</code>
-</pre>
-<pre>
-<code>
-14 x+16 x<sup>2</sup>
-</code>
+<pre class='mma-output prettyprint'>
+ <code>14 x+15 x^2</code>
 </pre>
 <p>This works just as well at any polynomial order. Here we&apos;ll add five randomly generated polynomials of order less than or equal to <code>15</code> .
 </p>
-<pre class='prettyprint'>
- <code>Array[(simplePolynomial[x,RandomInteger[15]])&amp;,5]//Total</code>
+<pre class='mma-input prettyprint'>
+ <code>Array[(simplePolynomial[x, RandomInteger[15]])&amp;, 5]//Total</code>
 </pre>
-<pre>
-<code>
-22 x+26 x<sup>2</sup>+15 x<sup>3</sup>+28 x<sup>4</sup>+10 x<sup>5</sup>+9 x<sup>6</sup>+12 x<sup>7</sup>+13 x<sup>8</sup>+19 x<sup>9</sup>+11 x<sup>10</sup>+9 x<sup>11</sup>+13 x<sup>12</sup>+6 x<sup>13</sup>+4 x<sup>14</sup>
-</code>
+<pre class='mma-output prettyprint'>
+ <code>22 x+26 x^2+15 x^3+28 x^4+10 x^5+9 x^6+12 x^7+13 x^8+19 x^9+11 x^10+9 x^11+13 x^12+6 x^13+4 x^14</code>
 </pre>
-<p>For those interested, the &amp; specifies that what comes before should be treated as a function, but absent any variables we simply get our expression as a result.
+<p>Here&apos;s that again, but formatted nicer:</p>
+<p>$$4 x^{14}+6 x^{13}+13 x^{12}+9 x^{11}+11 x^{10}+19 x^9+13 x^8+12 x^7+9 x^6+10 x^5+28 x^4+15 x^3+26 x^2+22 x$$</p>
+<p>For those interested, the <a href='https://reference.wolfram.com/language/ref/Function.html'><code>&amp;</code></a> specifies that what comes before should be treated as a function, but absent any variables we simply get our expression as a result.
 </p>
 <h3> Simplify</h3>
 <p>For more complex things we&apos;ll need to explicitly simplify them:
 </p>
-<pre class='prettyprint'>
- <code>sphericalHarmonicSum=Total@Array[
-SphericalHarmonicY[RandomInteger[5],RandomInteger[5],<span class='special-character Theta'>&#952;</span>,<span class='special-character Phi'>&#981;</span>]&amp;,
-5]</code>
-</pre>
-<pre>
-<code>
-- E<sup>I <span class='special-character Phi'>&#981;</span></sup>  Sin[<span class='special-character Theta'>&#952;</span>]+ E<sup>2 I <span class='special-character Phi'>&#981;</span></sup>  Cos[<span class='special-character Theta'>&#952;</span>] Sin[<span class='special-character Theta'>&#952;</span>]<sup>2</sup>+ E<sup>2 I <span class='special-character Phi'>&#981;</span></sup>  Cos[<span class='special-character Theta'>&#952;</span>] (-1+3 Cos[<span class='special-character Theta'>&#952;</span>]<sup>2</sup>) Sin[<span class='special-character Theta'>&#952;</span>]<sup>2</sup>
-</code>
+<pre class='mma-input prettyprint'>
+ <code>sphericalHarmonicSum=
+  Total@
+    Array[
+    SphericalHarmonicY[RandomInteger[5], RandomInteger[5], <span class='special-character Theta'>&#952;</span>, <span class='special-character Phi'>&#981;</span>]&amp;,
+    5]</code>
 </pre>
 <p>We can then have Mathematica simplify this expression for us more:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Simplify[sphericalHarmonicSum]</code>
 </pre>
-<pre>
-<code>
-E<sup>I <span class='special-character Phi'>&#981;</span></sup>  Sin[<span class='special-character Theta'>&#952;</span>] (-32+2  (4+) E<sup>I <span class='special-character Phi'>&#981;</span></sup> Sin[2 <span class='special-character Theta'>&#952;</span>]+3  E<sup>I <span class='special-character Phi'>&#981;</span></sup> Sin[4 <span class='special-character Theta'>&#952;</span>])
-</code>
-</pre>
-<p>Sometimes we also need to use the function <code>FullSimplify</code>  to get everything simplified:
+<p>$$\frac{1}{64} \sqrt{\frac{3}{2 \pi }} e^{i \phi } \sin (\theta ) \left(2 \left(\sqrt{11}+4\right) \sqrt{35} e^{i \phi } \sin (2 \theta )+3 \sqrt{385} e^{i \phi } \sin (4 \theta )-32\right)$$</p>
+<p>Sometimes we also need to use the function <code>FullSimplify</code> to get everything simplified:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FullSimplify[sphericalHarmonicSum]</code>
 </pre>
-<pre>
-<code>
-E<sup>I <span class='special-character Phi'>&#981;</span></sup>  Sin[<span class='special-character Theta'>&#952;</span>] (-16+ E<sup>I <span class='special-character Phi'>&#981;</span></sup> (4++3  Cos[2 <span class='special-character Theta'>&#952;</span>]) Sin[2 <span class='special-character Theta'>&#952;</span>])
-</code>
-</pre>
-<p>It often makes sense to go for <code>Simplify</code>  over <code>FullSimplify</code> , despite the fact that we can get more simplification out of <code>FullSimplify</code> , because sometimes the <code>Simplify</code>  is all we need to see a pattern ourselves, while <code>FullSimplify</code>  can over-simplify and obliterate that pattern. </p>
+<p>$$\frac{1}{32} \sqrt{\frac{3}{2 \pi }} e^{i \phi } \sin (\theta ) \left(-16+\sqrt{35} e^{i \phi } \sin (2 \theta ) \left(3 \sqrt{11} \cos (2 \theta )+\sqrt{11}+4\right)\right)$$</p>
+<p>It often makes sense to go for <code>Simplify</code> over <code>FullSimplify</code> , despite the fact that we can get more simplification out of <code>FullSimplify</code> , because sometimes the <code>Simplify</code> is all we need to see a pattern ourselves, while <code>FullSimplify</code> can over-simplify and obliterate that pattern. </p>
 <p>It&apos;s good to keep in mind that while Mathematica may know more than we do, we&apos;re still smarter than it is.
 </p>
 <h3> Solve</h3>
 <p>Mathematica can also solve equations for us. We&apos;ll try this on a nice quartic polynomial:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>polynomialInX=simplePolynomial[x, 4]</code>
 </pre>
-<pre>
-<code>
-6 x+5 x<sup>2</sup>+3 x<sup>3</sup>+6 x<sup>4</sup>
-</code>
-</pre>
+<p>$$6 x^4+3 x^3+5 x^2+6 x$$</p>
 <p>Note that there&apos;s no nice way to find the roots of this polynomial by hand. But Mathematica doesn&apos;t mind:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Solve[polynomialInX==0,x]</code>
 </pre>
-<pre>
-<code>
-{ {x-&gt;0},{x-&gt; (-1-+(-94+)<sup>1/3</sup>)},{x-&gt;-+- (1-I ) (-94+)<sup>1/3</sup>},{x-&gt;-+- (1+I ) (-94+)<sup>1/3</sup>} }
-</code>
+<pre class='mma-output prettyprint'>
+ <code>{
+  {x-&gt;0},
+  {x-&gt;1/6 (-1-9/(-94 + Sqrt[9565])^(1/3)+(-94 + Sqrt[9565])^(1/3))},
+  {x-&gt;-1/6+(3 (1 + I Sqrt[3]))/(4 (-94 + Sqrt[9565])^(1/3))-1/12 (1-I Sqrt[3]) (-94 + Sqrt[9565])^(1/3)},
+  {x-&gt;-1/6+(3 (1 - I Sqrt[3]))/(4 (-94 + Sqrt[9565])^(1/3))-1/12 (1+I Sqrt[3]) (-94 + Sqrt[9565])^(1/3)}
+  }</code>
 </pre>
-<p>As mentioned before, Mathematica knows more math than any of us. It sees a quartic polynomial and knows that by the <a href='https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra'>fundamental theorem of algebra</a>  there are four solutions to this equation, we just might need to find complex solutions.</p>
+<p>Here&apos;s one of those solutions in easier-to-read form:</p>
+<p>$$\frac{1}{6} \left(\sqrt[3]{\sqrt{9565}-94}-\frac{9}{\sqrt[3]{\sqrt{9565}-94}}-1\right)$$</p>
+<p>As mentioned before, Mathematica knows more math than any of us. It sees a quartic polynomial and knows that by the <a href='https://en.wikipedia.org/wiki/Fundamental_theorem_of_algebra'>fundamental theorem of algebra</a> there are four solutions to this equation, we just might need to find complex solutions.</p>
 <p>Usually this isn&apos;t what we want, unfortunately. Happily Mathematica can dumb itself down for us.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Solve[polynomialInX==0,x,Reals]</code>
 </pre>
-<pre>
-<code>
-{ {x-&gt;0},{x-&gt;Root[6+5 #1+3 #1<sup>2</sup>+6 #1<sup>3</sup>&amp;,1]} }
-</code>
+<pre class='mma-output prettyprint'>
+ <code>{ {x-&gt;0},{x-&gt;Root[6+5 #1+3 #1^2+6 #1^3&amp;,1]} }</code>
 </pre>
-<p>Notice that we get this odd <code>Root</code>  expression. That&apos;s the way Mathematica represents a perfectly exact root. We can get its numerical one of two ways. Either we make the equation inexact:
+<p>Notice that we get this odd <code>Root</code> expression. That&apos;s the way Mathematica represents a perfectly exact root. We can get its numerical one of two ways. Either we make the equation inexact:
 </p>
-<pre class='prettyprint'>
- <code>Solve[polynomialInX==0., x, Reals]
-{ {x-&gt;-0.867733324263096`},{x-&gt;0} }</code>
+<pre class='mma-input prettyprint'>
+ <code>Solve[polynomialInX==0., x, Reals]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{ {x-&gt;-0.867733324263096`},{x-&gt;0} }</code>
 </pre>
 <p>Or we numericize after the fact:
 </p>
-<pre class='prettyprint'>
- <code>N[Solve[polynomialInX==0,x,Reals],6]
-{ {x-&gt;0},{x-&gt;-0.8677333242630958819`6.} }</code>
+<pre class='mma-input prettyprint'>
+ <code>N[Solve[polynomialInX==0,x,Reals],6]</code>
 </pre>
-<p>One useful thing to know with <code>Solve</code>  is why the results are returned so oddly. Each list is a different solution, which is more important with multivariate equations, which we&apos;ll get to, but first let&apos;s see a nice way to get out our solutions in a simple list:
+<pre class='mma-output prettyprint'>
+ <code>{ {x-&gt;0},{x-&gt;-0.8677333242630958819`6.} }</code>
+</pre>
+<p>One useful thing to know with <code>Solve</code> is why the results are returned so oddly. Each list is a different solution, which is more important with multivariate equations, which we&apos;ll get to, but first let&apos;s see a nice way to get out our solutions in a simple list:
 </p>
-<pre class='prettyprint'>
- <code>x/.N[Solve[polynomialInX==0,x,Reals],6]
-(*Out:*)
-{0,-0.8677333242630958819`6.}</code>
+<pre class='mma-input prettyprint'>
+ <code>x/.N[Solve[polynomialInX==0,x,Reals],6]</code>
 </pre>
-<p>The <code>/.</code>  is an alias for <code>ReplaceAll</code> , which is described in more detail later in the Replacement Patterns section. For now let&apos;s just note that any time it sees <code>var</code>  on the left hand side it looks for <code>var-&gt;val</code>  on the right hand side and replaces <code>var</code>  with that. </p>
+<pre class='mma-output prettyprint'>
+ <code>{0,-0.8677333242630958819`6.}</code>
+</pre>
+<p>The <code>/.</code> is an alias for <code>ReplaceAll</code> , which is described in more detail later in the Replacement Patterns section. For now let&apos;s just note that any time it sees <code>var</code> on the left hand side it looks for <code>var-&gt;val</code> on the right hand side and replaces <code>var</code> with that. </p>
 <p>Now let&apos;s also see how we can plot these solutions:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Show[
-Plot[polynomialInX,{x,-2,2}],
-ListPlot[Table[{x,0},
-{x,x/.Solve[polynomialInX==0.,x,Reals]}]]
-]
-    (*Out:*)</code>
+  Plot[polynomialInX,{x,-2,2}],
+  ListPlot[Table[{x,0},
+    {x,x/.Solve[polynomialInX==0.,x,Reals]}]]
+  ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/132symbolicalgebra-1278064344411680398.png' alt='132symbolicalgebra-1278064344411680398' />
-<p>We have to use <code>ListPlot</code>  to plot our discrete solutions, but we can see we get the result we expect.</p>
+<p>We have to use <code>ListPlot</code> to plot our discrete solutions, but we can see we get the result we expect.</p>
 <p>We could even write a function that will solve the equation for an arbitrary value and plot the result:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>solveAndPlot[eqInX_,val_]:=
-Show[
-Plot[eqInX,{x,-2,2}],
-ListPlot[Table[{x,val},
-{x,x/.Solve[eqInX==(1.val),x,Reals]}]],
-PlotLabel-&gt;Row@{HoldForm[eqInX==val],&quot; @ &quot;,Row@Riffle[(x/.Solve[eqInX==(1.val),x,Reals]),&quot;, &quot;]}
-];
-    solveAndPlot[polynomialInX,50]
-    (*Out:*)</code>
+  Show[
+    Plot[eqInX,{x,-2,2}],
+    ListPlot[Table[{x,val},
+      {x,x/.Solve[eqInX==(1.val),x,Reals]}]],
+    PlotLabel-&gt;
+      Row@{
+        HoldForm[eqInX==val],&quot; @ &quot;,
+        Row@Riffle[(x/.Solve[eqInX==(1.val),x,Reals]),&quot;, &quot;]
+        }
+    ];</code>
+</pre>
+<p>Calling this on our solution:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>solveAndPlot[polynomialInX,50]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/132symbolicalgebra-4963816391501253228.png' alt='132symbolicalgebra-4963816391501253228' />
 <p>But that&apos;s getting distracted, I suppose.
@@ -974,70 +979,132 @@ PlotLabel-&gt;Row@{HoldForm[eqInX==val],&quot; @ &quot;,Row@Riffle[(x/.Solve[eqI
 <h3> Multivariate Solve</h3>
 <p>Let&apos;s move to multivariate equations now:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>polynomialInXandY=simplePolynomial[x,3]+simplePolynomial[y,3]</code>
 </pre>
-<pre>
-<code>
-8 x+2 x<sup>2</sup>+2 y+10 y<sup>2</sup>+8 y<sup>3</sup>
-</code>
+<pre class='mma-output prettyprint'>
+ <code>8 x+2 x^2+2 y+10 y^2+8 y^3</code>
 </pre>
+<p>$$2 x^2+8 x+8 y^3+10 y^2+2 y$$</p>
 <p>It can still solve this equation, although as it will admit, it may miss some solutions.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Solve[polynomialInXandY == 0,{x,y}, Reals]</code>
 </pre>
-<div class='mma-message'>
- <span class='mma-message-name'>Solve::svars:</span>
- <span class='mma-message-text'>&quot;Equations may not give solutions for all \&quot;solve\&quot; variables.&quot;</span>
+<div style='font-size: 12px; font-family: monospace;'>
+ <div class='mma-message'>
+  <span style='color: #dd0000'>
+   <span class='mma-message-name'>Solve::svars:</span>
+  </span>
+  <span style='color: gray'>
+   <span class='mma-message-text'>&quot;Equations may not give solutions for all \&quot;solve\&quot; variables.&quot;</span>
+  </span>
+ </div>
 </div>
-<pre>
-<code>
-{ {x-&gt;ConditionalExpression[-2-,y&lt;(-5+(829-6 )<sup>1/3</sup>+(829+6 )<sup>1/3</sup>)]},{x-&gt;ConditionalExpression[-2+,y&lt;(-5+(829-6 )<sup>1/3</sup>+(829+6 )<sup>1/3</sup>)]},{x-&gt;-2-<span class='special-character Sqrt'>&#8730;</span>(4+ (5-(829-6 )<sup>1/3</sup>-(829+6 )<sup>1/3</sup>)- (-5+(829-6 )<sup>1/3</sup>+(829+6 )<sup>1/3</sup>)<sup>2</sup>- (-5+(829-6 )<sup>1/3</sup>+(829+6 )<sup>1/3</sup>)<sup>3</sup>),y-&gt; (-5+(829-6 )<sup>1/3</sup>+(829+6 )<sup>1/3</sup>)} }
-</code>
+<pre class='mma-output prettyprint'>
+ <code>{ {x-&gt;ConditionalExpression[-2-Sqrt[4 - y - 5 y^2 - 4 y^3],y&lt;1/12 (-5+(829 - 6 Sqrt[19029])^(1/3)+(829 + 6 Sqrt[19029])^(1/3))]},{x-&gt;ConditionalExpression[-2+Sqrt[4 - y - 5 y^2 - 4 y^3],y&lt;1/12 (-5+(829 - 6 Sqrt[19029])^(1/3)+(829 + 6 Sqrt[19029])^(1/3))]},{x-&gt;-2-<span class='special-character Sqrt'>&#8730;</span>(4+1/12 (5-(829 - 6 Sqrt[19029])^(1/3)-(829 + 6 Sqrt[19029])^(1/3))-5/144 (-5 + (829 - 6 Sqrt[19029])^(1/3) + (829 + 6 Sqrt[19029])^(1/3))^2-1/432 (-5 + (829 - 6 Sqrt[19029])^(1/3) + (829 + 6 Sqrt[19029])^(1/3))^3),y-&gt;1/12 (-5+(829 - 6 Sqrt[19029])^(1/3)+(829 + 6 Sqrt[19029])^(1/3))} }</code>
 </pre>
-<p>Note that it also gives us these odd <code>ConditionalExpression</code>  statements. This is because the solution could branch depending on how <code>x</code>  and <code>y</code>  interplay. Let&apos;s just get take one of these solutions and plot it: 
+<p>Here&apos;s one of the branches in human-readable form:</p>
+<p>$$-\sqrt{-\frac{1}{432} \left(\sqrt[3]{6 \sqrt{19029}+829}+\sqrt[3]{829-6 \sqrt{19029}}-5\right)^3-\frac{5}{144} \left(\sqrt[3]{6 \sqrt{19029}+829}+\sqrt[3]{829-6 \sqrt{19029}}-5\right)^2+\frac{1}{12} \left(-\sqrt[3]{6 \sqrt{19029}+829}-\sqrt[3]{829-6 \sqrt{19029}}+5\right)+4}-2$$</p>
+<p>Note that it also gives us these odd <code>ConditionalExpression</code> statements. This is because the solution could branch depending on how <code>x</code> and <code>y</code> interplay. Let&apos;s just get take one of these solutions:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>conditionalSoln=First[x/.Solve[polynomialInXandY == 0.,{x,y}, Reals]];
 N[conditionalSoln]</code>
 </pre>
-<div class='mma-message'>
- <span class='mma-message-name'>Solve::svars:</span>
- <span class='mma-message-text'>&quot;Equations may not give solutions for all \&quot;solve\&quot; variables.&quot;</span>
+<div style='font-size: 12px; font-family: monospace;'>
+ <div class='mma-message'>
+  <span style='color: #dd0000'>
+   <span class='mma-message-name'>Solve::svars:</span>
+  </span>
+  <span style='color: gray'>
+   <span class='mma-message-text'>&quot;Equations may not give solutions for all \&quot;solve\&quot; variables.&quot;</span>
+  </span>
+ </div>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)
-ConditionalExpression[-2.`-1.` ,y&lt;0.6609358769285026`]
-Plot[conditionalSoln,{y,-1,1},PlotLabel-&gt;&quot;Value of X for given Y&quot;]
-(*Out:*)</code>
+<pre class='mma-output prettyprint'>
+ <code>ConditionalExpression[-2.`-1.` Sqrt[4. - 1. y - 5. y^2 - 4. y^3],y&lt;0.6609358769285026`]</code>
+</pre>
+<p> And plot it: 
+</p>
+<pre class='mma-input prettyprint'>
+ <code>Plot[conditionalSoln,{y,-1,1},PlotLabel-&gt;&quot;Value of X for given Y&quot;]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/132symbolicalgebra-4856433709491691837.png' alt='132symbolicalgebra-4856433709491691837' />
 <p>We can force a given branch of this conditional expression, however, by telling Mathematica what it can assume.
 </p>
 <h3> Assumptions</h3>
 <p>When Mathematica simplifies an expression it checks what we&apos;ve told it to about the expression. It does that by looking at the value of the variable <code>$Assumptions</code></p>
-<pre class='prettyprint'>
- <code>$Assumptions
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>$Assumptions</code>
 </pre>
-<p>This is the default value. But we can make it assume things for us. Let&apos;s assume that <code>y</code>  satifies our <code>ConditionalExpression</code></p>
-<pre class='prettyprint'>
- <code>$Assumptions=y&lt;.5
-(*Out:*)
-y&lt;0.5`
-xAndyRoots={x,y}/.Solve[polynomialInXandY == 0,{x,y}, Reals]//First//Simplify</code>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
-<div class='mma-message'>
- <span class='mma-message-name'>Solve::svars:</span>
- <span class='mma-message-text'>&quot;Equations may not give solutions for all \&quot;solve\&quot; variables.&quot;</span>
+<p>This is the default value. But we can make it assume things for us. Let&apos;s assume that <code>y</code> satifies our <code>ConditionalExpression</code> . First we set the <code>Assumptions</code> :
+</p>
+<pre class='mma-input prettyprint'>
+ <code>$Assumptions=y&lt;.5</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>y&lt;0.5`</code>
+</pre>
+<p>Now Mathematica will use these when solving:
+</p>
+<pre class='mma-input prettyprint'>
+ <code>xAndyRoots={x, y}/.Solve[polynomialInXandY == 0, {x, y}, Reals]//First//Simplify</code>
+</pre>
+<div style='font-size: 12px; font-family: monospace;'>
+ <div class='mma-message'>
+  <span style='color: #dd0000'>
+   <span class='mma-message-name'>Solve::svars:</span>
+  </span>
+  <span style='color: gray'>
+   <span class='mma-message-text'>&quot;Equations may not give solutions for all \&quot;solve\&quot; variables.&quot;</span>
+  </span>
+ </div>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)
-{-2-,y}</code>
+<pre class='mma-output prettyprint'>
+ <code>{-2-Sqrt[4 - y - 5 y^2 - 4 y^3],y}</code>
 </pre>
-<p>And when we&apos;re done we simply reset the <code>$Assumptions</code>  variable. We can also apply <code>$Assumptions</code>  to a single <code>Simplify</code>  expression or similar, but I will leave that to you to look up on.</p>
+<p>And when we&apos;re done we simply reset the <code>$Assumptions</code> variable. We can also apply <code>$Assumptions</code> to a single <code>Simplify</code> expression or similar, but I will leave that to you to read up on.</p>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/SymbolicCalculations.html'>
+   <code>Symbolic Calculations</code>
+  </a>
+ </li>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/SimplifyingAlgebraicExpressions.html'>
+   <code>Simplifying Algebraic Expressions</code>
+  </a>
+ </li>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/SimplifyingWithAssumptions.html'>
+   <code>Simplifying With Assumptions</code>
+  </a>
+ </li>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/PuttingExpressionsIntoDifferentForms.html'>
+   <code>Putting Expressions into Different Forms</code>
+  </a>
+ </li>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/UsingAssumptions.html'>
+   <code>Using Assumptions</code>
+  </a>
+ </li>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/92686/advice-for-mathematica-as-mathematicians-aid'>Mathematica as Mathematician&apos;s Aid</a>
+ </li>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/Integration.html'>
+   <code>Integration</code>
+  </a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

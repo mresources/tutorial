@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -820,47 +832,54 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>One thing to keep in mind is that the only things that can have properties or values in Mathematica are symbols, although a symbol need not have any.</p>
 <p>All of the following are symbols:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Automatic
 AxesLabel
 $ModuleNumber
 Rule
-SetDelayed
-(*Out:*)
-Automatic
-(*Out:*)
-AxesLabel
-(*Out:*)
-1205
-(*Out:*)
-Rule
-(*Out:*)
 SetDelayed</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Automatic</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>AxesLabel</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1205</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Rule</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>SetDelayed</code>
 </pre>
 <h3> Expressions</h3>
 <p>In Mathematica, they say everything is an expression. What this means, really, is that outside of the primitive types everything has one common form:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>(head)[arg1,arg2,arg2,...,argn]</code>
 </pre>
 <p>Furthermore, there are tools to parse these structures:
 </p>
-<pre class='prettyprint'>
- <code>{1,2,3}//FullForm
-(*Out:*)
-List[1,2,3]</code>
+<pre class='mma-input prettyprint'>
+ <code>{1,2,3}//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>List[1,2,3]</code>
 </pre>
 <p>This even applies to things like graphics. Consider the following graphic:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Graphics3D[Sphere[],Boxed<span class='special-character Rule'>&#62754;</span>False,Lighting<span class='special-character Rule'>&#62754;</span>&quot;Neutral&quot;,ImageSize<span class='special-character Rule'>&#62754;</span>Small]</code>
 </pre>
 <p>It is, however, still just an expression:
 </p>
-<pre class='prettyprint'>
- <code>Graphics3D[Sphere[], Boxed<span class='special-character Rule'>&#62754;</span>False, Lighting<span class='special-character Rule'>&#62754;</span>&quot;Neutral&quot;, ImageSize<span class='special-character Rule'>&#62754;</span>Small ]//FullForm
-(*Out:*)
-Graphics3D[Sphere[List[0,0,0]],Rule[Boxed,False],Rule[Lighting,&quot;Neutral&quot;],Rule[ImageSize,Small]]</code>
+<pre class='mma-input prettyprint'>
+ <code>Graphics3D[Sphere[], Boxed<span class='special-character Rule'>&#62754;</span>False, Lighting<span class='special-character Rule'>&#62754;</span>&quot;Neutral&quot;, ImageSize<span class='special-character Rule'>&#62754;</span>Small ]//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Graphics3D[Sphere[List[0,0,0]],Rule[Boxed,False],Rule[Lighting,&quot;Neutral&quot;],Rule[ImageSize,Small]]</code>
 </pre>
     </div>
   </article>

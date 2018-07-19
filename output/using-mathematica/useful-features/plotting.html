@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -819,51 +831,46 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Plot</h3>
 <p><code>Plot</code>  takes a function as its first argument and a variable and range as its second one. Example:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot[Sin[x], {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-4513164947294324238.png' alt='13-4513164947294324238' />
 <p>The function can also be defined outside of the <code>Plot</code>  function itself:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>sinx = Sin[x];
 Plot[sinx, {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-4776971268818325606.png' alt='13-4776971268818325606' />
 <p>User defined functions are also valid, but they must first be called on the variable one wants to use.</p>
 <p>That&#8217;s why the following fails:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>mySin[x_] := Sin[x];
 Plot[mySin, {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-8826648132354525971.png' alt='13-8826648132354525971' />
 <p>But the following will work:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>mySin[x_] := Sin[x];
 Plot[mySin[x], {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-7279477836414445162.png' alt='13-7279477836414445162' />
 <p><code>Plot</code>  can also plot many functions simultaneously, if the first argument is a list of appropriate functions:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot[{Sin[x], Cos[x], Tan[x]}, {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-995204871575620383.png' alt='13-995204871575620383' />
 <p>These functions can be distinguished from each other via legends and styling. For example:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot[{Sin[x], Cos[x], Tan[x]}, {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>},
  PlotLegends -&gt; &quot;Expressions&quot;,
  PlotStyle -&gt; {
@@ -872,27 +879,24 @@ Plot[mySin[x], {x, -<span class='special-character Pi'>&#960;</span>, <span clas
    Directive[Thin, Red]
    },
  ImageSize -&gt; Small
- ]
-(*Out:*)</code>
+ ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-7135908203198493178.png' alt='13-7135908203198493178' />
 <h3> ListPlot</h3>
 <p><code>ListPlot</code>  is a variant of <code>Plot</code>  that just takes a list of values and plots them. For example, let&#8217;s plot the first 1000 primes. The function we&#8217;re using here, <code>Table</code> , is explained more in the next section.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>ListPlot[Table[Prime[n], {n, 1000}],
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-3371394493544641033.png' alt='13-3371394493544641033' />
 <p>Similarly to <code>Plot</code> , we can plot multiple data sets:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>ListPlot[{
   Table[Prime[n], {n, Range[2, 1000, 2]}],
   Table[-Prime[n], {n, Range[1, 999, 2]}]},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-3688944527199105108.png' alt='13-3688944527199105108' />
 <p>And again we can apply styling rules:</p>
@@ -910,9 +914,6 @@ n=2,4,6,...,1000&quot;,
  ]
 </code>
 </pre>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-5456555609594511692.png' alt='13-5456555609594511692' />
 <p>We can also join the points to plot out a line</p>
 <pre>
@@ -929,30 +930,25 @@ n=2,4,6,...,1000&quot;,
  ]
 </code>
 </pre>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-5646297479297114505.png' alt='13-5646297479297114505' />
 <h3> Plot3D</h3>
 <p><code>Plot3D</code>  works just like <code>Plot</code> , but takes two ranges
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot3D[Sin[x + y], {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>}, {y, 0, 2 <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-2951848453403160234.png' alt='13-2951848453403160234' />
 <p>Multiple functions:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot3D[{Sin[x], Cos[y]}, {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>}, {y, 0, 2 <span class='special-character Pi'>&#960;</span>},
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-5260013713964025253.png' alt='13-5260013713964025253' />
 <p>Styling:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot3D[{Sin[x], Cos[y]}, {x, -<span class='special-character Pi'>&#960;</span>, <span class='special-character Pi'>&#960;</span>}, {y, 0, 2 <span class='special-character Pi'>&#960;</span>},
  PlotLegends -&gt; &quot;Expressions&quot;,
  MeshStyle -&gt; None,
@@ -960,8 +956,7 @@ n=2,4,6,...,1000&quot;,
    Directive[Specularity[Gray, 10], White],
    Directive[Purple, Specularity[Gray, 100], Opacity[.3]]},
  Lighting -&gt; &quot;Neutral&quot;,
- ImageSize -&gt; Small]
-(*Out:*)</code>
+ ImageSize -&gt; Small]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/13-5031790952252282029.png' alt='13-5031790952252282029' />
 <h3> Special Plots</h3>

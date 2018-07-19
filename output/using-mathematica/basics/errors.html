@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -814,36 +826,46 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='errors' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Errors</h2>
-<p>Obviously code doesn&#8217;t always do what one expects it to. Often this is because the programmer or user is trying to do something wrong.</p>
+<p>Obviously code doesn&apos;t always do what one expects it to. Often this is because the programmer or user is trying to do something wrong.</p>
 <p>In many programming languages, the code will stop evaluating and the language will return an error. In Mathematica however, one of two things will happen:
 </p>
 <h3> Errors as Messages</h3>
 <p>Particularly with built-in functions, when an error is encountered Mathematica will print an error message. For example, try evaluating the following
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Plot[Sin]</code>
 </pre>
-<p>You&#8217;ll notice that Mathematica prints a small message telling us that <code>Plot</code>  requires two arguments. Note however that what is returned is exactly what was input. This is because when Mathematica doesn&#8217;t now how to evaluate a function, it simply returns the function and its arguments as is.
+<div style='font-size: 12px; font-family: monospace;'>
+ <div class='mma-message'>
+  <span style='color: #dd0000'>
+   <span class='mma-message-name'>Plot::argr:</span>
+  </span>
+  <span style='color: gray'>
+   <span class='mma-message-text'>Plot called with 1 argument; 2 arguments are expected.</span>
+  </span>
+ </div>
+</div>
+<pre class='mma-output prettyprint'>
+ <code>Plot[Sin]</code>
+</pre>
+<p>You&apos;ll notice that Mathematica prints a small message telling us that <code>Plot</code> requires two arguments. Note however that what is returned is exactly what was input. This is because when Mathematica doesn&apos;t now how to evaluate a function, it simply returns the function and its arguments as is.
 </p>
 <h3> Silent Errors</h3>
-<p>This behavior, returning expressions it can&#8217;t evaluate, is critical to Mathematica programming, but can lead to some nasty bugs.</p>
+<p>This behavior, returning expressions it can&apos;t evaluate, is critical to Mathematica programming, but can lead to some nasty bugs.</p>
 <p>Consider the following:
 </p>
-<pre class='prettyprint'>
- <code>F[a_] := &quot;~~Wow~~~&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>F[a_]:=&quot;~~Wow~~~&quot;</code>
 </pre>
 <p>Now say we want to format a big grid, but replace a random element with our the result of our function:
 </p>
-<pre class='prettyprint'>
- <code>thisCallsHereIsAFunction[b_] :=
- Grid@ReplacePart[
-   Partition[Range[200], 10], {RandomInteger[20], RandomInteger[10]} -&gt;
-     f[b]]
-thisCallsHereIsAFunction[x]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>thisCallsF[b_]:=
+  Grid@ReplacePart[Partition[Range[200],10],{RandomInteger[20], RandomInteger[10]}-&gt;f[b]]
+thisCallsF[x]</code>
 </pre>
-<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/11-3313247468270440649.png' alt='11-3313247468270440649' />
-<p>Our grid isn&#8217;t what we wanted it to be because we typed <code>f</code>  instead of <code>F</code>  and Mathematica saw no issue with our mistake. This is why it&#8217;s critical to check your code to make sure you typed everything correctly--Mathematica won&#8217;t do that for you.</p>
+<img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/115errors-611550152511888119.png' alt='115errors-611550152511888119' />
+<p>Our grid isn&apos;t what we wanted it to be because we typed <code>f</code> instead of <code>F</code> and Mathematica saw no issue with our mistake. This is why it&apos;s critical to check your code to make sure you typed everything correctly--Mathematica won&apos;t do that for you.</p>
     </div>
   </article>
   <br>

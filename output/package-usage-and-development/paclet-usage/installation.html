@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -825,7 +837,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </ul>
 <p>In general the most common thing we&apos;ll want to provide is code, but the others are common things to distribute as well.</p>
 <p>We&apos;ll talk briefly about how to install and work with these paclets. Everything in this section requires the <code>&quot;PacletManager`&quot;</code>  context, so, if you have to, run:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-mathematica'>
 Needs[&quot;PacletManager`&quot;]
 </code>
@@ -846,15 +858,14 @@ Needs[&quot;PacletManager`&quot;]
 <p>If we pass a <code>&quot;Site&quot;</code>  it should be the path to a &quot;paclet server&quot;, which we&apos;ll talk about more later.</p>
 <p>Here&apos;s an example of this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>PacletInstall[&quot;ChemTools&quot;,
   &quot;Site&quot;-&gt;&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;
-  ]
-(*Out:*)</code>
+  ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/321installation-3001995490788476466.png' alt='321installation-3001995490788476466' />
 <p>Once we do this we can load the package with:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-mathematica'>
 &lt;&lt;ChemTools`
 </code>
@@ -882,9 +893,8 @@ Needs[&quot;PacletManager`&quot;]
 </ul>
 <p>Here&apos;s a way to use this. We&apos;ll make use of the fact that <code>PacletFind</code>  will expand the <code>&quot;*&quot;</code>  wildcard to find every paclet ending in <code>&quot;Link&quot;</code>  which also provide the <code>&quot;LibraryLink&quot;</code>  extension and which work in Mathematica 11.0.1 or before:
 </p>
-<pre class='prettyprint'>
- <code>PacletFind[&quot;*Link&quot;, &quot;Extension&quot;-&gt;&quot;LibraryLink&quot;, &quot;WolframVersion&quot;-&gt;&quot;11.0.1&quot;]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>PacletFind[&quot;*Link&quot;, &quot;Extension&quot;-&gt;&quot;LibraryLink&quot;, &quot;WolframVersion&quot;-&gt;&quot;11.0.1&quot;]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/321installation-7671577574912776238.png' alt='321installation-7671577574912776238' />
 <p>We can then find information about these paclets with <code>PacletInformation</code> . This can be called in a few ways:</p>
@@ -892,10 +902,11 @@ Needs[&quot;PacletManager`&quot;]
  <li><code>PacletInformation[paclet]</code>  <span class='special-character LongDash'>&#8212;</span> returns information about the <code>Paclet</code>  expression <code>paclet</code></li>
  <li><code>PacletInformation[name]</code>  <span class='special-character LongDash'>&#8212;</span> returns information about the first paclet found via <code>PacletFind[name]</code></li>
 </ul>
-<pre class='prettyprint'>
- <code>PacletInformation[&quot;DAALLink&quot;]
-    (*Out:*)
-    {
+<pre class='mma-input prettyprint'>
+ <code>PacletInformation[&quot;DAALLink&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{
 &quot;Name&quot;-&gt;&quot;DAALLink&quot;,
 &quot;Version&quot;-&gt;&quot;1.0&quot;,
 &quot;BuildNumber&quot;-&gt;&quot;&quot;,

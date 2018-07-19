@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -818,27 +830,27 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Remember that the kernel is where your code runs, so if you have a particularly time-intensive calculation running in one kernel it can be convenient to have a secondary kernel running.
 </p>
 <h3> Add kernels</h3>
-<p>We start another kernel via the front end. Go to <code>Evaluation &#9656; Kernel Configuration Options...</code>  and then click <code>Add...</code>  and give a name to your new kernel.</p>
-<p>Then in a new notebook go to <code>Evaluation &#9656; Notebook&apos;s Kernel</code>  and choose this new kernel you created.
+<p>We start another kernel via the front end. Go to <code>Evaluation <span>&#9654;</span> Kernel Configuration Options...</code>  and then click <code>Add...</code>  and give a name to your new kernel.</p>
+<p>Then in a new notebook go to <code>Evaluation <span>&#9654;</span> Notebook&apos;s Kernel</code>  and choose this new kernel you created.
 </p>
 <h3> Add kernels via FrontEndTokens</h3>
 <p>We&apos;ll discuss <code>FrontEndTokens</code>  more later, but for now just consider them a mechanism to use all front end functionality from the kernel.</p>
 <p>For our cases here, we can make our lives a little bit easier by using a special <code>FrontEndToken</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FrontEndExecute@FrontEndToken[&quot;ModifyEvaluatorNames&quot;]</code>
 </pre>
 <p>or more simply:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FrontEndTokenExecute[&quot;ModifyEvaluatorNames&quot;]</code>
 </pre>
 <p>This gives us the add dialog. Unfortunately <code>FrontEndTokens</code>  are not particularly well documented and so the command for setting a notebook&apos;s kernel remains opaque.
 </p>
 <h3> Remote kernels</h3>
 <p>One useful feature of kernels is that they can be run anywhere<span class='special-character LongDash'>&#8212;</span>not just on your local computer. If, then, Mathematica exists on a remote server, call it <code>&quot;server.place.dom&quot;</code> , say, a kernel can be initiated there and connected to your local front end, by passing X-Windows or a similar remote GUI system.</p>
-<p>We can access this by going back to <code>Evaluation &#9656; Kernel Configuration Options...</code>  or doing the same via the following:
+<p>We can access this by going back to <code>Evaluation <span>&#9654;</span> Kernel Configuration Options...</code>  or doing the same via the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FrontEndTokenExecute[&quot;ModifyEvaluatorNames&quot;]</code>
 </pre>
 <p>Then in <code>Add...</code>  under <code>Basic Options</code>  select <code>Remote Machine</code>  and input your info. If the server is <code>&quot;server.place.dom&quot;</code> , put that as the <code>Remote host</code>  and give your info as the <code>Remote user</code> .</p>

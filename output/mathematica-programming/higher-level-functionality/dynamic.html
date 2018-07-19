@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -823,15 +835,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Dynamic&apos;s second argument</h3>
 <p><code>Dynamic</code>  takes a function as a second argument that it calls whenever it tries to update, passing the update value as the first argument. We can use this to do fancy things like the following:
 </p>
-<pre class='prettyprint'>
- <code>Slider@Dynamic[x, (x=RandomReal[])&amp;]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Slider@Dynamic[x, (x=RandomReal[])&amp;]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-8464373383437301006.png' alt='222dynamic-8464373383437301006' />
 <p>The variable takes a random value every time we try to update it.</p>
 <p>This could also be used to record responses:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>$responseCache={};
 Grid[
   {
@@ -846,8 +857,7 @@ Grid[
       }
     },
   Alignment-&gt;Top
-  ]
-(*Out:*)</code>
+  ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-8291210888907479400.png' alt='222dynamic-8291210888907479400' />
 <p>Each click adds to the response cache.
@@ -855,7 +865,7 @@ Grid[
 <h3> TrackedSymbols</h3>
 <p><code>Dynamic</code>  usually decides in a semi-opaque manner which symbols to track changes in, but we can force it to follow symbol updates. Let&apos;s make a <code>Dynamic</code>  thing that passes colors back and forth. We&apos;ll write it using <code>Mouseover</code>  so the passing only occurs when we&apos;re hovering
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>c1=Gray;c2=Green;counter=1;
 Mouseover[
   Row@{Dynamic@Graphics[{c1,Disk[]}],Dynamic@Graphics[{c2,Disk[]}]},
@@ -870,14 +880,13 @@ Mouseover[
       c2=If[c1===c2,RandomColor[],c2],
       Disk[]}],TrackedSymbols:&gt;{c1,c2,counter}]
   }
-]
-(*Out:*)</code>
+]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-3600955783346224363.png' alt='222dynamic-3600955783346224363' />
 <p>You&apos;ll notice this works exactly as expected. </p>
 <p>Often, however, one runs into issues with <code>TrackedSymbols</code> . This is because of an interesting implementation choice. To track a symbol, it needs to appear in the display expression and not too deep. Usually I simply put the symbol in as part of a <code>CompoundExpression</code>  so it does nothing, but <code>Dynamic</code>  knows to track it. The following is probably the safer way to write this, to ensure tracking:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>c1=Gray;c2=Green;counter=1;
 Mouseover[
   Row@{Dynamic@Graphics[{c1,Disk[]}],Dynamic@Graphics[{c2,Disk[]}]},
@@ -892,15 +901,14 @@ Mouseover[
       c2=If[c1===c2,RandomColor[],c2],
       Disk[]}],TrackedSymbols:&gt;{c1,c2,counter}]
   }
-]
-(*Out:*)</code>
+]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-2381226532866321571.png' alt='222dynamic-2381226532866321571' />
 <h3> UpdateInterval</h3>
 <p><code>Dynamic</code>  can also be scheduled to simply update on a given time frame, which is usually a fall back for when there&apos;s no other way to get symbol tracking to work right or there are no symbols to track. In this case it&apos;s very important the <code>TrackedSymbols</code>  be passed an empty list.</p>
 <p>Here&apos;s a classic stop watch example:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>startTime=None;updateInterval=&#8734;;
 Panel@Grid[{
     {Button[&quot;Start&quot;,
@@ -930,8 +938,7 @@ Panel@Grid[{
         Alignment-&gt;Center,
         Background-&gt;White],
       SpanFromLeft}
-    }]
-(*Out:*)</code>
+    }]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/222dynamic-3801747813210570362.png' alt='222dynamic-3801747813210570362' />
 <a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>

@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,14 +829,15 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Set</h3>
 <p>Variables in Mathematica are simple. Just type a name and give it a value with the equals sign (<a href='https://reference.wolfram.com/language/ref/Set.html'><code>=</code></a> ).</p>
 <p>Here we&apos;ll set the variable <code>thisIsAVariable</code></p>
-<pre class='prettyprint'>
- <code>thisIsAVariable=10
-(*Out:*)
-10</code>
+<pre class='mma-input prettyprint'>
+ <code>thisIsAVariable=10</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10</code>
 </pre>
 <p>We can suppress the output by ending the line with a semicolon 
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>thisIsAVariable=10;</code>
 </pre>
 <p>(for those interested, the semi colon denotes that this is a <a href='https://reference.wolfram.com/language/ref/CompoundExpression.html'><code>CompoundExpression</code></a>  where the return value is <a href='https://reference.wolfram.com/language/ref/Null.html'><code>Null</code></a> )
@@ -833,58 +846,64 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>A variable can also have a &quot;delayed&quot; value. That is, its value is calculated when requested. Here we&apos;ll set the variable <code>randomValuedVariable</code> .</p>
 <p>Use colon-equals (<a href='https://reference.wolfram.com/language/ref/SetDelayed.html'><code>:=</code></a> ) to do this.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>randomValuedVariable:=RandomReal[];</code>
 </pre>
 <p>When we ask for its value, the return value will change every time.
 </p>
-<pre class='prettyprint'>
- <code>randomValuedVariable
-(*Out:*)
-0.12257688426972924`
-randomValuedVariable
-(*Out:*)
-0.13807713447085046`</code>
+<pre class='mma-input prettyprint'>
+ <code>randomValuedVariable</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.12257688426972924`
+
+randomValuedVariable</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.13807713447085046`</code>
 </pre>
 <h3> Clear</h3>
 <p>The value of a variable can be removed via <a href='https://reference.wolfram.com/language/ref/Clear.html'><code>Clear</code></a></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Clear[randomValuedVariable]</code>
 </pre>
 <p>The variable now has no value
 </p>
-<pre class='prettyprint'>
- <code>randomValuedVariable
-(*Out:*)
-randomValuedVariable</code>
+<pre class='mma-input prettyprint'>
+ <code>randomValuedVariable</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>randomValuedVariable</code>
 </pre>
 <h3> Simple expressions</h3>
 <p>We can use variables in expressions to store values for us.</p>
 <p>For example, let&apos;s do a simple ideal gas law computation for the volume occupied by 2 mols of ideal gas at one atmosphere of pressure and 273 K.</p>
 <p>We&apos;ll use Mathematica&apos;s built in constant data to get the value R <em> </em> in L atm / mol K.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>R$gasConstant=
   QuantityMagnitude[
     UnitConvert[Quantity[&quot;MolarGasConstant&quot;],
       &quot;Liters&quot;*&quot;Atmospheres&quot;/(&quot;Moles&quot;*&quot;Kelvins&quot;)]
-    ]
-(*Out:*)
-0.0820573382679496654`5.937562804821409</code>
+    ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.0820573382679496654`5.937562804821409</code>
 </pre>
 <p>Then we can set up our constants:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>n$quantityOfGas=2 (*mols*);
 P$externalPressure=1(*atm*);
 T$temperatureOfGas=273 (*K*);</code>
 </pre>
 <p>And finally calculate our volume:
 </p>
-<pre class='prettyprint'>
- <code>V$volumeOccupied=n$quantityOfGas*R$gasConstant*T$temperatureOfGas/P$externalPressure
-(*Out:*)
-44.8033066943005173068`5.937562804821409</code>
+<pre class='mma-input prettyprint'>
+ <code>V$volumeOccupied=n$quantityOfGas*R$gasConstant*T$temperatureOfGas/P$externalPressure</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>44.8033066943005173068`5.937562804821409</code>
 </pre>
     </div>
   </article>

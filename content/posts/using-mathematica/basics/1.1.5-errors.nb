@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12009,        282]
-NotebookOptionsPosition[     10086,        244]
-NotebookOutlinePosition[     10514,        261]
-CellTagsIndexPosition[     10471,        258]
+NotebookDataLength[     12871,        308]
+NotebookOptionsPosition[     10727,        266]
+NotebookOutlinePosition[     11155,        283]
+CellTagsIndexPosition[     11112,        280]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -55,7 +55,7 @@ Cell[BoxData[
     RowBox[{"{", "\"\<errors\>\"", "}"}]}], ",", "\[IndentingNewLine]", 
    RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
     RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "False"}], "}"}]}]}], 
+     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
   "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
  CellChangeTimes->{{3.7230674328716917`*^9, 3.723067452190956*^9}, {
   3.7230679580568*^9, 3.7230680128473673`*^9}, {3.7232007087815647`*^9, 
@@ -63,7 +63,8 @@ Cell[BoxData[
   3.723203194940805*^9, 3.7232031969618998`*^9}, {3.723203253110754*^9, 
   3.723203253779015*^9}, {3.723203709238966*^9, 3.723203715110168*^9}, {
   3.723251338283305*^9, 3.7232513466416073`*^9}, {3.74077963349297*^9, 
-  3.74077963749541*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
+  3.74077963749541*^9}, {3.740938181214171*^9, 
+  3.740938181682129*^9}},ExpressionUUID->"193e9afe-58b0-4309-9e29-\
 8bb496c1c725"],
 
 Cell[CellGroupData[{
@@ -76,14 +77,20 @@ af67d6c0b241"],
 
 Cell["\<\
 Obviously code doesn\[CloseCurlyQuote]t always do what one expects it to. \
-Often this is because the programmer or user is trying to do something wrong.
+Often this is because the programmer or user is trying to do something wrong.\
+\
+\>", "Text",
+ CellChangeTimes->{{3.684606493473976*^9, 3.684606627115573*^9}, 
+   3.740938161328063*^9},ExpressionUUID->"bca013df-dfa8-4644-a59b-\
+7dc3f2f7494c"],
 
+Cell["\<\
 In many programming languages, the code will stop evaluating and the language \
 will return an error. In Mathematica however, one of two things will happen:\
 \>", "Text",
- CellChangeTimes->{{3.684606493473976*^9, 
-  3.684606627115573*^9}},ExpressionUUID->"bca013df-dfa8-4644-a59b-\
-7dc3f2f7494c"],
+ CellChangeTimes->{{3.684606493473976*^9, 3.684606627115573*^9}, 
+   3.74093816266468*^9},ExpressionUUID->"85a6c088-667c-4cb9-9233-\
+650c09f5f4bd"],
 
 Cell[CellGroupData[{
 
@@ -98,12 +105,33 @@ following\
   3.684606688633561*^9}},ExpressionUUID->"c5e8b739-184e-40a9-abef-\
 d546e5d67338"],
 
+Cell[CellGroupData[{
+
 Cell[BoxData[
  RowBox[{"Plot", "[", "Sin", "]"}]], "Code",
  CellChangeTimes->{{3.6846066933730793`*^9, 3.684606695655998*^9}, 
-   3.723203248317836*^9, 
-   3.72342875634725*^9},ExpressionUUID->"138389b5-377f-4573-a29f-\
-7c6f8e9a8c7a"],
+   3.723203248317836*^9, 3.72342875634725*^9},
+ CellLabel->
+  "In[976]:=",ExpressionUUID->"138389b5-377f-4573-a29f-7c6f8e9a8c7a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Plot","argr",
+   "\"\\!\\(\\*RowBox[{\\\"Plot\\\"}]\\) called with 1 argument; \
+\\!\\(\\*RowBox[{\\\"2\\\"}]\\) arguments are expected.\"",2,976,1306,
+   27970062580965588239,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7409381696780167`*^9},
+ CellLabel->
+  "During evaluation of \
+In[976]:=",ExpressionUUID->"bd267dc6-a920-4938-be2e-1ea4efdb6c87"],
+
+Cell[BoxData[
+ RowBox[{"Plot", "[", "Sin", "]"}]], "Output",
+ CellChangeTimes->{3.740938169691436*^9},
+ CellLabel->
+  "Out[976]=",ExpressionUUID->"ccb0be84-cd31-40c9-aa5c-0df3d5f612eb"]
+}, Open  ]],
 
 Cell[TextData[{
  "You\[CloseCurlyQuote]ll notice that Mathematica prints a small message \
@@ -156,9 +184,11 @@ the result of our function:\
   3.684613201181806*^9}},ExpressionUUID->"088bb06e-5bda-49a3-a42b-\
 d60a66fed196"],
 
-Cell[BoxData[
+Cell[CellGroupData[{
+
+Cell[BoxData[{
  RowBox[{
-  RowBox[{"thisCallsHereIsAFunction", "[", "b_", "]"}], ":=", "\n", "\t", 
+  RowBox[{"thisCallsF", "[", "b_", "]"}], ":=", "\n", "\t", 
   RowBox[{"Grid", "@", 
    RowBox[{"ReplacePart", "[", 
     RowBox[{
@@ -168,24 +198,16 @@ Cell[BoxData[
      RowBox[{
       RowBox[{"{", 
        RowBox[{
-        RowBox[{"RandomInteger", "[", "20", "]"}], ",", 
+        RowBox[{"RandomInteger", "[", "20", "]"}], ",", " ", 
         RowBox[{"RandomInteger", "[", "10", "]"}]}], "}"}], "->", 
-      RowBox[{"f", "[", "b", "]"}]}]}], "]"}]}]}]], "Code",
+      RowBox[{"f", "[", "b", "]"}]}]}], "]"}]}]}], "\n", 
+ RowBox[{"thisCallsF", "[", "x", "]"}]}], "Code",
  CellChangeTimes->{{3.684612912938979*^9, 3.6846129449691896`*^9}, {
    3.684612980829233*^9, 3.6846131254143867`*^9}, {3.6846132043100977`*^9, 
    3.684613214693839*^9}, {3.723203227700048*^9, 3.723203248388774*^9}, 
-   3.723428756398151*^9},ExpressionUUID->"56526de8-19df-45cf-bf28-\
+   3.723428756398151*^9, {3.7409667506461077`*^9, 
+   3.740966772980803*^9}},ExpressionUUID->"56526de8-19df-45cf-bf28-\
 2b5291c91796"],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"thisCallsHereIsAFunction", "[", "x", "]"}]], "Code",
- CellChangeTimes->{{3.684612956352442*^9, 3.684612962552668*^9}, {
-   3.684613067394306*^9, 3.684613068521181*^9}, {3.684613217470058*^9, 
-   3.684613219533368*^9}, 3.7232032484138308`*^9, 
-   3.723428756424982*^9},ExpressionUUID->"86cfbaf3-8639-4d7b-8f02-\
-710177b1cc99"],
 
 Cell[BoxData[
  TagBox[GridBox[{
@@ -260,28 +282,32 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 2254, 46, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
+Cell[558, 20, 2302, 47, 303, "Metadata",ExpressionUUID->"193e9afe-58b0-4309-9e29-8bb496c1c725"],
 Cell[CellGroupData[{
-Cell[2837, 70, 249, 4, 41, "Subsection",ExpressionUUID->"6132474b-6089-449c-a2a9-af67d6c0b241"],
-Cell[3089, 76, 461, 9, 127, "Text",ExpressionUUID->"bca013df-dfa8-4644-a59b-7dc3f2f7494c"],
+Cell[2885, 71, 249, 4, 41, "Subsection",ExpressionUUID->"6132474b-6089-449c-a2a9-af67d6c0b241"],
+Cell[3137, 77, 328, 7, 58, "Text",ExpressionUUID->"bca013df-dfa8-4644-a59b-7dc3f2f7494c"],
+Cell[3468, 86, 328, 6, 58, "Text",ExpressionUUID->"85a6c088-667c-4cb9-9233-650c09f5f4bd"],
 Cell[CellGroupData[{
-Cell[3575, 89, 98, 0, 40, "Subsubsection",ExpressionUUID->"19b3254b-f7c4-4360-9bbe-db03d84464c9"],
-Cell[3676, 91, 305, 7, 58, "Text",ExpressionUUID->"c5e8b739-184e-40a9-abef-d546e5d67338"],
-Cell[3984, 100, 234, 5, 52, "Code",ExpressionUUID->"138389b5-377f-4573-a29f-7c6f8e9a8c7a"],
-Cell[4221, 107, 690, 14, 81, "Text",ExpressionUUID->"457ba3fa-f263-43bd-8250-b35b24a5f0e3"]
+Cell[3821, 96, 98, 0, 40, "Subsubsection",ExpressionUUID->"19b3254b-f7c4-4360-9bbe-db03d84464c9"],
+Cell[3922, 98, 305, 7, 58, "Text",ExpressionUUID->"c5e8b739-184e-40a9-abef-d546e5d67338"],
+Cell[CellGroupData[{
+Cell[4252, 109, 256, 5, 52, "Code",ExpressionUUID->"138389b5-377f-4573-a29f-7c6f8e9a8c7a"],
+Cell[4511, 116, 408, 10, 24, "Message",ExpressionUUID->"bd267dc6-a920-4938-be2e-1ea4efdb6c87"],
+Cell[4922, 128, 185, 4, 34, "Output",ExpressionUUID->"ccb0be84-cd31-40c9-aa5c-0df3d5f612eb"]
+}, Open  ]],
+Cell[5122, 135, 690, 14, 81, "Text",ExpressionUUID->"457ba3fa-f263-43bd-8250-b35b24a5f0e3"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[4948, 126, 93, 0, 40, "Subsubsection",ExpressionUUID->"96fecfe8-c53b-42e1-a32e-015647a595e1"],
-Cell[5044, 128, 297, 6, 58, "Text",ExpressionUUID->"6b9e732b-2a3a-44e6-8eed-29707a973816"],
-Cell[5344, 136, 164, 3, 35, "Text",ExpressionUUID->"c4adf8a3-0cbd-41f7-a875-42d610d12cdf"],
-Cell[5511, 141, 361, 7, 52, "Code",ExpressionUUID->"5ad24012-4bc9-403a-b3d2-606ddb8e402c"],
-Cell[5875, 150, 255, 6, 35, "Text",ExpressionUUID->"088bb06e-5bda-49a3-a42b-d60a66fed196"],
-Cell[6133, 158, 818, 19, 72, "Code",ExpressionUUID->"56526de8-19df-45cf-bf28-2b5291c91796"],
+Cell[5849, 154, 93, 0, 40, "Subsubsection",ExpressionUUID->"96fecfe8-c53b-42e1-a32e-015647a595e1"],
+Cell[5945, 156, 297, 6, 58, "Text",ExpressionUUID->"6b9e732b-2a3a-44e6-8eed-29707a973816"],
+Cell[6245, 164, 164, 3, 35, "Text",ExpressionUUID->"c4adf8a3-0cbd-41f7-a875-42d610d12cdf"],
+Cell[6412, 169, 361, 7, 52, "Code",ExpressionUUID->"5ad24012-4bc9-403a-b3d2-606ddb8e402c"],
+Cell[6776, 178, 255, 6, 35, "Text",ExpressionUUID->"088bb06e-5bda-49a3-a42b-d60a66fed196"],
 Cell[CellGroupData[{
-Cell[6976, 181, 349, 6, 52, "Code",ExpressionUUID->"86cfbaf3-8639-4d7b-8f02-710177b1cc99"],
-Cell[7328, 189, 1773, 30, 355, "Output",ExpressionUUID->"99bc7edc-3fa7-4fca-b108-0e33e16386c0"]
+Cell[7056, 188, 910, 21, 91, "Code",ExpressionUUID->"56526de8-19df-45cf-bf28-2b5291c91796"],
+Cell[7969, 211, 1773, 30, 355, "Output",ExpressionUUID->"99bc7edc-3fa7-4fca-b108-0e33e16386c0"]
 }, Open  ]],
-Cell[9116, 222, 942, 18, 81, "Text",ExpressionUUID->"a4f33338-daa2-4d71-81ca-b52693918c37"]
+Cell[9757, 244, 942, 18, 81, "Text",ExpressionUUID->"a4f33338-daa2-4d71-81ca-b52693918c37"]
 }, Open  ]]
 }, Open  ]]
 }

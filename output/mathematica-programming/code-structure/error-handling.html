@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -824,21 +836,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Message</h3>
 <p>The standard way Mathematica functions handle cases like this is by emitting a <code>Message</code>  and then returning some type of failure tag, e.g. something like this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Integrate[x, {1, 10}]</code>
 </pre>
 <div class='mma-message'>
  <span class='mma-message-name'>Integrate::ilim:</span>
  <span class='mma-message-text'>Invalid integration variable or limit(s) in {1,10}.</span>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Integrate[x,{1,10}]</code>
+<pre class='mma-output prettyprint'>
+ <code>Integrate[x,{1,10}]</code>
 </pre>
 <p>Since this was an unhandled-arguments type of error, the function simply bottoms out and says: &quot;I&apos;m going to stay unevaluated&quot;. </p>
 <p>For those interested, this type of behaviour most commonly occurs when a <code>Condition</code>  is failed in either the pattern test of the function arguments or if a <code>Condition</code>  is found at the end of a scoping construct, e.g.:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>doNothing[]:=
   Module[
     {},
@@ -851,16 +862,15 @@ doNothing[]</code>
  <span class='mma-message-name'>doNothing::no:</span>
  <span class='mma-message-text'>&quot;Nope :)&quot;</span>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)
-doNothing[]</code>
+<pre class='mma-output prettyprint'>
+ <code>doNothing[]</code>
 </pre>
 <p>If <code>Abort</code>  is too much, this approach is too little. An error caught deep inside a function shouldn&apos;t have to be passed step-by-step up through the rest of the function.
 </p>
 <h3> Throw / Catch</h3>
 <p>The <a href='https://reference.wolfram.com/language/ref/Throw.html'><code>Throw</code></a>  / <a href='https://reference.wolfram.com/language/ref/Catch.html'><code>Catch</code></a>  mechanism provides a much more robust way to handle errors in Mathematica. <code>Catch</code>  takes a second argument that can be a pattern to catch the different error tags that <code>Throw</code>  can attach to its results. By doing this we can get deeply-nested functions to throw to high-level and be caught only by the handlers we want, for instance we can do something like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>main[]:=
   NumberForm[Catch[{sub1[], sub2[], sub3[]}, &quot;err1&quot;|&quot;err2&quot;|&quot;err3&quot;], 3]
 sub1[]:=
@@ -872,10 +882,11 @@ sub3[]:=
 </pre>
 <p>And when we use this:
 </p>
-<pre class='prettyprint'>
- <code>ToString/@Table[main[], 10]
-(*Out:*)
-{&quot;0.137 two large&quot;,&quot;0.18 too large&quot;,&quot;0.704 three large&quot;,&quot;0.18 too large&quot;,&quot;0.0282 three large&quot;,&quot;0.463 three large&quot;,&quot;0.0129 too large&quot;,&quot;0.634 three large&quot;,&quot;0.104 too large&quot;,&quot;0.464 two large&quot;}</code>
+<pre class='mma-input prettyprint'>
+ <code>ToString/@Table[main[], 10]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;0.137 two large&quot;,&quot;0.18 too large&quot;,&quot;0.704 three large&quot;,&quot;0.18 too large&quot;,&quot;0.0282 three large&quot;,&quot;0.463 three large&quot;,&quot;0.0129 too large&quot;,&quot;0.634 three large&quot;,&quot;0.104 too large&quot;,&quot;0.464 two large&quot;}</code>
 </pre>
 <p>We see that the different errors were caught, each with their messages, and we didn&apos;t have to catch and pass up on each round.
 </p>
@@ -884,7 +895,7 @@ sub3[]:=
 <p>We can go one step further, though, and allow any exceptions caught by <code>Catch</code>  to optionally be passed up</p>
 <p>Here&apos;s a sample way this could work:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Protect[$$tagStack];
 catchExceptions[expr_, tags:{___}, passUp:True|False:True]:=
   Block[
@@ -919,7 +930,7 @@ raiseException~SetAttributes~HoldFirst;</code>
 <p>Next we take a function that will <code>Throw</code>  to this <code>Catch</code>  block and return a nice structure to go with it.</p>
 <p>Here&apos;s this in action:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>myCoolFunction::err1=&quot;Uh oh spaghetti-Os!&quot;;
 myCoolFunction::err2=&quot;Oh deary me!&quot;;
 myCoolFunction::err3=&quot;Why did you do this to me ``?&quot;;
@@ -948,7 +959,7 @@ yourName[name_]:=
 </pre>
 <p>And now we can use it on some examples:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>myCoolFunction/@
   Join[
     StringRiffle@*DeleteDuplicates/@
@@ -972,13 +983,10 @@ yourName[name_]:=
  <span class='mma-message-name'>myCoolFunction::err1:</span>
  <span class='mma-message-text'>&quot;Uh oh spaghetti-Os!&quot;</span>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/2112errorhandling-6809837667784981244.png' alt='2112errorhandling-6809837667784981244' />
 <p>And we can nest this without end and it will always throw all the way up to top-level:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>catchExceptions[
   catchExceptions[myCoolFunction[1], {&quot;err1&quot;, &quot;err2&quot;, &quot;err3&quot;}], 
   {&quot;err1&quot;, &quot;err2&quot;, &quot;err3&quot;}
@@ -988,9 +996,6 @@ yourName[name_]:=
  <span class='mma-message-name'>myCoolFunction::err1:</span>
  <span class='mma-message-text'>&quot;Uh oh spaghetti-Os!&quot;</span>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/2112errorhandling-6070949172998910373.png' alt='2112errorhandling-6070949172998910373' />
 <p>More extensions can be built on top of this, but this gets us a good ways beyond passing failed arguments up through our call stack.</p>
 <a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>

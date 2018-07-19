@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -820,45 +832,50 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> PacletSites</h3>
 <p>The <code>PacletManager</code>  keeps track of the active set of servers via its <code>PacletSites</code>  system. We can see the currently configured set:
 </p>
-<pre class='prettyprint'>
- <code>PacletSites[]
-(*Out:*)
-{PacletSite[&quot;http://pacletserver.wolfram.com&quot;,&quot;Wolfram Research Paclet Server&quot;,&quot;Local&quot;-&gt;False]}</code>
+<pre class='mma-input prettyprint'>
+ <code>PacletSites[]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{PacletSite[&quot;http://pacletserver.wolfram.com&quot;,&quot;Wolfram Research Paclet Server&quot;,&quot;Local&quot;-&gt;False]}</code>
 </pre>
 <p>We can add a server via <code>PacletSiteAdd</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>PacletSiteAdd[
   &quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,
   &quot;Public paclet server&quot;
-  ]
-(*Out:*)
-PacletSite[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,&quot;Public paclet server&quot;,&quot;Local&quot;-&gt;False]</code>
+  ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>PacletSite[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,&quot;Public paclet server&quot;,&quot;Local&quot;-&gt;False]</code>
 </pre>
 <p>This is now permanently added to the <code>PacletSites</code> :
 </p>
-<pre class='prettyprint'>
- <code>PacletSites[]
-(*Out:*)
-{PacletSite[&quot;http://pacletserver.wolfram.com&quot;,&quot;Wolfram Research Paclet Server&quot;,&quot;Local&quot;-&gt;False],PacletSite[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,&quot;Public paclet server&quot;,&quot;Local&quot;-&gt;False]}</code>
+<pre class='mma-input prettyprint'>
+ <code>PacletSites[]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{PacletSite[&quot;http://pacletserver.wolfram.com&quot;,&quot;Wolfram Research Paclet Server&quot;,&quot;Local&quot;-&gt;False],PacletSite[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,&quot;Public paclet server&quot;,&quot;Local&quot;-&gt;False]}</code>
 </pre>
 <p>If we want to check for updates on our sites we can use <code>PacletSiteUpdate</code>  to do so:
 </p>
-<pre class='prettyprint'>
- <code>PacletSiteUpdate[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;]
-(*Out:*)
-PacletSite[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,&quot;Public paclet server&quot;,&quot;Local&quot;-&gt;False]</code>
+<pre class='mma-input prettyprint'>
+ <code>PacletSiteUpdate[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>PacletSite[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;,&quot;Public paclet server&quot;,&quot;Local&quot;-&gt;False]</code>
 </pre>
 <p>Finally, if we want to remove this we can do so with <code>PacletSiteRemove</code> :
 </p>
-<pre class='prettyprint'>
- <code>PacletSiteRemove[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;]
-(*Out:*)
-{PacletSite[&quot;http://pacletserver.wolfram.com&quot;,&quot;Wolfram Research Paclet Server&quot;,&quot;Local&quot;-&gt;False]}</code>
+<pre class='mma-input prettyprint'>
+ <code>PacletSiteRemove[&quot;http://raw.githubusercontent.com/paclets/PacletServer/master&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{PacletSite[&quot;http://pacletserver.wolfram.com&quot;,&quot;Wolfram Research Paclet Server&quot;,&quot;Local&quot;-&gt;False]}</code>
 </pre>
 <h3> Finding Paclets on a Server</h3>
 <p>We can find paclets located on a server with <code>PacletFindRemote</code> . First we&apos;ll add a different paclet server:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-mathematica'>
 PacletSiteAdd[&quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer&quot;];
 PacletSiteUpdate[&quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer&quot;];
@@ -866,14 +883,13 @@ PacletSiteUpdate[&quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/Paclet
 </pre>
 <p>Now we&apos;ll look for a version of the <code>&quot;BTools&quot;</code>  package on that server
 </p>
-<pre class='prettyprint'>
- <code>PacletFindRemote[{&quot;BTools&quot;, &quot;2.1.25&quot;}]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>PacletFindRemote[{&quot;BTools&quot;, &quot;2.1.25&quot;}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/322pacletservers-5296222007074979075.png' alt='322pacletservers-5296222007074979075' />
 <p>Now that we&apos;re done with this we can remove it again:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>PacletSiteRemove[&quot;http://www.wolframcloud.com/objects/b3m2a1.paclets/PacletServer&quot;];</code>
 </pre>
 <h3> Installing Paclets off A Server</h3>

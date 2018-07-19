@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,18 +829,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Button</h3>
 <p><code>Button</code>  is as simple as they come. It&#8217;s just a button. It has an expression it puts on the button and it runs a command and that&#8217;s it:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Button[
  MouseAppearance[&quot;Click Me&quot;,
   Style[&quot;?&quot;,Large,Bold]
   ],
- Print[&quot;Ouch!&quot;]]
-(*Out:*)</code>
+ Print[&quot;Ouch!&quot;]]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-2797206139365313108.png' alt='22-2797206139365313108' />
 <p>It&#8217;s got some nice formatting options:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Row@Table[
  With[{a=a},
   Button[
@@ -839,13 +850,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
    Appearance<span class='special-character Rule'>&#62754;</span>a]
   ],
  {a,{Automatic,&quot;Frameless&quot;,&quot;Palette&quot;,&quot;AbuttingRight&quot;,&quot;AbuttingLeft&quot;}}
- ]
-(*Out:*)</code>
+ ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-873404383870698890.png' alt='22-873404383870698890' />
 <p>And you can change its basic styling:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Button[
  Mouseover[&quot;You deserve a break&quot;,
   Style[&quot;Relax and click here&quot;,&quot;HyperlinkActive&quot;]
@@ -853,27 +863,26 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  SystemOpen@&quot;https://www.youtube.com/watch?v=cMdiYuzHVZ4&quot;,
  BaseStyle<span class='special-character Rule'>&#62754;</span>&quot;Hyperlink&quot;,
  Appearance<span class='special-character Rule'>&#62754;</span>&quot;Frameless&quot;
- ]
-(*Out:*)
-[&quot;You deserve a break&quot;](#&quot;You deserve a break&quot;)</code>
+ ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>[&quot;You deserve a break&quot;](#&quot;You deserve a break&quot;)</code>
 </pre>
 <h3> InputField</h3>
 <p>An <code>InputField</code>  is pretty self-explanatory:
 </p>
-<pre class='prettyprint'>
- <code>InputField[&quot;Hi there&quot;,String]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>InputField[&quot;Hi there&quot;,String]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-5451681266245674562.png' alt='22-5451681266245674562' />
 <p>Its usefulness comes when combined with <code>Dynamic</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>inputVar=&quot;Change me&quot;;
 InputField[Dynamic[inputVar,
- Print[&quot;Changed!&quot;];inputVar=#;&amp;],String]
-(*Out:*)</code>
+ Print[&quot;Changed!&quot;];inputVar=#;&amp;],String]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-3974473653961945538.png' alt='22-3974473653961945538' />
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>inputVar</code>
 </pre>
 <p>It of course has many useful styling and usage options but these are generally pretty well documented so there is no pressing need to discuss them here.
@@ -881,27 +890,25 @@ InputField[Dynamic[inputVar,
 <h3> PopupMenu</h3>
 <p>A <code>PopupMenu</code>  just selects a value from a list:
 </p>
-<pre class='prettyprint'>
- <code>PopupMenu[&quot;&quot;,Prepend[Names[&quot;*Data&quot;],&quot;&quot;<span class='special-character Rule'>&#62754;</span>Style[&quot;Choose a data type&quot;,Italic,Gray]]]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>PopupMenu[&quot;&quot;,Prepend[Names[&quot;*Data&quot;],&quot;&quot;<span class='special-character Rule'>&#62754;</span>Style[&quot;Choose a data type&quot;,Italic,Gray]]]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-7860618826219449006.png' alt='22-7860618826219449006' />
 <p>Once again we can also set a variable this way:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Dynamic@popupVar;
-PopupMenu[Dynamic@popupVar,Prepend[Names[&quot;*Data&quot;],&quot;&quot;-&gt;Style[&quot;Choose a data type&quot;,Italic,Gray]]]
-(*Out:*)</code>
+PopupMenu[Dynamic@popupVar,Prepend[Names[&quot;*Data&quot;],&quot;&quot;-&gt;Style[&quot;Choose a data type&quot;,Italic,Gray]]]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-4855681135816685350.png' alt='22-4855681135816685350' />
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>popupVar</code>
 </pre>
 <h3> EventHandler</h3>
 <p><code>EventHandler</code>  isn&#8217;t really an interface element so much as an extension for them. It catches front end events -- mouse clicks, keyboard input, etc. and routes them through a set of rules. It&#8217;s powerful, but can be a little tough to use.</p>
 <p>Mathematica, unlike a more usual front-end system like tkinter, has no rich event syntax, instead it depends on the user querying the front end about global state, such as how one catches a double click event:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>youDidIt=False;
 nowClickPrinted=False;
 wellDonePrinted=False;
@@ -924,15 +931,14 @@ EventHandler[
    Print[&quot;Well done&quot;];
    wellDonePrinted=True]
   }
- ]
-(*Out:*)</code>
+ ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-395271241287311702.png' alt='22-395271241287311702' />
 <p>This is an undeniably poor way to do things with myriad pitfalls, but it is one of the restrictions of the system, unfortunately.</p>
 <p>The full list of events that <code>EventHandler</code>  can use isn&#8217;t completely clear, but the most common use cases are on its doc page. Others can be found by  ``<a href='https://www.google.com/search?q=site%3Amathematica.stackexchange.com+%27EventHandler%27+complete+event&amp;oq=site%3Amathematica.stackexchange.com+%27EventHandler%27+complete+event'>&quot;googling&quot;</a>``` .</p>
 <p>One class of events to know about is the class of <code>&quot;MenuCommand&quot;</code>  events. These look like <code>{&quot;MenuCommand&quot;, token}</code>  and of these particularly crucial are the tokens <code>&quot;HandleShiftReturn&quot;</code>  and <code>&quot;EvaluateCells&quot;</code> . These prevent Shift-Return or Keypad-Enter from evaluating and creating a new cell. Here&#8217;s a way to use this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>HandlerInputField[sym:_Dynamic|None:None,handlerFunction_,ops___]:=
 With[{dynSym=Replace[sym,
   None<span class='special-character RuleDelayed'>&#10740;</span>With[{u=Unique@&quot;handlerInputFieldValue$&quot;},u=Null;Dynamic@u]
@@ -961,7 +967,7 @@ EventHandler[InputField[dynSym,ops],{
 </pre>
 <p>This creates and input field wrapped in an event handler. Now we&#8217;ll make an interface that can log the most common words we type. Type normally and return with Shift-Return.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>wordLog={};
 Column[{
   HandlerInputField[
@@ -983,18 +989,17 @@ Column[{
 <h3> OpenerView and Toggler</h3>
 <p><code>OpenerView</code>  is a particularly nice formatting element which let&#8217;s expressions be hidden but a title displayed:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>OpenerView@{&quot;Updating dynamic thing&quot;,
  Dynamic[
   Pause[.5];
   Graphics@{RandomColor[],Disk[]},
-  UpdateInterval<span class='special-character Rule'>&#62754;</span>1]}
-(*Out:*)</code>
+  UpdateInterval<span class='special-character Rule'>&#62754;</span>1]}</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-5509702874528235278.png' alt='22-5509702874528235278' />
 <p>It&#8217;s really a subclass of <code>Toggler</code>  (well it&#8217;s parent function <code>Opener</code>  is) but worth mentioning because of how useful it is. A nice way to add underlines is to use <code>Column</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>OpenerView@{
  Column[
   {&quot;Updating dynamic thing&quot;},
@@ -1003,34 +1008,31 @@ Column[{
  Dynamic[
   Pause[.5];
   Graphics@{RandomColor[],Disk[]},
-  UpdateInterval<span class='special-character Rule'>&#62754;</span>1]}
-(*Out:*)</code>
+  UpdateInterval<span class='special-character Rule'>&#62754;</span>1]}</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-2781982858912025980.png' alt='22-2781982858912025980' />
 <p><code>Toggler</code>  just toggles between expressions when clicked
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Toggler[1,Table[i<span class='special-character Rule'>&#62754;</span>Framed[
  Style[i,FontColor<span class='special-character Rule'>&#62754;</span>If[i&lt;5,White,Black]],
  RoundingRadius<span class='special-character Rule'>&#62754;</span>5,
  FrameStyle<span class='special-character Rule'>&#62754;</span>None,
- Background<span class='special-character Rule'>&#62754;</span>GrayLevel[i/10]],{i,10}]]
-(*Out:*)</code>
+ Background<span class='special-character Rule'>&#62754;</span>GrayLevel[i/10]],{i,10}]]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-4991518592214860267.png' alt='22-4991518592214860267' />
 <p>And <code>Toggler</code>  can similarly be used as a variable setter:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>togglerVar=1;
 Toggler[Dynamic@togglerVar,Table[i-&gt;Framed[
  Style[i,FontColor-&gt;If[i&lt;5,White,Black]],
  RoundingRadius-&gt;5,
  FrameStyle-&gt;None,
- Background-&gt;GrayLevel[i/10]],{i,10}]]
-(*Out:*)</code>
+ Background-&gt;GrayLevel[i/10]],{i,10}]]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/22-5678734961258451771.png' alt='22-5678734961258451771' />
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>togglerVar</code>
 </pre>
     </div>

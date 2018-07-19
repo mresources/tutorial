@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -819,7 +831,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </p>
 <h3> Code Paclet</h3>
 <p>The most common type of paclet is one that just serves code and maybe some front-end/system resources. To get this type of paclet up-and-running we&apos;ll take our directory structure to look something like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  MyPaclet 
   + PacletInfo.m 
@@ -833,7 +845,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And the <code>PacletInfo.m</code>  will be 
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;MyPaclet&quot;,
   Version     -&gt; &quot;1.0.0&quot;,
@@ -847,7 +859,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Documentation Paclet</h3>
 <p>Sometimes we  <em>just</em>  want to distribute documentation, as it can be bulky and unwieldy. If this is the case, we&apos;ll want to use a directory structure that looks like:</p>
 <p>The most common type of paclet is one that just serves code and maybe some front-end/system resources. To get this type of paclet up-and-running we&apos;ll take our directory structure to look something like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  Documentation_MyPaclet 
   + PacletInfo.m 
@@ -870,7 +882,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And the <code>PacletInfo.m</code>  will be 
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;Documentation_MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,
@@ -890,7 +902,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </p>
 <h3> FrontEnd Paclet</h3>
 <p>Sometimes we want to package versioned FE resources separately from a package, or simply pass around standalone palettes and stylesheets. If this is the case we want a front-end paclet, which has a directory structure like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  FrontEnd_MyPaclet 
   + PacletInfo.m 
@@ -922,7 +934,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </code>
 </pre>
 <p>And we&apos;d have a pretty simple  <code>PacletInfo.m</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;FrontEnd_MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,
@@ -933,7 +945,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <h3> Resource Paclet</h3>
 <p>Sometimes we want to package versioned FE resources separately from a package, or simply pass around standalone palettes and stylesheets. If this is the case we want a front-end paclet, which has a directory structure like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  Resources_MyPaclet 
   + PacletInfo.m 
@@ -948,7 +960,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And we&apos;ll have a  <code>PacletInfo.m</code>  that looks like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;Resources_MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,
@@ -971,7 +983,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Data Paclet</h3>
 <p>Before its curated data system got wrapped into the <a href='https://reference.wolfram.com/language/guide/KnowledgeRepresentationAndAccess.html'><code>Entity Framework</code></a> ,  Mathematica distributed its curated data via the <code>DataPaclets</code>  system. These are resource paclets that simply distribute version controlled data.</p>
 <p>We can still make use of this system ourselves, though, as done <a href='https://mathematica.stackexchange.com/q/146220/38205'>here</a> . Even if we don&apos;t want to hook into that system directly, we can make use of this kind of setup by setting up a directory like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  Data_MyPaclet 
   + PacletInfo.m 
@@ -983,7 +995,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>Then the  <code>PacletInfo.m</code>  looks almost exactly like a resource paclet
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;Data_MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,

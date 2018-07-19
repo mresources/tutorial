@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -814,10 +826,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     <div class="article content">
       <a shape='rect' id='keyboard-aliases-and-special-characters' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Keyboard Aliases and Special Characters</h2>
-<p>As mentioned before, there are many useful keyboard aliases. Remember that you get one by pressing <kbd>ESC</kbd> typing an alias and pressing <kbd>ESC</kbd> again. </p>
+<p>As mentioned before, there are many useful keyboard aliases. Remember that you get one by pressing <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>ESC</kbd></span> typing an alias and pressing <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>ESC</kbd></span> again. </p>
 <p>Here&apos;s a partial list of them:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Pane[
   Column[
     DeleteCases[
@@ -832,13 +844,12 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     ],
   {250, 250},
   Scrollbars-&gt;{False, True}
-  ]
-(*Out:*)</code>
+  ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/123keyboardaliasesandspecialcharacters-5405623299749968708.png' alt='123keyboardaliasesandspecialcharacters-5405623299749968708' />
 <p>It&apos;s worth playing around with lots of different combinations through. For instance, here&apos;s the alias for each keyboard character
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Thread[
   Join[
     Alphabet[],
@@ -869,12 +880,11 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       ],
   {250,250},
   Scrollbars-&gt;{False, True}
-  ]&amp;
-(*Out:*)</code>
+  ]&amp;</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/123keyboardaliasesandspecialcharacters-6383125132510836538.png' alt='123keyboardaliasesandspecialcharacters-6383125132510836538' />
 <p>On top of these alias symbols there&apos;s another group of symbols that can be gotten via <code>\[&lt;name&gt;]</code></p>
-<p>For example, by doing this with the name EscapeKey one gets the following: <kbd>ESC</kbd>. There are also fun things like</p>
+<p>For example, by doing this with the name EscapeKey one gets the following: <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>ESC</kbd></span>. There are also fun things like</p>
 <ul>
  <li>HeartSuit: &#9825;</li>
  <li>SmallCircle: &#8728;</li>
@@ -883,7 +893,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Plus a host of others. In general, any cell that will autocomplete symbol name will also autocomplete these names.</p>
 <p>Finally, I&apos;ve made a little cell that will start looking for names the moment you type the first character of the name. You can generate it with the following code. If you then press backspace while the cell is empty it will automatically print <code>\[</code>  for you. Hopefully this will make searching for special characters somewhat easier.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Cell[
   BoxData[&quot;&quot;], 
   &quot;Code&quot;,

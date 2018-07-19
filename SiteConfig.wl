@@ -6,6 +6,7 @@
 	"SiteURL"-> "https://www.wolframcloud.com/objects/b3m2a1/tutorial",
 	"PrettyPrint"->True,
 	"PatchFonts"->True,
+	"SplitInOut"->True,
 	"DeployOptions"->
 		{
 			CloudConnect->"DeploymentsAccount"

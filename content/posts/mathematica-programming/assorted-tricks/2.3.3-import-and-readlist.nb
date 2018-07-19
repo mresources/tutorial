@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     46640,       1073]
-NotebookOptionsPosition[     44222,       1027]
-NotebookOutlinePosition[     44649,       1044]
-CellTagsIndexPosition[     44606,       1041]
+NotebookDataLength[     48398,       1116]
+NotebookOptionsPosition[     45649,       1065]
+NotebookOutlinePosition[     46076,       1082]
+CellTagsIndexPosition[     46033,       1079]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -511,11 +511,16 @@ Cell[TextData[{
  Cell[BoxData[
   FormBox["ReadList", TextInlineCell]], "InlineInput",ExpressionUUID->
   "eaf7d66f-9575-4807-8b08-9357d6bee88c"],
- " and compare the performance:"
+ " and compare the performance. First iterated ",
+ Cell[BoxData["ReadLine"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "a0fc0301-22c3-491d-8f7d-8847343fdb08"],
+ ":"
 }], "Text",
  CellChangeTimes->{
-  3.685311620629414*^9, {3.687055902643652*^9, 
-   3.6870559517047586`*^9}},ExpressionUUID->"7e1d5d21-67b5-4b40-8c4f-\
+  3.685311620629414*^9, {3.687055902643652*^9, 3.6870559517047586`*^9}, {
+   3.740964496442582*^9, 
+   3.740964506028922*^9}},ExpressionUUID->"7e1d5d21-67b5-4b40-8c4f-\
 2999174db5da"],
 
 Cell[CellGroupData[{
@@ -536,7 +541,7 @@ fe1719c836f0"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"0.001708`", ",", 
+  RowBox[{"0.001708`", ",", "\n", 
    RowBox[{"{", 
     RowBox[{"\<\"The following are the graphical (non-control) characters \
 defined by\"\>", 
@@ -567,11 +572,22 @@ ANGLE QUOTATION MARK\"\>",
      ",", "\<\"30  DIGIT ZERO                  B0  DEGREE SIGN\"\>", 
      ",", "\<\"31  DIGIT ONE                   B1  PLUS-MINUS SIGN\"\>", 
      ",", "\<\"32  DIGIT TWO                   B2  SUPERSCRIPT TWO\"\>"}], 
-    "}"}]}], "}"}]], "FormattedOutput",
- CellChangeTimes->{{3.6870577414247913`*^9, 3.687057760499785*^9}, 
-   3.687057798695298*^9},ExpressionUUID->"d24fc67f-d8ba-469d-b4a4-\
+    "\n", "}"}]}], "\n", "}"}]], "FormattedOutput",
+ CellChangeTimes->{{3.740963990174046*^9, 
+  3.740963990188314*^9}},ExpressionUUID->"d24fc67f-d8ba-469d-b4a4-\
 9bea29ef3136"]
 }, Open  ]],
+
+Cell[TextData[{
+ "Then iterated ",
+ Cell[BoxData["ReadList"], "InlineInput",
+  FormatType->"StandardForm",ExpressionUUID->
+  "09ed4834-c552-4303-b8aa-afd601386b4c"],
+ " (although of course in general we will want to do this in batches):"
+}], "Text",
+ CellChangeTimes->{{3.740964510263545*^9, 
+  3.740964527127367*^9}},ExpressionUUID->"33fe9320-6de4-4597-b4b7-\
+74e9b773f220"],
 
 Cell[CellGroupData[{
 
@@ -580,19 +596,20 @@ Cell[BoxData[
   RowBox[{"Table", "[", "\n", "\t\t", 
    RowBox[{
     RowBox[{"ReadList", "[", 
-     RowBox[{"textStream", ",", "String", ",", "1"}], "]"}], ",", "\n", "\t", 
-    "\t", "25"}], "]"}]}]], "Code",
+     RowBox[{"textStream", ",", " ", "String", ",", " ", "1"}], "]"}], ",", 
+    "\n", "\t\t", "25"}], "]"}]}]], "Code",
  GeneratedCell->False,
  CellChangeTimes->{{3.687055938626411*^9, 3.687055996353054*^9}, 
    3.687057133887496*^9, {3.68705767419075*^9, 3.687057679485127*^9}, {
    3.6870577103551273`*^9, 3.687057710570705*^9}, 3.687057750274824*^9, 
-   3.6870577862405233`*^9, {3.7408486567693663`*^9, 
-   3.7408486582327747`*^9}},ExpressionUUID->"a48bfbe9-3ef0-4fc4-988d-\
+   3.6870577862405233`*^9, {3.7408486567693663`*^9, 3.7408486582327747`*^9}, {
+   3.7409645283883877`*^9, 
+   3.740964530292556*^9}},ExpressionUUID->"a48bfbe9-3ef0-4fc4-988d-\
 b8fc255945b5"],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"0.00014`", ",", 
+  RowBox[{"0.00014`", ",", "\n", 
    RowBox[{"{", " ", 
     RowBox[{
      RowBox[{
@@ -668,19 +685,21 @@ ACUTE\"\>", "}"}], ",",
 CIRCUMFLEX\"\>", "}"}], ",", 
      RowBox[{
      "{", "\<\"4B  CAPITAL LETTER K            CB  CAPITAL LETTER E WITH \
-DIAERESIS\"\>", "}"}]}], "}"}]}], "}"}]], "Output",
- CellChangeTimes->{{3.7235966047473373`*^9, 
-  3.723596604758923*^9}},ExpressionUUID->"3e9975e4-d799-4329-a37f-\
+DIAERESIS\"\>", "}"}]}], "}"}]}], "}"}]], "FormattedOutput", "Output",
+ CellChangeTimes->{{3.740963993166293*^9, 
+  3.740963993177944*^9}},ExpressionUUID->"3e9975e4-d799-4329-a37f-\
 76c704d63964"]
 }, Open  ]],
 
 Cell["\<\
 You\[CloseCurlyQuote]ll notice the performance is drastically different. Even \
-getting the proper text has no discernible effect.\
+getting the proper text as opposed to the list structure has no discernible \
+effect.\
 \>", "Text",
  CellChangeTimes->{
-  3.685311620629414*^9, {3.6870560078480988`*^9, 
-   3.687056076405998*^9}},ExpressionUUID->"995b9686-5e0e-45ec-bad1-\
+  3.685311620629414*^9, {3.6870560078480988`*^9, 3.687056076405998*^9}, {
+   3.740964540164283*^9, 
+   3.740964545409058*^9}},ExpressionUUID->"995b9686-5e0e-45ec-bad1-\
 94ab6d5b895e"],
 
 Cell[CellGroupData[{
@@ -702,7 +721,7 @@ Cell[BoxData[
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"0.000126`", ",", 
+  RowBox[{"0.000126`", ",", "\n", 
    RowBox[{"{", 
     RowBox[{"\<\"4C  CAPITAL LETTER L            CC  CAPITAL LETTER I WITH \
 GRAVE\"\>", 
@@ -752,11 +771,9 @@ CIRCUMFLEX\"\>",
      ",", "\<\"63  SMALL LETTER C              E3  SMALL LETTER A WITH \
 TILDE\"\>", 
      ",", "\<\"64  SMALL LETTER D              E4  SMALL LETTER A WITH \
-DIAERESIS\"\>"}], "}"}]}], "}"}]], "FormattedOutput",
- CellChangeTimes->{3.687056043904449*^9, 3.6870566351349792`*^9, 
-  3.687057137755116*^9, 3.6870576139581013`*^9, 3.68705768831184*^9, 
-  3.687057765239531*^9, 
-  3.687057804772292*^9},ExpressionUUID->"855ab491-9d3b-46d7-b100-\
+DIAERESIS\"\>"}], "}"}]}], "}"}]], "FormattedOutput", "Output",
+ CellChangeTimes->{{3.740963998422345*^9, 
+  3.740963998431664*^9}},ExpressionUUID->"855ab491-9d3b-46d7-b100-\
 c28bfa62afe0"]
 }, Open  ]],
 
@@ -1011,8 +1028,8 @@ import mechanism, this is often the best way to do it, otherwise a simple ",
  Cell[BoxData[
   FormBox["Import", TextInlineCell]], "InlineInput",ExpressionUUID->
   "64f30d86-7dbd-4492-923d-8fc60a7757bb"],
- " is likely fastest--although there are cases where this does not hold, and \
-if a file takes particularly long to load, using a ",
+ " is likely fastest\[LongDash]although there are cases where this does not \
+hold, and if a file takes particularly long to load, using ",
  Cell[BoxData[
   FormBox["ReadList", TextInlineCell]], "InlineInput",ExpressionUUID->
   "65874bf9-668a-422d-a58b-5c3060de3122"],
@@ -1020,9 +1037,30 @@ if a file takes particularly long to load, using a ",
 }], "Text",
  CellChangeTimes->{
   3.685311620629414*^9, {3.687057829135153*^9, 3.687057928259152*^9}, {
-   3.687058069354245*^9, 
-   3.6870581062371597`*^9}},ExpressionUUID->"3f0f7446-f0e9-4f3d-ad79-\
+   3.687058069354245*^9, 3.6870581062371597`*^9}, {3.740964567818397*^9, 
+   3.740964574791266*^9}},ExpressionUUID->"3f0f7446-f0e9-4f3d-ad79-\
 d9b9e0f07112"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See Also:", "Subsection",
+ CellChangeTimes->{{3.740965366866933*^9, 
+  3.74096536805868*^9}},ExpressionUUID->"3766cb43-d643-4a83-a33e-\
+ff1b4e0d3828"],
+
+Cell[TextData[ButtonBox["https://mathematica.stackexchange.com/questions/\
+35371/speeding-up-import-and-export-in-csv-format",
+ BaseStyle->"Hyperlink",
+ ButtonData->{
+   URL["https://mathematica.stackexchange.com/questions/35371/speeding-up-\
+import-and-export-in-csv-format"], None},
+ ButtonNote->
+  "https://mathematica.stackexchange.com/questions/35371/speeding-up-import-\
+and-export-in-csv-format"]], "Item",
+ CellChangeTimes->{{3.740965370597741*^9, 
+  3.740965372994392*^9}},ExpressionUUID->"9b95b1fd-5d6d-40d5-a4f3-\
+a8b7141ab2aa"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
@@ -1053,27 +1091,32 @@ Cell[CellGroupData[{
 Cell[5094, 134, 776, 17, 148, "Code",ExpressionUUID->"ac732ba8-22de-46e6-a7e4-a700c3845d0b"],
 Cell[5873, 153, 17341, 348, 62, "Output",ExpressionUUID->"1d0bdd51-a91f-43a1-a922-1aaf989ecd4d"]
 }, Open  ]],
-Cell[23229, 504, 553, 14, 35, "Text",ExpressionUUID->"7e1d5d21-67b5-4b40-8c4f-2999174db5da"],
+Cell[23229, 504, 756, 19, 58, "Text",ExpressionUUID->"7e1d5d21-67b5-4b40-8c4f-2999174db5da"],
 Cell[CellGroupData[{
-Cell[23807, 522, 564, 12, 129, "Code",ExpressionUUID->"9842d281-3592-4839-ba25-fe1719c836f0"],
-Cell[24374, 536, 2078, 36, 497, "FormattedOutput",ExpressionUUID->"d24fc67f-d8ba-469d-b4a4-9bea29ef3136"]
+Cell[24010, 527, 564, 12, 129, "Code",ExpressionUUID->"9842d281-3592-4839-ba25-fe1719c836f0"],
+Cell[24577, 541, 2071, 36, 560, "FormattedOutput",ExpressionUUID->"d24fc67f-d8ba-469d-b4a4-9bea29ef3136"]
+}, Open  ]],
+Cell[26663, 580, 375, 9, 35, "Text",ExpressionUUID->"33fe9320-6de4-4597-b4b7-74e9b773f220"],
+Cell[CellGroupData[{
+Cell[27063, 593, 685, 14, 110, "Code",ExpressionUUID->"a48bfbe9-3ef0-4fc4-988d-b8fc255945b5"],
+Cell[27751, 609, 3063, 81, 560, "FormattedOutput",ExpressionUUID->"3e9975e4-d799-4329-a37f-76c704d63964"]
+}, Open  ]],
+Cell[30829, 693, 393, 9, 58, "Text",ExpressionUUID->"995b9686-5e0e-45ec-bad1-94ab6d5b895e"],
+Cell[CellGroupData[{
+Cell[31247, 706, 580, 13, 110, "Code",ExpressionUUID->"4b20d2b1-0c10-4fd0-a674-90f803f0c67b"],
+Cell[31830, 721, 2482, 55, 560, "FormattedOutput",ExpressionUUID->"855ab491-9d3b-46d7-b100-c28bfa62afe0"]
+}, Open  ]],
+Cell[34327, 779, 1014, 22, 81, "Text",ExpressionUUID->"5508fabd-88b0-4fcd-9970-de8398787c4d"],
+Cell[CellGroupData[{
+Cell[35366, 805, 2964, 68, 397, "Code",ExpressionUUID->"d6bc6076-b240-49bb-88f5-6f00cfb49203"],
+Cell[38333, 875, 5354, 136, 518, "FormattedOutput",ExpressionUUID->"888cafcd-8b77-432b-81de-cb8fccc2c67b"]
+}, Open  ]],
+Cell[43702, 1014, 349, 8, 58, "Text",ExpressionUUID->"bd365b83-2529-400a-9aaa-7455e8e9b3c8"],
+Cell[44054, 1024, 844, 17, 81, "Text",ExpressionUUID->"3f0f7446-f0e9-4f3d-ad79-d9b9e0f07112"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[26489, 577, 627, 13, 110, "Code",ExpressionUUID->"a48bfbe9-3ef0-4fc4-988d-b8fc255945b5"],
-Cell[27119, 592, 3040, 81, 539, "Output",ExpressionUUID->"3e9975e4-d799-4329-a37f-76c704d63964"]
-}, Open  ]],
-Cell[30174, 676, 308, 7, 35, "Text",ExpressionUUID->"995b9686-5e0e-45ec-bad1-94ab6d5b895e"],
-Cell[CellGroupData[{
-Cell[30507, 687, 580, 13, 110, "Code",ExpressionUUID->"4b20d2b1-0c10-4fd0-a674-90f803f0c67b"],
-Cell[31090, 702, 2583, 57, 539, "FormattedOutput",ExpressionUUID->"855ab491-9d3b-46d7-b100-c28bfa62afe0"]
-}, Open  ]],
-Cell[33688, 762, 1014, 22, 81, "Text",ExpressionUUID->"5508fabd-88b0-4fcd-9970-de8398787c4d"],
-Cell[CellGroupData[{
-Cell[34727, 788, 2964, 68, 397, "Code",ExpressionUUID->"d6bc6076-b240-49bb-88f5-6f00cfb49203"],
-Cell[37694, 858, 5354, 136, 518, "FormattedOutput",ExpressionUUID->"888cafcd-8b77-432b-81de-cb8fccc2c67b"]
-}, Open  ]],
-Cell[43063, 997, 349, 8, 58, "Text",ExpressionUUID->"bd365b83-2529-400a-9aaa-7455e8e9b3c8"],
-Cell[43415, 1007, 791, 17, 81, "Text",ExpressionUUID->"3f0f7446-f0e9-4f3d-ad79-d9b9e0f07112"]
+Cell[44935, 1046, 156, 3, 41, "Subsection",ExpressionUUID->"3766cb43-d643-4a83-a33e-ff1b4e0d3828"],
+Cell[45094, 1051, 539, 11, 32, "Item",ExpressionUUID->"9b95b1fd-5d6d-40d5-a4f3-a8b7141ab2aa"]
 }, Open  ]]
 }
 ]

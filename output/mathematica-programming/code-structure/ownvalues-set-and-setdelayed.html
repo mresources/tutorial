@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -820,80 +832,104 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> OwnValues</h3>
 <p><code>OwnValues</code>  are the most fundamental type of <code>&#8902;Values</code> . These represent things like the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>a=10;
+
 a:=20;</code>
 </pre>
 <p>We can then query the <code>OwnValues</code></p>
-<pre class='prettyprint'>
- <code>OwnValues@a
-(*Out:*)
-{HoldPattern[a]:&gt;20}</code>
+<pre class='mma-input prettyprint'>
+ <code>OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;20}</code>
 </pre>
 <p>We can even edit the <code>OwnValues</code>  manually if we know what we&apos;re doing:
 </p>
-<pre class='prettyprint'>
- <code>OwnValues[a]=Prepend[OwnValues[a], HoldPattern[a]:&gt;50]
-(*Out:*)
-{HoldPattern[a]:&gt;50,HoldPattern[a]:&gt;20}
-a
-(*Out:*)
-50</code>
+<pre class='mma-input prettyprint'>
+ <code>OwnValues[a]=Prepend[OwnValues[a], HoldPattern[a]:&gt;50]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;50,HoldPattern[a]:&gt;20}
+
+a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>50</code>
 </pre>
 <p>Something interesting happens, though, if you set more values on a via <code>SetDelayed</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>a:=100
-OwnValues@a
-(*Out:*)
-{HoldPattern[a]:&gt;100,HoldPattern[a]:&gt;20}
+
+OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;100,HoldPattern[a]:&gt;20}
+
 a:=32
-OwnValues@a
-(*Out:*)
-{HoldPattern[a]:&gt;32,HoldPattern[a]:&gt;20}</code>
+
+OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;32,HoldPattern[a]:&gt;20}</code>
 </pre>
 <p>Only the first entry is changed. This behavior could be used with something like the following to cache symbol values:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>setValue[s_Symbol,v_]:=(OwnValues[s]=Prepend[OwnValues[s],HoldPattern[s]:&gt;v]);
 resetValue[s_Symbol]:=(OwnValues[s]=Rest@OwnValues[s]);
 SetAttributes[setValue,HoldFirst];
 SetAttributes[resetValue,HoldFirst]
+
 setValue[a,10];
-a
-(*Out:*)
-10
+a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10
+
 setValue[a,20];
-a
-(*Out:*)
-20
+a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>20
+
 resetValue[a];
-a
-(*Out:*)
-10</code>
+a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10</code>
 </pre>
 <p>Notice that using a plain <code>Set</code>  erases these changes:
 </p>
-<pre class='prettyprint'>
- <code>a=10
-(*Out:*)
-10
-OwnValues@a
-(*Out:*)
-{HoldPattern[a]:&gt;10}</code>
+<pre class='mma-input prettyprint'>
+ <code>a=10</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10
+
+OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;10}</code>
 </pre>
 <p>Even if now we add more values <code>Set</code>  will erase them all:
 </p>
-<pre class='prettyprint'>
- <code>OwnValues[a]=Join[ConstantArray[HoldPattern[a]:&gt;25,10],OwnValues@a]
-(*Out:*)
-{HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;10}
-a=10
-(*Out:*)
-10
-OwnValues@a
-(*Out:*)
-{HoldPattern[a]:&gt;10}</code>
+<pre class='mma-input prettyprint'>
+ <code>OwnValues[a]=Join[ConstantArray[HoldPattern[a]:&gt;25,10],OwnValues@a]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;25,HoldPattern[a]:&gt;10}
+
+a=10</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10
+
+OwnValues@a</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{HoldPattern[a]:&gt;10}</code>
 </pre>
 <a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> See Also:</h2>

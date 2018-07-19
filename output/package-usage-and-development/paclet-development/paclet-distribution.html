@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -825,34 +837,37 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </ul>
 <p>Say, for the sake of argument, that I am Etienne Bernard and write the Machine Learning functionality packaged into Mathematica. I can find my paclet directory like
 </p>
-<pre class='prettyprint'>
- <code>dir = PacletFind[&quot;MachineLearning&quot;][[1]][&quot;Location&quot;]
-(*Out:*)
-&quot;/Applications/Mathematica.app/Contents/SystemFiles/Components/MachineLearning&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>dir = PacletFind[&quot;MachineLearning&quot;][[1]][&quot;Location&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;/Applications/Mathematica.app/Contents/SystemFiles/Components/MachineLearning&quot;</code>
 </pre>
 <p>Then this can be packed into a .paclet file like:
 </p>
-<pre class='prettyprint'>
- <code>paclet = PackPaclet[dir, $TemporaryDirectory]
-(*Out:*)
-&quot;/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/MachineLearning-1.1.0.paclet&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>paclet = PackPaclet[dir, $TemporaryDirectory]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;/private/var/folders/9t/tqc70b7d61v753jkdbjkvd640000gp/T/MachineLearning-1.1.0.paclet&quot;</code>
 </pre>
 <p>And now this can be distributed
 </p>
 <h3> Direct Distribution</h3>
 <p>Once a paclet is packed it can be distributed directly as it. For instance, I can put this in on my Wolfram Cloud account:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>CopyFile[
   paclet, 
   CloudObject[&quot;user:b3m2a1.testing/MachineLearning.paclet&quot;, Permissions-&gt;&quot;Public&quot;]
-  ]//Most
-(*Out:*)
-CloudObject[]</code>
+  ]//Most</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>CloudObject[]</code>
 </pre>
 <p>And now anyone could come along and install this with:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>PacletInstall@
   &quot;http://www.wolframcloud.com/objects/b3m2a1.testing/MachineLearning.paclet&quot;</code>
 </pre>
@@ -861,7 +876,7 @@ CloudObject[]</code>
 <h2> Paclet Servers</h2>
 <p>Paclet servers exist to make it easy to serve many paclets from the same location. The <code>PacletManager</code>  indexes all the paclet servers available to it and figures out where to install paclets from if simply provided with a name. Therefore it&apos;s useful for us to be able to set up our own servers.</p>
 <p>To do this we simply need to add a <code>Paclets</code>  directory to our server and provide a compressed metadata file <code>PacletSite.mz</code> . Overall our server will look like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  Server 
   PacletSite.mz 
@@ -876,7 +891,7 @@ CloudObject[]</code>
 <p>The paclet manager indexes the paclets on the server by looking at <code>PacletSite.mz</code> , which is much like a <code>PacletInfo.m</code>  file, except instead of containing a single <code>Paclet</code>  expression it contains a <code>PacletSite</code>  expression that bundles up a bunch of different <code>Paclet</code>  expressions.</p>
 <p>In all it&apos;ll look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>PacletSite[
  Paclet[
   Name-&gt;&quot;MyPaclet1&quot;,
@@ -893,7 +908,7 @@ CloudObject[]</code>
 <p>In general we don&apos;t need to handle this ourselves, though, as there&apos;s a function in the <code>PacletManager</code>  that does this. If we call <code>PacletManager`Package`BuildPacletSiteFiles</code>  on our target directory it will do this for us.</p>
 <p>For instance, I could call:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>PacletManager`Package`BuildPacletSiteFiles@
 ExpandFileName@&quot;~/Documents/GitHub/GitHubServer&quot;</code>
 </pre>

@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,116 +829,137 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Heads</h3>
 <p>For any expression the part before the square brackets is known as the <code>Head</code>  of the expression and happily there is the conveniently named <a href='https://reference.wolfram.com/language/ref/Head.html'><code>Head</code></a>  function extract it!
 </p>
-<pre class='prettyprint'>
- <code>Head@&lt;|1 -&gt; 2, 3 -&gt; 4, 5 -&gt; 6|&gt;
-(*Out:*)
-Association</code>
+<pre class='mma-input prettyprint'>
+ <code>Head@&lt;|1 -&gt; 2, 3 -&gt; 4, 5 -&gt; 6|&gt;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Association</code>
 </pre>
 <p>The <code>Head</code>  of an expression can be anything:
 </p>
-<pre class='prettyprint'>
- <code>Head@(f[1][&lt;|a -&gt; b|&gt;][3])
-(*Out:*)
-f[1][&lt;|a -&gt; b|&gt;]
-Head@&quot;a&quot;[b]
-(*Out:*)
-&quot;a&quot;
-Head@( (12 s^2)[2])
-(*Out:*)
-12 s^2</code>
+<pre class='mma-input prettyprint'>
+ <code>Head@(f[1][&lt;|a -&gt; b|&gt;][3])</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>f[1][&lt;|a -&gt; b|&gt;]
+
+Head@&quot;a&quot;[b]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;a&quot;
+
+Head@( (12 s^2)[2])</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>12 s^2</code>
 </pre>
 <h3> Parts</h3>
 <p>Everything following the <code>Head</code>  in the expression is simply a part of the expression and can be extracted with the <code>Part</code>  function:
 </p>
-<pre class='prettyprint'>
- <code>Part[((12 s^2)[2]), 1]
-(*Out:*)
-2
-Part[{1, 2, 3}, 2]
-(*Out:*)
-2</code>
+<pre class='mma-input prettyprint'>
+ <code>Part[((12 s^2)[2]), 1]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>2
+
+Part[{1, 2, 3}, 2]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>2</code>
 </pre>
 <p><code>Part</code>  also has an alias <code>[[ ]]</code></p>
-<pre class='prettyprint'>
- <code>{1, 2, 3}[[2]]
-(*Out:*)
-2</code>
+<pre class='mma-input prettyprint'>
+ <code>{1, 2, 3}[[2]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>2</code>
 </pre>
 <p>Because so often one needs the first or last components of an expression there are two dedicated functions to getting these parts:
 </p>
-<pre class='prettyprint'>
- <code>First@Range[10]
-(*Out:*)
-1
-Last@Range[10]
-(*Out:*)
-10</code>
+<pre class='mma-input prettyprint'>
+ <code>First@Range[10]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1
+
+Last@Range[10]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>10</code>
 </pre>
 <p>There is also the function <code>Rest</code>  which will take the second through last parts of an expression:
 </p>
-<pre class='prettyprint'>
- <code>Rest@(A @@ Range[10])
-(*Out:*)
-A[2, 3, 4, 5, 6, 7, 8, 9, 10]</code>
+<pre class='mma-input prettyprint'>
+ <code>Rest@(A @@ Range[10])</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[2, 3, 4, 5, 6, 7, 8, 9, 10]</code>
 </pre>
 <p>There is also the function <code>Take</code>  which takes spans from an expression
 </p>
-<pre class='prettyprint'>
- <code>Take[B @@ Range[10], {3, 5}]
-(*Out:*)
-B[3, 4, 5]</code>
+<pre class='mma-input prettyprint'>
+ <code>Take[B @@ Range[10], {3, 5}]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>B[3, 4, 5]</code>
 </pre>
 <h3> Manipulating Expressions</h3>
 <p>Mathematica also supports the manipulation of expressions through a wide series of functions, a few of which will be explained here and more which will be explained later:</p>
 <p><code>Insert</code>  takes an expression and inserts another expression in the index specified as its third argument
 </p>
-<pre class='prettyprint'>
- <code>Insert[{1, 2, 4}, &quot;Hi&quot;, -1]
-(*Out:*)
-{1, 2, 4, &quot;Hi&quot;}
-Insert[A[1, 2, 4], &quot;Hi&quot;, -2]
-(*Out:*)
-A[1, 2, &quot;Hi&quot;, 4]
+<pre class='mma-input prettyprint'>
+ <code>Insert[{1, 2, 4}, &quot;Hi&quot;, -1]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{1, 2, 4, &quot;Hi&quot;}
+
+Insert[A[1, 2, 4], &quot;Hi&quot;, -2]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[1, 2, &quot;Hi&quot;, 4]
+
 Insert[Graphics3D[{Sphere[]}, ImageSize -&gt; Small], 
- Sphere[{2, 2, 2}, .5], {1, -1}]
-(*Out:*)</code>
+ Sphere[{2, 2, 2}, .5], {1, -1}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-3675499559684164904.png' alt='21-3675499559684164904' />
 <p><code>Append</code>  and <code>Prepend</code>  take an expression and add an element at the end and beginning respectively
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Append[Graphics3D[Sphere[], ImageSize -&gt; Small], 
- Lighting -&gt; &quot;Neutral&quot;]
-(*Out:*)</code>
+ Lighting -&gt; &quot;Neutral&quot;]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-6663125985827735989.png' alt='21-6663125985827735989' />
 <p><code>Delete</code>  and <code>Drop</code>  both remove parts from an expression. <code>Delete</code>  drops a single part:
 </p>
-<pre class='prettyprint'>
- <code>Delete[A[1, 2, 3, 4, 5], 4]
-(*Out:*)
-A[1, 2, 3, 5]</code>
+<pre class='mma-input prettyprint'>
+ <code>Delete[A[1, 2, 3, 4, 5], 4]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[1, 2, 3, 5]</code>
 </pre>
 <p><code>Drop</code>  removes a span of parts
 </p>
-<pre class='prettyprint'>
- <code>Drop[A[1, 2, 3, 4, 5], -2]
-(*Out:*)
-A[1, 2, 3]</code>
+<pre class='mma-input prettyprint'>
+ <code>Drop[A[1, 2, 3, 4, 5], -2]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[1, 2, 3]</code>
 </pre>
 <h3> Sequence</h3>
 <p>Often one wants to do something like stick the arguments of one expression inside another one. For this purpose there is a special <code>Head</code><code>Sequence</code></p>
-<pre class='prettyprint'>
- <code>A[1, 2, 3, Sequence[1, 2, 3]]
-(*Out:*)
-A[1, 2, 3, 1, 2, 3]</code>
+<pre class='mma-input prettyprint'>
+ <code>A[1, 2, 3, Sequence[1, 2, 3]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[1, 2, 3, 1, 2, 3]</code>
 </pre>
 <p>Or demonstrating how to put a list inside the expression:
 </p>
-<pre class='prettyprint'>
- <code>A[1, 2, 3, Sequence @@ {1, 2, 3}]
-(*Out:*)
-A[1, 2, 3, 1, 2, 3]</code>
+<pre class='mma-input prettyprint'>
+ <code>A[1, 2, 3, Sequence @@ {1, 2, 3}]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>A[1, 2, 3, 1, 2, 3]</code>
 </pre>
 <p><code>Sequence</code>  generally represents a sequence of arguments which will be used without a <code>Head</code> . It is used most often in pattern matching and function definitions, but has many uses.</p>
     </div>

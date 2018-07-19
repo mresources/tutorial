@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -825,7 +837,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>We&#8217;ll do this for an object called <code>SphereObject</code></p>
 <p>First, we need a nice way to make a new one of these:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SphereObject[attrs:(_Rule|_RuleDelayed...)]:=
  SphereObject[
   Merge[{&lt;|&quot;Radius&quot;<span class='special-character Rule'>&#62754;</span>1,&quot;Color&quot;<span class='special-character Rule'>&#62754;</span>White,&quot;Position&quot;<span class='special-character Rule'>&#62754;</span>{0,0,0}|&gt;,&lt;|attrs|&gt;},First]
@@ -833,7 +845,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>Then we&#8217;ll need a way to set and get attributes. We&#8217;ll do this via <code>SubValues</code> . To be extra fancy, we&#8217;ll also write it so that if our returned argument is a <code>Function</code> , that gets called with the object and passed arguments:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SphereObject[attrs_Association][k_,args___]:=
 With[{r=attrs[k]},
  If[MatchQ[r,_Function],
@@ -844,7 +856,7 @@ With[{r=attrs[k]},
 </pre>
 <p>Then do something for setting / removing attributes with <code>UpValues</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SphereObject/:HoldPattern[
  Set[SphereObject[attrs_Association][k_],v_]
  ]:=SphereObject[Append[attrs,k-&gt;v]];
@@ -857,7 +869,7 @@ SphereObject/:HoldPattern[
 </pre>
 <p>Last, assign some <code>Format</code>  form to the object:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Format[SphereObject[attrs_]]:=
 With[{
   r=Replace[attrs[&quot;Radius&quot;],_Missing<span class='special-character Rule'>&#62754;</span>1],
@@ -876,32 +888,22 @@ With[{
   SphereObject[attrs]
   ]
  ];
-SphereObject[]
-(*Out:*)</code>
+
+SphereObject[]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-8797637419045844720.png' alt='23-8797637419045844720' />
-<pre class='prettyprint'>
- <code>SphereObject[&quot;Color&quot;<span class='special-character Rule'>&#62754;</span>Red]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>SphereObject[&quot;Color&quot;<span class='special-character Rule'>&#62754;</span>Red]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-6577318282343855371.png' alt='23-6577318282343855371' />
 <p>Note that we can pull values from these objects:</p>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-1468420283344945119.png' alt='23-1468420283344945119' />
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-5814771385969442190.png' alt='23-5814771385969442190' />
 <p>And we can set them:</p>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-463471582337378389.png' alt='23-463471582337378389' />
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-7762893621120136491.png' alt='23-7762893621120136491' />
 <p>And unset them</p>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-4943031955755802123.png' alt='23-4943031955755802123' />
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-3747043155035056144.png' alt='23-3747043155035056144' />
 <p>Each of these is really just an <code>Association</code>  at heart, though. There is no state. These aren&#8217;t real objects.
 </p>
@@ -910,13 +912,13 @@ SphereObject[]
 <p>This time we&#8217;ll make a <code>StringObject</code></p>
 <p>We&#8217;ll start with a manager. Just an association that will track things by ever-increasing ID.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>$StringObjectCounter=1;
 $StringObjectManager=&lt;||&gt;;</code>
 </pre>
 <p>Then a constructor, once more, but this time the constructor adds an entry to the manager table:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>StringObject[s:_String:&quot;&quot;,styleSpecs:((_Rule|_RuleDelayed)...)]:=(
  $StringObjectManager[$StringObjectCounter]=
  &lt;|&quot;String&quot;<span class='special-character Rule'>&#62754;</span>s,styleSpecs|&gt;;
@@ -925,7 +927,7 @@ $StringObjectManager=&lt;||&gt;;</code>
 </pre>
 <p>We&#8217;ll use the same attribute get / set structure as before, except this time routed through an ID:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>StringObject[ID_][k_,args___]:=
 With[{attrs=$StringObjectManager[ID]},
  If[!MatchQ[attrs,_Missing],
@@ -938,6 +940,7 @@ With[{attrs=$StringObjectManager[ID]},
   Missing[&quot;NoObject&quot;,StringObject[ID]]
   ]
  ];
+
 StringObject/:HoldPattern[
  Set[StringObject[ID_][k_],v_]
  ]:=
@@ -968,7 +971,7 @@ With[{attrs=$StringObjectManager[ID]},
 </pre>
 <p>And build a similar format although this time we&#8217;ll want a special format if the object doesn&#8217;t exist:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Format[StringObject[ID_]]:=
 With[{attrs=$StringObjectManager[ID]},
  If[!MatchQ[attrs,_Missing],
@@ -996,41 +999,46 @@ With[{attrs=$StringObjectManager[ID]},
 </pre>
 <p>Then test this:
 </p>
-<pre class='prettyprint'>
- <code>S=StringObject[&quot;obj&quot;]
-(*Out:*)
-StringObject[8]</code>
+<pre class='mma-input prettyprint'>
+ <code>S=StringObject[&quot;obj&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>StringObject[8]</code>
 </pre>
 <p>But now it&#8217;s got state:
 </p>
-<pre class='prettyprint'>
- <code>With[{S=S},S[FontColor]=Red]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>With[{S=S},S[FontColor]=Red]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-5814771385969442190.png' alt='23-5814771385969442190' />
-<pre class='prettyprint'>
- <code>S
-(*Out:*)
-StringObject[8]
-With[{S=S},S[&quot;String&quot;]=&quot;obj_changed&quot;]
-(*Out:*)
-&quot;obj_changed&quot;
-S
-(*Out:*)
-StringObject[8]</code>
+<pre class='mma-input prettyprint'>
+ <code>S</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>StringObject[8]
+
+With[{S=S},S[&quot;String&quot;]=&quot;obj_changed&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;obj_changed&quot;
+
+S</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>StringObject[8]</code>
 </pre>
 <p>All of these are the same object, though:
 </p>
-<pre class='prettyprint'>
- <code>InputForm /@ {StringObject[8], StringObject[8], StringObject[8]}
-(*Out:*)
-{StringObject[8],StringObject[8],StringObject[8]}</code>
+<pre class='mma-input prettyprint'>
+ <code>InputForm /@ {StringObject[8], StringObject[8], StringObject[8]}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{StringObject[8],StringObject[8],StringObject[8]}</code>
 </pre>
 <p>This is now an object with attributes and state, which means that within a session it is more powerful, but we can&#8217;t figure out what it looks like (attribute wise) from the symbolic form alone. Here is where our manager comes into play:
 </p>
-<pre class='prettyprint'>
- <code>$StringObjectManager
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>$StringObjectManager</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-7466255935374283148.png' alt='23-7466255935374283148' />
 <p>This is all the string data for all of the objects we made this session. By caching this, we can retrieve the state of our system trivially. 
@@ -1041,7 +1049,7 @@ StringObject[8]</code>
 <p>This time we&#8217;ll outline a timer object.</p>
 <p>Instead of using ID, we&#8217;ll assign an association to a symbol. This means we need to hold our symbol, though, to prevent it from evaluating. We will also want to keep track of which symbols we have used. We&#8217;ll do this via an association because lookup in associations is much faster than in lists:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>$TimerObjectCache=&lt;||&gt;;
 TimerObject[]:=
 With[{obj=Unique@&quot;timer&quot;},
@@ -1061,6 +1069,7 @@ _-&gt;None
 TimerObject[obj]
 ];
 TimerObject~SetAttributes~HoldFirst;
+
 TimerObject[sym_][attr_,args___]:=
 With[{r=sym[attr]},
  If[MatchQ[r,_Function],
@@ -1074,6 +1083,7 @@ TimerObject/:
 HoldPattern[SetDelayed[TimerObject[sym_][attr_],v_]]:=(sym[attr]:=v);
 TimerObject/:
 HoldPattern[Unset[TimerObject[sym_],attr_]]:=(sym[attr]=.);
+
 Format[TimerObject[sym_]]:=
 With[{
   start=sym[&quot;CheckPoint&quot;],
@@ -1092,41 +1102,44 @@ With[{
   TimerObject[sym]
   ]
  ];
+
 t=TimerObject[]
 Pause[1];
-t
-(*Out:*)
-TimerObject[timer17]
-(*Out:*)
-TimerObject[timer17]</code>
+t</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>TimerObject[timer17]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>TimerObject[timer17]</code>
 </pre>
 <p>Note that these are obviously the same object</p>
 <p>And we can access state:
 </p>
-<pre class='prettyprint'>
- <code>With[{t=t},t[&quot;Toggle&quot;]]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>With[{t=t},t[&quot;Toggle&quot;]]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-9106721915401155694.png' alt='23-9106721915401155694' />
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>t
 Pause[1];
-t
-(*Out:*)
-TimerObject[timer17]
-(*Out:*)
-TimerObject[timer17]
-t[&quot;EndPoint&quot;]
-(*Out:*)</code>
+t</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>TimerObject[timer17]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>TimerObject[timer17]
+
+t[&quot;EndPoint&quot;]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-9106721915401155694.png' alt='23-9106721915401155694' />
 <p>This is a more powerful method that using a manager and it&#8217;s harder to accidentally delete one&#8217;s data. Unfortunately, saving state is somewhat harder, though. This is why we tracked our objects built.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>With[{objs=$TimerObjectCache//Keys},
  #<span class='special-character Rule'>&#62754;</span>ReleaseHold@#&amp;/@(HoldForm@@@objs)
- ]
-(*Out:*)</code>
+ ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/23-539493156854353424.png' alt='23-539493156854353424' />
 <p>We now have to save all of these definitions but it is doable.

@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -816,7 +828,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h2> Hold&#8902; and Evaluation Order</h2>
 <p>We&#8217;ve touched on evaluation order briefly when we introduced <code>UpValues</code>  but there are a series of other things to consider. For example say you want to define a function that makes a string of print commands to display. Naively we might try the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Column@(ToString /@ {Print[1], Print[2], Print[3]})</code>
 </pre>
 <div class='mma-print'>
@@ -828,23 +840,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <div class='mma-print'>
     3
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-4454967654715330391.png' alt='21-4454967654715330391' />
 <p>But <code>Print</code>  evaluates before <code>ToString</code>  so we&#8217;ll need to format a different way. We can try it with <code>Hold</code></p>
-<pre class='prettyprint'>
- <code>Column@(ToString /@ Hold[Print[1], Print[2], Print[3]])
-(*Out:*)
-Column[Hold[ToString[Print[1]], ToString[Print[2]], 
+<pre class='mma-input prettyprint'>
+ <code>Column@(ToString /@ Hold[Print[1], Print[2], Print[3]])</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Column[Hold[ToString[Print[1]], ToString[Print[2]], 
   ToString[Print[3]]]]</code>
 </pre>
 <p><code>Hold</code>  prevents the evaluation of the command it&#8217;s wrapped around. Unfortunately that applies to <code>ToString</code>  too.</p>
 <p>Our solution is instead to use <code>Unevaluated</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Column@(ToString /@ {Unevaluated@Print[1], Unevaluated@Print[2], 
-    Unevaluated@Print[3]})
-(*Out:*)</code>
+    Unevaluated@Print[3]})</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-5351566995130891547.png' alt='21-5351566995130891547' />
 <p><code>Unevaluated</code>  has no meaning on it&#8217;s own, but when wrapped around an expression essentially says to use that expression it is <code>Unevaluated</code>  form. </p>
@@ -854,9 +863,8 @@ Column[Hold[ToString[Print[1]], ToString[Print[2]],
 Hold[Evaluate@&#8747;<sub>0</sub><sup><span class='special-character Pi'>&#960;</span></sup>Sin[<span class='special-character Theta'>&#952;</span>]<span class='special-character DifferentialD'>&#8518;</span><span class='special-character Theta'>&#952;</span>]
 </code>
 </pre>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Hold[2]</code>
+<pre class='mma-output prettyprint'>
+ <code>Hold[2]</code>
 </pre>
 <p>Note that <code>Evaluate</code>  only works when on the first level of the expression though:</p>
 <pre>
@@ -877,9 +885,6 @@ Column@Thread@Hold[{
     &#8747;<sub>1</sub><sup><span class='special-character Pi'>&#960;</span></sup>Sin[<span class='special-character Theta'>&#952;</span>]<span class='special-character DifferentialD'>&#8518;</span><span class='special-character Theta'>&#952;</span>,
     &#8747;<sub>0</sub><sup><span class='special-character Pi'>&#960;</span></sup>Sin[<span class='special-character Theta'>&#952;</span>]<span class='special-character DifferentialD'>&#8518;</span><span class='special-character Theta'>&#952;</span>}]
 </code>
-</pre>
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-4320265213233087576.png' alt='21-4320265213233087576' />
 <p>It&#8217;s also used with the <code>Replace</code>  function family to manipulate expressions without evaluation:</p>
@@ -906,9 +911,8 @@ Hold[a[1], b[], c[1]] /. {
   c -&gt; CreateDocument}
 </code>
 </pre>
-<pre class='prettyprint'>
- <code>(*Out:*)
-Hold[Print[1], 1 + Cos[2], CreateDocument[1]]</code>
+<pre class='mma-output prettyprint'>
+ <code>Hold[Print[1], 1 + Cos[2], CreateDocument[1]]</code>
 </pre>
 <p>Why this works will be explained later, for now just keep in mind as a useful trick</p>
     </div>

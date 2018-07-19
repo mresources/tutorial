@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -820,111 +832,125 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> @ (Prefix)</h3>
 <p>The <code>@</code>  alias is like a pair of square brackets. The following illustrates its usage:
 </p>
-<pre class='prettyprint'>
- <code>N@<span class='special-character Pi'>&#960;</span>
-(*Out:*)
-3.141592653589793`</code>
+<pre class='mma-input prettyprint'>
+ <code>N@<span class='special-character Pi'>&#960;</span></code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>3.141592653589793`</code>
 </pre>
 <p>It only applies to a single argument however. For example, Mathematica will not evaluate the following command
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>N@<span class='special-character Pi'>&#960;</span>,12</code>
 </pre>
 <h3> /@ (Map)</h3>
 <p><code>/@</code>  takes a function and applies to every element in a list, returning the list of results. Example:
 </p>
-<pre class='prettyprint'>
- <code>Sin/@(<span class='special-character Pi'>&#960;</span>*{0,1/4,1/2,3/4,1,1+1/4,1+1/2,1+3/4,2})
-(*Out:*)
-{0,,1,,0,-,-1,-,0}</code>
+<pre class='mma-input prettyprint'>
+ <code>Sin/@(<span class='special-character Pi'>&#960;</span>*{0,1/4,1/2,3/4,1,1+1/4,1+1/2,1+3/4,2})</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{0,,1,,0,-,-1,-,0}</code>
 </pre>
 <p>When using this alias care should be taken that the right-hand side is wrapped in parentheses, as was done above, if it&apos;s more than just a simple list.
 </p>
 <h3> @@ (Apply)</h3>
 <p><code>@@</code>  applies a function to all the arguments in a list. That is, the elements of the list become the arguments to the function. Example:
 </p>
-<pre class='prettyprint'>
- <code>N@@{<span class='special-character Pi'>&#960;</span>,12}
-(*Out:*)
-3.14159265358979323846264338327950419984`12.</code>
+<pre class='mma-input prettyprint'>
+ <code>N@@{<span class='special-character Pi'>&#960;</span>,12}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>3.14159265358979323846264338327950419984`12.</code>
 </pre>
 <h3> // (Postfix)</h3>
 <p><code>//</code>  is more or less a reversed form of <code>@</code> . Example:
 </p>
-<pre class='prettyprint'>
- <code><span class='special-character Pi'>&#960;</span>//N
-(*Out:*)
-3.141592653589793`</code>
+<pre class='mma-input prettyprint'>
+ <code><span class='special-character Pi'>&#960;</span>//N</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>3.141592653589793`</code>
 </pre>
 <p>But there is a small difference in terms of how the two work with other operators.</p>
 <p>Consider you&apos;re trying to apply the function <code>f</code>  to the list of results generated by using <code>g/@{1,2,3,4}</code> 
 One might first try the following:
 </p>
-<pre class='prettyprint'>
- <code>f@g/@{1,2,3,4}
-(*Out:*)
-{f[g][1],f[g][2],f[g][3],f[g][4]}</code>
+<pre class='mma-input prettyprint'>
+ <code>f@g/@{1,2,3,4}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{f[g][1],f[g][2],f[g][3],f[g][4]}</code>
 </pre>
 <p>This clearly doesn&apos;t work. <code>f</code>  is applied to <code>g</code>  before being mapped across <code>{1,2,3,4}</code> .</p>
 <p>In this case there are two options:
 </p>
-<pre class='prettyprint'>
- <code>f@(g/@{1,2,3,4})
-(*Out:*)
-f[{g[1],g[2],g[3],g[4]}]</code>
+<pre class='mma-input prettyprint'>
+ <code>f@(g/@{1,2,3,4})</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>f[{g[1],g[2],g[3],g[4]}]</code>
 </pre>
 <p>or
 </p>
-<pre class='prettyprint'>
- <code>g/@{1,2,3,4}//f
-(*Out:*)
-f[{g[1],g[2],g[3],g[4]}]</code>
+<pre class='mma-input prettyprint'>
+ <code>g/@{1,2,3,4}//f</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>f[{g[1],g[2],g[3],g[4]}]</code>
 </pre>
 <p>because <code>/@</code>  evaluates before <code>//</code> , this works. What is said is that <code>//</code>  has a  <em>low precedence</em> .</p>
-<p>Precedences for any operator can be checked using the function <code>Precedence</code> , if the function name is known. Function names for a given operator can be found by selecting the operator and using <kbd>CMD</kbd>&#8211;<kbd>SHIFT</kbd>&#8211;F on Mac or F1 on Windows.</p>
+<p>Precedences for any operator can be checked using the function <code>Precedence</code> , if the function name is known. Function names for a given operator can be found by selecting the operator and using <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>CMD</kbd></span>&#8211;<span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>SHIFT</kbd></span>&#8211;F on Mac or F1 on Windows.</p>
 <p>For example, knowing that <code>//</code>  is an alias for the function <code>Postfix</code></p>
-<pre class='prettyprint'>
- <code>Precedence@Postfix
-(*Out:*)
-70.`</code>
+<pre class='mma-input prettyprint'>
+ <code>Precedence@Postfix</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>70.`</code>
 </pre>
 <p>And we&apos;ll compare that to the function <code>Prefix</code>  for which <code>@</code>  is an alias
 </p>
-<pre class='prettyprint'>
- <code>Prefix//Precedence
-(*Out:*)
-640.`</code>
+<pre class='mma-input prettyprint'>
+ <code>Prefix//Precedence</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>640.`</code>
 </pre>
 <h3> ~ (Infix)</h3>
 <p><code>~</code>  takes a function and applies it to the preceding and following arguments as follows:
 </p>
-<pre class='prettyprint'>
- <code><span class='special-character Pi'>&#960;</span>~N~12
-(*Out:*)
-3.14159265358979323846264338327950419984`12.</code>
+<pre class='mma-input prettyprint'>
+ <code><span class='special-character Pi'>&#960;</span>~N~12</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>3.14159265358979323846264338327950419984`12.</code>
 </pre>
 <p>This is useful and worth knowing, but it can often be cleaner simply to use <code>@@</code> , potentially in combination with <code>//</code></p>
 <h3><code>@*</code>  (Composition)</h3>
 <p><code>@*</code>  takes a two functions and composes them. For example:
 </p>
-<pre class='prettyprint'>
- <code>(f@*g)[1]
-(*Out:*)
-f[g[1]]</code>
+<pre class='mma-input prettyprint'>
+ <code>(f@*g)[1]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>f[g[1]]</code>
 </pre>
 <p>This is particularly useful when negating a function, that is, applying the <code>Not</code>  function to it. We can make a simple <code>NotTrueQ</code>  function by doing this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>NotTrueQ=(Not@*TrueQ);
 NotTrueQ@1
 NotTrueQ@False
-NotTrueQ@True
-(*Out:*)
-True
-(*Out:*)
-True
-(*Out:*)
-False</code>
+NotTrueQ@True</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
 </pre>
 <a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> See Also:</h2>

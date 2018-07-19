@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -827,136 +839,169 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Numbers</h3>
 <p>A number is simply any number you&apos;d like, for example:
 </p>
-<pre class='prettyprint'>
- <code>1
-(*Out:*)
-1</code>
+<pre class='mma-input prettyprint'>
+ <code>1</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1</code>
 </pre>
 <p>It can be real:
 </p>
-<pre class='prettyprint'>
- <code>2.1232
-(*Out:*)
-2.1232`</code>
+<pre class='mma-input prettyprint'>
+ <code>2.1232</code>
 </pre>
-<pre class='prettyprint'>
- <code>-1.33
-(*Out:*)
--1.33`</code>
+<pre class='mma-output prettyprint'>
+ <code>2.1232`</code>
 </pre>
-<p>Irrational (You can access special characters by pressing <kbd>ESC</kbd> typing a shortcut and pressing <kbd>ESC</kbd> again)
+<pre class='mma-input prettyprint'>
+ <code>-1.33</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>-1.33`</code>
+</pre>
+<p>Irrational (You can access special characters by pressing <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>ESC</kbd></span> typing a shortcut and pressing <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>ESC</kbd></span> again)
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code><span class='special-character Pi'>&#960;</span>
 E
-I
-(*Out:*)
-<span class='special-character Pi'>&#960;</span>
-(*Out:*)
-E
-(*Out:*)
 I</code>
 </pre>
+<pre class='mma-output prettyprint'>
+ <code>
+  <span class='special-character Pi'>&#960;</span>
+ </code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>E</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>I</code>
+</pre>
 <p>Just as mathematicians distinguish between integers, real numbers, and complex numbers, so does Mathematica.</p>
-<p>In general it is good practice to assume that if you can find a mathematical term on Wikipedia, you can find it on Mathematica, although its name may be a bit tough to discover.
+<p>In general it is good practice to assume that if you can find a mathematical term on Wikipedia, you can find it in Mathematica, although its name may be a bit tough to discover.
 </p>
 <h3> Words</h3>
 <p>A word is a string of letters or other characters enclosed in double quotes. Because it&apos;s a string of characters this type is called <a href='https://reference.wolfram.com/language/ref/String.html'><code>String</code></a> .</p>
 <p>For instance, we can have a single character:
 </p>
-<pre class='prettyprint'>
- <code>&quot;a&quot;
-(*Out:*)
-&quot;a&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;a&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;a&quot;</code>
 </pre>
 <p>Or a sequence of them:
 </p>
-<pre class='prettyprint'>
- <code>&quot;abcdefg&quot;
-(*Out:*)
-&quot;abcdefg&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;abcdefg&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;abcdefg&quot;</code>
 </pre>
 <p>We can include punctuation:
 </p>
-<pre class='prettyprint'>
- <code>&quot;Hi Mom!&quot;
-(*Out:*)
-&quot;Hi Mom!&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;Hi Mom!&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;Hi Mom!&quot;</code>
 </pre>
 <p>And non-standard characters:
 </p>
-<pre class='prettyprint'>
- <code>&quot;<span class='special-character Tau'>&#964;</span> is my favorite irrational number&quot;
-(*Out:*)
-&quot;<span class='special-character Tau'>&#964;</span> is my favorite irrational number&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;<span class='special-character Tau'>&#964;</span> is my favorite irrational number&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;<span class='special-character Tau'>&#964;</span> is my favorite irrational number&quot;</code>
 </pre>
 <p>Mathematica has a built-in set of characters:
 </p>
-<pre class='prettyprint'>
- <code>&quot;<span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span>&quot;
-(*Out:*)
-&quot;<span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span>&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;<span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span>&quot;</code>
 </pre>
-<p>Finally, a <code>String</code>  can be of any length:
+<pre class='mma-output prettyprint'>
+ <code>&quot;<span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span><span class='special-character Wolf'>&#63264;</span>&quot;</code>
+</pre>
+<p>Finally, a <code>String</code> can be of any length:
 </p>
-<pre class='prettyprint'>
- <code>&quot;When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume, among the Powers of the earth, the separate and equal station to which the Laws of Nature and of Nature&apos;s God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.
- - Winston Churchill (1984)&quot;
-(*Out:*)
-&quot;When in the Course of human events, it becomes necessary for one people to dissolve the political bands which have connected them with another, and to assume, among the Powers of the earth, the separate and equal station to which the Laws of Nature and of Nature&apos;s God entitle them, a decent respect to the opinions of mankind requires that they should declare the causes which impel them to the separation.\n\n - Winston Churchill (1984)&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;When in the Course of human events, it becomes necessary for one people to dissolve the 
+political bands which have connected them with another, and to assume, among the Powers of the 
+earth, the separate and equal station to which the Laws of Nature and of Nature&apos;s God entitle 
+them, a decent respect to the opinions of mankind requires that they should declare the causes 
+which impel them to the separation.
+
+ - Winston Churchill (1984)&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;When in the Course of human events, it becomes necessary for one people to dissolve the \npolitical bands which have connected them with another, and to assume, among the Powers of the \nearth, the separate and equal station to which the Laws of Nature and of Nature&apos;s God entitle \nthem, a decent respect to the opinions of mankind requires that they should declare the causes \nwhich impel them to the separation.\n\n - Winston Churchill (1984)&quot;</code>
 </pre>
 <h3> Lists</h3>
-<p>A <a href='https://reference.wolfram.com/language/ref/List.html'><code>List</code></a>  is an ordered collection of any type of thing enclosed in curly brackets, for example:
+<p>A <a href='https://reference.wolfram.com/language/ref/List.html'><code>List</code></a> is an ordered collection of any type of thing enclosed in curly brackets, for example:
 </p>
-<pre class='prettyprint'>
- <code>{1,2,3}
-(*Out:*)
-{1,2,3}</code>
+<pre class='mma-input prettyprint'>
+ <code>{1, 2, 3}</code>
 </pre>
-<p>A <code>List</code>  of <code>String</code> :
+<pre class='mma-output prettyprint'>
+ <code>{1,2,3}</code>
+</pre>
+<p>A <code>List</code> of <code>String</code> :
 </p>
-<pre class='prettyprint'>
- <code>{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}
-(*Out:*)
-{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}</code>
+<pre class='mma-input prettyprint'>
+ <code>{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}</code>
 </pre>
 <p>A mixed-type list:
 </p>
-<pre class='prettyprint'>
- <code>{1,2,{1,2,3},{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;},10,11,12}
-(*Out:*)
-{1,2,{1,2,3},{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;},10,11,12}</code>
+<pre class='mma-input prettyprint'>
+ <code>{1, 2, {1, 2, 3}, {&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}, 10, 11, 12 }</code>
 </pre>
-<p>We get values from lists using the <a href='https://reference.wolfram.com/language/ref/Part.html'><code>Part</code></a>  function, which can be typed as <code>[[   ]]</code> , for example:
+<pre class='mma-output prettyprint'>
+ <code>{1,2,{1,2,3},{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;},10,11,12}</code>
+</pre>
+<p>We get values from lists using the <a href='https://reference.wolfram.com/language/ref/Part.html'><code>Part</code></a> function, which can be typed as <code>[[   ]]</code> , for example:
 </p>
-<pre class='prettyprint'>
- <code>{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}[[1]]
-(*Out:*)
-&quot;a&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}[[1]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;a&quot;</code>
 </pre>
 <p>We can also count from the end using negative indices
 </p>
-<pre class='prettyprint'>
- <code>{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;}[[-1]]
-(*Out:*)
-&quot;c&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>{&quot;a&quot;, &quot;b&quot;, &quot;c&quot;}[[-1]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;c&quot;</code>
 </pre>
 <h3> Key-Value Sets</h3>
-<p>A key value set is a collection of <code>key-&gt;value</code>  pairs enclosed in <code>&lt;|   |&gt;</code></p>
+<p>A key value set is a collection of <code>key-&gt;value</code> pairs enclosed in <code>&lt;|   |&gt;</code></p>
 <p>These are useful for associating things by key rather than having to find them by positions, because it&apos;s associating keys and values this type is called <a href='https://reference.wolfram.com/language/ref/Association.html'><code>Association</code></a> , for example
 </p>
-<pre class='prettyprint'>
- <code>&lt;|1-&gt;&quot;a&quot;,2-&gt;&quot;b&quot;,3-&gt;&quot;c&quot;|&gt;
-(*Out:*)
-&lt;|1-&gt;&quot;a&quot;,2-&gt;&quot;b&quot;,3-&gt;&quot;c&quot;|&gt;</code>
+<pre class='mma-input prettyprint'>
+ <code>&lt;|1-&gt;&quot;a&quot;, 2-&gt;&quot;b&quot;, 3-&gt;&quot;c&quot;|&gt;</code>
 </pre>
-<p>We get values using the <a href='https://reference.wolfram.com/language/ref/Lookup.html'><code>Lookup</code></a>  function, which can be typed using <code>[   ]</code> , for example
+<pre class='mma-output prettyprint'>
+ <code>&lt;|1-&gt;&quot;a&quot;,2-&gt;&quot;b&quot;,3-&gt;&quot;c&quot;|&gt;</code>
+</pre>
+<p>We get values using the <a href='https://reference.wolfram.com/language/ref/Lookup.html'><code>Lookup</code></a> function, which can be typed using <code>[   ]</code> , for example
 </p>
-<pre class='prettyprint'>
- <code>&lt;|1-&gt;&quot;a&quot;,2-&gt;&quot;b&quot;,3-&gt;&quot;c&quot;|&gt;[1]
-(*Out:*)
-&quot;a&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&lt;|1-&gt;&quot;a&quot;, 2-&gt;&quot;b&quot;, 3-&gt;&quot;c&quot;|&gt;[1]</code>
 </pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;a&quot;</code>
+</pre>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://reference.wolfram.com/language/tutorial/GettingStartedOverview.html'>Getting Started</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -818,122 +830,125 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>However, sometimes the task at hand is not so simple and so we&apos;ll need to progress to more complex structures.
 </p>
 <h3> Table and Do</h3>
-<p>Both <code>Table</code>  and <code>Do</code>  list over a range or a set of inputs and apply a function, example:
-</p>
-<pre class='prettyprint'>
- <code>Table[i*i, {i, 10}]
-(*Out:*)
-{1, 4, 9, 16, 25, 36, 49, 64, 81, 100}
-Table[i*i, {i, {a, b, c, d, e}}]
-(*Out:*)
-{a^2, b^2, c^2, d^2, e^2}</code>
+<p>Both <code>Table</code> and <code>Do</code> list over a range or a set of inputs and apply a function.</p>
+<p>For example we can iterate over the numbers going from <code>1</code> to <code>10</code></p>
+<pre class='mma-input prettyprint'>
+ <code>Table[i*i, {i,10}]</code>
 </pre>
-<p>The difference is that <code>Table</code>  returns a <code>List</code>  while <code>Do</code>  returns either <code>Null</code>  or anything returned from <code>Return</code></p>
-<p>Usually this means one wants to use <code>Table</code> , however this behavior gives <code>Do</code>  two distinct advantages. The first is that <code>Table</code>  must return something at every step, while <code>Do</code>  used in conjunction with <code>Reap</code>  and <code>Sow</code>  need not. For example let&apos;s get the prime numbers between 1 and 1000:
+<pre class='mma-output prettyprint'>
+ <code>{1,4,9,16,25,36,49,64,81,100}</code>
+</pre>
+<p>Or over an arbitrary list of inputs
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
+ <code>Table[i*i, {i, {a, b, c, d, e}}]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{a^2,b^2,c^2,d^2,e^2}</code>
+</pre>
+<p>The difference is that <code>Table</code> returns a <code>List</code> while <code>Do</code> returns either <code>Null</code> or anything returned from <code>Return</code></p>
+<p>Usually this means one wants to use <code>Table</code> , however this behavior gives <code>Do</code> two distinct advantages. The first is that <code>Table</code> must return something at every step, while <code>Do</code> used in conjunction with <code>Reap</code> and <code>Sow</code> need not. For example let&apos;s get the prime numbers between <code>1</code> and <code>1000</code> :
+</p>
+<pre class='mma-input prettyprint'>
  <code>Reap[
-  Do[If[PrimeQ[i], Sow[i]], {i, 1000}]
-  ][[2, 1]]
-(*Out:*)
-{2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
-67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
-139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211,
-223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283,
-293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379,
-383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461,
-463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563,
-569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643,
-647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739,
-743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829,
-839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937,
-941, 947, 953, 967, 971, 977, 983, 991, 997}</code>
+  Do[If[PrimeQ[i],Sow[i]],{i,1000}]
+  ][[2,1]]</code>
 </pre>
-<p><code>Table</code>  would return <code>Null</code> every time there wasn&#8217;t a prime meaning we&#8217;d have vastly too many outputs.</p>
-<p>Secondly and most critically, <code>Do</code>  can go over an infinite range, when used with <code>Break</code>  or <code>Return</code>  which acts like a <code>While[True, body]</code>  loop, but cleaner. In general, <code>Do</code>  can be used in this way whenever <code>While</code>  would have been used. For example:
+<pre class='mma-output prettyprint'>
+ <code>{2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97,101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997}</code>
+</pre>
+<p><code>Table</code> would return <code>Null</code> every time there wasn&apos;t a prime meaning we&apos;d have vastly too many outputs.</p>
+<p>Secondly and most critically, <code>Do</code> can go over an infinite range, when used with <code>Break</code> or <code>Return</code> which acts like a  ``````While[True, body<code> </code> loop, but cleaner. In general, <code>Do</code> can be used in this way whenever <code>While</code> would have been used. For example:
 </p>
-<pre class='prettyprint'>
- <code>Do[If[RandomReal[] &lt; .00001, Return[i]], {i, &#8734;}]
-(*Out:*)
-210319</code>
+<pre class='mma-input prettyprint'>
+ <code>Do[If[RandomReal[]&lt;.00001, Return[i]], {i,&#8734;}]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>210319</code>
 </pre>
 <p>This simulates the following loop:
 </p>
-<pre class='prettyprint'>
- <code>i = 1;
-While[RandomReal[] &gt; .00001,
-  i += 1
+<pre class='mma-input prettyprint'>
+ <code>i=1;
+While[RandomReal[]&gt;.00001,
+  i+=1
   ];
-i
-(*Out:*)
-184158</code>
+i</code>
 </pre>
-<p>But <code>Do</code>  is a cleaner construct, owing to its automatic scoping of the <code>i</code>  and implicit incrementor
+<pre class='mma-output prettyprint'>
+ <code>184158</code>
+</pre>
+<p>But <code>Do</code> is a cleaner construct, owing to its automatic scoping of the <code>i</code> and implicit incrementor
 </p>
 <h3> Module, With, and Block</h3>
-<p><code>Module</code> , <code>With</code> , and <code>Block</code>  are called scoping constructs. That is, they let you use a variable or multiple variables without having to change or set them globally, or. This is easiest to show in an example:</p>
+<p><code>Module</code> , <code>With</code> , and <code>Block</code> are called scoping constructs. That is, they let you use a variable or multiple variables without having to change or set them globally, or. This is easiest to show in an example:</p>
 <p>Consider the following chunk of code:
 </p>
-<pre class='prettyprint'>
- <code>a = 2;
-squareA[] := (a = a*a);
-{squareA[], squareA[], squareA[]}
-(*Out:*)
-{4, 16, 256}</code>
+<pre class='mma-input prettyprint'>
+ <code>a=2;
+squareA[]:=(a=a*a);
+{squareA[],squareA[],squareA[]}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{4,16,256}</code>
 </pre>
 <p>Then check the current value of <code>a</code></p>
-<pre class='prettyprint'>
- <code>a
-(*Out:*)
-256</code>
+<pre class='mma-input prettyprint'>
+ <code>a</code>
 </pre>
-<p>Now try checking <code>a</code>  in a <code>Module</code>  where the variable <code>a</code>  has been scoped
+<pre class='mma-output prettyprint'>
+ <code>256</code>
+</pre>
+<p>Now try checking <code>a</code> in a <code>Module</code> where the variable <code>a</code> has been scoped
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Module[{a},
- a
- ]
-(*Out:*)
-a$736</code>
+  a
+  ]</code>
 </pre>
-<p>Notice that the value of <code>a</code>  is not its global value. This is because <code>Module</code>  creates its own scope to execute the code in.</p>
+<pre class='mma-output prettyprint'>
+ <code>a$736</code>
+</pre>
+<p>Notice that the value of <code>a</code> is not its global value. This is because <code>Module</code> creates its own scope to execute the code in.</p>
 <p>This is the basic use of a scoping construct, protecting code from being influenced by the global state.</p>
-<p>Each construct has its own peculiarities, but these will be discussed more later. For now, we&#8217;ll only discuss <code>Module</code>  as its usage is the clearest.
+<p>Each construct has its own peculiarities, but these will be discussed more later. For now, we&apos;ll only discuss <code>Module</code> as its usage is the clearest.
 </p>
 <h3> Module</h3>
-<p><code>Module</code>  has the following form:
+<p><code>Module</code> has the following form:
 </p>
-<pre class='prettyprint'>
- <code>Module[{var1, var2, ..., varn},
- codeBlock
- ]</code>
+<pre class='mma-input prettyprint'>
+ <code>Module[{var1,var2,...,varn},
+  codeBlock
+  ]</code>
 </pre>
-<p>where <code>var1, var2, ..., varn</code>  are either simple variable names or variable names with initial values.</p>
-<p>Past that, one can write code with <code>Module</code>  just as one would normally.</p>
+<p>where <code>var1,var2,...,varn</code> are either simple variable names or variable names with initial values.</p>
+<p>Past that, one can write code with <code>Module</code> just as one would normally.</p>
 <p>Consider the following:
 </p>
-<pre class='prettyprint'>
- <code>Module[{v1, v2 = 10, v3 = 50, v4},
- v3 = 10;
- v4 = v3*v2;
- {v1, v2, v3, v4}
- ]
-(*Out:*)
-{v1$739, 10, 10, 100}</code>
+<pre class='mma-input prettyprint'>
+ <code>Module[{v1,v2=10,v3=50,v4},
+  v3=10;
+  v4=v3*v2;
+  {v1,v2,v3,v4}
+  ]</code>
 </pre>
-<p>The code executes just as one would expect, the only difference being that <code>v1</code>  has been renamed. If one runs the following it becomes clear how <code>Module</code>  works:
+<pre class='mma-output prettyprint'>
+ <code>{v1$739,10,10,100}</code>
+</pre>
+<p>The code executes just as one would expect, the only difference being that <code>v1</code> has been renamed. If one runs the following it becomes clear how <code>Module</code> works:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Module[
-  {v1, v2 = 10, v3 = 50, v4},
-  v3 = 10;
+  {v1, v2=10, v3=50, v4},
+  v3=10;
   Clear@v4;
-  {v1, v2, v3, v4}
-  ]
-(*Out:*)
-{v1$740, 10, 10, v4$740}</code>
+  {v1,v2,v3,v4}
+  ]</code>
 </pre>
-<p>All module does is replace each variable in the first argument with the variable name followed by <code>$i</code>  where <code>i</code>  is an integer (given by the value of the global variable <code>$ModuleNumber</code>  when the <code>Module</code>  is executed).</p>
+<pre class='mma-output prettyprint'>
+ <code>{v1$740,10,10,v4$740}</code>
+</pre>
+<p>All module does is replace each variable in the first argument with the variable name followed by <code>$i</code> where <code>i</code> is an integer (given by the value of the global variable <code>$ModuleNumber</code> when the <code>Module</code> is executed).</p>
     </div>
   </article>
   <br>

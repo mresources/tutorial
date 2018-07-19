@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,17 +829,17 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Where <code>Nest</code>  applies a function in to the result of the previous function call in a nested fashion, <code>Fold</code>  and its related functions apply a function to the previous function call and simultaneously map over a list.</p>
 <p>As a very simple example we can turn an expression like this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>c[a1,a2,a3,...,an]</code>
 </pre>
 <p>into one like
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>c[a1][a2][a3][...][an]</code>
 </pre>
 <p>in one line of code. This process is closely related to the concept &#8220;currying&#8221; in standard functional programming so we can call this pseudocurrying (in fact this example comes directly from a question I asked on the Mathematica stack exchange):
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>curry=
 Function[expr,
  Replace[expr,h_[a__]:&gt;Fold[#1[#2]&amp;,{h,a}]],
@@ -835,20 +847,24 @@ Function[expr,
 </pre>
 <p>where we take advantage of Mathematica&#8217;s ability to set attributes on pure functions. We can use this to, for example, drill into nested associations, where we will also build our association using <code>Fold</code> :
 </p>
-<pre class='prettyprint'>
- <code>data=Association@Fold[#2<span class='special-character Rule'>&#62754;</span>Replace[#,_Rule-&gt;Association@#]&amp;,Range[1,10]]
-(*Out:*)
-<span class='special-character LeftAssociation'>&#61715;</span>10<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>9<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>8<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>7<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>6<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>5<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>4<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>3<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>2<span class='special-character Rule'>&#62754;</span>1<span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span>
-curry@data[10,9,8]
-(*Out:*)
-<span class='special-character LeftAssociation'>&#61715;</span>7<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>6<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>5<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>4<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>3<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>2<span class='special-character Rule'>&#62754;</span>1<span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span></code>
+<pre class='mma-input prettyprint'>
+ <code>data=Association@Fold[#2<span class='special-character Rule'>&#62754;</span>Replace[#,_Rule-&gt;Association@#]&amp;,Range[1,10]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code><span class='special-character LeftAssociation'>&#61715;</span>10<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>9<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>8<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>7<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>6<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>5<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>4<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>3<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>2<span class='special-character Rule'>&#62754;</span>1<span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span>
+
+curry@data[10,9,8]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code><span class='special-character LeftAssociation'>&#61715;</span>7<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>6<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>5<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>4<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>3<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>2<span class='special-character Rule'>&#62754;</span>1<span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span></code>
 </pre>
 <p>Note that Mathematica already implements this type currying for associations:
 </p>
-<pre class='prettyprint'>
- <code>data[10,9,8]
-(*Out:*)
-<span class='special-character LeftAssociation'>&#61715;</span>7<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>6<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>5<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>4<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>3<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>2<span class='special-character Rule'>&#62754;</span>1<span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span></code>
+<pre class='mma-input prettyprint'>
+ <code>data[10,9,8]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code><span class='special-character LeftAssociation'>&#61715;</span>7<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>6<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>5<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>4<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>3<span class='special-character Rule'>&#62754;</span><span class='special-character LeftAssociation'>&#61715;</span>2<span class='special-character Rule'>&#62754;</span>1<span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span><span class='special-character RightAssociation'>&#61716;</span></code>
 </pre>
 <p>But for other user-defined types this can be incredibly useful</p>
     </div>

@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,248 +829,282 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Functions as Patterns</h3>
 <p>The reason for that long discussion of patterns is the following: Mathematica functions (except pure functions) are just patterns. Consider the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>f[x_]:=x*10</code>
 </pre>
 <p>All I&#8217;ve done here is tell the system that whenever it sees the pattern <code>f[Blank[]]</code>  execute the right hand code, but with <code>x</code>  replaced with the value of that <code>Blank[]</code> .</p>
 <p>Seeing as that&#8217;s all we&#8217;re doing, though, we can also leverage the power of patterns to restrict our definition:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>g[i_Integer]:=RandomInteger[i];
 g[s_String]:=RandomChoice@Characters@s;
 g[{v_,___}]:=g[v];</code>
 </pre>
 <p>Now we have a function <code>g</code>  that can vary depending on its arguments.
 </p>
-<pre class='prettyprint'>
- <code>g/@{10,&quot;my word!&quot;,{g,c,d}}
-(*Out:*)
-{2,&quot;w&quot;,g[g]}</code>
+<pre class='mma-input prettyprint'>
+ <code>g/@{10,&quot;my word!&quot;,{g,c,d}}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{2,&quot;w&quot;,g[g]}</code>
 </pre>
 <p>One thing worth noting is that if a multi-element pattern is matched, the values are substituted as the arguments of the enclosing head, but if the values themselves are returned they are wrapped in <code>Sequence</code>  for consistency. For instance:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>g[s___]:={Hold[s], ListPlot[{s}]};
-g[1,2,3,2,1,2,3,4]
-(*Out:*)</code>
+
+g[1,2,3,2,1,2,3,4]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-6795375748047348788.png' alt='21-6795375748047348788' />
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>g2[s___]:=s;
-g2[1,2,3,2,1]
-(*Out:*)
-Sequence[1,2,3,2,1]</code>
+g2[1,2,3,2,1]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Sequence[1,2,3,2,1]</code>
 </pre>
 <h3> Named Patterns, Optional and Disappearing Arguments</h3>
 <p>A <code>Pattern</code>  can be declared without any underscores by following it with a colon. This is useful in function declarations when you want to get the value of a complicated pattern element, for instance:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>h[a:(_Integer|_String|<span class='special-character Pi'>&#960;</span>)]:=Head@a;
 h[_]:=2
-h/@{1,&quot;1&quot;,<span class='special-character Pi'>&#960;</span>,h,{&quot;H&quot;,&quot;i&quot;,&quot;M&quot;,&quot;o&quot;,&quot;m&quot;,&quot;!&quot;}}
-(*Out:*)
-{Integer,String,Symbol,2,2}</code>
+
+h/@{1,&quot;1&quot;,<span class='special-character Pi'>&#960;</span>,h,{&quot;H&quot;,&quot;i&quot;,&quot;M&quot;,&quot;o&quot;,&quot;m&quot;,&quot;!&quot;}}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{Integer,String,Symbol,2,2}</code>
 </pre>
 <p><code>Pattern</code>  has a cousin, however, called <code>Optional</code>  who also uses a colon, but who can only be called on top of an existing <code>Pattern</code> :
 </p>
-<pre class='prettyprint'>
- <code>a:_:Automatic//FullForm
-(*Out:*)
-Optional[Pattern[a,Blank[]],Automatic]</code>
+<pre class='mma-input prettyprint'>
+ <code>a:_:Automatic//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Optional[Pattern[a,Blank[]],Automatic]</code>
 </pre>
 <p><code>MatchQ</code>  works with <code>Optional</code>  by just matching the pattern beneath
 </p>
-<pre class='prettyprint'>
- <code>MatchQ[1,a:_Integer|_String:Automatic]
-(*Out:*)
-True</code>
+<pre class='mma-input prettyprint'>
+ <code>MatchQ[1,a:_Integer|_String:Automatic]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>What makes <code>Optional</code>  special is its behavior in functions. It has a special simplest form which you may have seen already in a function declaration:
 </p>
-<pre class='prettyprint'>
- <code>a_:Automatic//FullForm
-(*Out:*)
-Optional[Pattern[a,Blank[]],Automatic]</code>
+<pre class='mma-input prettyprint'>
+ <code>a_:Automatic//FullForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Optional[Pattern[a,Blank[]],Automatic]</code>
 </pre>
 <p>And now observe what this can do for us:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>optionsFunction[arg_:Automatic]:=arg;
-optionsFunction[1]
-(*Out:*)
-1
-optionsFunction[]
-(*Out:*)
-Automatic</code>
+
+optionsFunction[1]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1
+
+optionsFunction[]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Automatic</code>
 </pre>
 <p>Notice how we didn&#8217;t need to supply a value. How <code>Optional</code>  works is that if the <code>Pattern</code>  doesn&#8217;t match, the default value gets substituted instead. What makes this special is the following sort of thing:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>opF[intArg:_Integer:1,strArg:_String:&quot;Hi&quot;,listArg:_List:{1,2,3}]:=Grid@{
  {&quot;Int&quot;,&quot;Str&quot;,&quot;List&quot;},
  {intArg,strArg,listArg}
  };
-opF[]
-(*Out:*)</code>
+
+opF[]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-1722784371355657163.png' alt='21-1722784371355657163' />
-<pre class='prettyprint'>
- <code>opF[{1}]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>opF[{1}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-7706351181004478065.png' alt='21-7706351181004478065' />
-<pre class='prettyprint'>
- <code>opF[&quot;a&quot;,{1}]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>opF[&quot;a&quot;,{1}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-649432503142289867.png' alt='21-649432503142289867' />
-<pre class='prettyprint'>
- <code>opF[10, {1}]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>opF[10, {1}]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-7026757674080903183.png' alt='21-7026757674080903183' />
-<p>Notice how we didn&#8217;t even need to specify all of our arguments to change our list argument. This is because a <code>List</code>  wouldn&#8217;t match  ```<em>Intege<code>  or  </code></em>String```  so these took on their default values, but the list argument took the value supplied.</p>
+<p>Notice how we didn&#8217;t even need to specify all of our arguments to change our list argument. This is because a <code>List</code>  wouldn&#8217;t match <code>_Integer</code>  or <code>_String</code>  so these took on their default values, but the list argument took the value supplied.</p>
 <p>This sort of trick only works when the argument patterns are disjoint enough, but often they are. At base, it means that complicated functions can be declared more concisely. Moreover, it is a crucial thing to know when dealing with <code>OptionsPattern</code></p>
 <h3> Attributes</h3>
 <p>I&#8217;m mentioning <code>Attributes</code>  here only because I would be remiss not to. All <code>Symbol</code> s can have <code>Attributes</code>  in Mathematica and as functions are <code>Symbol</code> s, they can too. There is a list of permitted <code>Attributes</code>  and trying to set an undefined attribute will cause an error to be raised:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SetAttributes[a,hat];
 Attributes@a</code>
 </pre>
 <p>The point of <code>Attributes</code>  is generally to change the evaluation behavior of a symbol. The most useful <code>Attributes</code>  in my mind are <code>HoldFirst</code> , <code>HoldAll</code> , and <code>Listable</code>  all of which change how a definitions on a <code>Symbol</code>  are applied.</p>
 <p><code>HoldFirst</code>  and <code>HoldAll</code>  designate that some portion of their arguments (either the first or all of them) should not be evaluated before being substituted into the code of their function definition. For example:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>atF~SetAttributes~HoldFirst;
 atF[arg_]:=Hold[arg];
-atF[N[<span class='special-character Pi'>&#960;</span>]]
-(*Out:*)
-Hold[N[<span class='special-character Pi'>&#960;</span>]]</code>
+
+atF[N[<span class='special-character Pi'>&#960;</span>]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Hold[N[<span class='special-character Pi'>&#960;</span>]]</code>
 </pre>
 <p>If <code>atF</code>  did not have this, <code>N[<span class='special-character Pi'>&#960;</span>]</code>  would have evaluated first:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>ClearAttributes[atF,HoldFirst];
-atF[N[<span class='special-character Pi'>&#960;</span>]]
-(*Out:*)
-Hold[3.141592653589793`]</code>
+atF[N[<span class='special-character Pi'>&#960;</span>]]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>Hold[3.141592653589793`]</code>
 </pre>
 <p><code>HoldAll</code>  has the same behavior, just every argument is held. (There is also a <code>HoldRest</code>  attribute which should be self explanatory). There is however also an attribute <code>HoldAllComplete</code>  which behaves like <code>HoldAll</code>  except even <code>UpValues</code>  are not applied (this is probably a meaningless statement, but there is a section dealing with <code>UpValues</code>  soon)</p>
 <p><code>Listable</code>  changes evaluation behavior by specifying that the function should be applied to the elements of any <code>List</code>  in its arguments. This is made clear better by the documentation, but there is a useful case to know about, where this behavior is important.</p>
 <p><code>StringJoin</code>  joins strings, obviously, but it also has the attribute <code>Listable</code>  which means that rather that requiring
 </p>
-<pre class='prettyprint'>
- <code>StringJoin[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]
-(*Out:*)
-&quot;abcd&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>StringJoin[&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;abcd&quot;</code>
 </pre>
 <p>It can take:
 </p>
-<pre class='prettyprint'>
- <code>StringJoin@{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;}
-(*Out:*)
-&quot;abcd&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>StringJoin@{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;abcd&quot;</code>
 </pre>
 <p>But where this is really useful is in the alias form of <code>StringJoin</code>  (<code>&lt;&gt;</code> ). If it did not have <code>Listable</code>  we&#8217;d have to do the following:
 </p>
-<pre class='prettyprint'>
- <code>&quot;a&quot;&lt;&gt;&quot;b&quot;&lt;&gt;&quot;c&quot;&lt;&gt;&quot;d&quot;
-(*Out:*)
-&quot;abcd&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;a&quot;&lt;&gt;&quot;b&quot;&lt;&gt;&quot;c&quot;&lt;&gt;&quot;d&quot;</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;abcd&quot;</code>
 </pre>
 <p>But since it does we can drop some of those <code>&lt;&gt;</code>  for a list:
 </p>
-<pre class='prettyprint'>
- <code>&quot;&quot;&lt;&gt;{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;}
-(*Out:*)
-&quot;abcd&quot;</code>
+<pre class='mma-input prettyprint'>
+ <code>&quot;&quot;&lt;&gt;{&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;}</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;abcd&quot;</code>
 </pre>
 <p>This behavior may seem unimportant now, but it can be incredibly useful when in the midst of a large project and needing to try out different things. Converting your entire list to <code>&lt;&gt;</code>  joined pairs can be annoying, or maybe you already had some joins in there. In any case, it can save time and brain power which could be better used on actual programming.
 </p>
 <h3> Options, OptionsPattern, OptionValue, and FilterRules</h3>
 <p>Much like <code>Attributes</code>  a <code>Symbol</code>  can also store <code>Options</code> . These are a list of <code>Rule</code> s with default values which are used by functions via the <code>OptionValue</code>  interface. There&#8217;s a convenient <code>Pattern</code>  called <code>OptionsPattern</code>  which will match <code>Rule</code>  and <code>RuleDelayed</code>  sequences among other things. The <code>Options</code>  interface is rich, so check out the documentation on it, but I&#8217;ll provide some tips, tricks, and common uses cases</p>
 <p>One thing to keep in mind is that since <code>OptionsPattern</code>  matches a block of <code>Rule</code>  and <code>RuleDelayed</code> , it can be useful to declare that all of the arguments before this block (or after it) are  <em>not </em><code>Rule</code>  or <code>RuleDelayed</code></p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Options[opEx]={&quot;X&quot;-&gt;0,Y-&gt;0,1-&gt;5,{1,2,3}-&gt;3};
 opEx[notRuleArgs:Except[_Rule]...,ops:OptionsPattern[]]:={
  {notRuleArgs},
  {ops}
  };
+
 opEx[1,2,3]
+
 { {1,2,3},{}}
+
 opEx[1, 2, &quot;X&quot;<span class='special-character Rule'>&#62754;</span>1000]
+
 { {1,2},{&quot;X&quot;<span class='special-character Rule'>&#62754;</span>1000}}
+
 opEx[1, 2, &quot;X&quot;<span class='special-character Rule'>&#62754;</span>1000,A<span class='special-character Rule'>&#62754;</span>20]
+
 { {1,2},{&quot;X&quot;<span class='special-character Rule'>&#62754;</span>1000,A<span class='special-character Rule'>&#62754;</span>20}}</code>
 </pre>
 <p>When using <code>Options</code>  in a function one uses <code>OptionValue</code>  to get the value, which will first check to see it&#8217;s been overridden in an argument and if not go to the default value:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>opEx[notRuleArgs : Except[_Rule] ..., ops : OptionsPattern[]]:=OptionValue@&quot;X&quot;;
-opEx[1,2,3]
-(*Out:*)
-0
-opEx[1, 2, &quot;X&quot;<span class='special-character Rule'>&#62754;</span>1000]
-(*Out:*)
-1000</code>
+
+opEx[1,2,3]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0
+
+opEx[1, 2, &quot;X&quot;<span class='special-character Rule'>&#62754;</span>1000]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>1000</code>
 </pre>
 <p>If you call an <code>OptionValue</code>  for which there is no default, you&#8217;ll get an error:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>opEx[notRuleArgs : Except[_Rule] ..., ops : OptionsPattern[]]:=OptionValue@Z;
+
 opEx[1,2,3]</code>
 </pre>
 <p>Even if you provide an explicit override value, it will still grouse at you:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>opEx[1,2,&quot;Z&quot;<span class='special-character Rule'>&#62754;</span>500]</code>
 </pre>
 <div class='mma-message'>
     <span class='mma-message-name'>OptionValue::nodef:</span>
     <span class='mma-message-text'>Unknown option &quot;Z&quot; for opEx.</span>
 </div>
-<pre class='prettyprint'>
- <code>(*Out:*)
-500</code>
+<pre class='mma-output prettyprint'>
+ <code>500</code>
 </pre>
 <p>Options are generally used to provide more flexibility and control than can easily be done via an argument list. <code>Options</code>  can also be used as a function to see all of the default options for a symbol and for many of the built-in symbols you can see how many there are, so that users can tweak lots of things. For example, <code>Plot</code>  has a whole host of options:
 </p>
-<pre class='prettyprint'>
- <code>Options@Plot
-(*Out:*)
-{AlignmentPoint<span class='special-character Rule'>&#62754;</span>Center,AspectRatio<span class='special-character Rule'>&#62754;</span>,Axes<span class='special-character Rule'>&#62754;</span>True,AxesLabel<span class='special-character Rule'>&#62754;</span>None,AxesOrigin<span class='special-character Rule'>&#62754;</span>Automatic,AxesStyle<span class='special-character Rule'>&#62754;</span>{},Background<span class='special-character Rule'>&#62754;</span>None,BaselinePosition<span class='special-character Rule'>&#62754;</span>Automatic,BaseStyle<span class='special-character Rule'>&#62754;</span>{},ClippingStyle<span class='special-character Rule'>&#62754;</span>None,ColorFunction<span class='special-character Rule'>&#62754;</span>Automatic,ColorFunctionScaling<span class='special-character Rule'>&#62754;</span>True,ColorOutput<span class='special-character Rule'>&#62754;</span>Automatic,ContentSelectable<span class='special-character Rule'>&#62754;</span>Automatic,CoordinatesToolOptions<span class='special-character Rule'>&#62754;</span>Automatic,DisplayFunction<span class='special-character RuleDelayed'>&#10740;</span>$DisplayFunction,Epilog<span class='special-character Rule'>&#62754;</span>{},Evaluated<span class='special-character Rule'>&#62754;</span>Automatic,EvaluationMonitor<span class='special-character Rule'>&#62754;</span>None,Exclusions<span class='special-character Rule'>&#62754;</span>Automatic,ExclusionsStyle<span class='special-character Rule'>&#62754;</span>None,Filling<span class='special-character Rule'>&#62754;</span>None,FillingStyle<span class='special-character Rule'>&#62754;</span>Automatic,FormatType<span class='special-character RuleDelayed'>&#10740;</span>TraditionalForm,Frame<span class='special-character Rule'>&#62754;</span>False,FrameLabel<span class='special-character Rule'>&#62754;</span>None,FrameStyle<span class='special-character Rule'>&#62754;</span>{},FrameTicks<span class='special-character Rule'>&#62754;</span>Automatic,FrameTicksStyle<span class='special-character Rule'>&#62754;</span>{},GridLines<span class='special-character Rule'>&#62754;</span>None,GridLinesStyle<span class='special-character Rule'>&#62754;</span>{},ImageMargins<span class='special-character Rule'>&#62754;</span>0.`,ImagePadding<span class='special-character Rule'>&#62754;</span>All,ImageSize<span class='special-character Rule'>&#62754;</span>Automatic,ImageSizeRaw<span class='special-character Rule'>&#62754;</span>Automatic,LabelStyle<span class='special-character Rule'>&#62754;</span>{},MaxRecursion<span class='special-character Rule'>&#62754;</span>Automatic,Mesh<span class='special-character Rule'>&#62754;</span>None,MeshFunctions<span class='special-character Rule'>&#62754;</span>{#1&amp;},MeshShading<span class='special-character Rule'>&#62754;</span>None,MeshStyle<span class='special-character Rule'>&#62754;</span>Automatic,Method<span class='special-character Rule'>&#62754;</span>Automatic,PerformanceGoal<span class='special-character RuleDelayed'>&#10740;</span>$PerformanceGoal,PlotLabel<span class='special-character Rule'>&#62754;</span>None,PlotLabels<span class='special-character Rule'>&#62754;</span>None,PlotLegends<span class='special-character Rule'>&#62754;</span>None,PlotPoints<span class='special-character Rule'>&#62754;</span>Automatic,PlotRange<span class='special-character Rule'>&#62754;</span>{Full,Automatic},PlotRangeClipping<span class='special-character Rule'>&#62754;</span>True,PlotRangePadding<span class='special-character Rule'>&#62754;</span>Automatic,PlotRegion<span class='special-character Rule'>&#62754;</span>Automatic,PlotStyle<span class='special-character Rule'>&#62754;</span>Automatic,PlotTheme<span class='special-character RuleDelayed'>&#10740;</span>$PlotTheme,PreserveImageOptions<span class='special-character Rule'>&#62754;</span>Automatic,Prolog<span class='special-character Rule'>&#62754;</span>{},RegionFunction<span class='special-character Rule'>&#62754;</span>(True&amp;),RotateLabel<span class='special-character Rule'>&#62754;</span>True,ScalingFunctions<span class='special-character Rule'>&#62754;</span>None,TargetUnits<span class='special-character Rule'>&#62754;</span>Automatic,Ticks<span class='special-character Rule'>&#62754;</span>Automatic,TicksStyle<span class='special-character Rule'>&#62754;</span>{},WorkingPrecision<span class='special-character Rule'>&#62754;</span>MachinePrecision}</code>
+<pre class='mma-input prettyprint'>
+ <code>Options@Plot</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{AlignmentPoint<span class='special-character Rule'>&#62754;</span>Center,AspectRatio<span class='special-character Rule'>&#62754;</span>,Axes<span class='special-character Rule'>&#62754;</span>True,AxesLabel<span class='special-character Rule'>&#62754;</span>None,AxesOrigin<span class='special-character Rule'>&#62754;</span>Automatic,AxesStyle<span class='special-character Rule'>&#62754;</span>{},Background<span class='special-character Rule'>&#62754;</span>None,BaselinePosition<span class='special-character Rule'>&#62754;</span>Automatic,BaseStyle<span class='special-character Rule'>&#62754;</span>{},ClippingStyle<span class='special-character Rule'>&#62754;</span>None,ColorFunction<span class='special-character Rule'>&#62754;</span>Automatic,ColorFunctionScaling<span class='special-character Rule'>&#62754;</span>True,ColorOutput<span class='special-character Rule'>&#62754;</span>Automatic,ContentSelectable<span class='special-character Rule'>&#62754;</span>Automatic,CoordinatesToolOptions<span class='special-character Rule'>&#62754;</span>Automatic,DisplayFunction<span class='special-character RuleDelayed'>&#10740;</span>$DisplayFunction,Epilog<span class='special-character Rule'>&#62754;</span>{},Evaluated<span class='special-character Rule'>&#62754;</span>Automatic,EvaluationMonitor<span class='special-character Rule'>&#62754;</span>None,Exclusions<span class='special-character Rule'>&#62754;</span>Automatic,ExclusionsStyle<span class='special-character Rule'>&#62754;</span>None,Filling<span class='special-character Rule'>&#62754;</span>None,FillingStyle<span class='special-character Rule'>&#62754;</span>Automatic,FormatType<span class='special-character RuleDelayed'>&#10740;</span>TraditionalForm,Frame<span class='special-character Rule'>&#62754;</span>False,FrameLabel<span class='special-character Rule'>&#62754;</span>None,FrameStyle<span class='special-character Rule'>&#62754;</span>{},FrameTicks<span class='special-character Rule'>&#62754;</span>Automatic,FrameTicksStyle<span class='special-character Rule'>&#62754;</span>{},GridLines<span class='special-character Rule'>&#62754;</span>None,GridLinesStyle<span class='special-character Rule'>&#62754;</span>{},ImageMargins<span class='special-character Rule'>&#62754;</span>0.`,ImagePadding<span class='special-character Rule'>&#62754;</span>All,ImageSize<span class='special-character Rule'>&#62754;</span>Automatic,ImageSizeRaw<span class='special-character Rule'>&#62754;</span>Automatic,LabelStyle<span class='special-character Rule'>&#62754;</span>{},MaxRecursion<span class='special-character Rule'>&#62754;</span>Automatic,Mesh<span class='special-character Rule'>&#62754;</span>None,MeshFunctions<span class='special-character Rule'>&#62754;</span>{#1&amp;},MeshShading<span class='special-character Rule'>&#62754;</span>None,MeshStyle<span class='special-character Rule'>&#62754;</span>Automatic,Method<span class='special-character Rule'>&#62754;</span>Automatic,PerformanceGoal<span class='special-character RuleDelayed'>&#10740;</span>$PerformanceGoal,PlotLabel<span class='special-character Rule'>&#62754;</span>None,PlotLabels<span class='special-character Rule'>&#62754;</span>None,PlotLegends<span class='special-character Rule'>&#62754;</span>None,PlotPoints<span class='special-character Rule'>&#62754;</span>Automatic,PlotRange<span class='special-character Rule'>&#62754;</span>{Full,Automatic},PlotRangeClipping<span class='special-character Rule'>&#62754;</span>True,PlotRangePadding<span class='special-character Rule'>&#62754;</span>Automatic,PlotRegion<span class='special-character Rule'>&#62754;</span>Automatic,PlotStyle<span class='special-character Rule'>&#62754;</span>Automatic,PlotTheme<span class='special-character RuleDelayed'>&#10740;</span>$PlotTheme,PreserveImageOptions<span class='special-character Rule'>&#62754;</span>Automatic,Prolog<span class='special-character Rule'>&#62754;</span>{},RegionFunction<span class='special-character Rule'>&#62754;</span>(True&amp;),RotateLabel<span class='special-character Rule'>&#62754;</span>True,ScalingFunctions<span class='special-character Rule'>&#62754;</span>None,TargetUnits<span class='special-character Rule'>&#62754;</span>Automatic,Ticks<span class='special-character Rule'>&#62754;</span>Automatic,TicksStyle<span class='special-character Rule'>&#62754;</span>{},WorkingPrecision<span class='special-character Rule'>&#62754;</span>MachinePrecision}</code>
 </pre>
 <p>This is also useful for chaining functions together and passing their options to each other. Before an example of that, it&#8217;s worth talking about <code>FilterRules</code> . All it does is take a list of rules and either an explicit list of rules or rule names or a pattern to match and selects those rules whose left-hand side matches. For example:
 </p>
-<pre class='prettyprint'>
- <code>FilterRules[Options@Plot,PlotStyle|EvaluationMonitor]
-(*Out:*)
-{EvaluationMonitor<span class='special-character Rule'>&#62754;</span>None,PlotStyle<span class='special-character Rule'>&#62754;</span>Automatic}</code>
+<pre class='mma-input prettyprint'>
+ <code>FilterRules[Options@Plot,PlotStyle|EvaluationMonitor]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{EvaluationMonitor<span class='special-character Rule'>&#62754;</span>None,PlotStyle<span class='special-character Rule'>&#62754;</span>Automatic}</code>
 </pre>
 <p>This can be used to make sure rules conform to the options of a given function:
 </p>
-<pre class='prettyprint'>
- <code>FilterRules[{&quot;Z&quot;-&gt;10,&quot;X&quot;-&gt;100},Options@opEx]
-(*Out:*)
-{&quot;X&quot;<span class='special-character Rule'>&#62754;</span>100}</code>
+<pre class='mma-input prettyprint'>
+ <code>FilterRules[{&quot;Z&quot;-&gt;10,&quot;X&quot;-&gt;100},Options@opEx]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;X&quot;<span class='special-character Rule'>&#62754;</span>100}</code>
 </pre>
 <p>Finally as <code>OptionValue</code>  matches the last pattern it sees, one can pass all the defaults for a symbol plus some updates by putting your new rules first in a <code>FilterRules</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>ClearAll@opEx
+
 Options[opEx] = {&quot;X&quot; -&gt; 0, Y -&gt; 0};
+
 opEx[notRuleArgs : Except[_Rule] ..., ops : OptionsPattern[]] := OptionValue@&quot;X&quot;;
-FilterRules[Join[{&quot;Z&quot;-&gt;10,&quot;X&quot;-&gt;100},Options@opEx],Options@opEx]
-(*Out:*)
-{&quot;X&quot;<span class='special-character Rule'>&#62754;</span>100,&quot;X&quot;<span class='special-character Rule'>&#62754;</span>0,Y<span class='special-character Rule'>&#62754;</span>0}
-opEx@@FilterRules[Join[{&quot;Z&quot;<span class='special-character Rule'>&#62754;</span>10,&quot;X&quot;<span class='special-character Rule'>&#62754;</span>100},Options@opEx],Options@opEx]
-(*Out:*)
-100</code>
+
+FilterRules[Join[{&quot;Z&quot;-&gt;10,&quot;X&quot;-&gt;100},Options@opEx],Options@opEx]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;X&quot;<span class='special-character Rule'>&#62754;</span>100,&quot;X&quot;<span class='special-character Rule'>&#62754;</span>0,Y<span class='special-character Rule'>&#62754;</span>0}
+
+opEx@@FilterRules[Join[{&quot;Z&quot;<span class='special-character Rule'>&#62754;</span>10,&quot;X&quot;<span class='special-character Rule'>&#62754;</span>100},Options@opEx],Options@opEx]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>100</code>
 </pre>
 <p>This trick is necessary when overriding options on an old function:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Options[newGraphics3D]=Join[{
   Lighting-&gt;&quot;Neutral&quot;,
   Boxed-&gt;False,
@@ -1070,8 +1116,8 @@ newGraphics3D[graphicsStuff:Except[_Rule]...,ops:OptionsPattern[]]:=Graphics3D[{
  FilterRules[Join[{ops},Options@newGraphics3D],
   Options@Graphics3D]
  ]
-newGraphics3D@Sphere[]
-(*Out:*)</code>
+
+newGraphics3D@Sphere[]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-1760282929081317088.png' alt='21-1760282929081317088' />
     </div>

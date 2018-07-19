@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,7 +829,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>Mathematica, being so symbolic, is a particularly easy language to scrape and get information from, particularly given the rich pattern language it supports.</p>
 <p>Because of this, we can learn a lot by simply pulling relevant info from the source files of the program. First we need a way to get the source files:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>internalFiles[namePattern_,directoryExtensions___,depth:_Integer|&#8734;:&#8734;]:=
 FileNames[namePattern,
  FileNameJoin@{
@@ -828,7 +840,7 @@ FileNames[namePattern,
 </pre>
 <p>Then we can pull things from these according to a pattern:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>expressionsSearch[pat_,files__]:=
 Table[
  f-&gt;Quiet@
@@ -849,11 +861,12 @@ Table[
 </pre>
 <p>We&#8217;ll use this to figure out how <code>CurrentValue</code>  is used in Mathematica&#8217;s built-in stylesheets:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Join@@Last/@expressionsSearch[c:_CurrentValue<span class='special-character RuleDelayed'>&#10740;</span>HoldForm[c],
- &quot;*.nb&quot;,&quot;SystemFiles&quot;,&quot;FrontEnd&quot;,&quot;StyleSheets&quot;]//DeleteDuplicates//Sort
-(*Out:*)
-{CurrentValue[&quot;ControlsFontFamily&quot;],CurrentValue[&quot;ControlsFontSize&quot;],CurrentValue[&quot;HyperlinkModifierKey&quot;],CurrentValue[&quot;MenuFontFamily&quot;],CurrentValue[&quot;MenuFontSize&quot;],CurrentValue[&quot;MouseOver&quot;],CurrentValue[&quot;PanelBackground&quot;],CurrentValue[&quot;PanelFontFamily&quot;],CurrentValue[&quot;PanelFontSize&quot;],CurrentValue[&quot;ShiftKey&quot;],CurrentValue[&quot;ToolbarBackground&quot;],CurrentValue[&quot;TooltipFontFamily&quot;],CurrentValue[&quot;TooltipFontSize&quot;],CurrentValue[&quot;TooltipFrameMargins&quot;],CurrentValue[Enabled],CurrentValue[Evaluatable],CurrentValue[{&quot;SystemColor&quot;,&quot;DialogText&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;DialogTextDisabled&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;Menu&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;MenuText&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;Tooltip&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;TooltipFrame&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;TooltipText&quot;}],CurrentValue[{StyleHints,&quot;CodeFont&quot;}],CurrentValue[EvaluationNotebook[],WindowElements],CurrentValue[EvaluationNotebook[],WindowMargins],CurrentValue[EvaluationNotebook[],WindowSize],CurrentValue[EvaluationNotebook[],{AutoStyleOptions,&quot;StringStyle&quot;}],CurrentValue[EvaluationNotebook[],{TaggingRules,&quot;ExampleCounter&quot;}],CurrentValue[EvaluationNotebook[],{TaggingRules,&quot;SlideShowSettings&quot;,&quot;WindowSize&quot;}]}</code>
+ &quot;*.nb&quot;,&quot;SystemFiles&quot;,&quot;FrontEnd&quot;,&quot;StyleSheets&quot;]//DeleteDuplicates//Sort</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{CurrentValue[&quot;ControlsFontFamily&quot;],CurrentValue[&quot;ControlsFontSize&quot;],CurrentValue[&quot;HyperlinkModifierKey&quot;],CurrentValue[&quot;MenuFontFamily&quot;],CurrentValue[&quot;MenuFontSize&quot;],CurrentValue[&quot;MouseOver&quot;],CurrentValue[&quot;PanelBackground&quot;],CurrentValue[&quot;PanelFontFamily&quot;],CurrentValue[&quot;PanelFontSize&quot;],CurrentValue[&quot;ShiftKey&quot;],CurrentValue[&quot;ToolbarBackground&quot;],CurrentValue[&quot;TooltipFontFamily&quot;],CurrentValue[&quot;TooltipFontSize&quot;],CurrentValue[&quot;TooltipFrameMargins&quot;],CurrentValue[Enabled],CurrentValue[Evaluatable],CurrentValue[{&quot;SystemColor&quot;,&quot;DialogText&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;DialogTextDisabled&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;Menu&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;MenuText&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;Tooltip&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;TooltipFrame&quot;}],CurrentValue[{&quot;SystemColor&quot;,&quot;TooltipText&quot;}],CurrentValue[{StyleHints,&quot;CodeFont&quot;}],CurrentValue[EvaluationNotebook[],WindowElements],CurrentValue[EvaluationNotebook[],WindowMargins],CurrentValue[EvaluationNotebook[],WindowSize],CurrentValue[EvaluationNotebook[],{AutoStyleOptions,&quot;StringStyle&quot;}],CurrentValue[EvaluationNotebook[],{TaggingRules,&quot;ExampleCounter&quot;}],CurrentValue[EvaluationNotebook[],{TaggingRules,&quot;SlideShowSettings&quot;,&quot;WindowSize&quot;}]}</code>
 </pre>
 <p>There&#8217;s a lot of info in the source files and by doing things like this you can mine a lot of it.</p>
     </div>

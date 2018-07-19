@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -819,24 +831,24 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Replace</h3>
 <p><code>Replace</code>  is possibly the most fundamental function in Mathematica. It takes an expression and if it matches a pattern, replaces it with that value. For example:
 </p>
-<pre class='prettyprint'>
- <code>Replace[{1, 2, 3}, a : {__Integer} :&gt; Column@a]
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>Replace[{1, 2, 3}, a : {__Integer} :&gt; Column@a]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-3692143705990288316.png' alt='21-3692143705990288316' />
 <p>If the pattern doesn&#8217;t match, nothing happens:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Replace[{1, 2, 3},
   a : {RandomInteger[1000], RandomReal[1000], RandomReal[1000]} :&gt;
     &quot;This has a 1/1000000000 chance of being the result&quot;
-  ]
-(*Out:*)
-{1, 2, 3}</code>
+  ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{1, 2, 3}</code>
 </pre>
 <p><code>Replace</code>  can also try a list of replacements:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Replace[{1, 2, 3},
   {
     {_Integer, _Integer, _String} :&gt; &quot;No&quot;,
@@ -845,26 +857,28 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     {_Integer, _Integer, _Integer} :&gt; &quot;Yes!&quot;,
     {__Integer} :&gt; &quot;Yes, but won&apos;t happen&quot;
     }
-  ]
-(*Out:*)
-&quot;Yes!&quot;</code>
+  ]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;Yes!&quot;</code>
 </pre>
 <p>You&#8217;ll notice it only matches the first pattern that fits.</p>
 <p><code>Replace</code>  can also work at various levels of an expression:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Replace[{1, 2, &quot;3&quot;, 2, 1},
   i_Integer :&gt; (&quot;int &quot; &lt;&gt; ToString@i),
-  1]
-(*Out:*)
-{&quot;int 1&quot;, &quot;int 2&quot;, &quot;3&quot;, &quot;int 2&quot;, &quot;int 1&quot;}</code>
+  1]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;int 1&quot;, &quot;int 2&quot;, &quot;3&quot;, &quot;int 2&quot;, &quot;int 1&quot;}</code>
 </pre>
 <h3> ReplaceAll</h3>
 <p><code>ReplaceAll</code>  is the only other member of the family I&#8217;ll mention here. It works similarly to <code>Replace</code> , except the replacements can happen at any level of the expression. This is dangerous, but also useful.</p>
 <p>Also useful is the fact that it has a keyboard alias: <code>/.</code></p>
 <p>Here&#8217;s a fun example:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>GraphicsGrid[
   Table[
      Table[RandomInteger[100],
@@ -873,8 +887,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
      ] /. 
   i_Integer :&gt; Graphics[{RandomColor[], Disk[]}, ImageSize -&gt; i],
   Spacings -&gt; 0
-  ]
-(*Out:*)</code>
+  ]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/21-2242955263637576379.png' alt='21-2242955263637576379' />
 <h3> Replace&#8902;</h3>

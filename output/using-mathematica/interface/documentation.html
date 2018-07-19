@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,94 +829,108 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Getting Documentation</h3>
 <p>Mathematica has a rich, if somewhat overly complex documentation system. To learn about a given symbol there are a few things you can do. Probably the quickest is to use the built in function <code>Definition</code>  which prints out the description all the definitions on a symbol. You can do this by putting <code>?</code>  before a symbol
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>?Print</code>
 </pre>
-<div class='mma-print-usage'>
-    Print[<em>expr</em>] prints <em>expr</em> as output. 
+<div style='font-size: 12px; color: rgb(128, 128, 128); background-color: aliceblue; border-top : solid 2px lightblue; padding: 5px 0 5px 0;'>
+ <div class='mma-print-usage'>
+  Print[<em>expr</em>] prints <em>expr</em> as output. 
+ </div>
 </div>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>?Plot</code>
 </pre>
-<div class='mma-print-usage'>
-    Plot[<em>f</em>,{<em>x</em>,<em>x</em><sub><em>min</em></sub>,<em>x</em><sub><em>max</em></sub>}] generates a plot of <em>f</em> as a function of <em>x</em> from <em>x</em><sub><em>min</em></sub> to <em>x</em><sub><em>max</em></sub>. 
-Plot[{<em>f</em><sub>1</sub>,<em>f</em><sub>2</sub>,<span class='special-character Ellipsis'>&#8230;</span>},{<em>x</em>,<em>x</em><sub><em>min</em></sub>,<em>x</em><sub><em>max</em></sub>}] plots several functions <em>f</em><sub><em>i</em></sub>. 
-Plot[{<span class='special-character Ellipsis'>&#8230;</span>,<em>w</em>[<em>f</em><sub><em>i</em></sub>],<span class='special-character Ellipsis'>&#8230;</span>},<span class='special-character Ellipsis'>&#8230;</span>] plots <em>f</em><sub><em>i</em></sub> with features defined by the symbolic wrapper <em>w</em>.
-Plot[<span class='special-character Ellipsis'>&#8230;</span>,{<em>x</em>}&amp;Element;<em>reg</em>] takes the variable <em>x</em> to be in the geometric region <em>reg</em>.
+<div style='font-size: 12px; color: rgb(128, 128, 128); background-color: aliceblue; border-top : solid 2px lightblue; padding: 5px 0 5px 0;'>
+ <div class='mma-print-usage'>
+  Plot[<em>f</em>,{<em>x</em>,<em>x</em><sub>*min*</sub>,<em>x</em><sub>*max*</sub>}] generates a plot of <em>f</em> as a function of <em>x</em> from <em>x</em><sub>*min*</sub> to <em>x</em><sub>*max*</sub>. Plot[{<em>f</em><sub>1</sub>,<em>f</em><sub>2</sub>,<span class='special-character Ellipsis'>&#8230;</span>},{<em>x</em>,<em>x</em><sub>*min*</sub>,<em>x</em><sub>*max*</sub>}] plots several functions <em>f</em><sub>*i*</sub>. Plot[{<span class='special-character Ellipsis'>&#8230;</span>,<em>w</em>[<em>f</em><sub>*i*</sub>],<span class='special-character Ellipsis'>&#8230;</span>},<span class='special-character Ellipsis'>&#8230;</span>] plots <em>f</em><sub>*i*</sub> with features defined by the symbolic wrapper <em>w</em>.Plot[<span class='special-character Ellipsis'>&#8230;</span>,{<em>x</em>}&amp;Element;<em>reg</em>] takes the variable <em>x</em> to be in the geometric region <em>reg</em>.
+ </div>
 </div>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>?Quantity</code>
 </pre>
-<div class='mma-print-usage'>
-    Quantity[<em>magnitude</em>,<em>unit</em>] represents a quantity with size <em>magnitude</em> and unit specified by <em>unit</em>.
-Quantity[<em>unit</em>] assumes the <em>magnitude</em> of the specified <em>unit</em> to be 1.
+<div style='font-size: 12px; color: rgb(128, 128, 128); background-color: aliceblue; border-top : solid 2px lightblue; padding: 5px 0 5px 0;'>
+ <div class='mma-print-usage'>
+  Quantity[<em>magnitude</em>,<em>unit</em>] represents a quantity with size <em>magnitude</em> and unit specified by <em>unit</em>.Quantity[<em>unit</em>] assumes the <em>magnitude</em> of the specified <em>unit</em> to be 1.
+ </div>
 </div>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>?GeneralUtilities`PrintDefinitions</code>
 </pre>
-<div class='mma-print-usage'>
-    PrintDefinitions[<em>symbol</em>] creates a window containing a browseable hyperlinked listing of definitions associated with <em>symbol</em>.
+<div style='font-size: 12px; color: rgb(128, 128, 128); background-color: aliceblue; border-top : solid 2px lightblue; padding: 5px 0 5px 0;'>
+ <div class='mma-print-usage'>
+  PrintDefinitions[<em>symbol</em>] creates a window containing a browseable hyperlinked listing of definitions associated with <em>symbol</em>.
+ </div>
 </div>
-<p>To find out the most about a symbol it&#8217;s best to use the built in documentation notebooks however. Just type a symbol name and click the  <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/12-5159485901130549445.png' alt='12-5159485901130549445' />  icon in the little menu that appears. This will open the Documentation Center where you can look around, find links to other functions and symbols, explanations, and most crucially examples.</p>
-<p>This menu can also be gotten by placing the cursor immediately following a symbol name or piece of one and pressing <kbd>CMD</kbd>+K</p>
-<p>Another way to open the documentation center is to highlight a piece of text and press <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+F. This is often more useful, as getting the icon to appear can be annoying and this also works in any environment.
+<p>To find out the most about a symbol it&apos;s best to use the built in documentation notebooks however. Just type a symbol name and click the  <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/122documentation-5159485901130549445.png' alt='122documentation-5159485901130549445' />  icon in the little menu that appears. This will open the Documentation Center where you can look around, find links to other functions and symbols, explanations, and most crucially examples.</p>
+<p>This menu can also be gotten by placing the cursor immediately following a symbol name or piece of one and pressing <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>CMD</kbd></span>+K</p>
+<p>Another way to open the documentation center is to highlight a piece of text and press <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>CMD</kbd></span>+<span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>SHIFT</kbd></span>+F. This is often more useful, as getting the icon to appear can be annoying and this also works in any environment.
 </p>
 <h3> Documentation Issues</h3>
-<p>Mathematica has no automatic documentation procedure. It&#8217;s all done manually. This allows for commonly used function to be incredibly well documented, but also means that less used functions get somewhat short shrift and many aren&#8217;t documented at all (although this is often intentional, as a feature isn&#8217;t ready for prime-time)</p>
-<p>Another common problem is that Mathematica&#8217;s built in autocomplete features only match from the beginning of the word you&#8217;re typing. Say you know there should be a function that converts a number into a string, so you start typing something like <code>NumberToString</code> , but as you&#8217;re typing you notice Mathematica will give you <code>NumberString</code> , but when you check its documentation page its not what you wanted at all. For that, I provide the following helpful function using the built in function <code>Names</code> :
+<p>Mathematica has no automatic documentation procedure. It&apos;s all done manually. This allows for commonly used function to be incredibly well documented, but also means that less used functions get somewhat short shrift and many aren&apos;t documented at all (although this is often intentional, as a feature isn&apos;t ready for prime-time)</p>
+<p>Another common problem is that Mathematica&apos;s built in autocomplete features only match from the beginning of the word you&apos;re typing. Say you know there should be a function that converts a number into a string, so you start typing something like <code>NumberToString</code> , but as you&apos;re typing you notice Mathematica will give you <code>NumberString</code> , but when you check its documentation page its not what you wanted at all. For that, I provide the following helpful function using the built in function <code>Names</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>FindMySymbol[piecesOfAName__String]:=
- Riffle[
-  ConstantArray[
-   Alternatives[piecesOfAName],
-   Length@{piecesOfAName}
-   ],
-  ___
-  ]//
-   Append[#,___]&amp;//
-   Prepend[#,___]&amp;//
-   StringExpression@@#&amp;//
-   Names</code>
+  Riffle[
+    ConstantArray[
+      Alternatives[piecesOfAName],
+      Length@{piecesOfAName}
+      ],
+    ___
+    ]//
+      Append[#,___]&amp;//
+      Prepend[#,___]&amp;//
+      StringExpression@@#&amp;//
+      Names</code>
 </pre>
-<p>And we&#8217;ll see that this works:
+<p>And we&apos;ll see that this works:
 </p>
-<pre class='prettyprint'>
- <code>FindMySymbol[&quot;String&quot;,&quot;To&quot;]
-(*Out:*)
-{&quot;ByteArrayToString&quot;,&quot;StringToByteArray&quot;,&quot;StringToStream&quot;,&quot;ToString&quot;}</code>
+<pre class='mma-input prettyprint'>
+ <code>FindMySymbol[&quot;String&quot;,&quot;To&quot;]</code>
 </pre>
-<p>Notice it won&#8217;t find anything if we use all parts of our name:
-</p>
-<pre class='prettyprint'>
- <code>FindMySymbol[&quot;String&quot;,&quot;To&quot;,&quot;Number&quot;]
-(*Out:*)
-{}</code>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;ByteArrayToString&quot;,&quot;StringToByteArray&quot;,&quot;StringToStream&quot;,&quot;ToString&quot;}</code>
 </pre>
-<p>But that&#8217;s okay. Just add or drop pieces as necessary. Or use the following and just provide a guess of your name:
+<p>Notice it won&apos;t find anything if we use all parts of our name:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
+ <code>FindMySymbol[&quot;String&quot;,&quot;To&quot;,&quot;Number&quot;]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{}</code>
+</pre>
+<p>But that&apos;s okay. Just add or drop pieces as necessary. Or use the following and just provide a guess of your name:
+</p>
+<pre class='mma-input prettyprint'>
  <code>GuessedSymbols[nameGuess_String, matchComponents_:2]:=
- With[{nameSegments=
-  SequenceCases[
-   StringSplit[nameGuess,
-    l_?UpperCaseQ:&gt;l],
-   s:{_?UpperCaseQ,_?(LowerCaseQ@StringTake[#,1]&amp;)}:&gt;StringJoin@s
-   ]},
-  FindMySymbol[Sequence@@#,False]&amp;/@
-   Subsets[nameSegments,{matchComponents}]//
-    Join@@#&amp;//DeleteDuplicates
-  ];
+  With[{nameSegments=
+    SequenceCases[
+      StringSplit[nameGuess,
+        l_?UpperCaseQ:&gt;l],
+      s:{_?UpperCaseQ,_?(LowerCaseQ@StringTake[#,1]&amp;)}:&gt;StringJoin@s
+      ]},
+    FindMySymbol[Sequence@@#,False]&amp;/@
+      Subsets[nameSegments,{matchComponents}]//
+        Join@@#&amp;//DeleteDuplicates
+    ];
 GuessedSymbols[name_Symbol,matchComponents_:2]:=
- GuessedSymbols[ToString@name,matchComponents]</code>
+  GuessedSymbols[ToString@name,matchComponents]</code>
 </pre>
 <p>To verify it works:
 </p>
-<pre class='prettyprint'>
- <code>GuessedSymbols@&quot;StringToNumber&quot;
-(*Out:*)
-{&quot;ByteArrayToString&quot;,&quot;StringToByteArray&quot;,&quot;StringToStream&quot;,&quot;ToString&quot;,&quot;NumberFieldClassNumber&quot;,&quot;NumberString&quot;,&quot;ToNumberField&quot;}</code>
+<pre class='mma-input prettyprint'>
+ <code>GuessedSymbols@&quot;StringToNumber&quot;</code>
 </pre>
+<pre class='mma-output prettyprint'>
+ <code>{&quot;ByteArrayToString&quot;,&quot;StringToByteArray&quot;,&quot;StringToStream&quot;,&quot;ToString&quot;,&quot;NumberFieldClassNumber&quot;,&quot;NumberString&quot;,&quot;ToNumberField&quot;}</code>
+</pre>
+<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2> See Also:</h2>
+<ul>
+ <li>
+  <a href='https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users/18606#18606'>https://mathematica.stackexchange.com/questions/18393/what-are-the-most-common-pitfalls-awaiting-new-users/18606</a>
+ </li>
+</ul>
     </div>
   </article>
   <br>

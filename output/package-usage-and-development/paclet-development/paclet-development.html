@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -818,7 +830,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </p>
 <h3> Directory Structure</h3>
 <p>Our basic structure will start out looking like</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  MyPaclet 
   + PacletInfo.m
@@ -826,7 +838,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And the <code>PacletInfo.m</code>  will look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,
@@ -837,7 +849,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Kernel and Main Package</h3>
 <p>The first thing we&apos;ll need to add to the paclet is a <code>&quot;Kernel&quot;</code>  folder and a primary implementation package. For simplicity, we&apos;ll have our paclet provide a context <code>&quot;MyPaclet`&quot;</code> , and so our main package will have to create this context.</p>
 <p>We&apos;ll change our structure to look like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  MyPaclet 
   + PacletInfo.m 
@@ -848,7 +860,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And the info will look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,
@@ -861,13 +873,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>Now we&apos;ll need to make the <code>init.m</code>  file load <code>MyPaclet.m</code> , but this is no different than the standard way we might do this, e.g. via:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>&lt;&lt;MyPaclet`MyPaclet`</code>
 </pre>
 <p>Any other packages we provide should then be loaded in turn via <code>MyPaclet.m</code> . We won&apos;t get into the details of how to write a paclet with interacting piceces here, as there are many different ways people like to do this and we&apos;re trying to take a high-level overview, but we will return to that theme later.</p>
 <p>After we do this it&apos;s possible to load the paclet with
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>&lt;&lt;MyPaclet`</code>
 </pre>
 <h3> FrontEnd Resources</h3>
@@ -878,7 +890,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
  <li>A helper palette in <code>MyPacletHelper.nb</code></li>
 </ul>
 <p>We&apos;ll add the following folder to our main directory:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
   FrontEnd 
    StyleSheets 
@@ -895,7 +907,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>And the info will look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Paclet[
   Name        -&gt; &quot;MyPaclet&quot;,
   Version     -&gt; &quot;0.0.1&quot;,
@@ -908,13 +920,13 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   ]</code>
 </pre>
 <p>We can then link to this stylesheet by setting </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-mathematica'>
 StyleDefinitions-&gt;FrontEnd`FileName[{&quot;MyPaclet&quot;}, &quot;MyPacletStyles.nb&quot;]
 </code>
 </pre>
 <p>Or if we want to use the paclet icon we can do so with the appropriate <code>FrontEnd`FileName</code> . This time we&apos;ll want <code>FrontEnd`FileName[{&quot;MyPaclet&quot;}, &quot;MyPacletIconResource.png&quot;]</code> . Here&apos;s an example of this:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-mathematica'>
 RawBoxes@
   DynamicBox[
@@ -931,7 +943,7 @@ RawBoxes@
  <li>A tutorial, <code>MyPacletOverview.nb</code></li>
 </ul>
 <p>We&apos;ll add the following folder to our directory</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
   Documentation 
    English 
@@ -946,7 +958,7 @@ RawBoxes@
 </pre>
 <p>And we&apos;ll add the following extension to the paclet info:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>{
   &quot;Documentation&quot;, 
   &quot;Language&quot; -&gt; &quot;English&quot;,
@@ -959,7 +971,7 @@ RawBoxes@
 <h3> Resources</h3>
 <p>Finally, let&apos;s say we want to bundle resources with our paclet, maybe we have a template notebook, <code>MyTemplate.nb</code>  and a bunch of data stored in .mx files, <code>MyDat1.mx</code> , <code>MyDat2.mx</code> , and <code>MyDat3.mx</code></p>
 <p>We can add the following folder structure:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
   Resources 
    + MyTemplate.nb 
@@ -971,7 +983,7 @@ RawBoxes@
 </pre>
 <p>And then add the extension:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>{
   &quot;Resource&quot;, 
   &quot;Resources&quot; -&gt; {
@@ -983,7 +995,7 @@ RawBoxes@
   }</code>
 </pre>
 <p>Now we can use</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-mathematica'>
 PacletResource[&quot;MyPaclet&quot;, &quot;Template&quot;]
 </code>

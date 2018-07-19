@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -818,57 +830,71 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>These are efficiently stored arrays of a single type of object that perform much faster on many simple numerical manipulations than their &quot;unpacked&quot; companions.</p>
 <p> Most internal functions that return arrays will return them in packed form. We can check that an array is packed with <code>Developer`PackedArrayQ</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>reals = RandomReal[{-1, 1}, {1000, 1000}];
-Developer`PackedArrayQ@reals
-(*Out:*)
-True</code>
+Developer`PackedArrayQ@reals</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>True</code>
 </pre>
 <p>The memory footprint of these is much lower than standard arrays:
 </p>
-<pre class='prettyprint'>
- <code>ByteCount@reals
-(*Out:*)
-8000152
+<pre class='mma-input prettyprint'>
+ <code>ByteCount@reals</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>8000152
+
 ureals=Developer`FromPackedArray@reals;
 Developer`PackedArrayQ@ureals
-ByteCount@ureals
-(*Out:*)
-False
-(*Out:*)
-24208200</code>
+ByteCount@ureals</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>False</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>24208200</code>
 </pre>
 <p>And operations that can return a packed array are faster than their unpacked variants:
 </p>
-<pre class='prettyprint'>
- <code>1+reals//RepeatedTiming//First
-(*Out:*)
-0.0024315980392156863`2.
-1+ureals//RepeatedTiming//First
-(*Out:*)
-0.0096411960784313737`2.</code>
+<pre class='mma-input prettyprint'>
+ <code>1+reals//RepeatedTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.0024315980392156863`2.
+
+1+ureals//RepeatedTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.0096411960784313737`2.</code>
 </pre>
 <h3> Unpacking</h3>
 <p>The biggest thing to worry about with packed arrays is the time/memory footprint that occurs when a packed array must be unpacked to be processed by a function that can&apos;t handle it in packed form.</p>
 <p>For instance the function <a href='https://reference.wolfram.com/language/ref/Chop.html'><code>Chop</code></a>  necessarily unpacks as it replaces the <code>Real</code>  number <code>0.</code>  with the <code>Integer</code>  number <code>0</code> . This means <code>Chop</code>  will actually be  <em>slower</em>  on a packed array:
 </p>
-<pre class='prettyprint'>
- <code>Chop@reals//RepeatedTiming//First
-(*Out:*)
-0.1129493750000000046`2.
-Chop@ureals//RepeatedTiming//First
-(*Out:*)
-0.052316666666666671`2.</code>
+<pre class='mma-input prettyprint'>
+ <code>Chop@reals//RepeatedTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.1129493750000000046`2.
+
+Chop@ureals//RepeatedTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.052316666666666671`2.</code>
 </pre>
 <p>But if we use a function that can leverage the packing of the array it will be faster. For instance, let&apos;s look at the <code>Real</code>  variant of <code>Chop</code> , a function called <a href='https://reference.wolfram.com/language/ref/Threshold.html'><code>Threshold</code></a> :
 </p>
-<pre class='prettyprint'>
- <code>Threshold@reals//RepeatedTiming//First
-(*Out:*)
-0.0030930624999999999`2.
-Threshold@ureals//RepeatedTiming//First
-(*Out:*)
-0.0107768695652173899`2.</code>
+<pre class='mma-input prettyprint'>
+ <code>Threshold@reals//RepeatedTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.0030930624999999999`2.
+
+Threshold@ureals//RepeatedTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.0107768695652173899`2.</code>
 </pre>
 <p>The packed version is much faster now.</p>
 <a shape='rect' id='rawarray' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
@@ -876,26 +902,29 @@ Threshold@ureals//RepeatedTiming//First
 <p>The <code>RawArray</code>  is a relatively new addition to the language. It works rather like <code>PackedArray</code>  in its requirement ot use a single type of object in it, but is a fundamentally different object.</p>
 <p>It&apos;s main benefit is how little memory it consumes:
 </p>
-<pre class='prettyprint'>
- <code>reals//ByteCount
-(*Out:*)
-8000152</code>
+<pre class='mma-input prettyprint'>
+ <code>reals//ByteCount</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>8000152</code>
 </pre>
 <p>If we use a 64-bit real we get similar memory consumption to the packed array:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>raw64=RawArray[&quot;Real64&quot;, reals];
-raw64//ByteCount
-(*Out:*)
-8000096</code>
+raw64//ByteCount</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>8000096</code>
 </pre>
 <p>But we can specify that it out to use half as many bytes, as the memory usage will drop correspondingly:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>raw32=RawArray[&quot;Real32&quot;, reals];
-raw32//ByteCount
-(*Out:*)
-4000096</code>
+raw32//ByteCount</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>4000096</code>
 </pre>
 <p>These can also be used more effectively via <a href='https://reference.wolfram.com/language/guide/LibraryLink.html'><code>Library Link</code></a>  but we won&apos;t get into that now. For many data-intensive custom <code>Import</code>  formats <code>RawArray</code>  can help cut down on the memory consumption, particularly where some large portions of the data may not be immediately useful.</p>
 <a shape='rect' id='sparsearray' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
@@ -903,67 +932,73 @@ raw32//ByteCount
 <p>We won&apos;t discuss <a href='https://reference.wolfram.com/language/ref/SparseArray.html'><code>SparseArray</code></a>  much, as the sparse array is a well-known concept especially in numerical linear algebra.</p>
 <p>It is worth keeping in mind, though, for places where one has highly sparse data. One classic place this can show up is in quantum mechanical calculations in a direct-product basis constructed from orthonormal bases. Here often one will obtain expressions that looks like
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>H[n, m, i, j] = H1*&#948;[i, j] + H2*&#948;[n, m]</code>
 </pre>
 <p>Assuming <code>N1</code> elements in the first basis and <code>N2</code>  in the second, this can be more efficiently represented as:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>H = KroneckerProduct[H1, IdentityMatrix[N2]] + KroneckerProduct[IdentityMatrix[N1], H2]</code>
 </pre>
 <p>And now if we visualize this with <code>H1</code>  and <code>H2</code>  being odd-looking matrices which arise in this context:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>H1=Table[(-1)^(i-j)/2 If[i==j, <span class='special-character Pi'>&#960;</span>^2/3, 2/(i-j)^2], {i, 50}, {j, 50}];
 H2=Table[(-1)^(i-j)/(2*(.05)^2) If[i==j, <span class='special-character Pi'>&#960;</span>^2/3, 2/(i-j)^2], {i, 75}, {j, 75}];
-H1//MatrixPlot
-(*Out:*)</code>
+H1//MatrixPlot</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/252specialarrays-7323871970862718619.png' alt='252specialarrays-7323871970862718619' />
 <p>We can directly construct <code>H</code>  in a the standard fashion:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>H = 
   KroneckerProduct[H1, IdentityMatrix[Length@H2]] + 
-    KroneckerProduct[IdentityMatrix[Length@H1], H2];//AbsoluteTiming//First
-(*Out:*)
-4.523075`</code>
+    KroneckerProduct[IdentityMatrix[Length@H1], H2];//AbsoluteTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>4.523075`</code>
 </pre>
 <p>It takes a while and we see it has a large memory footprint:
 </p>
-<pre class='prettyprint'>
- <code>H // ByteCount
-(*Out:*)
-340260728</code>
+<pre class='mma-input prettyprint'>
+ <code>H // ByteCount</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>340260728</code>
 </pre>
 <p>But if we visualize it we see it&apos;s most zeros:
 </p>
-<pre class='prettyprint'>
- <code>H // MatrixPlot
-(*Out:*)</code>
+<pre class='mma-input prettyprint'>
+ <code>H // MatrixPlot</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/252specialarrays-7668129619617107787.png' alt='252specialarrays-7668129619617107787' />
 <p>If we build it instead use <code>SparseArray</code>  nothing will be done with that vast field of zeros, so it&apos;ll be faster and less memory intensive:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>HS = 
   KroneckerProduct[H1, IdentityMatrix[Length@H2, SparseArray]] + 
-    KroneckerProduct[IdentityMatrix[Length@H1, SparseArray], H2];//AbsoluteTiming//First
-(*Out:*)
-0.118826`
-HS//ByteCount
-(*Out:*)
-11191512</code>
+    KroneckerProduct[IdentityMatrix[Length@H1, SparseArray], H2];//AbsoluteTiming//First</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>0.118826`
+
+HS//ByteCount</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>11191512</code>
 </pre>
 <p>And even better, when we ask for its smallest 5 <code>Eigenvalues</code>  these will be computed faster, and increasingly so with matrix size:
 </p>
-<pre class='prettyprint'>
- <code>Eigenvalues[H, -5]//AbsoluteTiming
-(*Out:*)
-{4.943048`,{0.3917953580905429`,0.3745580141408224`,0.3611510903074643`,0.35157483336542145`,0.34582905618130677`}}
-Eigenvalues[HS, -5]//AbsoluteTiming
-(*Out:*)
-{3.733548`,{0.39179535809072363`,0.37455801414116613`,0.3611510903079675`,0.35157483336567635`,0.34582905618161475`}}</code>
+<pre class='mma-input prettyprint'>
+ <code>Eigenvalues[H, -5]//AbsoluteTiming</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{4.943048`,{0.3917953580905429`,0.3745580141408224`,0.3611510903074643`,0.35157483336542145`,0.34582905618130677`}}
+
+Eigenvalues[HS, -5]//AbsoluteTiming</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{3.733548`,{0.39179535809072363`,0.37455801414116613`,0.3611510903079675`,0.35157483336567635`,0.34582905618161475`}}</code>
 </pre>
     </div>
   </article>

@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -820,7 +832,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <p>The curated data framework has been in Mathematica since version 6. As I understand it, it is the Ur-usage for paclets. These paclets drive almost all the functions ending in <code>Data</code> , like <code>ChemicalData</code> , <code>ElementData</code> , and <code>ExampleData</code> .</p>
 <p>A curated data function is in some sense a paclet is a divided into 3 chunks. </p>
 <p>There is a code paclet that looks like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  &lt;DataType&gt;Data 
   + PacletInfo.m 
@@ -831,7 +843,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <p>which configures a function <code>&lt;DataType&gt;Data</code>  that acts as a router to two resource paclets. </p>
 <p>The first resource paclet is looks like</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  &lt;DataType&gt;Data_Index 
   + PacletInfo.m 
@@ -845,7 +857,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </code>
 </pre>
 <p>And the raw data distributes over a number of paclets that look like</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  &lt;DataType&gt;Data_Part01 
   + PacletInfo.m 
@@ -855,7 +867,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 </pre>
 <h3> ExampleData</h3>
 <p>The <a href='https://reference.wolfram.com/language/ref/ExampleData.html'><code>ExampleData</code></a>  system works in a similar way to the bulk curated data, but since it provides more specialized resources it serves them in a slightly different way. Each of its resources looks like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  ExampleData_&lt;DataName&gt;
  + PacletInfo.m 
@@ -868,7 +880,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h2> Service Connections</h2>
 <p>The <a href='https://reference.wolfram.com/language/guide/AccessingExternalServicesAndAPIs.html'><code>Service Connections Framework</code></a>  is a good example of the flexibility of the paclet system. It provides a general set of high-level functions <code>ServiceConnect</code> , <code>ServiceExecute</code> , <code>ServiceDisconnect</code> , and low-level infrastructure that allow paclets to provide flexible connections to APIs with little effort.</p>
 <p>Every service in the <a href='https://reference.wolfram.com/language/ref/%24Services.html'><code>$Services</code></a>  list provides a paclet which looks like:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  ServiceConnection_&lt;ServiceName&gt;
  + PacletInfo.m 

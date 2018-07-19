@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -817,7 +829,7 @@ Paclets in the simplest case provide a single main package with the all of the f
 <a shape='rect' id='predeclared-symbols--shared-context' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Predeclared Symbols / Shared Context</h2>
 <p>In the simplest case, every piece of the package will have the same context and simply directly share symbols. To make this work right, all of the package-level symbols need to be declared before any of the implementation files are loaded. One way this could work is having a directory structure like</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  MyPaclet 
   + PacletInfo.m 
@@ -831,11 +843,13 @@ Paclets in the simplest case provide a single main package with the all of the f
 </pre>
 <p>And then have <code>MyPaclet.m</code>  look like:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>BeginPackage[&quot;MyPaclet`&quot;]
+
 MyPacletSym1::usage=&quot;...&quot;;
 MyPacletSym2::usage=&quot;...&quot;;
 ...
+
 Begin[&quot;`Private`&quot;];
 Get/@
   Select[
@@ -843,13 +857,14 @@ Get/@
     FileNameTake[#]!=&quot;init.m&quot;&amp;
     ];
 End[];
+
 EndPackage[];</code>
 </pre>
 <p>And then each <code>Component*.m</code>  file will simply provide definitions for the functions provided.</p>
 <a shape='rect' id='folderbased-contexts' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2> Folder-Based Contexts</h2>
 <p>A step up from this allows for different contexts to be supplied, taken from the folder the file is found in. This adds a layer of complexity, as we&apos;ll need a more complicated structure when declaring our symbols, but given the following directory layout:</p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code class='language-none'>
  MyPaclet 
   + PacletInfo.m 
@@ -866,15 +881,18 @@ EndPackage[];</code>
 </pre>
 <p>We could use the following loader:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>BeginPackage[&quot;MyPaclet`&quot;]
+
 MyPacletSym1::usage=&quot;...&quot;;
 MyPacletSym2::usage=&quot;...&quot;;
 ...
+
 BeginPackage[&quot;`Subcontext`&quot;]
 MySubcontextSym1::usage=&quot;...&quot;;
 MySubcontextSym2::usage=&quot;...&quot;;
 EndPackage[];
+
 With[{`Private`dirPath=FileNameJoin@{DirectoryName[$InputFileName], &quot;Kernel&quot;}},
   Map[
     Function[
@@ -904,6 +922,7 @@ With[{`Private`dirPath=FileNameJoin@{DirectoryName[$InputFileName], &quot;Kernel
       ]
     ]
   ];
+
 EndPackage[];</code>
 </pre>
 <a shape='rect' id='packages-with-autoloading' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
@@ -933,10 +952,10 @@ EndPackage[];</code>
   <li class="page-item">
     <a
       class="page-link"
-      href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html"
+      href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html"
       >
       <span aria-hidden="true">
-        New-Style Packages &raquo;
+        Function Preparation &raquo;
       </span>
       <span class="sr-only">Next</span>
     </a>

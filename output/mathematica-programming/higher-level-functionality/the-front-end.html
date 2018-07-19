@@ -72,6 +72,10 @@
   <link href="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/styles/prettify-mma.min.css" rel="stylesheet">
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/prettify.js"></script>
   <script src="https://www.wolframcloud.com/objects/b3m2a1/tutorial/theme/prettify/src/lang-mma.min.js"></script>
+  <script
+    type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML">
+  </script>
   <script>
     function accordionOpen() {
       var thumb = document.getElementById("accordion-thumb");
@@ -703,6 +707,14 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Multipackage Paclets
       </a>
       <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/function-preparation.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        Function Preparation
+      </a>
+      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/package-usage-and-development/higher-level-features/newstyle-packages.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
@@ -733,20 +745,20 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         Overview
       </a>
       <a
-        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
-        class=
-          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
-            '
-         >
-        FrontEnd
-      </a>
-      <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/internal.html'
         class=
           'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
             '
          >
         Internal
+      </a>
+      <a
+        href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/frontend.html'
+        class=
+          'w3-bar-item w3-bar-block w3-padding-large w3-medium w3-button
+            '
+         >
+        FrontEnd
       </a>
       <a
         href='https://www.wolframcloud.com/objects/b3m2a1/tutorial/reference-guides/undocumented-contexts/system-%2A.html'
@@ -821,24 +833,25 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> The Front End</h3>
 <p>The front end can be accessed via the symbol <code>$FrontEnd</code> . This is the most global way to set options, change formatting, etc. For example, we can get the current default window size:
 </p>
-<pre class='prettyprint'>
- <code>WindowSize/.Options[$FrontEnd,WindowSize]
-(*Out:*)
-{808,755}</code>
+<pre class='mma-input prettyprint'>
+ <code>WindowSize/.Options[$FrontEnd,WindowSize]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>{808,755}</code>
 </pre>
 <p>We can also change this, but often the better thing to do is just to change the value on the symbol <code>$FrontEndSession</code>  which only applies the changes for the current session. <code>$FrontEnd</code>  keeps track of any changes applied and caches them permanently.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SetOptions[$FrontEndSession,WindowSize-&gt;{100,100}]</code>
 </pre>
-<p>This will change how big any windows we make appear, although it will not change the size of windows made with <code>File &#9656; New</code>  or <kbd>CMD</kbd>  ```+<strong> </strong><strong>N</strong><code> . We can test this out using  </code>CreateDocument```  though:
+<p>This will change how big any windows we make appear, although it will not change the size of windows made with <code>File <span>&#9654;</span> New</code>  or <span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>CMD</kbd></span> <code>+** ****N**</code> . We can test this out using <code>CreateDocument</code>  though:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>CreateDocument[]</code>
 </pre>
 <p>We can also remove this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SetOptions[$FrontEndSession,WindowSize-&gt;Inherited]</code>
 </pre>
 <p>Since <code>$FrontEndSession</code>  inherits from <code>$FrontEnd</code>  this reverts the change
@@ -846,34 +859,34 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
 <h3> Notebooks</h3>
 <p>A notebook is any window Mathematica creates. We can find all of the notebooks:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Notebooks[]</code>
 </pre>
 <p>Or notebooks matching a name:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Notebooks[&quot;Mathematica For Chemists&quot;]</code>
 </pre>
 <p>A notebook is represented by a <code>NotebookObject</code> . A <code>NotebookObject</code>  only exists for a given front end session. We can see why if we look at its <code>InputForm</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>CreateDocument[]//InputForm</code>
 </pre>
 <p>This is a symbolic form that represents an object communicating with the front end specified by the <code>FrontEndObject</code>  (<code>LinkObject</code>  refers to a link to a kernel process<span class='special-character LongDash'>&#8212;</span>something beyond the scope of what we&apos;re working with here). Its ID is the last argument. Every time we create a new notebook the ID increments, so that within a given front end session no two notebooks will ever have the same ID.</p>
 <p>Mathematica has a special notebook that always exists:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>First@Notebooks@&quot;Messages&quot;</code>
 </pre>
 <p>Mathematica will dump all messages generated without a notebook to this notebook. Generally this means dynamically generated messages<span class='special-character LongDash'>&#8212;</span>that is, messages generated by <code>Dynamic</code>  or other front-end events.</p>
 <p>In a given evaluation, Mathematica keeps track of the notebook that started it. This can be obtained as follows:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>EvaluationNotebook[]</code>
 </pre>
 <p>Note that this applies even in the case of <code>Dynamic</code>  evaluations:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Dynamic@EvaluationNotebook[]//
 CreateDocument[#,
 WindowSize-&gt;Small,
@@ -883,17 +896,17 @@ Dynamic@EvaluationNotebook[]</code>
 <p>In most cases this is the most useful notebook to have, but there are a number of others that may be of interest.</p>
 <p>This will give the notebook that currently has keyboard focus. This is very useful when making palettes.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>InputNotebook[]</code>
 </pre>
 <p>If the current evaluation was started by a button, this gives the notebook that button was in. Again, useful for palettes and similar functionality.
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>ButtonNotebook[]</code>
 </pre>
 <p>We can get and set options on notebooks just like the front end:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>SetOptions[
 CreateDocument[],
 Background-&gt;RandomColor[]
@@ -901,14 +914,14 @@ Background-&gt;RandomColor[]
 </pre>
 <p>We can also write data to a notebook:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>nb=CreateDocument[];
 NotebookWrite[nb,&quot;some_string&quot;]</code>
 </pre>
 <p>We&apos;ll go more into detail of what exactly can be written and where when discussing <code>Cells</code>  and <code>Boxes</code> .</p>
 <p>One final thing: although a displayed notebook is referenced by a <code>NotebookObject</code> , it is stored as an expression with the head <code>Notebook</code>  and for a given <code>NotebookObject</code>  there is a way to get this expression:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>NotebookGet@EvaluationNotebook[]</code>
 </pre>
 <p>This pulls the entire <code>Notebook</code>  expression for the current notebook.
@@ -916,43 +929,38 @@ NotebookWrite[nb,&quot;some_string&quot;]</code>
 <h3> Cells</h3>
 <p>As we just saw, at the symbolic level, a notebook is a list of <code>Cell</code>  or <code>CellGroupData</code>  expressions plus some options. In practice, though, this turns into a column of cells. We can get this list of cells by doing the following:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Cells@EvaluationNotebook[]</code>
 </pre>
 <p>In the case of this notebook, this is a very large list of cells. Let&apos;s just look at the form of the first of these:
 </p>
-<pre class='prettyprint'>
- <code>First@Cells@EvaluationNotebook[]//InputForm
-(*Out:*)
-CellObject[131425]</code>
+<pre class='mma-input prettyprint'>
+ <code>First@Cells@EvaluationNotebook[]//InputForm</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>CellObject[131425]</code>
 </pre>
 <p>You&apos;ll notice it&apos;s just an ID, because the <code>CellObject</code>  doesn&apos;t need to track a <code>LinkObject</code>  the way a <code>NotebookObject</code>  does. But otherwise it can largely be treated like a <code>NotebookObject</code>  in terms of setting and getting options.</p>
 <p>There are a number of ways to get a <code>CellObject</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>EvaluationCell[]
 NextCell[]
-PreviousCell[]
-(*Out:*)</code>
+PreviousCell[]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/225thefrontend-3219513531743503804.png' alt='225thefrontend-3219513531743503804' />
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/225thefrontend-4918419529169561977.png' alt='225thefrontend-4918419529169561977' />
-<pre class='prettyprint'>
- <code>(*Out:*)</code>
-</pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/225thefrontend-5146191520937075414.png' alt='225thefrontend-5146191520937075414' />
 <p>As with a <code>NotebookObject</code>  there is a stored symbolic form for a <code>CellObject</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>First@Cells@EvaluationNotebook[]//NotebookRead
+
 Cell[&quot;Mathematica For Chemists&quot;,&quot;Title&quot;,CellChangeTimes-&gt;{ {3.684256503623343`*^9,3.684256508302112`*^9}}]</code>
 </pre>
 <p>And when we use <code>NotebookWrite</code>  we often use it on these sorts of <code>Cell</code>  expressions:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>NotebookWrite[EvaluationNotebook[],
 Cell[&quot;A newly written cell&quot;,&quot;Output&quot;,CellDingbat-&gt;Cell[&quot;NEW!!&quot;,Background-&gt;None]
 ]
@@ -960,7 +968,7 @@ Cell[&quot;A newly written cell&quot;,&quot;Output&quot;,CellDingbat-&gt;Cell[&q
 </pre>
 <p><code>NotebookWrite</code>  can also be used to overwrite cells:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>bg=Darker@Red;
 fg=Orange;
 CellPrint@Cell[
@@ -995,15 +1003,15 @@ Background-&gt;Darker[bg,1-i/10]
 </pre>
 <p>A general <code>Cell</code>  expression has a deterministic form:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Cell[data_,style_,options__]</code>
 </pre>
 <p><code>data</code>  will generally either be a <code>String</code> , <code>BoxData</code>  expression, or <code>TextData</code>  expression. The differences between these forms will become clearer in the section on <code>Boxes</code></p>
-<p>When working with a cell, it&apos;s possible to view and edit this symbolic representation using <code>Cell &#9656; Show Expression</code>  or <code><kbd>CMD</kbd>+E</code></p>
+<p>When working with a cell, it&apos;s possible to view and edit this symbolic representation using <code>Cell <span>&#9654;</span> Show Expression</code>  or <code><span style='color: gray; font-size: 10px; border: solid 1px gray;'><kbd>CMD</kbd></span>+E</code></p>
 <h3> Boxes</h3>
 <p>If notebooks are windows and cells are elements of a notebook, then <code>Boxes</code>  describe front-end content. Every piece of content except for primitives such as strings and numbers has a box form for display. <code>Boxes</code>  allow for the interesting formatting that Mathematica permits, by giving a low-level spec for various styling options. We can view the boxes in an expression using <code>ToBoxes</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Framed[Style[
 &quot;Something super cool&quot;,
 FontColor-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,FontColor}]
@@ -1011,9 +1019,11 @@ FontColor-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,FontColor}]
 RoundingRadius-&gt;5,
 FrameStyle-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,FontColor}],
 Background-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,Background}]
-]
-    (*Out:*)
-    &quot;Something super cool&quot;
+]</code>
+</pre>
+<pre class='mma-output prettyprint'>
+ <code>&quot;Something super cool&quot;
+
     ToBoxes@
 Framed[Style[
 &quot;Something super cool&quot;,
@@ -1022,19 +1032,19 @@ FontColor-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,FontColor}]
 RoundingRadius-&gt;5,
 FrameStyle-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,FontColor}],
 Background-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,Background}]
-]
-    (*Out:*)</code>
+]</code>
 </pre>
 <img src='https://www.wolframcloud.com/objects/b3m2a1/tutorial/img/225thefrontend-1131873469982841262.png' alt='225thefrontend-1131873469982841262' />
 <p>To make content like <code>Dynamic</code>  work these boxes can&apos;t be static objects, though. Much like <code>CellObject</code>  and <code>NotebookObject</code>  there is a <code>BoxObject</code>  which we can access, although with more difficulty. Easiest, though, is just to use <code>EvaluationBox</code> :
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Dynamic[EvaluationBox[]]</code>
 </pre>
 <p>Note that this really does have to be wrapped in <code>Dynamic</code> . Before it is displayed, this box doesn&apos;t exist. But we can do something fun with this now:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Dynamic[box=EvaluationBox[]]
+
     NotebookWrite[box,
 ToBoxes@
 Framed[Style[
@@ -1051,15 +1061,15 @@ Background-&gt;CurrentValue[{StyleDefinitions,&quot;Section&quot;,Background}]
 </p>
 <h3> Stylesheets</h3>
 <p>Stylesheets give us the power to leverage the multitudinous styling options available to cells to make cascading stylesheets for giving custom styles to notebooks. On the whole this process is straightforward once you know how to get started.</p>
-<p>For a given notebook, you can access its stylesheet by going to <code>Format &#9656; Edit Stylesheet</code> . There you can edit the default cell styles or define your own.</p>
+<p>For a given notebook, you can access its stylesheet by going to <code>Format <span>&#9654;</span> Edit Stylesheet</code> . There you can edit the default cell styles or define your own.</p>
 <p>What the front end pays attention to are cells formatted like this:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Cell[StyleData[style_],options___]</code>
 </pre>
 <p>This will set <code>options</code>  on all cells with style <code>style</code>  by default. To inherit definitions from a different cell style use:
 </p>
-<pre class='prettyprint'>
+<pre class='mma-input prettyprint'>
  <code>Cell[StyleData[style_,StyleDefinitions-&gt;StyleData[parent_]],options___]</code>
 </pre>
 <p>That&apos;s pretty much it. Past that it&apos;s simply a matter of figuring out what styles work best and knowing which options do what you want done.</p>
