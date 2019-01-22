@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    150627,       2790]
-NotebookOptionsPosition[    144763,       2691]
-NotebookOutlinePosition[    145191,       2708]
-CellTagsIndexPosition[    145148,       2705]
+NotebookDataLength[    151286,       2803]
+NotebookOptionsPosition[    145205,       2703]
+NotebookOutlinePosition[    145633,       2720]
+CellTagsIndexPosition[    145590,       2717]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2520,54 +2520,66 @@ Cell["Fun examples:", "Subsubsection",ExpressionUUID->"27437f7f-ba14-437f-bbe5-4
 
 Cell["\<\
 Mathematica is a great calculus tool and it knows many types of interesting \
-functions so we\[CloseCurlyQuote]ll have it integrate the following very \
-nasty function for us:\
+functions so we\[CloseCurlyQuote]ll have it integrate the following nasty \
+function for us:\
 \>", "Text",
- CellChangeTimes->{{3.684451099082045*^9, 
-  3.684451141150384*^9}},ExpressionUUID->"4a23fae1-0cd6-4c13-8f31-\
+ CellChangeTimes->{{3.684451099082045*^9, 3.684451141150384*^9}, {
+  3.74114238140996*^9, 
+  3.741142382550082*^9}},ExpressionUUID->"4a23fae1-0cd6-4c13-8f31-\
 1ae8857bd7fe"],
 
-Cell[TextData[{
- Cell[BoxData[
-  FormBox[
+Cell[BoxData[
+ FormBox[
+  RowBox[{
    RowBox[{
-    RowBox[{
-     SubscriptBox["P", "3"], "(", 
-     RowBox[{"cos", "(", "\[Theta]", ")"}], ")"}], 
-    RowBox[{"cot", "(", "\[Theta]", ")"}], 
-    FractionBox["d", "d\[Theta]"], 
-    RowBox[{
-     SubscriptBox["P", "4"], "(", 
-     RowBox[{"cos", "(", "\[Theta]", ")"}], ")"}]}], TraditionalForm]], 
-  "InlineInput",ExpressionUUID->"2a3289ff-4a22-4393-8e60-a61ef0c471ba"],
- " where ",
+    SubscriptBox["P", "3"], "(", 
+    RowBox[{"cos", "(", "\[Theta]", ")"}], ")"}], 
+   RowBox[{"cot", "(", "\[Theta]", ")"}], 
+   FractionBox[
+    RowBox[{"\[PartialD]", 
+     RowBox[{
+      SubscriptBox["P", "4"], "(", 
+      RowBox[{"cos", "(", "\[Theta]", ")"}], ")"}]}], 
+    RowBox[{"\[PartialD]", "\[Theta]"}],
+    MultilineFunction->None]}], TraditionalForm]], "DisplayFormula",
+ CellChangeTimes->{{3.741140311189458*^9, 3.741140314358609*^9}, {
+   3.74114047433806*^9, 3.741140547438393*^9}, 3.741140682767311*^9, {
+   3.741140869577011*^9, 3.741140871247005*^9}, {3.7411421506597157`*^9, 
+   3.741142152593684*^9}, 
+   3.741142238002116*^9},ExpressionUUID->"2a93fce1-066a-43c6-bd1e-\
+c19f5901a8c3"],
+
+Cell[TextData[{
+ "where ",
  Cell[BoxData[
   FormBox[
    RowBox[{
     SubscriptBox["P", "i"], "(", 
     RowBox[{"cos", "(", "\[Theta]", ")"}], ")"}], TraditionalForm]], 
-  "InlineInput",ExpressionUUID->"96b3e201-584a-4a47-a28b-44a7e5be03a3"],
+  "InlineFormula",
+  CellChangeTimes->{{3.7411407303859253`*^9, 3.7411407424630833`*^9}},
+  ExpressionUUID->"8ff4be02-4f46-45c2-9710-03c5704feed0"],
  " is the ",
- Cell[BoxData["i"], "InlineInput",
-  FormatType->"StandardForm",ExpressionUUID->
-  "e595dd8e-8844-4c14-8816-3f0dac66acfa"],
- "-th Legendre polynomial in ",
  Cell[BoxData[
   FormBox[
-   RowBox[{"Cos", "[", "\[Theta]", "]"}], TraditionalForm]], "DisplayFormula",
-  
-  CellChangeTimes->{{3.74096798569727*^9, 3.740967994820562*^9}, {
-   3.7409680290387163`*^9, 3.740968068468047*^9}, {3.740968112623608*^9, 
-   3.740968115053876*^9}},ExpressionUUID->
-  "00c899d2-20fc-4560-8c5c-bcd6da8ee409"],
- ",  which is to say, a nasty polynomial with a lot of trigonometric \
-functions which is very difficult to integrate. "
-}], "Text",
- CellChangeTimes->{{3.68445114747261*^9, 3.684451190872486*^9}, {
-  3.684451225788821*^9, 3.684451297474348*^9}, {3.7409678652179537`*^9, 
-  3.7409678969327917`*^9}, {3.740967996838024*^9, 3.7409680580229692`*^9}, {
-  3.740968102549395*^9, 3.740968119245582*^9}, {3.74096816605656*^9, 
-  3.7409682600774393`*^9}},ExpressionUUID->"6541a78f-e42d-4a75-96d2-\
+   SuperscriptBox["i", 
+    StyleBox["th",
+     FontSlant->"Italic"]], TraditionalForm]], "InlineFormula",
+  CellChangeTimes->{{3.741140754313837*^9, 3.741140756950468*^9}},
+  ExpressionUUID->"ab22eb50-ce1d-4ae5-9187-d00a8916850a"],
+ " Legendre polynomial in ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"cos", "(", "\[Theta]", ")"}], TraditionalForm]], "InlineFormula",
+  CellChangeTimes->{{3.741140754313837*^9, 3.741140773829988*^9}},
+  ExpressionUUID->"8b0c4399-98a2-4766-bafa-af27775e51a9"]
+}], ",  which is to say, a nasty polynomial with a lot of trigonometric \
+functions which is very difficult to integrate. ", "Text",
+ CellChangeTimes->{{3.741139980324263*^9, 3.741139988847822*^9}, {
+  3.741140026823779*^9, 3.74114003554252*^9}, {3.741140071056511*^9, 
+  3.7411401026139812`*^9}, {3.7411402145677423`*^9, 3.74114021578728*^9}, {
+  3.741140726018951*^9, 
+  3.7411407781398697`*^9}},ExpressionUUID->"6541a78f-e42d-4a75-96d2-\
 661a6f2538b6"],
 
 Cell[CellGroupData[{
@@ -2690,7 +2702,7 @@ f1b3e9a8cbb0"]
 }, Open  ]]
 },
 WindowSize->{808, 755},
-WindowMargins->{{302, Automatic}, {20, Automatic}},
+WindowMargins->{{118, Automatic}, {Automatic, 25}},
 FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
 2018)",
 StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
@@ -2745,7 +2757,7 @@ Cell[8436, 247, 365, 12, 78, "Code",ExpressionUUID->"8057a6df-80a1-45b5-9290-f50
 Cell[8804, 261, 334, 11, 57, "Output",ExpressionUUID->"c202f029-3a48-482f-bbd4-9a9f867d8a80"]
 }, Open  ]],
 Cell[9153, 275, 192, 3, 35, "Text",ExpressionUUID->"88313e23-e2ef-4f44-9188-eb2364f9a04f"],
-Cell[9348, 280, 404, 12, 50, "DisplayFormula",ExpressionUUID->"8e3d9352-1495-496a-b82e-3dc8a6a0dbc4"],
+Cell[9348, 280, 404, 12, 56, "DisplayFormula",ExpressionUUID->"8e3d9352-1495-496a-b82e-3dc8a6a0dbc4"],
 Cell[9755, 294, 268, 5, 35, "Text",ExpressionUUID->"1d4c32fd-845c-4b23-9010-bcecf27c0921"],
 Cell[CellGroupData[{
 Cell[10048, 303, 681, 22, 100, "Code",ExpressionUUID->"a0a4bff1-b471-4f1a-b332-11b8f74f1a9e"],
@@ -2771,7 +2783,7 @@ Cell[78579, 1488, 328, 9, 65, "Code",ExpressionUUID->"2c428879-b64f-437a-9028-91
 Cell[78910, 1499, 240, 8, 61, "Output",ExpressionUUID->"e7b5bfba-20b3-4fcd-aee9-8c04cd424d61"]
 }, Open  ]],
 Cell[79165, 1510, 196, 2, 35, "Text",ExpressionUUID->"1fb7fd66-0ca7-4024-9341-4dbcf649042e"],
-Cell[79364, 1514, 305, 9, 53, "DisplayFormula",ExpressionUUID->"2d2d8f14-cb0b-4b70-bc65-3cc1ff90a5c8"],
+Cell[79364, 1514, 305, 9, 58, "DisplayFormula",ExpressionUUID->"2d2d8f14-cb0b-4b70-bc65-3cc1ff90a5c8"],
 Cell[79672, 1525, 259, 5, 35, "Text",ExpressionUUID->"f274d96d-a999-4a23-99c4-e47d92d236e4"],
 Cell[CellGroupData[{
 Cell[79956, 1534, 649, 19, 86, "Code",ExpressionUUID->"c3efd084-74ba-4a71-8421-1b49df19da7e"],
@@ -2780,16 +2792,17 @@ Cell[80608, 1555, 58057, 957, 310, "Output",ExpressionUUID->"ec560686-570b-46a2-
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[138714, 2518, 93, 0, 40, "Subsubsection",ExpressionUUID->"27437f7f-ba14-437f-bbe5-4e5473dfd158"],
-Cell[138810, 2520, 325, 7, 58, "Text",ExpressionUUID->"4a23fae1-0cd6-4c13-8f31-1ae8857bd7fe"],
-Cell[139138, 2529, 1662, 41, 63, "Text",ExpressionUUID->"6541a78f-e42d-4a75-96d2-661a6f2538b6"],
+Cell[138810, 2520, 368, 8, 58, "Text",ExpressionUUID->"4a23fae1-0cd6-4c13-8f31-1ae8857bd7fe"],
+Cell[139181, 2530, 755, 19, 46, "DisplayFormula",ExpressionUUID->"2a93fce1-066a-43c6-bd1e-c19f5901a8c3"],
+Cell[139939, 2551, 1303, 31, 35, ",  which is to say, a nasty polynomial with a lot of trigonometric functions which is very difficult to integrate. ",ExpressionUUID->"6541a78f-e42d-4a75-96d2-661a6f2538b6"],
 Cell[CellGroupData[{
-Cell[140825, 2574, 725, 19, 52, "Code",ExpressionUUID->"2b865d5e-4c7a-4700-8aa8-f30df627e786"],
-Cell[141553, 2595, 197, 4, 34, "Output",ExpressionUUID->"0371e9fc-bf27-4dda-9ba9-b4ae4c8bc5d6"]
+Cell[141267, 2586, 725, 19, 52, "Code",ExpressionUUID->"2b865d5e-4c7a-4700-8aa8-f30df627e786"],
+Cell[141995, 2607, 197, 4, 34, "Output",ExpressionUUID->"0371e9fc-bf27-4dda-9ba9-b4ae4c8bc5d6"]
 }, Open  ]],
-Cell[141765, 2602, 380, 8, 58, "Text",ExpressionUUID->"43ab3676-9810-42ae-b324-bf80245e7689"],
-Cell[142148, 2612, 712, 20, 52, "Code",ExpressionUUID->"b58d4485-5d1d-49c5-9f60-aff3fccc5193"],
-Cell[142863, 2634, 1561, 45, 43, "DisplayFormula",ExpressionUUID->"7f1c5ca5-a868-4ff4-b5f0-8ef37b91f1d0"],
-Cell[144427, 2681, 308, 6, 35, "Text",ExpressionUUID->"b929d94e-4fa0-4f28-a510-f1b3e9a8cbb0"]
+Cell[142207, 2614, 380, 8, 58, "Text",ExpressionUUID->"43ab3676-9810-42ae-b324-bf80245e7689"],
+Cell[142590, 2624, 712, 20, 52, "Code",ExpressionUUID->"b58d4485-5d1d-49c5-9f60-aff3fccc5193"],
+Cell[143305, 2646, 1561, 45, 92, "DisplayFormula",ExpressionUUID->"7f1c5ca5-a868-4ff4-b5f0-8ef37b91f1d0"],
+Cell[144869, 2693, 308, 6, 35, "Text",ExpressionUUID->"b929d94e-4fa0-4f28-a510-f1b3e9a8cbb0"]
 }, Open  ]]
 }, Open  ]]
 }

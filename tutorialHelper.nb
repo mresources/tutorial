@@ -1,0 +1,259 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9959,        251]
+NotebookOptionsPosition[      9104,        228]
+NotebookOutlinePosition[      9458,        244]
+CellTagsIndexPosition[      9415,        241]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["restyleInlineCells", "Subsubsection",
+ CellChangeTimes->{
+  3.723202464459507*^9},ExpressionUUID->"00f3ce2b-5a4f-43d4-8946-\
+2742e8914de3"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"findInlineCells", "[", 
+   RowBox[{"nb_:", "Automatic"}], "]"}], ":=", "\[IndentingNewLine]", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"n", "=", 
+      RowBox[{"Replace", "[", 
+       RowBox[{"nb", ",", " ", 
+        RowBox[{"Automatic", "\[RuleDelayed]", 
+         RowBox[{"InputNotebook", "[", "]"}]}]}], "]"}]}], "}"}], ",", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Cells", "/@", 
+       RowBox[{"Cells", "[", "n", "]"}]}], "//", "Flatten"}], "//", 
+     "DeleteDuplicates"}]}], "\[IndentingNewLine]", "]"}]}]], "Input",
+ CellChangeTimes->{{3.723201493751026*^9, 3.7232015367768106`*^9}, {
+  3.723201604757701*^9, 3.723201657457342*^9}},
+ CellLabel->"In[60]:=",ExpressionUUID->"29e3a49d-f2df-45aa-923c-12c936f2a501"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"restyleInlineCells", "[", 
+    RowBox[{
+     RowBox[{"cells", ":", 
+      RowBox[{"{", "__CellObject", "}"}]}], ",", " ", 
+     RowBox[{"style_:", "\"\<InlineInput\>\""}]}], "]"}], ":=", 
+   "\[IndentingNewLine]", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cc", "=", 
+       RowBox[{"AssociationMap", "[", 
+        RowBox[{"ParentNotebook", ",", " ", "cells"}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"FrontEndExecute", "@", "\[IndentingNewLine]", 
+      RowBox[{"Flatten", "@", "\[IndentingNewLine]", 
+       RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+         "FrontEnd`NotebookSuspendScreenUpdates", "/@", "\[IndentingNewLine]", 
+          RowBox[{"DeleteDuplicates", "@", 
+           RowBox[{"Values", "@", "cc"}]}]}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Map", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"FrontEnd`SelectionMove", "[", 
+               RowBox[{
+               "#", ",", " ", "All", ",", " ", "Cell", ",", 
+                "\[IndentingNewLine]", 
+                RowBox[{"AutoScroll", "\[Rule]", "False"}]}], 
+               "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+              RowBox[{"FrontEndToken", "[", 
+               RowBox[{"#", ",", " ", "\"\<Style\>\"", ",", "style"}], 
+               "]"}]}], "\[IndentingNewLine]", "}"}], "&"}], ",", 
+           "\[IndentingNewLine]", "cells"}], "\[IndentingNewLine]", "]"}], 
+         ",", "\[IndentingNewLine]", 
+         RowBox[{"FrontEnd`SelectionMove", "[", 
+          RowBox[{
+           RowBox[{"EvaluationCell", "[", "]"}], ",", " ", "After", ",", " ", 
+           "Cell"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+         "FrontEnd`NotebookResumeScreenUpdates", "/@", "\[IndentingNewLine]", 
+          
+          RowBox[{"DeleteDuplicates", "@", 
+           RowBox[{"Values", "@", "cc"}]}]}]}], "\[IndentingNewLine]", 
+        "}"}]}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"restyleInlineCells", "[", 
+   RowBox[{
+    RowBox[{"nb_:", "Automatic"}], ",", " ", 
+    RowBox[{"style_:", "\"\<InlineInput\>\""}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"restyleInlineCells", "[", 
+   RowBox[{
+    RowBox[{"findInlineCells", "[", "nb", "]"}], ",", " ", "style"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.723201661269968*^9, 3.723201759208045*^9}, {
+  3.723201958343315*^9, 3.723202059821559*^9}, {3.723202093896758*^9, 
+  3.723202134404551*^9}, {3.723202628445099*^9, 3.723202633324394*^9}},
+ CellLabel->"In[61]:=",ExpressionUUID->"0587d410-5844-4ca2-a84e-a16baaa13b39"]
+}, Closed]],
+
+Cell[CellGroupData[{
+
+Cell["reindentCodeInput", "Subsubsection",
+ CellChangeTimes->{
+  3.723202460245632*^9},ExpressionUUID->"1ed1e654-8616-46d8-8541-\
+88bc57b8cc91"],
+
+Cell[BoxData[
+ RowBox[{"reindentCodeInput", "//", "Clear"}]], "Input",
+ CellChangeTimes->{{3.723202456812448*^9, 3.723202457673311*^9}},
+ CellLabel->"In[63]:=",ExpressionUUID->"41e49455-51b3-4522-9412-ed7cc5fbbd85"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"findCodeCells", "[", 
+    RowBox[{"nb_:", "Automatic"}], "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", "=", 
+       RowBox[{"Replace", "[", 
+        RowBox[{"nb", ",", " ", 
+         RowBox[{"Automatic", "\[RuleDelayed]", 
+          RowBox[{"InputNotebook", "[", "]"}]}]}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Cells", "[", 
+      RowBox[{"n", ",", " ", 
+       RowBox[{"CellStyle", "\[Rule]", "\"\<Code\>\""}]}], "]"}]}], 
+    "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"reindentCodeInput", "[", 
+    RowBox[{
+     RowBox[{"cells", ":", 
+      RowBox[{"{", "__CellObject", "}"}]}], ",", 
+     RowBox[{"hide", ":", 
+      RowBox[{"True", "|", "False"}], ":", "True"}]}], "]"}], ":=", 
+   "\[IndentingNewLine]", 
+   RowBox[{"With", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"cc", "=", 
+       RowBox[{"AssociationMap", "[", 
+        RowBox[{"ParentNotebook", ",", " ", "cells"}], "]"}]}], "}"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{"hide", ",", "\[IndentingNewLine]", 
+        RowBox[{"FrontEndExecute", "[", "\[IndentingNewLine]", 
+         RowBox[{
+         "FrontEnd`NotebookSuspendScreenUpdates", "/@", "\[IndentingNewLine]", 
+          RowBox[{"DeleteDuplicates", "@", 
+           RowBox[{"Values", "@", "cc"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+       "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"KeyValueMap", "[", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"Function", "[", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"SelectionMove", "[", "\[IndentingNewLine]", 
+           RowBox[{
+           "#", ",", " ", "\[IndentingNewLine]", "All", ",", 
+            "\[IndentingNewLine]", "CellContents", ",", "\[IndentingNewLine]", 
+            RowBox[{"AutoScroll", "\[Rule]", "False"}]}], 
+           "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{"!", "hide"}], ",", " ", 
+            RowBox[{"Pause", "[", ".01", "]"}]}], "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"IndentationEvent", "[", "\[IndentingNewLine]", 
+           RowBox[{"#2", ",", "\[IndentingNewLine]", "\"\<Replace\>\""}], 
+           "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ",", 
+        "\[IndentingNewLine]", "cc"}], "\[IndentingNewLine]", "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"SelectionMove", "[", 
+       RowBox[{
+        RowBox[{"EvaluationCell", "[", "]"}], ",", " ", "After", ",", " ", 
+        "Cell"}], "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
+       RowBox[{"hide", ",", "\[IndentingNewLine]", 
+        RowBox[{"FrontEndExecute", "[", "\[IndentingNewLine]", 
+         RowBox[{
+         "FrontEnd`NotebookResumeScreenUpdates", "/@", "\[IndentingNewLine]", 
+          
+          RowBox[{"DeleteDuplicates", "@", 
+           RowBox[{"Values", "@", "cc"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+       "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"reindentCodeInput", "[", 
+   RowBox[{
+    RowBox[{"nb_:", "Automatic"}], ",", 
+    RowBox[{"hide", ":", 
+     RowBox[{"True", "|", "False"}], ":", "True"}]}], "]"}], ":=", 
+  "\[IndentingNewLine]", 
+  RowBox[{"reindentCodeInput", "[", 
+   RowBox[{
+    RowBox[{"findCodeCells", "[", "nb", "]"}], ",", " ", "hide"}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{{3.723202166150139*^9, 3.723202364035791*^9}, {
+   3.723202403269784*^9, 3.723202405009985*^9}, {3.723202449082941*^9, 
+   3.723202452999856*^9}, {3.723202571463476*^9, 3.7232026030717773`*^9}, {
+   3.723202640573434*^9, 3.723202705995447*^9}, {3.723202748045075*^9, 
+   3.723202792286914*^9}, {3.723202836019796*^9, 3.723202873109457*^9}, {
+   3.723203946441063*^9, 3.7232039488860493`*^9}, {3.723204171037879*^9, 
+   3.7232041730362453`*^9}, 3.7233880273069572`*^9, {3.723388065416526*^9, 
+   3.723388072158812*^9}, {3.723388727923983*^9, 3.7233887567870398`*^9}, {
+   3.739930880612996*^9, 3.7399308931124287`*^9}},
+ CellLabel->"In[73]:=",ExpressionUUID->"24a21116-ddd7-460c-86ff-9588dea4ac92"]
+}, Open  ]]
+},
+WindowSize->{808, 755},
+WindowMargins->{{30, Automatic}, {Automatic, 22}},
+FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
+2018)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 145, 3, 45, "Subsubsection",ExpressionUUID->"00f3ce2b-5a4f-43d4-8946-2742e8914de3"],
+Cell[728, 27, 811, 20, 94, "Input",ExpressionUUID->"29e3a49d-f2df-45aa-923c-12c936f2a501"],
+Cell[1542, 49, 2804, 64, 493, "Input",ExpressionUUID->"0587d410-5844-4ca2-a84e-a16baaa13b39"]
+}, Closed]],
+Cell[CellGroupData[{
+Cell[4383, 118, 144, 3, 37, "Subsubsection",ExpressionUUID->"1ed1e654-8616-46d8-8541-88bc57b8cc91"],
+Cell[4530, 123, 215, 3, 30, "Input",ExpressionUUID->"41e49455-51b3-4522-9412-ed7cc5fbbd85"],
+Cell[4748, 128, 4340, 97, 808, "Input",ExpressionUUID->"24a21116-ddd7-460c-86ff-9588dea4ac92"]
+}, Open  ]]
+}
+]
+*)
+

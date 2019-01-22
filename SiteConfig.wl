@@ -3,10 +3,12 @@
 (* Created with the Wolfram Language : www.wolfram.com *)
 {
 	"SiteName" -> "Mathematica Tutorial", 
-	"SiteURL"-> "https://www.wolframcloud.com/objects/b3m2a1/tutorial",
+	"SiteURL"-> "https://mresources.github.io/tutorial",
 	"PrettyPrint"->True,
+	"CodeLanguage"->"mma",
 	"PatchFonts"->True,
 	"SplitInOut"->True,
+	"AttachIDs"->True,
 	"DeployOptions"->
 		{
 			CloudConnect->"DeploymentsAccount"
