@@ -48,22 +48,18 @@ This generates the index.html page
 
 <wolfram:slot id="PrimaryContent">
 
-  <!-- Page content -->
-  <div class="w3-content w3-padding">
-
   <!-- About Section -->
   <wolfram:get path="include/lib/templates/pageLocalizedBlock.html">
     <wolfram:slot id="page">pages/about.html</wolfram:slot>
     <wolfram:slot id="block">
-      <article>
-        <div class="col-sm-8 about-block w3-container w3-padding-32" id="about">
-              <div class="content">
-                <wolfram:expr>#PageData["Content"]</wolfram:expr>
-              </div>
-            </h3>
+        <div class="about-block w3-container w3-padding-32" id="about">
+          <div class="content">
+            <wolfram:expr>
+              $$templateLib["extractBody"]@
+                #PageData["Content"]
+            </wolfram:expr>
           </div>
         </div>
-      <article>
     </wolfram:slot>
   </wolfram:get>
 
