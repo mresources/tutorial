@@ -440,7 +440,7 @@
         Front End Programming   The Mathematica front-end is almost as complex as the Mathematica kernel, but much worse understood. There are a number of contexts which implement different functionality that it uses.      FrontEnd   The &quot;FrontEnd`&quot; context supplies things like &quot;front-end packets&quot; which tell the front-end to do things.
     </description>
     <guid>https://mresources.github.io/tutorial/reference-guides/undocumented-contexts/frontend.html</guid>
-    <pubDate>Tue 17 Jul 2018 13:18:39</pubDate>
+    <pubDate>Fri 12 Apr 2019 20:02:45</pubDate>
   </item>
   <item>
     <title>System`*`</title>

@@ -833,30 +833,130 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
           Reference Guides &raquo; Undocumented Contexts
         </h2>
     <div class="article content">
-      <a shape='rect' id='front-end-programming' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+      <a shape='rect' class='Subsection' id='frontendprogramming' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2 id='h21'> Front End Programming</h2>
 <p id='p2'>The Mathematica front-end is almost as complex as the Mathematica kernel, but much worse understood. There are a number of contexts which implement different functionality that it uses.</p>
-<a shape='rect' id='frontend' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<a shape='rect' class='Subsection' id='frontend' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2 id='h23'> FrontEnd</h2>
-<p id='p4'>The  <code>&quot;FrontEnd`&quot;</code>  context supplies things like &quot;front-end packets&quot; which tell the front-end to do things.</p>
+<p id='p4'>The  <code>&quot;FrontEnd`&quot;</code> context supplies things like &quot;front-end packets&quot; which tell the front-end to do things.</p>
 <p id='p5'>There is a decent listing of these with usages  <a href='https://mathematica.stackexchange.com/a/133523/38205'>here</a> .</p>
-<a shape='rect' id='fe' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<a shape='rect' class='Subsection' id='fe' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
 <h2 id='h26'> FE</h2>
-<p id='p7'>The  <code>&quot;FE`&quot;</code>  context provides utilities used by the front-end
+<p id='p7'>The  <code>&quot;FE`&quot;</code> context provides utilities used by the front-end</p>
+<a shape='rect' class='Subsubsection' id='makeplaintext' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h3 id='h38'>makePlainText</h3>
+<p id='p9'><code>FE`makePlainText</code> converts a front-end expression into plain text:
 </p>
-<h3 id='h38'> makePlainText</h3>
-<h3 id='h39'> Evaluate</h3>
-<a shape='rect' id='feprivate' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
-<h2 id='h210'> FEPrivate</h2>
-<p id='p11'>The  <code>&quot;FEPrivate`&quot;</code>  context supplies a mini-language that the front-end understands. Here are some of it&apos;s useful structures.</p>
-<p id='p12'>The language itself is much more rigid and inflexible, given that it&apos;s closer to a DSL than a standard language.
+<pre class='mma-input prettyprint lang-mma'
+    id='pre10'>
+ <code>FE`makePlainText[NotebookRead[EvaluationCell[]]]</code>
+</pre>
+<pre class='mma-output prettyprint lang-mma'
+    id='pre11'>
+ <code>&quot;In[6]:= FE`makePlainText[NotebookRead[EvaluationCell[]]]&quot;</code>
+</pre>
+<p id='p12'>It&apos;s basically like  <code>FrontEndExecute</code> with  <code>ExportPacket</code> and  <code>&quot;PlainText&quot;</code> as described  <a href='https://mathematica.stackexchange.com/a/133523/38205'>here</a> .</p>
+<a shape='rect' class='Subsubsection' id='evaluate' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h3 id='h313'>Evaluate</h3>
+<p id='p14'><code>FE`Evaluate</code> evaluates front-end expressions, basically. It&apos;ll usually imitate what you see when working with these things in the actual front-end. E.g.:
 </p>
-<h3 id='h313'> If</h3>
-<h3 id='h314'> Part</h3>
-<h3 id='h315'> FrontEndResource</h3>
-<h3 id='h316'> ImportImage</h3>
-<a shape='rect' id='see-also' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
-<h2 id='h217'> See Also:</h2>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre15'>
+ <code>img =
+    FE`Evaluate[
+       (* imports an Image as a GraphicsBox *)
+
+   FEPrivate`ImportImage@
+          FrontEnd`FileName[{&quot;Ribbons&quot;, &quot;Common&quot;}, &quot;Close.png&quot;]
+       ];
+img // ToExpression (* creates the proper image from the GraphicsBox *)</code>
+</pre>
+<p id='p16'>Compare to:
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre17'>
+ <code>RawBoxes@DynamicBox@
+  FEPrivate`ImportImage@
+      FrontEnd`FileName[{&quot;Ribbons&quot;, &quot;Common&quot;}, &quot;Close.png&quot;]</code>
+</pre>
+<a shape='rect' class='Subsection' id='feprivate' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2 id='h218'> FEPrivate</h2>
+<p id='p19'>The  <code>&quot;FEPrivate`&quot;</code> context supplies a mini-language that the front-end understands. Here are some of it&apos;s useful structures.</p>
+<p id='p20'>The language itself is much more rigid and inflexible, given that it&apos;s closer to a DSL than a standard language.
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre21'>
+ <code>Select[
+StringSplit[Names[&quot;FEPrivate`*&quot;], &quot;`&quot;][[All, -1]],
+NameQ
+]</code>
+</pre>
+<pre class='mma-output prettyprint lang-mma'
+    id='pre22'>
+ <code>{&quot;And&quot;,&quot;EmitSound&quot;,&quot;FrontEndExecute&quot;,&quot;FrontEndResource&quot;,&quot;FrontEndResourceString&quot;,&quot;Greater&quot;,&quot;Head&quot;,&quot;If&quot;,&quot;Less&quot;,&quot;MemberQ&quot;,&quot;Not&quot;,&quot;Or&quot;,&quot;Part&quot;,&quot;SameQ&quot;,&quot;Set&quot;,&quot;SetDelayed&quot;,&quot;Switch&quot;,&quot;UnsameQ&quot;,&quot;Which&quot;,&quot;$ActivationKey&quot;,&quot;$OperatingSystem&quot;,&quot;$SystemID&quot;}</code>
+</pre>
+<a shape='rect' class='Subsubsection' id='ifswitch' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h3 id='h323'>If  / Switch / Which / And / Or / Not / MemberQ / SameQ / Head / Greater / Less / Part / Apply / Etc.</h3>
+<p id='p24'>These are basically the same as in the kernel, but obviously do not evaluate unless called via  <code>FE`Evaluate</code> on in the front-end itself. One thing to note is that many constructs are less powerful than in the kernel, so stick to simple things when possible.</p>
+<a shape='rect' class='Subsubsection' id='setsetdelayed' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h3 id='h325'>Set / SetDelayed</h3>
+<p id='p26'>These are used to represent  <code>Set</code> and  <code>SetDelayed</code> , as one would expect, but they&apos;re almost always used with  <code>FrontEnd`SetValue</code> as a wrapper, e.g.:
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre27'>
+ <code>MathLink`CallFrontEndHeld[FrontEnd`SetValue@FEPrivate`Set[myVar, 2]]</code>
+</pre>
+<p id='p28'>Now the FE remembers that and we can get that value back from it later, maybe in a  <code>DynamicBox</code> :
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre29'>
+ <code>RawBoxes@DynamicBox[myVar]</code>
+</pre>
+<img src='https://mresources.github.io/tutorial/img/413frontend-732377038742225435.png' alt='413frontend-732377038742225435' id='img30' />
+<p id='p31'>Note that  <code>myVar</code> still has no value:
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre32'>
+ <code>myVar</code>
+</pre>
+<pre class='mma-output prettyprint lang-mma'
+    id='pre33'>
+ <code>myVar</code>
+</pre>
+<p id='p34'>And if we change that value of  <code>myVar</code> in the FE the  <code>Dynamic</code> value will also update:
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre35'>
+ <code>MathLink`CallFrontEndHeld[FrontEnd`SetValue@FEPrivate`Set[myVar, 5]] 
+(* now the prior DynamicBox will read 5 *)</code>
+</pre>
+<p id='p36'>This can be useful as a way to set state. We can also use slightly more complicated patterns like:
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre37'>
+ <code>MathLink`CallFrontEnd@
+  FrontEnd`SetValue@FEPrivate`Set[cache[EvaluationNotebook[]], 5]</code>
+</pre>
+<p id='p38'>And pull this with:
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre39'>
+ <code>MathLink`CallFrontEnd@
+  FrontEnd`Value@cache[EvaluationNotebook[]]</code>
+</pre>
+<pre class='mma-output prettyprint lang-mma'
+    id='pre40'>
+ <code>5</code>
+</pre>
+<p id='p41'>Note, though, that this type of thing can&apos;t be used with  <code>DynamicBox</code> , though
+</p>
+<pre class='mma-input prettyprint lang-mma'
+    id='pre42'>
+ <code>RawBoxes@DynamicBox[cache[EvaluationNotebook[]]]</code>
+</pre>
+<p id='p43'>The most common use of  <code>Set</code> and  <code>SetDelayed</code> , though, is in the  <code>CurrentValue</code> mechanism. The way  <code>CurrentValue</code> updates is through  <code>FEPrivate`Set</code> and  <code>FEPrivate`SetDelayed</code> .</p>
+<a shape='rect' class='Subsection' id='seealso' style='width:0;height:0;margin:0;padding:0;'>&#8204;</a>
+<h2 id='h244'> See Also:</h2>
 <ul>
  <li>
   <a href='https://mathematica.stackexchange.com/questions/13451/what-is-the-complete-list-of-valid-frontend-packet-types'>https://mathematica.stackexchange.com/questions/13451/what-is-the-complete-list-of-valid-frontend-packet-types</a>
@@ -881,10 +981,10 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <li class="page-item">
     <a
       class="page-link"
-      href="https://mresources.github.io/tutorial/reference-guides/undocumented-contexts/frontend.html"
+      href="https://mresources.github.io/tutorial/reference-guides/undocumented-contexts/system-%2A.html"
       >
       <span aria-hidden="true">
-        FrontEnd &raquo;
+        System`*` &raquo;
       </span>
       <span class="sr-only">Next</span>
     </a>
@@ -910,8 +1010,8 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
   <div class="embedded-notebook-container" style="position: relative; width: 100%; height: 100%">
   <button
     class="embedded-notebook"
-    id="notebook-93c4e0ec-cff1-446f-bf76-f723732bb6e8"
-    onclick="loadCloudNotebook('notebook-93c4e0ec-cff1-446f-bf76-f723732bb6e8')"
+    id="notebook-4aeb3ff0-4e89-47ac-847b-6c41494da92c"
+    onclick="loadCloudNotebook('notebook-4aeb3ff0-4e89-47ac-847b-6c41494da92c')"
     style="text-align: center; height: 400px; width: 100%; cursor: pointer; background-color: #fff; background-repeat:no-repeat; border:none;"
     >
     <script>
@@ -958,7 +1058,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
         nbFrame.style = "position: absolute; left:-2px; top:-2px; height: 400px; width: 100%;"
         nbCells = JSON.parse("[]");
         nbDiv.parentNode.replaceChild(nbFrame, nbDiv);
-        populateCloudNotebookCells('notebook-93c4e0ec-cff1-446f-bf76-f723732bb6e8', nbCells)
+        populateCloudNotebookCells('notebook-4aeb3ff0-4e89-47ac-847b-6c41494da92c', nbCells)
         }
     </script>
     <span style="display: inline-block; vertical-align: middle;">

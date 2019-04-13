@@ -1,255 +1,95 @@
-(* Content-type: application/vnd.wolfram.mathematica *)
-
-(*** Wolfram Notebook File ***)
-(* http://www.wolfram.com/nb *)
-
-(* CreatedBy='Mathematica 11.2' *)
-
-(*CacheID: 234*)
-(* Internal cache information:
-NotebookFileLineBreakTest
-NotebookFileLineBreakTest
-NotebookDataPosition[       158,          7]
-NotebookDataLength[      9256,        247]
-NotebookOptionsPosition[      7308,        204]
-NotebookOutlinePosition[      7735,        221]
-CellTagsIndexPosition[      7692,        218]
-WindowFrame->Normal*)
-
-(* Beginning of Notebook Content *)
-Notebook[{
-Cell[BoxData[
- RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
-  RowBox[{
-   RowBox[{"\"\<Title\>\"", "\[Rule]", "\"\<About\>\""}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"\"\<Slug\>\"", "\[Rule]", "Automatic"}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"\"\<Date\>\"", "\[Rule]", 
-    TemplateBox[{RowBox[{"\"Sun 24 Dec 2017 09:21:43\"", 
-        StyleBox[
-         RowBox[{"\"GMT\"", "\[InvisibleSpace]", 
-           RowBox[{"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}],
-      RowBox[{"DateObject", "[", 
-        RowBox[{
-          RowBox[{"{", 
-            
-            RowBox[{"2017", ",", "12", ",", "24", ",", "9", ",", "21", ",", 
-              "43.539406`8.391457477178403"}], "}"}], ",", "\"Instant\"", ",",
-           "\"Gregorian\"", ",", 
-          RowBox[{"-", "5.`"}]}], "]"}]},
-     "DateObject",
-     Editable->False]}], ",", "\[IndentingNewLine]", 
-   RowBox[{"\"\<Modified\>\"", "\[RuleDelayed]", "Now"}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"\"\<ExportOptions\>\"", "\[Rule]", 
-    RowBox[{"{", 
-     RowBox[{"\"\<Save\>\"", "\[Rule]", "True"}], "}"}]}]}], 
-  "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata",
- CellChangeTimes->{{3.72305362352835*^9, 3.7230536242703047`*^9}, {
-  3.723068028219879*^9, 3.723068034387553*^9}, {3.723200480323265*^9, 
-  3.7232005073774633`*^9}, {3.740833859584896*^9, 3.7408338671621437`*^9}, {
-  3.740837734937046*^9, 
-  3.740837735330605*^9}},ExpressionUUID->"1e451960-39d1-4cc2-9cd6-\
-861c6f3f0295"],
-
-Cell[CellGroupData[{
-
-Cell["A (Somewhat) Quick Intro to Mathematica", "Subsection",
- CellChangeTimes->{
-  3.740833839254422*^9, {3.74083811375913*^9, 
-   3.740838116044715*^9}},ExpressionUUID->"501d2c79-8ce2-4c5c-a2c7-\
-a50197f99de3"],
-
-Cell["\<\
-This is a little Mathematica tutorial written for a group of chemists I knew. \
-Its purpose is to quickly get one used to programming in Mathematica with an \
-eye for its various strengths, weakness, pitfalls, and idiosyncrasies.\
-\>", "Text",
- CellChangeTimes->{{3.740833661183422*^9, 3.7408337881193*^9}, {
-  3.740833874319098*^9, 3.740833878767543*^9}, {3.740838119524989*^9, 
-  3.740838127765068*^9}},ExpressionUUID->"77dd200a-8334-430e-8ffa-\
-12c34e87fa2c"],
-
-Cell[CellGroupData[{
-
-Cell["Navigation", "Subsubsection",
- CellChangeTimes->{{3.7408339800136538`*^9, 
-  3.740833981566167*^9}},ExpressionUUID->"9926cbdc-7102-4bd3-ae27-\
-c0e01a43c6b7"],
-
-Cell["\<\
-The tutorial is broken into sections which may be browsed in the Table of \
-Contents. There is also navigation bar to take one between sections.\
-\>", "Text",
- CellChangeTimes->{{3.740833792401507*^9, 3.7408338139524403`*^9}, {
-  3.740833885470744*^9, 
-  3.740833926094314*^9}},ExpressionUUID->"e3fc612b-0582-423a-9ea1-\
-183b8013ada7"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Running Code", "Subsubsection",
- CellChangeTimes->{{3.740833969630224*^9, 
-  3.74083397448674*^9}},ExpressionUUID->"45282397-2e36-488a-bf81-\
-4eb38847a6c7"],
-
-Cell["\<\
-To facilitate the ease of use, this tutorial provides a sandbox Wolfram Cloud \
-notebook accessible via the thumb at the bottom of each tutorial page.\
-\>", "Text",
- CellChangeTimes->{{3.740833927366448*^9, 
-  3.7408339866955233`*^9}},ExpressionUUID->"b93d2061-5e0a-46ae-a16f-\
-a4585b7077e0"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Contributing", "Subsubsection",
- CellChangeTimes->{{3.723575582497449*^9, 3.723575586032494*^9}, {
-   3.740834108103106*^9, 3.740834110277759*^9}, 
-   3.74083754264347*^9},ExpressionUUID->"1142213a-7f49-4b8c-a9fb-\
-37aeb16ff501"],
-
-Cell[TextData[{
- "If you\[CloseCurlyQuote]d like to contribute, a copy of this lives at ",
- ButtonBox["github.com/mresources/tutorial",
-  BaseStyle->"Hyperlink",
-  ButtonData->{
-    URL["https://github.com/mresources/tutorial"], None},
-  ButtonNote->"https://github.com/mresources/tutorial"],
- " and any changes you make can be merged in."
-}], "Text",
- CellChangeTimes->{{3.740834111853187*^9, 3.74083412187779*^9}, {
-  3.74083745012964*^9, 
-  3.7408374837817373`*^9}},ExpressionUUID->"da204c2b-fb48-4306-b0d4-\
-4a103baa60ab"],
-
-Cell[TextData[{
- "The website is built from a collection of Mathematica notebooks using the \
-",
- Cell[BoxData["SiteBuilder"], "InlineInput",
-  FormatType->"StandardForm",ExpressionUUID->
-  "4435c988-0a01-4f12-9042-c40028fdcd8b"],
- " package in ",
- ButtonBox["BTools",
-  BaseStyle->"Hyperlink",
-  ButtonData->{
-    URL["https://github.com/b3m2a1/mathematica-BTools"], None},
-  ButtonNote->"https://github.com/b3m2a1/mathematica-BTools"],
- " and so any contributions will have to be in the form of either Markdown or \
-Markdown notebooks."
-}], "Text",
- CellChangeTimes->{{3.740837547395289*^9, 3.740837565268001*^9}, {
-  3.740837691579666*^9, 
-  3.7408377241941137`*^9}},ExpressionUUID->"c23fff6d-2794-49c8-8f98-\
-2a10d8ef40aa"]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["Errors", "Subsubsection",
- CellChangeTimes->{{3.7235754763617773`*^9, 3.7235754811617603`*^9}, {
-  3.723575519809922*^9, 
-  3.723575523393017*^9}},ExpressionUUID->"c807cb54-9e01-436f-8e7f-\
-2fc0adc36b7a"],
-
-Cell["\<\
-This tutorial was written very quickly. There are undoubtedly errors in it. \
-Please feel free to report any to me on the tutorial GitHub repository and I\
-\[CloseCurlyQuote]ll try to correct them at my soonest convenience. \
-\>", "Text",
- CellChangeTimes->{{3.72357548255385*^9, 3.7235755283934383`*^9}, {
-  3.740833935424678*^9, 3.740833935750229*^9}, {3.7408375073100357`*^9, 
-  3.7408375307966757`*^9}},ExpressionUUID->"6bc4ef40-0adb-4ea4-bf34-\
-78132aa709cc"]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell["See Also:", "Subsection",
- CellChangeTimes->{{3.740844941369698*^9, 3.7408449424083023`*^9}, 
-   3.740845318632187*^9},ExpressionUUID->"7d1aebcd-2f25-4f2d-9eac-\
-1a0b423381b3"],
-
-Cell[CellGroupData[{
-
-Cell[TextData[ButtonBox["Other References",
- BaseStyle->"Hyperlink",
- ButtonData->{
-   URL["https://mathematica.stackexchange.com/questions/18/where-can-i-find-\
-examples-of-good-mathematica-programming-practice"], None},
- ButtonNote->
-  "https://mathematica.stackexchange.com/questions/18/where-can-i-find-\
-examples-of-good-mathematica-programming-practice"]], "Item",
- CellChangeTimes->{{3.740845351566929*^9, 
-  3.740845361135487*^9}},ExpressionUUID->"19ee3c49-cf6c-47fc-9efa-\
-91881fdec32f"],
-
-Cell[TextData[ButtonBox["Common Pitfalls",
- BaseStyle->"Hyperlink",
- ButtonData->{
-   URL["https://mathematica.stackexchange.com/questions/18393/what-are-the-\
-most-common-pitfalls-awaiting-new-users"], None},
- ButtonNote->
-  "https://mathematica.stackexchange.com/questions/18393/what-are-the-most-\
-common-pitfalls-awaiting-new-users"]], "Item",
- CellChangeTimes->{{3.740845337583935*^9, 
-  3.740845343555601*^9}},ExpressionUUID->"2fd62df5-d371-4691-a1b8-\
-3b0d50a4238b"]
-}, Open  ]]
-}, Open  ]]
-},
-WindowSize->{808, 755},
-WindowMargins->{{23, Automatic}, {22, Automatic}},
-FrontEndVersion->"11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, \
-2018)",
-StyleDefinitions->FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
-  CharacterEncoding -> "UTF-8"]
-]
-(* End of Notebook Content *)
-
-(* Internal cache information *)
-(*CellTagsOutline
-CellTagsIndex->{}
-*)
-(*CellTagsIndex
-CellTagsIndex->{}
-*)
-(*NotebookFileOutline
-Notebook[{
-Cell[558, 20, 1487, 33, 198, "Metadata",ExpressionUUID->"1e451960-39d1-4cc2-9cd6-861c6f3f0295"],
-Cell[CellGroupData[{
-Cell[2070, 57, 212, 4, 41, "Subsection",ExpressionUUID->"501d2c79-8ce2-4c5c-a2c7-a50197f99de3"],
-Cell[2285, 63, 472, 8, 58, "Text",ExpressionUUID->"77dd200a-8334-430e-8ffa-12c34e87fa2c"],
-Cell[CellGroupData[{
-Cell[2782, 75, 163, 3, 40, "Subsubsection",ExpressionUUID->"9926cbdc-7102-4bd3-ae27-c0e01a43c6b7"],
-Cell[2948, 80, 345, 7, 58, "Text",ExpressionUUID->"e3fc612b-0582-423a-9ea1-183b8013ada7"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[3330, 92, 162, 3, 40, "Subsubsection",ExpressionUUID->"45282397-2e36-488a-bf81-4eb38847a6c7"],
-Cell[3495, 97, 302, 6, 58, "Text",ExpressionUUID->"b93d2061-5e0a-46ae-a16f-a4585b7077e0"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[3834, 108, 235, 4, 40, "Subsubsection",ExpressionUUID->"1142213a-7f49-4b8c-a9fb-37aeb16ff501"],
-Cell[4072, 114, 526, 12, 58, "Text",ExpressionUUID->"da204c2b-fb48-4306-b0d4-4a103baa60ab"],
-Cell[4601, 128, 727, 18, 58, "Text",ExpressionUUID->"c23fff6d-2794-49c8-8f98-2a10d8ef40aa"]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[5365, 151, 210, 4, 40, "Subsubsection",ExpressionUUID->"c807cb54-9e01-436f-8e7f-2fc0adc36b7a"],
-Cell[5578, 157, 474, 8, 58, "Text",ExpressionUUID->"6bc4ef40-0adb-4ea4-bf34-78132aa709cc"]
-}, Open  ]]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[6101, 171, 182, 3, 41, "Subsection",ExpressionUUID->"7d1aebcd-2f25-4f2d-9eac-1a0b423381b3"],
-Cell[CellGroupData[{
-Cell[6308, 178, 496, 10, 32, "Item",ExpressionUUID->"19ee3c49-cf6c-47fc-9efa-91881fdec32f"],
-Cell[6807, 190, 473, 10, 32, "Item",ExpressionUUID->"2fd62df5-d371-4691-a1b8-3b0d50a4238b"]
-}, Open  ]]
-}, Open  ]]
-}
-]
-*)
-
+Notebook[{Cell[BoxData[RowBox[{"\[LeftAssociation]", "\[IndentingNewLine]", 
+      RowBox[{RowBox[{"\"Title\"", "\[Rule]", "\"About\""}], ",", 
+        "\[IndentingNewLine]", RowBox[{"\"Slug\"", "\[Rule]", "Automatic"}], 
+        ",", "\[IndentingNewLine]", RowBox[{"\"Date\"", "\[Rule]", 
+          TemplateBox[{RowBox[{"\"Sun 24 Dec 2017 09:21:43\"", 
+              StyleBox[RowBox[{"\"GMT\"", "\[InvisibleSpace]", RowBox[
+                  {"-", "5.`"}]}], FontColor -> GrayLevel[0.5]]}], 
+            RowBox[{"DateObject", "[", RowBox[{RowBox[{"{", RowBox[
+                   {"2017", ",", "12", ",", "24", ",", "9", ",", "21", ",", 
+                    "43.539406`8.391457477178403"}], "}"}], ",", 
+                "\"Instant\"", ",", "\"Gregorian\"", ",", RowBox[
+                 {"-", "5.`"}]}], "]"}]}, "DateObject", Editable -> False]}], 
+        ",", "\[IndentingNewLine]", RowBox[{"\"Modified\"", "\[RuleDelayed]", 
+          "Now"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"\"ExportOptions\"", "\[Rule]", 
+          RowBox[{"{", RowBox[{"\"Save\"", "\[Rule]", "True"}], "}"}]}]}], 
+      "\[IndentingNewLine]", "\[RightAssociation]"}]], "Metadata", 
+   CellChangeTimes -> {{3.72305362352835*^9, 3.7230536242703047*^9}, 
+    {3.723068028219879*^9, 3.723068034387553*^9}, {3.723200480323265*^9, 
+    3.7232005073774633*^9}, {3.740833859584896*^9, 3.7408338671621437*^9}, 
+    {3.740837734937046*^9, 3.740837735330605*^9}}], 
+  Cell[CellGroupData[{Cell["A (Somewhat) Quick Intro to Mathematica", 
+      "Subsection", CellChangeTimes -> {3.740833839254422*^9, 
+        {3.74083811375913*^9, 3.740838116044715*^9}}], 
+     Cell["This is a little Mathematica tutorial written for a group of \
+chemists I knew. Its purpose is to quickly get one used to programming in \
+Mathematica with an eye for its various strengths, weakness, pitfalls, and \
+idiosyncrasies.", "Text", CellChangeTimes -> {{3.740833661183422*^9, 
+       3.7408337881193*^9}, {3.740833874319098*^9, 3.740833878767543*^9}, 
+       {3.740838119524989*^9, 3.740838127765068*^9}}], 
+     Cell[CellGroupData[{Cell["Navigation", "Subsubsection", 
+         CellChangeTimes -> {{3.7408339800136538*^9, 3.740833981566167*^9}}], 
+        Cell["The tutorial is broken into sections which may be browsed in \
+the Table of Contents. There is also navigation bar to take one between \
+sections.", "Text", CellChangeTimes -> {{3.740833792401507*^9, 
+          3.7408338139524403*^9}, {3.740833885470744*^9, 
+          3.740833926094314*^9}}]}, Open]], 
+     Cell[CellGroupData[{Cell["Running Code", "Subsubsection", 
+         CellChangeTimes -> {{3.740833969630224*^9, 3.74083397448674*^9}}], 
+        Cell["To facilitate the ease of use, this tutorial provides a sandbox \
+Wolfram Cloud notebook accessible via the thumb at the bottom of each \
+tutorial page.", "Text", CellChangeTimes -> {{3.740833927366448*^9, 
+          3.7408339866955233*^9}}]}, Open]], 
+     Cell[CellGroupData[{Cell["Contributing", "Subsubsection", 
+         CellChangeTimes -> {{3.723575582497449*^9, 3.723575586032494*^9}, 
+           {3.740834108103106*^9, 3.740834110277759*^9}, 
+           3.74083754264347*^9}], Cell[TextData[{"If you\[CloseCurlyQuote]d \
+like to contribute, a copy of this lives at ", ButtonBox[
+            "github.com/mresources/tutorial", BaseStyle -> "Hyperlink", 
+            ButtonData -> {URL["https://github.com/mresources/tutorial"], 
+              None}, ButtonNote -> "https://github.com/mresources/tutorial"], 
+           " and any changes you make can be merged in."}], "Text", 
+         CellChangeTimes -> {{3.740834111853187*^9, 3.74083412187779*^9}, 
+          {3.74083745012964*^9, 3.7408374837817373*^9}}], 
+        Cell[TextData[{"The website is built from a collection of Mathematica \
+notebooks using the ", Cell[BoxData["SiteBuilder"], "InlineInput"], 
+           " package in ", ButtonBox["BTools", BaseStyle -> "Hyperlink", 
+            ButtonData -> 
+             {URL["https://github.com/b3m2a1/mathematica-BTools"], None}, 
+            ButtonNote -> "https://github.com/b3m2a1/mathematica-BTools"], " \
+and so any contributions will have to be in the form of either Markdown or \
+Markdown notebooks."}], "Text", CellChangeTimes -> {{3.740837547395289*^9, 
+          3.740837565268001*^9}, {3.740837691579666*^9, 
+          3.7408377241941137*^9}}]}, Open]], 
+     Cell[CellGroupData[{Cell["Errors", "Subsubsection", 
+         CellChangeTimes -> {{3.7235754763617773*^9, 3.7235754811617603*^9}, 
+          {3.723575519809922*^9, 3.723575523393017*^9}}], 
+        Cell["This tutorial was written very quickly. There are undoubtedly \
+errors in it. Please feel free to report any to me on the tutorial GitHub \
+repository and I\[CloseCurlyQuote]ll try to correct them at my soonest \
+convenience. ", "Text", CellChangeTimes -> {{3.72357548255385*^9, 
+          3.7235755283934383*^9}, {3.740833935424678*^9, 
+          3.740833935750229*^9}, {3.7408375073100357*^9, 
+          3.7408375307966757*^9}}]}, Open]]}, Open]], 
+  Cell[CellGroupData[{Cell["See Also:", "Subsection", 
+      CellChangeTimes -> {{3.740844941369698*^9, 3.7408449424083023*^9}, 
+        3.740845318632187*^9}], Cell[CellGroupData[
+       {Cell[TextData[ButtonBox["Other References", BaseStyle -> "Hyperlink", 
+           ButtonData -> {URL["https://mathematica.stackexchange.com/question\
+s/18/where-can-i-find-examples-of-good-mathematica-programming-practice"], 
+             None}, ButtonNote -> "https://mathematica.stackexchange.com/ques\
+tions/18/where-can-i-find-examples-of-good-mathematica-programming-practice"]]\
+, "Item", CellChangeTimes -> {{3.740845351566929*^9, 3.740845361135487*^9}}], 
+        Cell[TextData[ButtonBox["Common Pitfalls", BaseStyle -> "Hyperlink", 
+           ButtonData -> {URL["https://mathematica.stackexchange.com/question\
+s/18393/what-are-the-most-common-pitfalls-awaiting-new-users"], None}, 
+           ButtonNote -> "https://mathematica.stackexchange.com/questions/183\
+93/what-are-the-most-common-pitfalls-awaiting-new-users"]], "Item", 
+         CellChangeTimes -> {{3.740845337583935*^9, 3.740845343555601*^9}}]}, 
+       Open]]}, Open]]}, WindowSize -> {808, 755}, 
+ WindowMargins -> {{23, Automatic}, {22, Automatic}}, 
+ FrontEndVersion -> 
+  "11.3 for Mac OS X x86 (32-bit, 64-bit Kernel) (March 5, 2018)", 
+ StyleDefinitions -> FrontEnd`FileName[{"BTools"}, "MarkdownNotebook.nb", 
+   CharacterEncoding -> "UTF-8"]]
